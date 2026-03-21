@@ -7,12 +7,13 @@ public_folder: "/images/uploads"
 
 collections:
   - name: "home"
-    label: "Página Inicio"
+    label: "Inicio"
     files:
-      - file: "index.html"
-        label: "Inicio"
-        name: "inicio"
+      - file: "content/home.json"
+        label: "Página principal"
+        name: "pagina_principal"
         fields:
-          - { label: "Título principal", name: "title", widget: "string" }
-          - { label: "Texto", name: "description", widget: "text" }
-          - { label: "Imagen", name: "image", widget: "image" }
+          - { label: "Título principal", name: "hero_title_main", widget: "string" }
+          - { label: "Título resaltado", name: "hero_title_accent", widget: "string" }
+          - { label: "Descripción", name: "hero_description", widget: "text" }
+          - { label: "Imagen principal", name: "hero_image", widget: "image" }
