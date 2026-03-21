@@ -3,6 +3,8 @@ backend:
   repo: AislamientoenCasa/Aislamiento-en-casa
   branch: main
 
+local_backend: true
+
 media_folder: "docs/images"
 public_folder: "/images"
 
