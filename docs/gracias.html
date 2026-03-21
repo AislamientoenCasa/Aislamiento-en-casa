@@ -3,61 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gracias | Aislamiento en Casa</title>
-<meta http-equiv="refresh" content="4;url=index.html">
+<title>Solicitud recibida | Aislamiento en Casa</title>
+<meta http-equiv="refresh" content="6;url=index.html">
 
 <style>
 :root{
   --primary:#2f7d57;
   --primary-dark:#1e5239;
   --bg:#eef7f1;
-  --bg-soft:#f7fbf8;
   --text:#183028;
   --muted:#5f7a70;
-  --line:#dbe9df;
-  --shadow:0 20px 50px rgba(24,48,40,0.08);
+  --whatsapp:#25d366;
 }
-
-*{box-sizing:border-box}
 
 body{
   margin:0;
   font-family:'Segoe UI', system-ui, sans-serif;
-  background:linear-gradient(180deg,var(--bg-soft) 0%, var(--bg) 100%);
-  color:var(--text);
-  min-height:100vh;
+  background:linear-gradient(180deg,#f7fbf8 0%, var(--bg) 100%);
   display:flex;
   align-items:center;
   justify-content:center;
+  min-height:100vh;
   padding:20px;
 }
 
 .card{
-  max-width:700px;
-  width:100%;
   background:white;
   padding:50px 35px;
   border-radius:28px;
-  box-shadow:var(--shadow);
-  border:1px solid var(--line);
+  box-shadow:0 25px 60px rgba(0,0,0,0.08);
+  max-width:600px;
+  width:100%;
   text-align:center;
+  border:1px solid #e6efe9;
 }
 
 h1{
   margin-top:0;
-  font-size:2.2rem;
+  font-size:2.3rem;
   margin-bottom:15px;
+}
+
+.success{
+  font-size:50px;
+  margin-bottom:10px;
 }
 
 p{
   color:var(--muted);
-  font-size:1.05rem;
   margin-bottom:14px;
+  font-size:1.05rem;
+}
+
+.highlight{
+  color:var(--primary);
+  font-weight:700;
 }
 
 .btn{
-  padding:16px 28px;
-  border-radius:50px;
+  padding:16px 26px;
+  border-radius:40px;
   text-decoration:none;
   font-weight:700;
   display:inline-block;
@@ -70,9 +75,15 @@ p{
 }
 
 .btn-wa{
-  background:#25d366;
+  background:var(--whatsapp);
   color:white;
   margin-left:10px;
+}
+
+.countdown{
+  font-size:14px;
+  margin-top:15px;
+  color:var(--muted);
 }
 
 @media(max-width:768px){
@@ -90,14 +101,51 @@ p{
 <body>
 
 <div class="card">
-  <h1>Gracias</h1>
-  <p>Hemos recibido tu solicitud correctamente.</p>
-  <p>Un técnico revisará la información y se pondrá en contacto contigo lo antes posible.</p>
-  <p>Serás redirigido automáticamente en unos segundos…</p>
+  <div class="success">✅</div>
 
-  <a href="index.html" class="btn btn-main">Volver ahora</a>
-  <a href="https://wa.me/34670237842?text=Hola,%20acabo%20de%20enviar%20mi%20solicitud" class="btn btn-wa">Escribir por WhatsApp</a>
+  <h1>Solicitud recibida</h1>
+
+  <p>Hemos recibido tu solicitud correctamente.</p>
+
+  <p class="highlight">
+    Un técnico revisará tu vivienda y te contactará en breve.
+  </p>
+
+  <p>
+    En zonas con alta demanda, las evaluaciones se asignan por orden de llegada.
+  </p>
+
+  <p>
+    Si quieres acelerar el proceso, puedes escribirnos directamente:
+  </p>
+
+  <a id="whatsappBtn" href="#" class="btn btn-wa">📱 Hablar con un técnico ahora</a>
+  <a href="index.html" class="btn btn-main">Volver a la web</a>
+
+  <div class="countdown">
+    Volviendo automáticamente en <span id="timer">6</span> segundos...
+  </div>
 </div>
+
+<script>
+let time = 6;
+const timer = document.getElementById("timer");
+
+const interval = setInterval(() => {
+  time--;
+  timer.textContent = time;
+  if(time <= 0){
+    clearInterval(interval);
+  }
+}, 1000);
+
+const ref = localStorage.getItem("codigo_recomendacion");
+const baseMessage = "Hola, acabo de enviar mi solicitud desde la web";
+const message = ref ? baseMessage + " (código: " + ref + ")" : baseMessage;
+
+document.getElementById("whatsappBtn").href =
+  "https://wa.me/34670237842?text=" + encodeURIComponent(message);
+</script>
 
 </body>
 </html>
