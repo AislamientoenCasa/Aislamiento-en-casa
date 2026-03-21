@@ -15,7 +15,6 @@
   --text:#183028;
   --muted:#5f7a70;
   --line:#dbe9df;
-  --gold:#f59e0b;
   --shadow:0 20px 50px rgba(24,48,40,0.08);
   --whatsapp:#25d366;
 }
@@ -238,11 +237,6 @@ th{
   font-size:0.85rem;
 }
 
-.note{
-  font-size:0.85rem;
-  color:var(--muted);
-}
-
 .whatsapp-float{
   position:fixed;
   bottom:20px;
@@ -324,7 +318,7 @@ ul.clean li{
 <div class="container">
 
   <section class="hero">
-    <div class="badge">CYL · ASTURIAS</div>
+    <div class="badge">Castilla y León · Asturias</div>
 
     <h1>Mejora tu hogar <span>sin inversión inicial</span></h1>
 
@@ -463,8 +457,48 @@ ul.clean li{
     </div>
   </div>
 
+  <div id="contacto" class="card" style="background:var(--primary-dark); color:white; border:none;">
+    <h2 style="color:white; margin-top:0;">Solicitar evaluación de viabilidad</h2>
+    <p style="opacity:0.9;">
+      Analizaremos tu vivienda para confirmar si el ahorro generado cubre la intervención.
+    </p>
+
+    <form action="https://formspree.io/f/xaqpkgbp" method="POST">
+      <input type="hidden" name="_subject" value="SOLICITUD ESTUDIO CAE">
+      <input type="hidden" name="_redirect" value="gracias.html">
+
+      <input type="text" name="nombre" placeholder="Nombre y apellidos" required>
+      <input type="tel" name="telefono" placeholder="Móvil de contacto" required>
+      <input type="text" name="material_cubierta" placeholder="Material de la cubierta: hormigón, yeso o madera">
+      <input type="text" name="codigo_recomendacion" id="codigo_recomendacion" placeholder="Código de recomendación (opcional)">
+      <textarea name="mensaje" placeholder="Indica tu localidad y si es casa unifamiliar o piso" rows="3"></textarea>
+
+      <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#e5efe8; margin-bottom:15px; line-height:1.5; text-align:left;">
+        <input type="checkbox" name="acepta_privacidad" required style="width:auto; margin-top:4px;">
+        <span>
+          He leído y acepto la
+          <a href="privacidad.html" target="_blank" style="color:#ffffff; text-decoration:underline;">Política de Privacidad</a>.
+        </span>
+      </label>
+
+      <p style="font-size:13px; color:#d9e8de; margin-top:0; margin-bottom:15px; line-height:1.5; text-align:left;">
+        Responsable: Aislamiento en Casa. Finalidad: gestionar tu solicitud de información o evaluación técnica.
+        Legitimación: tu consentimiento. Derechos: acceso, rectificación, supresión y otros en
+        <a href="privacidad.html" target="_blank" style="color:#ffffff; text-decoration:underline;">privacidad.html</a>.
+      </p>
+
+      <button type="submit" class="btn" style="background:white; color:var(--primary-dark); width:100%; font-weight:800;">
+        ENVIAR SOLICITUD GRATUITA
+      </button>
+    </form>
+
+    <p style="text-align:center; font-size:0.8rem; margin-top:15px; opacity:0.7;">
+      Respuesta en menos de 24 horas.
+    </p>
+  </div>
+
   <div class="card reward-card">
-    <h2 style="margin-top:0;">🎁 Programa de recomendación</h2>
+    <h2 style="margin-top:0;">🎁 Recomendación</h2>
     <p>
       Recomienda nuestro servicio a vecinos o familiares y obtén tarjetas regalo de <strong>Amazon</strong> o <strong>El Corte Inglés</strong>.
     </p>
@@ -500,7 +534,7 @@ ul.clean li{
       </label>
 
       <p style="font-size:13px; color:#5f7a70; margin-top:0; margin-bottom:15px; line-height:1.5; text-align:left;">
-        Responsable: Ecologicaes SL. Finalidad: gestionar tu recomendación. Legitimación: tu consentimiento.
+        Responsable: Aislamiento en Casa. Finalidad: gestionar tu recomendación. Legitimación: tu consentimiento.
         Derechos: acceso, rectificación, supresión y otros en
         <a href="privacidad.html" target="_blank" style="color:#2f7d57; text-decoration:underline;">privacidad.html</a>.
       </p>
@@ -512,44 +546,6 @@ ul.clean li{
 
     <p style="font-size:0.75rem; margin-top:12px; font-style:italic;">
       *Premio tras instalación finalizada y validada del referido.
-    </p>
-  </div>
-
-  <div id="contacto" class="card" style="background:var(--primary-dark); color:white; border:none;">
-    <h2 style="color:white; margin-top:0;">Solicitar evaluación de viabilidad</h2>
-    <p style="opacity:0.9;">
-      Analizaremos tu vivienda para confirmar si el ahorro generado cubre la intervención.
-    </p>
-
-    <form action="https://formspree.io/f/xaqpkgbp" method="POST">
-      <input type="hidden" name="_subject" value="SOLICITUD ESTUDIO CAE">
-      <input type="hidden" name="_redirect" value="gracias.html">
-
-      <input type="text" name="nombre" placeholder="Nombre y apellidos" required>
-      <input type="tel" name="telefono" placeholder="Móvil de contacto" required>
-      <textarea name="mensaje" placeholder="Indica tu localidad y si es casa unifamiliar o piso" rows="3"></textarea>
-
-      <label style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#e5efe8; margin-bottom:15px; line-height:1.5; text-align:left;">
-        <input type="checkbox" name="acepta_privacidad" required style="width:auto; margin-top:4px;">
-        <span>
-          He leído y acepto la
-          <a href="privacidad.html" target="_blank" style="color:#ffffff; text-decoration:underline;">Política de Privacidad</a>.
-        </span>
-      </label>
-
-      <p style="font-size:13px; color:#d9e8de; margin-top:0; margin-bottom:15px; line-height:1.5; text-align:left;">
-        Responsable: Ecologicaes SL. Finalidad: gestionar tu solicitud de información o evaluación técnica.
-        Legitimación: tu consentimiento. Derechos: acceso, rectificación, supresión y otros en
-        <a href="privacidad.html" target="_blank" style="color:#ffffff; text-decoration:underline;">privacidad.html</a>.
-      </p>
-
-      <button type="submit" class="btn" style="background:white; color:var(--primary-dark); width:100%; font-weight:800;">
-        ENVIAR SOLICITUD GRATUITA
-      </button>
-    </form>
-
-    <p style="text-align:center; font-size:0.8rem; margin-top:15px; opacity:0.7;">
-      Respuesta en menos de 24 horas.
     </p>
   </div>
 
@@ -590,6 +586,24 @@ ul.clean li{
 </div>
 
 <script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get("ref");
+
+  if (ref) {
+    localStorage.setItem("codigo_recomendacion", ref);
+  }
+
+  window.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("codigo_recomendacion");
+    const savedRef = localStorage.getItem("codigo_recomendacion");
+
+    if (input && savedRef) {
+      input.value = savedRef;
+    }
+  });
+})();
+
 function setCookie(name, value, days) {
   let expires = "";
   if (days) {
