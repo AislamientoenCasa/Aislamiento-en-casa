@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "home"
+    label: "Inicio"
+    files:
+      - file: "content/home.json"
+        label: "Página principal"
+        name: "pagina_principal"
+        fields:
+          - { label: "Título principal", name: "hero_title_main", widget: "string" }
+          - { label: "Título resaltado", name: "hero_title_accent", widget: "string" }
+          - { label: "Descripción", name: "hero_description", widget: "text" }
+          - { label: "Imagen principal", name: "hero_image", widget: "image" }
