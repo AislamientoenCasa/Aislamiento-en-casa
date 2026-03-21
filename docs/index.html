@@ -3,117 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aislamiento en Casa</title>
+<title>Aislamiento en Casa | Confort sin inversión inicial</title>
 
 <style>
 :root{
---bg:#f5f7fa;
---card:#fff;
---text:#111;
---muted:#666;
---accent:#ff7a00;
---green:#25D366;
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --text:#1e293b;
+    --muted:#64748b;
+    --accent:#ff7a00;
+    --green:#22c55e;
+}
+
+*{
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:-apple-system,Segoe UI,Roboto;
-background:var(--bg);
-color:var(--text);
+    margin:0;
+    font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
+img,
+video{
+    display:block;
+    max-width:100%;
 }
 
 header{
-background:#fff;
-padding:15px 20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(10px);
+    padding:10px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e2e8f0;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.logo img{height:45px;}
+.logo img{
+    height:50px;
+    width:auto;
+}
+
+.container{
+    max-width:1000px;
+    margin:auto;
+    padding:20px;
+}
+
+.hero{
+    text-align:center;
+    padding:60px 20px;
+    background:linear-gradient(135deg, #fff 0%, #f1f5f9 100%);
+    border-radius:30px;
+    margin-bottom:40px;
+}
+
+.hero h1{
+    font-size:2.5rem;
+    color:#0f172a;
+    margin-bottom:20px;
+    line-height:1.2;
+}
+
+.hero span{
+    color:var(--accent);
+}
+
+.hero-video{
+    width:100%;
+    max-height:450px;
+    object-fit:cover;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.1);
+    margin:30px 0;
+}
 
 .btn{
-padding:14px 20px;
-border-radius:10px;
-font-weight:600;
-text-decoration:none;
-display:inline-block;
+    padding:16px 28px;
+    border-radius:12px;
+    font-weight:700;
+    text-decoration:none;
+    display:inline-block;
+    transition:all 0.3s ease;
 }
 
-.btn-main{background:var(--accent);color:white;}
-.btn-wa{background:var(--green);color:white;}
-
-.hero video{
-width:100%;
-border-radius:20px;
-margin-top:20px;
+.btn-main{
+    background:var(--accent);
+    color:white;
+    box-shadow:0 10px 20px rgba(255,122,0,0.2);
 }
 
-h1{font-size:34px;}
+.btn-main:hover{
+    transform:translateY(-2px);
+    background:#e66e00;
+}
+
+.btn-wa{
+    background:var(--green);
+    color:white;
+    margin-left:10px;
+}
 
 .card{
-background:var(--card);
-padding:25px;
-border-radius:14px;
-margin-top:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    background:var(--card);
+    padding:30px;
+    border-radius:20px;
+    margin-bottom:30px;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);
+    border:1px solid #f1f5f9;
 }
 
 .grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
 }
 
-img{
-width:100%;
-border-radius:12px;
+.benefit-list{
+    list-style:none;
+    padding:0;
+    margin:0;
 }
 
-.steps{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
+.benefit-list li{
+    margin-bottom:15px;
+    padding-left:30px;
+    position:relative;
 }
 
-.step{
-background:white;
-padding:15px;
-border-radius:10px;
+.benefit-list li::before{
+    content:"✓";
+    position:absolute;
+    left:0;
+    color:var(--green);
+    font-weight:bold;
 }
 
-footer{
-text-align:center;
-padding:30px;
-color:#777;
+.form-input{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:1px solid #ddd;
+    font:inherit;
 }
 
-.sticky{
-position:fixed;
-bottom:20px;
-right:20px;
-}
+@media(max-width:768px){
+    .grid{
+        grid-template-columns:1fr;
+    }
 
-form input{
-width:100%;
-padding:12px;
-margin-top:10px;
-border-radius:8px;
-border:1px solid #ddd;
-}
+    .hero h1{
+        font-size:1.8rem;
+    }
 
-@media(max-width:800px){
-.grid,.steps{grid-template-columns:1fr;}
-h1{font-size:26px;}
+    .btn-wa{
+        margin-left:0;
+        margin-top:10px;
+        width:100%;
+        text-align:center;
+    }
+
+    .btn-main{
+        width:100%;
+        text-align:center;
+    }
 }
 </style>
 </head>
@@ -121,163 +182,99 @@ h1{font-size:26px;}
 <body>
 
 <header>
-<div class="logo">
-<img src="logo.png">
-</div>
-<a href="#contacto" class="btn btn-main">Solicitar evaluación</a>
+    <div class="logo">
+        <img src="1000016036.jpg" alt="Logo Aislamiento en Casa">
+    </div>
+    <a href="#contacto" class="btn btn-main" style="padding:10px 20px; font-size:14px;">Estudio gratuito</a>
 </header>
 
 <div class="container">
 
-<!-- HERO -->
-<section class="hero">
+    <section class="hero">
+        <h1>Aísla tu vivienda <span>sin coste inicial</span> gracias al sistema CAE</h1>
 
-<video autoplay muted loop>
-<source src="video.mp4">
-</video>
+        <p style="font-size:1.2rem; color:var(--muted); max-width:700px; margin:auto;">
+            Mejora el confort de tu hogar y reduce tu factura energética. Si tu proyecto es viable, el ahorro paga la obra.
+        </p>
 
-<h1>Evaluamos si tu vivienda puede mejorar su eficiencia sin inversión inicial</h1>
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video_obra.mp4" type="video/mp4">
+            Tu navegador no soporta vídeo HTML5.
+        </video>
 
-<p style="color:var(--muted)">
-Solo actuamos en proyectos viables mediante el sistema de Certificados de Ahorro Energético (CAE).
-</p>
+        <div style="margin-top:20px;">
+            <a href="#contacto" class="btn btn-main">Quiero mi evaluación gratuita</a>
+            <a href="https://wa.me/34600000000" class="btn btn-wa">Consultar por WhatsApp</a>
+        </div>
+    </section>
 
-<a href="#contacto" class="btn btn-main">Solicitar evaluación técnica</a>
-<a href="https://wa.me/34600000000" class="btn btn-wa">WhatsApp</a>
+    <div class="grid">
+        <div class="card">
+            <h2 style="color:var(--accent);">¿Cómo es posible?</h2>
+            <p>
+                El sistema de <strong>Certificados de Ahorro Energético (CAE)</strong> permite que las energéticas financien tu mejora de aislamiento. Nosotros gestionamos todo el proceso técnico y burocrático por ti.
+            </p>
+            <ul class="benefit-list">
+                <li><strong>Cero inversión:</strong> El ahorro financia la obra.</li>
+                <li><strong>Confort total:</strong> Adiós al frío y al calor.</li>
+                <li><strong>Instalación rápida:</strong> Sin obras molestas.</li>
+            </ul>
+        </div>
 
-</section>
+        <div class="card" style="padding:0; overflow:hidden;">
+            <img src="1000016069.jpg" alt="Técnico trabajando en aislamiento" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+    </div>
 
-<!-- COMO FUNCIONA -->
-<div class="grid">
+    <div class="card">
+        <h2>Casos reales: Transformación total</h2>
+        <div class="grid">
+            <div>
+                <p><strong>Antes:</strong> Cubierta sin aislamiento, con fugas de calor.</p>
+                <img src="1000016067.jpg" alt="Antes del aislamiento" style="border-radius:10px;">
+            </div>
+            <div>
+                <p><strong>Después:</strong> Cubierta con aislamiento insuflado de alta eficiencia.</p>
+                <img src="1000016068.jpg" alt="Después del aislamiento" style="border-radius:10px;">
+            </div>
+        </div>
+    </div>
 
-<div class="card">
-<img src="instalacion.jpg">
-<h2>Cómo funciona</h2>
-<p>
-Evaluamos la vivienda y solo actuamos si el ahorro energético permite financiar la intervención.
-</p>
-</div>
+    <div class="card" style="background:#1e293b; color:white; text-align:center;">
+        <h2 style="color:var(--accent);">Programa de recomendación</h2>
+        <p>¿Conoces a alguien que necesite aislar su casa? Ayúdales a ahorrar y gana dinero.</p>
 
-<div class="card">
-<img src="imagen.jpg">
-</div>
+        <div class="grid" style="margin-top:20px;">
+            <div style="background:rgba(255,255,255,0.1); padding:20px; border-radius:15px;">
+                <h3 style="margin:0;">2 clientes</h3>
+                <p style="font-size:24px; font-weight:bold; color:var(--accent);">30€ de regalo</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.1); padding:20px; border-radius:15px;">
+                <h3 style="margin:0;">5 clientes</h3>
+                <p style="font-size:24px; font-weight:bold; color:var(--accent);">100€ de regalo</p>
+            </div>
+        </div>
+    </div>
 
-</div>
+    <div id="contacto" class="card" style="border:2px solid var(--accent);">
+        <h2 style="text-align:center;">Solicita tu estudio técnico</h2>
+        <p style="text-align:center; color:var(--muted);">
+            Servicio disponible en <strong>Castilla y León y Asturias</strong>
+        </p>
 
-<!-- PROCESO -->
-<div class="card">
-<h2>Proceso</h2>
-<div class="steps">
-<div class="step">Evaluación técnica</div>
-<div class="step">Viabilidad energética</div>
-<div class="step">Ejecución</div>
-<div class="step">Gestión CAE</div>
-</div>
-</div>
-
-<!-- CASO REAL -->
-<div class="card">
-<h2>Caso real</h2>
-<img src="antes.jpg">
-<img src="despues.jpg">
-
-<p><strong>Vivienda · Castilla y León</strong></p>
-<p>
-Aislamiento insuflado en cubierta con mejora del confort térmico y reducción de pérdidas energéticas.
-</p>
-</div>
-
-<!-- SISTEMA CAE -->
-<div class="card">
-<h2>Sistema CAE</h2>
-
-<p>
-El sistema CAE permite certificar ahorros energéticos y financiar actuaciones de eficiencia.
-</p>
-
-<img src="cae.jpg">
-
-<p style="color:var(--muted)">
-Cada proyecto requiere evaluación técnica previa.
-</p>
-</div>
-
-<!-- BENEFICIOS -->
-<div class="card">
-<h2>Beneficios</h2>
-<ul>
-<li>Sin inversión inicial</li>
-<li>Menor consumo energético</li>
-<li>Mayor confort</li>
-</ul>
-</div>
-
-<!-- REFERIDOS -->
-<div class="card">
-<h2>Programa de recomendación</h2>
-
-<ul>
-<li>2 clientes → <strong>30€</strong></li>
-<li>5 clientes → <strong>100€</strong></li>
-</ul>
-
-<p style="color:#666;font-size:14px;">
-Bono entregado tras intervención validada.
-</p>
-
-<a href="#referidos" class="btn btn-main">Recomendar ahora</a>
-</div>
-
-<!-- FORM REFERIDOS -->
-<div id="referidos" class="card">
-
-<h2>Recomendación</h2>
-
-<form action="https://formspree.io/f/TU_ID_REFERIDOS" method="POST">
-
-<input type="text" name="nombre" placeholder="Tu nombre" required>
-<input type="tel" name="telefono" placeholder="Tu teléfono" required>
-
-<input type="text" name="codigo" value="AENCASA-001">
-
-<input type="text" name="referido" placeholder="Nombre recomendado">
-<input type="tel" name="telefono_ref" placeholder="Teléfono recomendado">
-
-<button class="btn btn-main" style="margin-top:10px;">Enviar</button>
-
-</form>
+        <form action="#" method="POST" style="max-width:500px; margin:auto;">
+            <input class="form-input" type="text" name="nombre" placeholder="Tu nombre completo" required>
+            <input class="form-input" type="tel" name="telefono" placeholder="Teléfono de contacto" required>
+            <button class="btn btn-main" style="width:100%; border:none; cursor:pointer; font-size:18px;">
+                Enviar solicitud gratuita
+            </button>
+        </form>
+    </div>
 
 </div>
 
-<!-- CONTACTO -->
-<div id="contacto" class="card">
-
-<h2>Solicitar estudio</h2>
-
-<p style="color:var(--muted)">
-Castilla y León y Asturias
-</p>
-
-<form action="https://formspree.io/f/TU_ID" method="POST">
-
-<input type="text" name="nombre" placeholder="Nombre" required>
-<input type="tel" name="telefono" placeholder="Teléfono" required>
-
-<button class="btn btn-main" style="margin-top:10px;">Enviar</button>
-
-</form>
-
-</div>
-
-</div>
-
-<!-- WHATSAPP -->
-<div class="sticky">
-<a href="https://wa.me/34600000000" class="btn btn-wa">WhatsApp</a>
-</div>
-
-<footer>
-© 2026 Aislamiento en Casa
+<footer style="text-align:center; padding:40px; color:var(--muted); font-size:14px;">
+    © 2026 Aislamiento en Casa · Expertos en eficiencia energética
 </footer>
 
 </body>
