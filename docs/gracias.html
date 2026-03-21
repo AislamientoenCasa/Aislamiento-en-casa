@@ -1,106 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gracias | Aislamiento en Casa</title>
-  <style>
-    :root{
-      --bg:#eef7f1;
-      --bg-soft:#f7fbf8;
-      --card:#ffffff;
-      --text:#183028;
-      --muted:#5f7a70;
-      --primary:#2f7d57;
-      --primary-dark:#245f43;
-      --line:#dbe9df;
-      --shadow:0 12px 32px rgba(24,48,40,0.08);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gracias | Aislamiento en Casa</title>
+<meta http-equiv="refresh" content="4;url=index.html">
 
-    *{box-sizing:border-box}
+<style>
+:root{
+  --primary:#2f7d57;
+  --primary-dark:#1e5239;
+  --bg:#eef7f1;
+  --bg-soft:#f7fbf8;
+  --text:#183028;
+  --muted:#5f7a70;
+  --line:#dbe9df;
+  --shadow:0 20px 50px rgba(24,48,40,0.08);
+}
 
-    body{
-      margin:0;
-      font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background:linear-gradient(180deg,var(--bg-soft) 0%, var(--bg) 100%);
-      color:var(--text);
-    }
+*{box-sizing:border-box}
 
-    .wrap{
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:24px;
-    }
+body{
+  margin:0;
+  font-family:'Segoe UI', system-ui, sans-serif;
+  background:linear-gradient(180deg,var(--bg-soft) 0%, var(--bg) 100%);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
 
-    .card{
-      max-width:720px;
-      width:100%;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:28px;
-      padding:40px 32px;
-      box-shadow:var(--shadow);
-      text-align:center;
-    }
+.card{
+  max-width:700px;
+  width:100%;
+  background:white;
+  padding:50px 35px;
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  border:1px solid var(--line);
+  text-align:center;
+}
 
-    h1{
-      margin:0 0 14px;
-      font-size:2.2rem;
-      line-height:1.1;
-    }
+h1{
+  margin-top:0;
+  font-size:2.2rem;
+  margin-bottom:15px;
+}
 
-    p{
-      color:var(--muted);
-      line-height:1.7;
-      margin:0 0 12px;
-    }
+p{
+  color:var(--muted);
+  font-size:1.05rem;
+  margin-bottom:14px;
+}
 
-    .btn{
-      display:inline-block;
-      margin-top:18px;
-      padding:14px 24px;
-      border-radius:999px;
-      text-decoration:none;
-      font-weight:700;
-    }
+.btn{
+  padding:16px 28px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:700;
+  display:inline-block;
+  margin-top:10px;
+}
 
-    .btn-main{
-      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-      color:#fff;
-    }
+.btn-main{
+  background:var(--primary);
+  color:white;
+}
 
-    .btn-wa{
-      background:#22c55e;
-      color:#fff;
-      margin-left:10px;
-    }
+.btn-wa{
+  background:#25d366;
+  color:white;
+  margin-left:10px;
+}
 
-    @media(max-width:768px){
-      .btn{
-        display:block;
-        margin:12px 0 0;
-      }
-      .btn-wa{margin-left:0;}
-    }
-  </style>
+@media(max-width:768px){
+  .btn{
+    display:block;
+    margin:10px 0 0 0;
+  }
+
+  .btn-wa{
+    margin-left:0;
+  }
+}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <h1>Gracias por tu solicitud</h1>
-      <p>
-        Hemos recibido tus datos correctamente. Nuestro equipo revisará la información
-        y contactará contigo lo antes posible para valorar la viabilidad técnica del proyecto.
-      </p>
-      <p>
-        Trabajamos en Castilla y León y Asturias, siempre sujeto a análisis previo
-        y condiciones aplicables del sistema CAE.
-      </p>
 
-      <a href="index.html" class="btn btn-main">Volver a la web</a>
-      <a href="https://wa.me/34600000000" class="btn btn-wa">Escribir por WhatsApp</a>
-    </div>
-  </div>
+<div class="card">
+  <h1>Gracias</h1>
+  <p>Hemos recibido tu solicitud correctamente.</p>
+  <p>Un técnico revisará la información y se pondrá en contacto contigo lo antes posible.</p>
+  <p>Serás redirigido automáticamente en unos segundos…</p>
+
+  <a href="index.html" class="btn btn-main">Volver ahora</a>
+  <a href="https://wa.me/34670237842?text=Hola,%20acabo%20de%20enviar%20mi%20solicitud" class="btn btn-wa">Escribir por WhatsApp</a>
+</div>
+
 </body>
 </html>
