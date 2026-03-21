@@ -3,8 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aislamiento en Casa | Eficiencia energética sin inversión inicial</title>
-<meta name="description" content="Aísla tu vivienda en Castilla y León o Asturias sin inversión inicial gracias al sistema CAE. Evaluación gratuita.">
+<header>
+  <h1 id="title">Cargando...</h1>
+</header>
+
+<section>
+  <p id="desc">Cargando...</p>
+  <img id="img" src="" alt="imagen">
+</section>
 
 <style>
 :root{
@@ -641,6 +647,14 @@ window.onload = function(){
   }
 }
 </script>
-
+<script>
+fetch("/content/home.json")
+  .then(res => res.json())
+  .then(data => {
+    if (data.title) document.getElementById("title").innerText = data.title;
+    if (data.description) document.getElementById("desc").innerText = data.description;
+    if (data.image) document.getElementById("img").src = data.image;
+  });
+</script>
 </body>
 </html>
