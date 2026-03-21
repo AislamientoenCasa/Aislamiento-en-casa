@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: AislamientoenCasa/Aislamiento-en-casa
+  branch: main
+
+media_folder: "docs/images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "docs/index.html"
+        label: "Home"
+        name: "home"
+        fields:
+          - { label: "Contenido", name: "body", widget: "markdown" }
