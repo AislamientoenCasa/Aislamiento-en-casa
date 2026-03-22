@@ -1836,12 +1836,12 @@ function showSection(id){
   // cambiar sección (más rápido)
   setTimeout(() => {
     switchSection(id);
-  }, 300);
+  }, 700);
 
   // quitar overlay (duración total corta)
   setTimeout(() => {
     logoOverlay.classList.remove("show");
-  }, 1000);
+  }, 1600);
 }
   menuButtons.forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.tab));
