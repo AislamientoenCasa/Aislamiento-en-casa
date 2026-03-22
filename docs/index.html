@@ -561,6 +561,7 @@
       width:100%;
       height:320px;
       object-fit:cover;
+      object-position:right center;
       border-radius:18px;
       border:1px solid var(--line);
       margin-top:16px;
@@ -692,11 +693,20 @@
       color:var(--muted);
     }
 
-    footer{
+    .global-footer{
       text-align:center;
       padding:10px 0 30px;
       color:var(--muted);
       font-size:.92rem;
+    }
+
+    .global-footer a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .global-footer a:hover{
+      color:var(--primary);
     }
 
     .call-float{
@@ -1056,7 +1066,7 @@
 
         <div class="grid-2">
           <div class="feature">
-            <h3>💨 Insuflado (desván no habitable)</h3>
+            <h3>Insuflado (desván no habitable)</h3>
             <ul>
               <li>Muy rápido</li>
               <li>Sin obras complejas</li>
@@ -1066,9 +1076,9 @@
           </div>
 
           <div class="feature">
-            <h3>🧱 Manta / rollo (desván habitable)</h3>
+            <h3>Manta / rollo (desván habitable)</h3>
             <ul>
-              <li>Adaptado a uso del espacio</li>
+              <li>Adaptado al uso del espacio</li>
               <li>Acabado más controlado</li>
               <li>Solución compatible con espacios transitables</li>
               <li>Durabilidad y buen comportamiento térmico</li>
@@ -1140,8 +1150,8 @@
             <div class="step">
               <div class="step-num">1</div>
               <div>
-                <h3>Visita técnica</h3>
-                <p>Revisión completa de la vivienda y validación de la actuación.</p>
+                <h3>Revisión completa de la vivienda</h3>
+                <p>Inspección completa de la vivienda, la cubierta y sus condiciones reales para validar la actuación.</p>
               </div>
             </div>
 
@@ -1182,13 +1192,21 @@
             <div class="step">
               <div class="step-num">1</div>
               <div>
-                <h3>Proceso de obra</h3>
-                <p>El proceso técnico y de ejecución es prácticamente el mismo que en vivienda unifamiliar.</p>
+                <h3>Revisión completa del edificio</h3>
+                <p>Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para validar la actuación y preparar el expediente técnico.</p>
               </div>
             </div>
 
             <div class="step">
               <div class="step-num">2</div>
+              <div>
+                <h3>Fotos, medidas y documentación</h3>
+                <p>Se recopila la información del edificio, se documenta el estado previo y se prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
               <div>
                 <h3>Documentación específica</h3>
                 <ul>
@@ -1212,13 +1230,21 @@
             <div class="step">
               <div class="step-num">1</div>
               <div>
-                <h3>Proceso técnico</h3>
-                <p>Se analiza la cubierta y la actuación del mismo modo, con foco adicional en los consumos energéticos del edificio.</p>
+                <h3>Revisión completa del edificio</h3>
+                <p>Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas para validar la actuación y adaptar la solución al edificio terciario.</p>
               </div>
             </div>
 
             <div class="step">
               <div class="step-num">2</div>
+              <div>
+                <h3>Fotos, medidas y documentación</h3>
+                <p>Se documenta técnicamente el estado del edificio y se recopilan los datos necesarios para la tramitación energética y administrativa.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
               <div>
                 <h3>Documentación específica</h3>
                 <ul>
@@ -1349,7 +1375,7 @@
         </p>
 
         <p>
-          Los distribuidores de combustible, gasóleo doméstico, gas o electricidad, conocidos como los <strong>sujetos obligados</strong>, tienen la obligación de participar en la lucha contra el calentamiento global mediante el financiamiento de obras de mejora energética, bajo el principio de <strong>“quien contamina paga”</strong>.
+          Los distribuidores de combustible, gasóleo doméstico, gas o electricidad, conocidos como los <strong>sujetos obligados</strong>, participan en la financiación de actuaciones de eficiencia energética, permitiendo transformar el ahorro generado en apoyo económico para la obra.
         </p>
 
         <p>
@@ -1367,7 +1393,7 @@
         <h2>Trámite CEE y CAE</h2>
 
         <p>
-          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado.
+          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado y reflejar la mejora de la vivienda.
         </p>
 
         <div class="timeline">
@@ -1397,21 +1423,21 @@
               </p>
 
               <p>
-                Desde la documentación inicial, certificación del ahorro energético y validación, hasta la emisión final de la etiqueta energética por parte de la administración.
+                Desde la documentación inicial, la certificación del ahorro energético y la validación, hasta la emisión final de la etiqueta energética por parte de la administración.
               </p>
             </div>
           </div>
         </div>
 
         <div class="card soft-card" style="text-align:center; margin-top:20px;">
-          <h3>Tú no te ocupas de nada</h3>
+          <h3>Mejora de la calificación energética</h3>
 
           <p style="max-width:700px; margin:0 auto 15px;">
-            Gestionamos todo el proceso técnico, administrativo y energético para que solo tengas que disfrutar del resultado.
+            Tras la intervención, la vivienda mejora su calificación energética, reduciendo su consumo y aumentando su valor en el mercado.
           </p>
 
           <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
-            Desde la obra hasta la etiqueta energética final
+            Mejora real reflejada en la etiqueta energética oficial
           </p>
         </div>
 
@@ -1490,32 +1516,32 @@
           </button>
         </form>
       </section>
+    </section>
 
-      <footer>
-        <p>© 2026 Aislamiento en Casa · Castilla y León y Asturias</p>
-        <p style="font-size:11px; opacity:.7;">Sujeto a viabilidad técnica y condiciones del sistema CAE.</p>
+    <footer class="global-footer">
+      <p>© 2026 Aislamiento en Casa · Castilla y León y Asturias</p>
+      <p style="font-size:11px; opacity:.7;">Sujeto a viabilidad técnica y condiciones del sistema CAE.</p>
 
-        <div style="margin-top:18px;">
-          <p style="font-weight:700; margin-bottom:8px;">Síguenos</p>
+      <div style="margin-top:18px;">
+        <p style="font-weight:700; margin-bottom:8px;">Síguenos</p>
 
-          <div class="social-row">
-            <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" class="social-btn">
-              👍 Facebook
-            </a>
-          </div>
-
-          <p style="font-size:13px; color:var(--muted); margin-top:6px;">
-            Casos reales · Antes y después · Obras finalizadas
-          </p>
+        <div class="social-row">
+          <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" class="social-btn">
+            Facebook
+          </a>
         </div>
 
-        <p style="margin-top:12px;">
-          <a href="aviso-legal.html" style="color:inherit;">Aviso legal</a> ·
-          <a href="privacidad.html" style="color:inherit;">Privacidad</a> ·
-          <a href="cookies.html" style="color:inherit;">Cookies</a>
+        <p style="font-size:13px; color:var(--muted); margin-top:6px;">
+          Casos reales · Antes y después · Obras finalizadas
         </p>
-      </footer>
-    </section>
+      </div>
+
+      <p style="margin-top:12px;">
+        <a href="aviso-legal.html">Aviso legal</a> ·
+        <a href="privacidad.html">Privacidad</a> ·
+        <a href="cookies.html">Cookies</a>
+      </p>
+    </footer>
   </main>
 </div>
 
@@ -1536,7 +1562,7 @@
     },
     cita: {
       title: "Día de la cita",
-      subtitle: "Proceso de visita técnica, documentación, intervención y firma."
+      subtitle: "Proceso de revisión técnica, documentación, intervención y firma."
     },
     cae: {
       title: "Sistema CAE",
