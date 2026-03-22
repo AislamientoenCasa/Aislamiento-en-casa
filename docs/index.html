@@ -1987,11 +1987,14 @@ window.addEventListener("load", () => {
     if (popup) popup.style.display = "block";
   }, 10000);
   document.getElementById("formulario").addEventListener("submit", function(e){
+  document.getElementById("formulario").addEventListener("submit", function(e){
   e.preventDefault();
 
   const form = document.getElementById("formulario");
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
+
+  const btn = form.querySelector("button");
 
   fetch("https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/", {
     method: "POST",
@@ -2001,22 +2004,20 @@ window.addEventListener("load", () => {
     body: JSON.stringify(data)
   })
   .then(() => {
-    alert("✅ Solicitud enviada correctamente");
+    btn.innerText = "Enviado ✅";
+    btn.disabled = true;
+
     form.reset();
+
+    setTimeout(() => {
+      btn.innerText = "Ver si mi vivienda es viable";
+      btn.disabled = false;
+    }, 3000);
   })
   .catch(() => {
     alert("Error al enviar");
   });
 });
-  const btn = form.querySelector("button");
-  btn.innerText = "Enviado ✅";
-  btn.disabled = true;
-
-  setTimeout(() => {
-    btn.innerText = "Ver si mi vivienda es viable";
-    btn.disabled = false;
-  }, 3000);
-})
 </script>
 
 </body>
