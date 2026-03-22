@@ -1,704 +1,1111 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aislamiento en Casa · Web App</title>
+  <title>Aislamiento en Casa | Aislamiento de cubiertas sin inversión inicial</title>
+  <meta name="description" content="Aislamiento de cubiertas en Castilla y León y Asturias. Reduce tu factura energética y mejora el confort de tu vivienda sin inversión inicial, según viabilidad técnica." />
+
   <style>
     :root{
       --primary:#2f7d57;
       --primary-dark:#1e5239;
-      --bg:#eef7f1;
-      --bg-soft:#f7fbf8;
-      --card:#ffffff;
-      --text:#183028;
+      --dark:#183028;
       --muted:#5f7a70;
+      --bg:#f7fbf8;
+      --bg-soft:#eef7f1;
+      --card:#ffffff;
       --line:#dbe9df;
-      --gold:#dcae3f;
       --shadow:0 20px 50px rgba(24,48,40,0.08);
       --whatsapp:#25d366;
-    }*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  font-family:Segoe UI, system-ui, -apple-system, sans-serif;
-  background:linear-gradient(180deg,var(--bg-soft),var(--bg));
-  color:var(--text);
-  line-height:1.6;
-}
+    }
 
-.app-shell{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:280px 1fr;
-}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
 
-.sidebar{
-  background:rgba(255,255,255,0.88);
-  backdrop-filter:blur(10px);
-  border-right:1px solid var(--line);
-  padding:24px 18px;
-  position:sticky;
-  top:0;
-  height:100vh;
-}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      background:linear-gradient(180deg,var(--bg),var(--bg-soft));
+      color:var(--dark);
+      line-height:1.6;
+    }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:24px;
-}
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 32px;
+      background:rgba(255,255,255,0.94);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+      position:sticky;
+      top:0;
+      z-index:1000;
+    }
 
-.brand img{
-  width:64px;
-  height:64px;
-  object-fit:contain;
-  border-radius:16px;
-  background:#fff;
-  padding:6px;
-  border:1px solid var(--line);
-}
+    .logo img{
+      height:140px;
+      width:auto;
+      display:block;
+    }
 
-.brand h1{
-  font-size:1.1rem;
-  margin:0;
-  line-height:1.2;
-}
+    .container{
+      max-width:1120px;
+      margin:auto;
+      padding:24px;
+    }
 
-.brand p{
-  margin:4px 0 0;
-  font-size:.85rem;
-  color:var(--muted);
-}
+    .hero{
+      text-align:center;
+      padding:64px 24px;
+      background:
+        linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)),
+        url("images/cubierta_despues.jpg") center/cover no-repeat;
+      border:1px solid var(--line);
+      border-radius:28px;
+      margin-bottom:32px;
+      box-shadow:var(--shadow);
+    }
 
-.nav{
-  display:grid;
-  gap:10px;
-}
+    .badge{
+      display:inline-block;
+      background:#e8f3ee;
+      color:var(--primary-dark);
+      padding:8px 16px;
+      border-radius:999px;
+      font-size:.9rem;
+      font-weight:700;
+      margin-bottom:16px;
+    }
 
-.nav button{
-  width:100%;
-  border:none;
-  background:#fff;
-  border:1px solid var(--line);
-  color:var(--text);
-  border-radius:16px;
-  padding:14px 16px;
-  text-align:left;
-  font:inherit;
-  font-weight:600;
-  cursor:pointer;
-  transition:.25s ease;
-  box-shadow:0 6px 18px rgba(24,48,40,0.04);
-}
+    .hero h1{
+      font-size:clamp(2rem,4.5vw,3.6rem);
+      line-height:1.08;
+      margin:0 0 18px;
+    }
 
-.nav button:hover{ transform:translateY(-2px); }
-.nav button.active{
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-  color:#fff;
-  border-color:transparent;
-}
+    .hero h1 span{ color:var(--primary); }
 
-.sidebar-note{
-  margin-top:24px;
-  padding:16px;
-  background:#f8fcf9;
-  border:1px solid var(--line);
-  border-radius:18px;
-  color:var(--muted);
-  font-size:.9rem;
-}
+    .hero p{
+      max-width:820px;
+      margin:0 auto 18px;
+      color:var(--muted);
+      font-size:1.08rem;
+    }
 
-.main{
-  padding:26px;
-}
+    .btn-row{
+      display:flex;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:24px;
+    }
 
-.topbar{
-  background:rgba(255,255,255,0.92);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:20px 22px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:16px;
-  box-shadow:var(--shadow);
-  margin-bottom:24px;
-}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:15px 24px;
+      border-radius:999px;
+      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      font-weight:800;
+      font-size:1rem;
+      transition:.25s ease;
+      position:relative;
+      overflow:hidden;
+    }
 
-.topbar h2{ margin:0; font-size:1.6rem; }
-.topbar p{ margin:6px 0 0; color:var(--muted); }
+    .btn:hover{ transform:translateY(-2px); }
 
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:#fff;
-  border:1px solid var(--line);
-  font-size:.9rem;
-  font-weight:700;
-  color:var(--primary-dark);
-}
+    .btn::after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:rgba(255,255,255,0.18);
+      transition:.45s ease;
+    }
 
-.panel{ display:none; }
-.panel.active{ display:block; }
+    .btn:hover::after{ left:100%; }
 
-.hero{
-  background:
-    linear-gradient(rgba(255,255,255,.87),rgba(255,255,255,.92)),
-    url('1000016069.jpg') center/cover no-repeat;
-  border:1px solid var(--line);
-  border-radius:30px;
-  padding:42px 28px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  position:relative;
-}
+    .btn-main{
+      background:var(--primary);
+      color:#fff;
+      animation:pulseBtn 1.8s infinite;
+    }
 
-.hero .badge{
-  display:inline-block;
-  background:#e8f3ee;
-  color:var(--primary-dark);
-  padding:7px 14px;
-  border-radius:999px;
-  font-size:.85rem;
-  font-weight:800;
-  margin-bottom:16px;
-}
+    .btn-outline{
+      background:#fff;
+      color:var(--dark);
+      border:1px solid var(--line);
+    }
 
-.hero h3{
-  font-size:clamp(2rem,4vw,3.4rem);
-  line-height:1.05;
-  margin:0 0 14px;
-}
+    .btn-wa{
+      background:var(--whatsapp);
+      color:#fff;
+    }
 
-.hero h3 span{ color:var(--primary); }
+    @keyframes pulseBtn{
+      0%{ box-shadow:0 0 0 0 rgba(47,125,87,.35); }
+      70%{ box-shadow:0 0 0 14px rgba(47,125,87,0); }
+      100%{ box-shadow:0 0 0 0 rgba(47,125,87,0); }
+    }
 
-.hero p{
-  max-width:780px;
-  color:var(--muted);
-  font-size:1.08rem;
-  margin:0 0 20px;
-}
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:30px;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
 
-.cta-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:20px;
-}
+    .card h2{
+      margin-top:0;
+      margin-bottom:14px;
+      font-size:1.7rem;
+    }
 
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  border:none;
-  text-decoration:none;
-  padding:14px 22px;
-  border-radius:999px;
-  font-weight:800;
-  cursor:pointer;
-  font:inherit;
-  transition:.25s ease;
-}
+    .card h3{ margin-top:0; }
 
-.btn:hover{ transform:translateY(-2px); }
-.btn-primary{ background:var(--primary); color:#fff; }
-.btn-outline{ background:#fff; color:var(--text); border:1px solid var(--line); }
-.btn-dark{ background:#183028; color:#fff; }
-.btn-wa{ background:var(--whatsapp); color:#fff; }
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:22px;
+    }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-  margin-top:22px;
-}
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:24px;
-  box-shadow:var(--shadow);
-}
+    .feature{
+      background:#f8fcf9;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px;
+    }
 
-.card h4{ margin:0 0 10px; font-size:1.08rem; }
-.card p{ margin:0; color:var(--muted); }
+    .feature h3{ margin-bottom:8px; }
 
-.grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+    ul.clean{
+      margin:0;
+      padding-left:20px;
+    }
 
-.photo-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.photo-grid img, .single-photo{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  border-radius:18px;
-  border:1px solid var(--line);
-  display:block;
-}
+    ul.clean li{ margin-bottom:10px; }
 
-.timeline{ display:grid; gap:18px; }
-.step{
-  display:flex;
-  gap:16px;
-  align-items:flex-start;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:22px;
-  box-shadow:var(--shadow);
-}
+    .impact-box{
+      background:linear-gradient(135deg,#f0f9f4,#ffffff);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:36px 24px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
 
-.step-num{
-  min-width:42px;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--primary),var(--primary-dark));
-  color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-}
+    .impact-title{
+      font-size:1.8rem;
+      margin-bottom:10px;
+    }
 
-.step h4{ margin:0 0 8px; }
-.step p{ margin:0; color:var(--muted); }
-.step ul{ margin:10px 0 0; padding-left:18px; }
+    .impact-highlight{
+      font-size:2.8rem;
+      font-weight:900;
+      color:var(--primary);
+      margin:15px 0;
+    }
 
-.energy-box{
-  background:linear-gradient(135deg,#f0f9f4,#e6f3fa);
-  border:1px solid var(--line);
-  border-radius:24px;
-  padding:24px;
-}
+    .impact-sub{
+      color:var(--muted);
+      font-size:1rem;
+      max-width:680px;
+      margin:0 auto 20px;
+    }
 
-.energy-compare{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  align-items:center;
-  gap:24px;
-  margin-top:22px;
-}
+    .impact-grid{
+      display:flex;
+      justify-content:center;
+      gap:25px;
+      margin-top:25px;
+      flex-wrap:wrap;
+    }
 
-.energy-card{
-  width:280px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:24px;
-  text-align:center;
-}
+    .impact-item{
+      background:white;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      width:180px;
+    }
 
-.energy-badge{
-  width:82px;
-  margin:14px auto;
-  border-radius:14px;
-  padding:16px 0;
-  color:#fff;
-  font-size:2.7rem;
-  font-weight:900;
-}
+    .impact-item strong{
+      display:block;
+      font-size:1.6rem;
+      color:var(--primary);
+    }
 
-.energy-g{ background:#f44336; }
-.energy-c{ background:#8bc34a; color:#183028; }
-.arrow{ font-size:2.3rem; font-weight:900; color:var(--primary); }
+    .ba-container{
+      position:relative;
+      max-width:760px;
+      margin:32px auto 18px;
+      height:390px;
+      overflow:hidden;
+      border-radius:20px;
+      box-shadow:0 30px 80px rgba(0,0,0,0.18);
+    }
 
-.form-wrap form{ display:grid; gap:12px; }
-.field{
-  width:100%;
-  padding:15px 16px;
-  border-radius:14px;
-  border:1px solid #ccdcd0;
-  font:inherit;
-  color:var(--text);
-  background:#fff;
-}
+    .ba-image{
+      position:absolute;
+      inset:0;
+    }
 
-.field:focus{ outline:none; border-color:var(--primary); box-shadow:0 0 0 3px rgba(47,125,87,.12); }
+    .ba-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
-.form-note{ font-size:.86rem; color:var(--muted); }
-.checkbox-line{ display:flex; gap:10px; align-items:flex-start; font-size:.9rem; color:var(--muted); }
-.checkbox-line input{ margin-top:4px; }
+    .after{
+      width:50%;
+      overflow:hidden;
+    }
 
-.reward-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
-  margin:22px 0;
-}
+    .ba-slider{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0;
+      cursor:ew-resize;
+      z-index:10;
+    }
 
-.reward-box{
-  background:rgba(255,255,255,.76);
-  border:1px solid #f0e0a4;
-  border-radius:20px;
-  padding:22px;
-  text-align:center;
-}
+    .ba-container::after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:50%;
+      width:4px;
+      height:100%;
+      background:#fff;
+      z-index:5;
+    }
 
-.reward-box strong{ display:block; font-size:2rem; color:var(--primary); }
+    .ba-label{
+      position:absolute;
+      top:14px;
+      left:14px;
+      padding:8px 12px;
+      border-radius:10px;
+      font-size:13px;
+      font-weight:800;
+      color:#fff;
+      background:rgba(0,0,0,0.65);
+    }
 
-.footer-card{
-  margin-top:24px;
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:20px;
-  padding:18px 20px;
-  color:var(--muted);
-  font-size:.92rem;
-  text-align:center;
-}
+    .after .ba-label{
+      background:rgba(47,125,87,0.95);
+    }
 
-.footer-card a{ color:inherit; }
+    .energy-scale{
+      max-width:520px;
+      margin:30px auto 10px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
 
-@media (max-width: 980px){
-  .app-shell{ grid-template-columns:1fr; }
-  .sidebar{ position:static; height:auto; }
-  .cards, .grid-2, .grid-3, .reward-grid{ grid-template-columns:1fr; }
-}
+    .energy-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
 
-@media (max-width: 640px){
-  .main{ padding:16px; }
-  .sidebar{ padding:16px; }
-  .topbar{ flex-direction:column; align-items:flex-start; }
-  .photo-grid{ grid-template-columns:1fr; }
-  .step{ flex-direction:column; }
-  .arrow{ transform:rotate(90deg); }
-  .energy-card{ width:100%; }
-}
+    .energy-row span{
+      width:28px;
+      font-weight:800;
+      color:white;
+      text-align:center;
+    }
 
+    .energy-row .bar{
+      height:34px;
+      border-radius:8px;
+      transform:scaleX(0);
+      transform-origin:left;
+      animation:grow 1.2s ease forwards;
+    }
+
+    @keyframes grow{
+      to{ transform:scaleX(1); }
+    }
+
+    .energy-a .bar{ width:100%; background:#1f9d55; }
+    .energy-b .bar{ width:88%; background:#4caf50; }
+    .energy-c .bar{ width:76%; background:#8bc34a; }
+    .energy-d .bar{ width:64%; background:#cddc39; }
+    .energy-e .bar{ width:52%; background:#ffc107; }
+    .energy-f .bar{ width:40%; background:#ff9800; }
+    .energy-g .bar{ width:28%; background:#f44336; }
+
+    .energy-a span{ background:#1f9d55; border-radius:6px; padding:6px 0; }
+    .energy-b span{ background:#4caf50; border-radius:6px; padding:6px 0; }
+    .energy-c span{ background:#8bc34a; border-radius:6px; padding:6px 0; }
+    .energy-d span{ background:#cddc39; border-radius:6px; padding:6px 0; color:var(--dark); }
+    .energy-e span{ background:#ffc107; border-radius:6px; padding:6px 0; color:var(--dark); }
+    .energy-f span{ background:#ff9800; border-radius:6px; padding:6px 0; }
+    .energy-g span{ background:#f44336; border-radius:6px; padding:6px 0; }
+
+    .energy-row.highlight .bar,
+    .energy-row.highlight span{
+      box-shadow:0 0 0 4px rgba(47,125,87,0.14);
+    }
+
+    .energy-row.highlight .bar{
+      transform:scale(1.02);
+    }
+
+    .energy-compare{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:30px;
+      margin-top:30px;
+      flex-wrap:wrap;
+    }
+
+    .energy-box{
+      background:#f8fcf9;
+      border:1px solid var(--line);
+      padding:25px;
+      border-radius:20px;
+      width:280px;
+      text-align:center;
+    }
+
+    .energy-badge{
+      font-size:3rem;
+      font-weight:900;
+      color:white;
+      border-radius:12px;
+      padding:15px 0;
+      margin:15px auto;
+      width:80px;
+      transition:transform 0.4s ease;
+    }
+
+    .energy-box:hover .energy-badge{
+      transform:scale(1.08);
+    }
+
+    .energy-badge.g{ background:#f44336; }
+    .energy-badge.c{ background:#8bc34a; color:var(--dark); }
+
+    .arrow{
+      font-size:2.5rem;
+      font-weight:bold;
+      color:var(--primary);
+    }
+
+    .energy-note{
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+      margin-top:20px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:18px;
+    }
+
+    .step{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:22px;
+    }
+
+    .step-num{
+      min-width:42px;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+    }
+
+    .step p{
+      margin:8px 0 0;
+      color:var(--muted);
+    }
+
+    .photo-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+      margin-top:18px;
+    }
+
+    .photo-grid img{
+      width:100%;
+      height:260px;
+      object-fit:cover;
+      border-radius:18px;
+      border:1px solid var(--line);
+    }
+
+    .single-photo{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      border-radius:18px;
+      border:1px solid var(--line);
+      margin-top:16px;
+    }
+
+    form{
+      display:grid;
+      gap:12px;
+    }
+
+    .field{
+      width:100%;
+      padding:15px 16px;
+      border-radius:14px;
+      border:1px solid #ccdcd0;
+      font:inherit;
+      background:#fff;
+      color:var(--dark);
+    }
+
+    .field:focus{
+      outline:none;
+      border-color:var(--primary);
+      box-shadow:0 0 0 3px rgba(47,125,87,0.12);
+    }
+
+    .checkbox-line{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:.92rem;
+      color:var(--muted);
+    }
+
+    .checkbox-line input{ margin-top:4px; }
+
+    .form-note{
+      font-size:.85rem;
+      color:var(--muted);
+    }
+
+    .reward-card{
+      background:linear-gradient(135deg,#fffcf0 0%,#fff4d1 100%);
+      border:1px solid #f3e5ab;
+    }
+
+    .reward-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+      margin:22px 0;
+    }
+
+    .reward-box{
+      background:rgba(255,255,255,0.78);
+      border:1px solid #f0e0a4;
+      border-radius:20px;
+      padding:22px;
+      text-align:center;
+    }
+
+    .reward-box strong{
+      display:block;
+      font-size:2rem;
+      color:var(--primary);
+    }
+
+    .fade-in{
+      opacity:0;
+      transform:translateY(30px);
+      transition:all .8s ease;
+    }
+
+    .fade-in.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .whatsapp-float{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      background:var(--whatsapp);
+      color:white;
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.16);
+      z-index:1001;
+    }
+
+    .call-float{
+      position:fixed;
+      bottom:82px;
+      right:20px;
+      background:var(--primary);
+      color:white;
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow:0 10px 25px rgba(0,0,0,0.18);
+      z-index:1001;
+      animation:pulseCall 1.6s infinite;
+    }
+
+    @keyframes pulseCall{
+      0%{ box-shadow:0 0 0 0 rgba(47,125,87,.45); }
+      70%{ box-shadow:0 0 0 14px rgba(47,125,87,0); }
+      100%{ box-shadow:0 0 0 0 rgba(47,125,87,0); }
+    }
+
+    .wa-popup{
+      position:fixed;
+      bottom:150px;
+      right:20px;
+      background:white;
+      padding:14px 16px;
+      border-radius:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.18);
+      display:none;
+      z-index:1002;
+      max-width:260px;
+      font-size:14px;
+    }
+
+    .wa-popup a{
+      color:var(--primary);
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    footer{
+      text-align:center;
+      padding:34px 20px 40px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    @media(max-width:900px){
+      .grid-2,
+      .grid-3,
+      .reward-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:768px){
+      header{
+        flex-direction:column;
+        gap:12px;
+        padding:16px;
+      }
+
+      .logo img{ height:105px; }
+
+      .btn-row{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .ba-container{
+        height:280px;
+      }
+
+      .energy-compare{
+        flex-direction:column;
+      }
+
+      .arrow{
+        transform:rotate(90deg);
+      }
+
+      .step{
+        flex-direction:column;
+      }
+
+      .photo-grid{
+        grid-template-columns:1fr;
+      }
+
+      .whatsapp-float,
+      .call-float{
+        left:16px;
+        right:16px;
+        text-align:center;
+      }
+
+      .call-float{ bottom:86px; }
+
+      .wa-popup{
+        left:16px;
+        right:16px;
+        max-width:none;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <img src="1000016036.jpg" alt="Logo Aislamiento en Casa" />
-        <div>
-          <h1>Aislamiento en Casa</h1>
-          <p>Web app comercial y explicativa</p>
-        </div>
-      </div><nav class="nav">
-    <button class="tab-btn active" data-tab="inicio">🏠 Bienvenida</button>
-    <button class="tab-btn" data-tab="cita">📅 Día de la cita</button>
-    <button class="tab-btn" data-tab="tramite">📊 Trámite CAE</button>
-    <button class="tab-btn" data-tab="recomendacion">🎁 Recomendación</button>
-  </nav>
 
-  <div class="sidebar-note">
-    Castilla y León · Asturias<br>
-    Confort a coste cero (según viabilidad técnica)
-  </div>
-</aside>
-
-<main class="main">
-  <div class="topbar">
-    <div>
-      <h2 id="page-title">Bienvenida</h2>
-      <p id="page-subtitle">Landing principal con explicación del sistema CAE y formulario de cita.</p>
+  <header>
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo Aislamiento en Casa" />
     </div>
-    <div class="pill">⚡ Sistema CAE · Captación directa</div>
-  </div>
+    <a href="#contacto" class="btn btn-main">Solicitar estudio</a>
+  </header>
 
-  <!-- INICIO -->
-  <section class="panel active" id="inicio">
-    <div class="hero">
+  <div class="container">
+
+    <section class="hero fade-in">
       <div class="badge">Castilla y León · Asturias</div>
-      <h3>Mejora tu hogar <span>sin inversión inicial</span></h3>
+      <h1>Aislamiento de <span>cubiertas</span> sin inversión inicial</h1>
       <p>
-        Gracias al sistema nacional CAE, el ahorro energético certificado de tu vivienda puede ayudar a financiar la intervención.
-        Evaluamos la viabilidad técnica de la cubierta y te acompañamos durante todo el proceso.
+        Mejoramos el aislamiento térmico de tu vivienda actuando directamente en la cubierta. Reducimos pérdidas de calor, mejoramos el confort y, si el proyecto es viable, el sistema CAE puede ayudar a financiar la intervención.
       </p>
-      <p><strong>Confort a coste cero (según viabilidad técnica)</strong></p>
-      <div class="cta-row">
-        <a href="#form-cita" class="btn btn-primary">Solicitar cita</a>
-        <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20sistema%20CAE" class="btn btn-wa">WhatsApp técnico</a>
-        <button class="btn btn-outline" type="button" data-switch="tramite">Ver trámite CAE</button>
-      </div>
-    </div>
+      <p><strong>Intervención rápida en pocas horas · Sin obras complejas</strong></p>
 
-    <div class="cards">
-      <div class="card">
-        <h4>Sistema CAE</h4>
-        <p>El ahorro energético certificado puede generar un valor económico que ayude a financiar la obra.</p>
+      <div class="btn-row">
+        <a href="#contacto" class="btn btn-main">Consultar viabilidad</a>
+        <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">WhatsApp técnico</a>
+        <a href="#proceso-cita" class="btn btn-outline">Cómo es la cita</a>
       </div>
-      <div class="card">
-        <h4>Intervención rápida</h4>
-        <p>Trabajamos principalmente con insuflado por su rapidez, limpieza y adaptación a viviendas existentes.</p>
-      </div>
-      <div class="card">
-        <h4>Mayor valor de vivienda</h4>
-        <p>Una vivienda con mejor comportamiento energético puede resultar más atractiva en venta o alquiler.</p>
-      </div>
-    </div>
+    </section>
 
-    <div class="card" style="margin-top:22px;">
-      <h3>Insuflado vs rollo tradicional</h3>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Característica</th>
-              <th>Insuflado</th>
-              <th>Rollo / Tradicional</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Tiempo de ejecución</td>
-              <td>✅ Muy rápido, normalmente en el día</td>
-              <td>❌ Más lento</td>
-            </tr>
-            <tr>
-              <td>Obra y molestias</td>
-              <td>✅ Intervención mínima</td>
-              <td>❌ Mayor manipulación</td>
-            </tr>
-            <tr>
-              <td>Adaptación a vivienda existente</td>
-              <td>✅ Muy buena</td>
-              <td>❌ Más dependiente del acceso</td>
-            </tr>
-            <tr>
-              <td>Uso habitual</td>
-              <td>✅ Principal</td>
-              <td>➖ Casos concretos</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <section class="impact-box fade-in">
+      <h2 class="impact-title">Reduce tu factura de energía hasta un <span style="color:var(--primary)">46%</span></h2>
+      <div class="impact-highlight" id="counter">0%</div>
+      <p class="impact-sub">
+        Si tu casa es viable dentro del sistema CAE, puedes empezar a ahorrar desde el primer mes sin tener que adelantar el coste de la obra.
+      </p>
 
-    <div class="energy-box" style="margin-top:22px;">
-      <h3>Impacto en la eficiencia energética</h3>
-      <p>Una mejora del aislamiento puede ayudar a pasar de calificaciones bajas a niveles energéticos más competitivos.</p>
+      <div class="impact-grid">
+        <div class="impact-item">
+          <strong>24% - 46%</strong>
+          <span>Ahorro energético</span>
+        </div>
+        <div class="impact-item">
+          <strong>0€</strong>
+          <span>Inversión inicial*</span>
+        </div>
+        <div class="impact-item">
+          <strong>Horas</strong>
+          <span>Intervención rápida</span>
+        </div>
+      </div>
+
+      <p style="margin-top:22px; font-weight:700; color:var(--primary);">
+        Evalúa tu vivienda sin compromiso
+      </p>
+    </section>
+
+    <section class="card fade-in">
+      <h2 style="text-align:center;">Resultado real</h2>
+
+      <div class="ba-container">
+        <div class="ba-image">
+          <img src="images/cubierta_antes.jpg" alt="Cubierta antes del aislamiento" />
+          <span class="ba-label">ANTES</span>
+        </div>
+
+        <div class="ba-image after" id="afterImage">
+          <img src="images/cubierta_despues.jpg" alt="Cubierta después del aislamiento" />
+          <span class="ba-label">DESPUÉS</span>
+        </div>
+
+        <input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
+      </div>
+
+      <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
+        Aislamiento completo en pocas horas, sin obras complejas ni molestias.
+      </p>
+    </section>
+
+    <section class="card fade-in">
+      <h2 style="text-align:center;">Así mejora tu vivienda</h2>
+
+      <p style="text-align:center; font-weight:700; color:var(--primary);">
+        Del frío y el gasto → al confort y ahorro
+      </p>
+
+      <div class="energy-scale">
+        <div class="energy-row energy-a"><span>A</span><div class="bar"></div></div>
+        <div class="energy-row energy-b"><span>B</span><div class="bar"></div></div>
+        <div class="energy-row energy-c highlight"><span>C</span><div class="bar"></div></div>
+        <div class="energy-row energy-d"><span>D</span><div class="bar"></div></div>
+        <div class="energy-row energy-e"><span>E</span><div class="bar"></div></div>
+        <div class="energy-row energy-f"><span>F</span><div class="bar"></div></div>
+        <div class="energy-row energy-g"><span>G</span><div class="bar"></div></div>
+      </div>
+
+      <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:18px;">
+        Una mejora del aislamiento puede ayudar a pasar de calificaciones bajas a niveles energéticos más competitivos.
+      </p>
+
       <div class="energy-compare">
-        <div class="energy-card">
-          <h4>Antes</h4>
-          <div class="energy-badge energy-g">G</div>
-          <p>Vivienda con pérdidas térmicas elevadas, mayor consumo y menor confort.</p>
+        <div class="energy-box">
+          <h3>Antes</h3>
+          <div class="energy-badge g">G</div>
+          <ul class="clean" style="text-align:left;">
+            <li>❌ Pérdida de calor constante</li>
+            <li>❌ Facturas altas</li>
+            <li>❌ Sensación de frío</li>
+          </ul>
         </div>
+
         <div class="arrow">→</div>
-        <div class="energy-card">
-          <h4>Después</h4>
-          <div class="energy-badge energy-c">C</div>
-          <p>Vivienda más eficiente, con mejor confort y mayor atractivo en mercado.</p>
+
+        <div class="energy-box">
+          <h3>Después</h3>
+          <div class="energy-badge c">C</div>
+          <ul class="clean" style="text-align:left;">
+            <li>✅ Vivienda más cálida</li>
+            <li>✅ Menor consumo</li>
+            <li>✅ Mayor valor de mercado</li>
+          </ul>
         </div>
       </div>
-    </div>
 
-    <div class="card form-wrap" id="form-cita" style="margin-top:22px;">
-      <h3>Solicitar cita</h3>
-      <p class="form-note">Déjanos tus datos para analizar la viabilidad de la vivienda.</p>
-      <form action="https://formspree.io/f/xaqpkgbp" method="POST">
-        <input type="hidden" name="_subject" value="SOLICITUD WEB APP CAE" />
-        <input type="hidden" name="_cc" value="Aislamientoencasa.io7y46@zapiermail.com" />
-        <input type="hidden" name="_next" value="gracias.html" />
+      <p class="energy-note">
+        La mejora depende de cada vivienda y su certificado energético oficial.
+      </p>
+    </section>
+
+    <section class="card fade-in">
+      <h2>Qué hacemos exactamente</h2>
+      <div class="grid-3">
+        <div class="feature">
+          <h3>Aislamiento de cubierta</h3>
+          <p>Actuamos directamente sobre la cubierta o bajo cubierta para reducir pérdidas térmicas y mejorar el comportamiento energético del inmueble.</p>
+        </div>
+        <div class="feature">
+          <h3>Insuflado como sistema principal</h3>
+          <p>Trabajamos principalmente con aislamiento insuflado por su rapidez, limpieza y gran adaptación a viviendas existentes.</p>
+        </div>
+        <div class="feature">
+          <h3>Más confort y valor</h3>
+          <p>Una vivienda mejor aislada puede consumir menos energía, ofrecer más confort y resultar más atractiva en venta o alquiler.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso-cita" class="card fade-in">
+      <h2>El día de la cita</h2>
+      <p>
+        El mismo día de la actuación, nuestro técnico realiza la validación completa del proyecto y deja toda la documentación preparada.
+      </p>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Visita técnica</h3>
+            <p>El técnico comienza la cita revisando la vivienda y validando la actuación prevista.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Fotos y medidas</h3>
+            <p>Se toman fotografías y medidas necesarias para justificar la intervención.</p>
+            <ul class="clean">
+              <li>Fachada</li>
+              <li>Puertas y ventanas</li>
+              <li>Sistema de calefacción</li>
+              <li>Agua caliente</li>
+              <li>Cubierta antes de la obra</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Intervención rápida</h3>
+            <p>Una vez validado todo, empieza la obra. En muchos casos, la actuación puede completarse en pocas horas.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <h3>Fotos finales y firma</h3>
+            <p>Al terminar, se realizan fotografías del resultado y se firma la documentación, incluido el acuerdo de cesión.</p>
+          </div>
+        </div>
+
+        <div class="step" style="background:#f0f9f4; border:1px solid #cfe8da;">
+          <div class="step-num">✔</div>
+          <div>
+            <h3>¿Qué necesitas el día de la obra?</h3>
+            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
+            <p>Nos encargamos de todo el proceso técnico, la documentación y la gestión del sistema CAE.</p>
+            <p class="form-note">*Para vivienda unifamiliar</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card fade-in">
+      <h2>Caso real</h2>
+      <p>
+        Intervención real realizada en vivienda. Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
+      </p>
+
+      <div class="photo-grid">
+        <img src="images/cubierta_antes.jpg" alt="Caso real antes" />
+        <img src="images/cubierta_despues.jpg" alt="Caso real después" />
+      </div>
+
+      <img src="images/caso_tecnico.jpg" alt="Técnico trabajando en cubierta" class="single-photo" />
+
+      <p class="form-note" style="margin-top:14px;">
+        Resultado visible desde el primer día, con mejora térmica inmediata.
+      </p>
+    </section>
+
+    <section class="card fade-in">
+      <h2>Trámite CEE y CAE</h2>
+      <p>
+        Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado.
+      </p>
+
+      <div class="timeline">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Documentación de la actuación</h3>
+            <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Certificado de eficiencia energética (CEE)</h3>
+            <p>En aproximadamente 2 semanas, el propietario puede solicitar el certificado energético actualizado de la vivienda.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Gestión completa del CAE</h3>
+            <p style="font-weight:700; color:var(--primary);">
+              Nos encargamos de todo el proceso hasta la obtención de la etiqueta energética.
+            </p>
+            <p>
+              Desde la documentación inicial, certificación del ahorro energético y validación, hasta la emisión final de la etiqueta de calificación de la vivienda por parte de la administración.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="text-align:center; background:#f8fcf9; margin-top:20px;">
+        <h3 style="margin-bottom:10px;">Tú no te ocupas de nada</h3>
+        <p style="font-size:1.1rem; max-width:700px; margin:0 auto 15px;">
+          Gestionamos todo el proceso técnico, administrativo y energético para que solo tengas que disfrutar del resultado.
+        </p>
+        <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
+          Desde la obra hasta la etiqueta energética final
+        </p>
+      </div>
+
+      <img src="images/cae.jpg" alt="Esquema del sistema CAE" class="single-photo" />
+    </section>
+
+    <section class="card reward-card fade-in">
+      <h2>Recomendación</h2>
+      <p>
+        Si conoces a otras personas interesadas, puedes obtener un bono por recomendaciones validadas.
+      </p>
+
+      <div class="reward-grid">
+        <div class="reward-box">
+          <strong>30€</strong>
+          <div>por 2 clientes</div>
+        </div>
+        <div class="reward-box">
+          <strong>100€</strong>
+          <div>por 5 clientes</div>
+        </div>
+      </div>
+
+      <p class="form-note">
+        Bono entregado tras intervención finalizada y validada.
+      </p>
+    </section>
+
+    <section id="contacto" class="card fade-in">
+      <h2>Solicitar evaluación</h2>
+      <p class="form-note">
+        Déjanos tus datos y analizamos si tu vivienda puede acogerse al modelo sin inversión inicial.
+      </p>
+
+      <form action="https://hooks.zapier.com/hooks/catch/XXXX/XXXX" method="POST">
         <input class="field" type="text" name="nombre" placeholder="Nombre y apellidos" required />
         <input class="field" type="tel" name="telefono" placeholder="Teléfono" required />
         <input class="field" type="text" name="material_cubierta" placeholder="Material de la cubierta: hormigón, yeso o madera" />
         <input class="field" type="text" name="codigo_recomendacion" id="codigo_recomendacion" placeholder="Código de recomendación (opcional)" />
         <textarea class="field" name="mensaje" rows="4" placeholder="Localidad, tipo de vivienda y cualquier detalle útil"></textarea>
+
         <label class="checkbox-line">
           <input type="checkbox" required />
           <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
         </label>
-        <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+
+        <button class="btn btn-main" type="submit">Solicitar estudio gratuito</button>
       </form>
-    </div>
-  </section>
+    </section>
 
-  <!-- DIA DE LA CITA -->
-  <section class="panel" id="cita">
-    <div class="timeline">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <h4>Inicio de la visita técnica</h4>
-          <p>El técnico comienza la cita validando la vivienda y revisando los puntos clave para el expediente energético.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <h4>Toma de fotos y medidas</h4>
-          <p>Se documenta la vivienda con fotografías y mediciones necesarias para justificar la actuación.</p>
-          <ul>
-            <li>Fotos de la fachada</li>
-            <li>Fotos de puertas y ventanas</li>
-            <li>Revisión del sistema de calefacción y agua caliente</li>
-            <li>Fotos de la cubierta antes de la obra</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <h4>Inicio de la obra</h4>
-          <p>Una vez validado todo, comienza la intervención. En muchos casos, la actuación es muy rápida y puede completarse en torno a 1 hora.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">4</div>
-        <div>
-          <h4>Fotos finales y firma</h4>
-          <p>Tras la intervención, se realizan fotos del resultado final y se firma la documentación necesaria, incluido el acuerdo de cesión.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:22px;">
-      <h3>Casos reales</h3>
-      <div class="photo-grid">
-        <img src="1000016067.jpg" alt="Caso real antes" />
-        <img src="1000016068.jpg" alt="Caso real después" />
-      </div>
-      <img src="1000016069.jpg" alt="Técnico trabajando" class="single-photo" style="margin-top:16px;" />
-    </div>
-  </section>
-
-  <!-- TRAMITE CAE -->
-  <section class="panel" id="tramite">
-    <div class="card">
-      <h3>Trámite del CAE</h3>
-      <p>
-        Tras la intervención se completa el proceso técnico y documental necesario para la certificación del ahorro energético.
-      </p>
-    </div>
-
-    <div class="timeline">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <h4>Documentación de la actuación</h4>
-          <p>Se recogen las fotos de antes y después, medidas, firma del cliente y acuerdo de cesión.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <h4>Certificado energético</h4>
-          <p>En aproximadamente 2 semanas, el propietario puede solicitar el certificado de eficiencia energética actualizado.</p>
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <h4>Etiqueta oficial</h4>
-          <p>En un plazo aproximado de hasta 3 meses, la Junta remite la etiqueta de calificación energética de la vivienda.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:22px;">
-      <h3>Explicación visual</h3>
-      <img src="cae.jpg" alt="Esquema del sistema CAE" class="single-photo" />
-    </div>
-  </section>
-
-  <!-- RECOMENDACION -->
-  <section class="panel" id="recomendacion">
-    <div class="card reward-card">
-      <h3>Recomendación con recompensa</h3>
-      <p>Si conoces a alguien que pueda estar interesado, recomiéndanos y obtén una tarjeta regalo.</p>
-
-      <div class="reward-grid">
-        <div class="reward-box">
-          <strong>30€</strong>
-          <div>por 2 clientes validados</div>
-        </div>
-        <div class="reward-box">
-          <strong>100€</strong>
-          <div>por 5 clientes validados</div>
-        </div>
-      </div>
-
-      <p class="form-note">Premio entregado tras intervención finalizada y validada.</p>
-    </div>
-
-    <div class="card form-wrap">
-      <h3>Enviar recomendación</h3>
-      <form action="https://formspree.io/f/xaqpkgbp" method="POST">
-        <input type="hidden" name="_subject" value="REFERIDO WEB APP" />
-        <input type="hidden" name="_cc" value="Aislamientoencasa.io7y46@zapiermail.com" />
-        <input type="hidden" name="_next" value="gracias.html" />
-        <input class="field" type="text" name="recomendador" placeholder="Tu nombre y teléfono" required />
-        <input class="field" type="text" name="referido_datos" placeholder="Nombre y teléfono de la persona recomendada" required />
-        <label class="checkbox-line">
-          <input type="checkbox" required />
-          <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
-        </label>
-        <button class="btn btn-primary" type="submit">Enviar recomendación</button>
-      </form>
-    </div>
-  </section>
-
-  <div class="footer-card">
-    © 2026 Aislamiento en Casa · Castilla y León y Asturias ·
-    <a href="aviso-legal.html">Aviso legal</a> ·
-    <a href="privacidad.html">Privacidad</a> ·
-    <a href="cookies.html">Cookies</a>
   </div>
-</main>
 
-  </div> <script>
-    const pageMeta = {
-      inicio: {
-        title: 'Bienvenida',
-        subtitle: 'Landing principal con explicación del sistema CAE y solicitud de cita.'
-      },
-      cita: {
-        title: 'Día de la cita',
-        subtitle: 'Visita técnica, fotos, medidas, obra rápida y firma de documentación.'
-      },
-      tramite: {
-        title: 'Trámite CAE',
-        subtitle: 'Proceso documental, certificado energético y etiqueta oficial.'
-      },
-      recomendacion: {
-        title: 'Recomendación',
-        subtitle: 'Oferta para clientes y contactos que recomienden nuevos proyectos.'
-      }
-    };
+  <footer>
+    <p>© 2026 Aislamiento en Casa · Castilla y León y Asturias</p>
+    <p style="font-size:11px; opacity:.7;">Sujeto a viabilidad técnica y condiciones del sistema CAE.</p>
+    <p style="margin-top:10px;">
+      <a href="aviso-legal.html" style="color:inherit;">Aviso legal</a> ·
+      <a href="privacidad.html" style="color:inherit;">Privacidad</a> ·
+      <a href="cookies.html" style="color:inherit;">Cookies</a>
+    </p>
+  </footer>
 
-    const buttons = document.querySelectorAll('.tab-btn');
-    const panels = document.querySelectorAll('.panel');
-    const title = document.getElementById('page-title');
-    const subtitle = document.getElementById('page-subtitle');
+  <a href="tel:+34865450109" class="call-float" id="callBtn">📞 Llamada directa</a>
 
-    function activateTab(tabId){
-      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
-      panels.forEach(panel => panel.classList.toggle('active', panel.id === tabId));
-      title.textContent = pageMeta[tabId].title;
-      subtitle.textContent = pageMeta[tabId].subtitle;
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  <a id="waBtn" href="#" class="whatsapp-float">💬 WhatsApp técnico</a>
+
+  <div id="wa-popup" class="wa-popup">
+    ¿Quieres saber si tu vivienda es viable?<br />
+    <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" target="_blank">Hablar por WhatsApp</a>
+  </div>
+
+  <script>
+    const slider = document.getElementById("slider");
+    const afterImage = document.getElementById("afterImage");
+
+    if (slider && afterImage) {
+      slider.addEventListener("input", function(){
+        afterImage.style.width = this.value + "%";
+      });
     }
 
-    buttons.forEach(btn => {
-      btn.addEventListener('click', () => activateTab(btn.dataset.tab));
-    });
+    let dir = 1;
+    let val = 50;
 
-    document.querySelectorAll('[data-switch]').forEach(el => {
-      el.addEventListener('click', () => activateTab(el.dataset.switch));
-    });
+    setInterval(() => {
+      if (!slider || !afterImage) return;
+      val += dir;
+      if (val >= 100 || val <= 0) dir *= -1;
+      slider.value = val;
+      afterImage.style.width = val + "%";
+    }, 40);
+
+    let count = 0;
+    const target = 46;
+    const speed = 30;
+
+    function animateCounter(){
+      const counter = document.getElementById("counter");
+      if (!counter) return;
+      if(count < target){
+        count++;
+        counter.innerText = count + "%";
+        setTimeout(animateCounter, speed);
+      }
+    }
+    window.addEventListener("load", animateCounter);
 
     (function () {
       const params = new URLSearchParams(window.location.search);
-      const ref = params.get('ref');
-      if (ref) localStorage.setItem('codigo_recomendacion', ref);
-      const input = document.getElementById('codigo_recomendacion');
-      const savedRef = localStorage.getItem('codigo_recomendacion');
-      if (input && savedRef) input.value = savedRef;
+      const ref = params.get("ref");
+
+      if (ref) {
+        localStorage.setItem("codigo_recomendacion", ref);
+      }
+
+      window.addEventListener("DOMContentLoaded", function () {
+        const input = document.getElementById("codigo_recomendacion");
+        const savedRef = localStorage.getItem("codigo_recomendacion");
+        if (input && savedRef) input.value = savedRef;
+      });
     })();
-  </script></body>
+
+    const elements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    });
+    elements.forEach(el => observer.observe(el));
+
+    function updateCallButton(){
+      const btn = document.getElementById("callBtn");
+      const now = new Date();
+      const hour = now.getHours();
+
+      if(hour >= 9 && hour < 20){
+        btn.innerHTML = "🟢 Llamada directa";
+      } else {
+        btn.innerHTML = "📞 Llámanos";
+      }
+    }
+    updateCallButton();
+
+    function getFormData(){
+      const nombre = document.querySelector('input[name="nombre"]')?.value || "";
+      const telefono = document.querySelector('input[name="telefono"]')?.value || "";
+      const material = document.querySelector('input[name="material_cubierta"]')?.value || "";
+      return { nombre, telefono, material };
+    }
+
+    document.getElementById("waBtn").addEventListener("click", function(){
+      const data = getFormData();
+      let mensaje = "Hola, vengo de la web de aislamiento.\\n";
+      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\\n";
+      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\\n";
+      if(data.material) mensaje += "Cubierta: " + data.material + "\\n";
+      mensaje += "\\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
+      this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
+    });
+
+    setTimeout(() => {
+      const popup = document.getElementById("wa-popup");
+      if (popup) popup.style.display = "block";
+    }, 10000);
+  </script>
+
+</body>
 </html>
