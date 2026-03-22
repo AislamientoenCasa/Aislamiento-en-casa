@@ -987,8 +987,12 @@
 
 /* OCULTAR SIDEBAR AL INICIO */
 .sidebar {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.5s ease;
+}
+
+.sidebar.hidden {
+  opacity: 0;
 }
 
 /* FONDO LIMPIO */
