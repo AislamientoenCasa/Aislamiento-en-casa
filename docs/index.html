@@ -1831,7 +1831,7 @@ function switchSection(id){
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-  }
+  
 function showSection(id){
 
   const bombilla = document.querySelector(".bombilla");
@@ -1882,31 +1882,20 @@ function showSection(id){
       setTimeout(animateCounter, 30);
     }
   }
-  window.addEventListener("load", animateCounter);
-window.addEventListener("load", () => {
-  const sidebar = document.querySelector(".sidebar");
+  window.addEventListener("load", () => {
+  animateCounter();
 
-  // ocultamos sidebar al inicio
+  const sidebar = document.querySelector(".sidebar");
   sidebar.style.opacity = "0";
 
-  // mostramos overlay
   logoOverlay.classList.add("show");
 
-  // reinicia animación
-  void logoOverlay.offsetWidth;
-
-  logoOverlay.classList.remove("show");
-
-  setTimeout(() => {
-    logoOverlay.classList.add("show");
-  }, 50);
-
-  // cerrar overlay
   setTimeout(() => {
     logoOverlay.classList.remove("show");
     sidebar.style.opacity = "1";
   }, 1400);
 });
+
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
   const baDivider = document.getElementById("baDivider");
