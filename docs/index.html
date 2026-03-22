@@ -1817,20 +1817,19 @@
   }
 
   function showSection(id){
-  // reiniciar animación
-  logoOverlay.classList.remove("show");
-  void logoOverlay.offsetWidth;
 
   // mostrar overlay
   logoOverlay.classList.add("show");
 
+  // cambiar sección rápido
   setTimeout(() => {
     switchSection(id);
-  }, 800);
+  }, 400);
 
+  // quitar overlay rápido
   setTimeout(() => {
     logoOverlay.classList.remove("show");
-  }, 2000);
+  }, 1200);
 }
 
   menuButtons.forEach(btn => {
