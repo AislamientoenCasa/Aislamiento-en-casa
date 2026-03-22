@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aislamiento en Casa | Aislamiento de cubiertas sin inversión inicial</title>
+  <title>Aislamiento en Casa | Web App</title>
   <meta name="description" content="Aislamiento de cubiertas en Castilla y León y Asturias. Reduce tu factura energética y mejora el confort de tu vivienda sin inversión inicial, según viabilidad técnica." />
 
   <style>
@@ -18,6 +18,7 @@
       --line:#dbe9df;
       --shadow:0 20px 50px rgba(24,48,40,0.08);
       --whatsapp:#25d366;
+      --warning:#fff4d1;
     }
 
     *{box-sizing:border-box}
@@ -31,40 +32,51 @@
       line-height:1.6;
     }
 
+    /* APP LAYOUT */
+    .app-shell{
+      min-height:100vh;
+      padding-bottom:92px;
+    }
+
     header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:20px 32px;
-      background:rgba(255,255,255,0.94);
-      backdrop-filter:blur(8px);
-      border-bottom:1px solid var(--line);
       position:sticky;
       top:0;
       z-index:1000;
+      background:rgba(255,255,255,0.94);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid var(--line);
+      padding:16px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
     .logo img{
-      height:140px;
+      height:120px;
       width:auto;
       display:block;
     }
 
-    .container{
+    .section{
+      display:none;
       max-width:1120px;
       margin:auto;
-      padding:24px;
+      padding:22px 22px 10px;
+    }
+
+    .section.active{
+      display:block;
     }
 
     .hero{
       text-align:center;
-      padding:64px 24px;
+      padding:56px 24px;
       background:
         linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.95)),
         url("images/cubierta_despues.jpg") center/cover no-repeat;
       border:1px solid var(--line);
       border-radius:28px;
-      margin-bottom:32px;
+      margin-bottom:24px;
       box-shadow:var(--shadow);
     }
 
@@ -80,7 +92,7 @@
     }
 
     .hero h1{
-      font-size:clamp(2rem,4.5vw,3.6rem);
+      font-size:clamp(2rem,4.5vw,3.4rem);
       line-height:1.08;
       margin:0 0 18px;
     }
@@ -106,7 +118,8 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:15px 24px;
+      gap:8px;
+      padding:15px 22px;
       border-radius:999px;
       text-decoration:none;
       border:none;
@@ -116,6 +129,7 @@
       transition:.25s ease;
       position:relative;
       overflow:hidden;
+      font-family:inherit;
     }
 
     .btn:hover{ transform:translateY(-2px); }
@@ -160,7 +174,7 @@
       background:var(--card);
       border:1px solid var(--line);
       border-radius:24px;
-      padding:30px;
+      padding:28px;
       box-shadow:var(--shadow);
       margin-bottom:24px;
     }
@@ -201,6 +215,7 @@
 
     ul.clean li{ margin-bottom:10px; }
 
+    /* IMPACTO */
     .impact-box{
       background:linear-gradient(135deg,#f0f9f4,#ffffff);
       border:1px solid var(--line);
@@ -252,6 +267,7 @@
       color:var(--primary);
     }
 
+    /* BEFORE/AFTER */
     .ba-container{
       position:relative;
       max-width:760px;
@@ -315,6 +331,7 @@
       background:rgba(47,125,87,0.95);
     }
 
+    /* ENERGY */
     .energy-scale{
       max-width:520px;
       margin:30px auto 10px;
@@ -422,6 +439,7 @@
       margin-top:20px;
     }
 
+    /* PROCESS */
     .timeline{
       display:grid;
       gap:18px;
@@ -479,6 +497,7 @@
       margin-top:16px;
     }
 
+    /* FORMS */
     form{
       display:grid;
       gap:12px;
@@ -515,6 +534,7 @@
       color:var(--muted);
     }
 
+    /* REWARD */
     .reward-card{
       background:linear-gradient(135deg,#fffcf0 0%,#fff4d1 100%);
       border:1px solid #f3e5ab;
@@ -541,24 +561,51 @@
       color:var(--primary);
     }
 
-    .fade-in{
-      opacity:0;
-      transform:translateY(30px);
-      transition:all .8s ease;
+    /* NAV APP */
+    .app-nav{
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      background:#fff;
+      border-top:1px solid var(--line);
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      z-index:1200;
+      box-shadow:0 -10px 30px rgba(0,0,0,0.06);
     }
 
-    .fade-in.visible{
-      opacity:1;
-      transform:translateY(0);
+    .app-nav button{
+      border:none;
+      background:none;
+      padding:12px 8px;
+      font:inherit;
+      font-size:.78rem;
+      font-weight:700;
+      color:var(--muted);
+      cursor:pointer;
+      transition:.2s ease;
     }
 
+    .app-nav button.active{
+      color:var(--primary);
+      background:#f3faf6;
+    }
+
+    .app-nav button span{
+      display:block;
+      font-size:1rem;
+      margin-bottom:4px;
+    }
+
+    /* FLOATS */
     .whatsapp-float{
       position:fixed;
-      bottom:20px;
+      bottom:84px;
       right:20px;
       background:var(--whatsapp);
       color:white;
-      padding:15px 24px;
+      padding:14px 22px;
       border-radius:999px;
       font-weight:800;
       text-decoration:none;
@@ -568,11 +615,11 @@
 
     .call-float{
       position:fixed;
-      bottom:82px;
+      bottom:146px;
       right:20px;
       background:var(--primary);
       color:white;
-      padding:15px 24px;
+      padding:14px 22px;
       border-radius:999px;
       font-weight:800;
       text-decoration:none;
@@ -589,7 +636,7 @@
 
     .wa-popup{
       position:fixed;
-      bottom:150px;
+      bottom:214px;
       right:20px;
       background:white;
       padding:14px 16px;
@@ -609,7 +656,7 @@
 
     footer{
       text-align:center;
-      padding:34px 20px 40px;
+      padding:24px 20px 120px;
       color:var(--muted);
       font-size:.92rem;
     }
@@ -624,12 +671,14 @@
 
     @media(max-width:768px){
       header{
-        flex-direction:column;
-        gap:12px;
-        padding:16px;
+        padding:14px 16px;
       }
 
-      .logo img{ height:105px; }
+      .logo img{ height:100px; }
+
+      .section{
+        padding:16px 16px 10px;
+      }
 
       .btn-row{
         flex-direction:column;
@@ -666,7 +715,8 @@
         text-align:center;
       }
 
-      .call-float{ bottom:86px; }
+      .whatsapp-float{ bottom:84px; }
+      .call-float{ bottom:146px; }
 
       .wa-popup{
         left:16px;
@@ -678,339 +728,449 @@
 </head>
 <body>
 
-  <header>
-    <div class="logo">
-      <img src="images/logo.png" alt="Logo Aislamiento en Casa" />
-    </div>
-    <a href="#contacto" class="btn btn-main">Solicitar estudio</a>
-  </header>
+  <div class="app-shell">
 
-  <div class="container">
-
-    <section class="hero fade-in">
-      <div class="badge">Castilla y León · Asturias</div>
-      <h1>Aislamiento de <span>cubiertas</span> sin inversión inicial</h1>
-      <p>
-        Mejoramos el aislamiento térmico de tu vivienda actuando directamente en la cubierta. Reducimos pérdidas de calor, mejoramos el confort y, si el proyecto es viable, el sistema CAE puede ayudar a financiar la intervención.
-      </p>
-      <p><strong>Intervención rápida en pocas horas · Sin obras complejas</strong></p>
-
-      <div class="btn-row">
-        <a href="#contacto" class="btn btn-main">Consultar viabilidad</a>
-        <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">WhatsApp técnico</a>
-        <a href="#proceso-cita" class="btn btn-outline">Cómo es la cita</a>
+    <header>
+      <div class="logo">
+        <img src="images/logo.png" alt="Logo Aislamiento en Casa" />
       </div>
-    </section>
+    </header>
 
-    <section class="impact-box fade-in">
-      <h2 class="impact-title">Reduce tu factura de energía hasta un <span style="color:var(--primary)">46%</span></h2>
-      <div class="impact-highlight" id="counter">0%</div>
-      <p class="impact-sub">
-        Si tu casa es viable dentro del sistema CAE, puedes empezar a ahorrar desde el primer mes sin tener que adelantar el coste de la obra.
-      </p>
+    <!-- INICIO -->
+    <section id="inicio" class="section active">
+      <section class="hero">
+        <div class="badge">Castilla y León · Asturias</div>
+        <h1>Aislamiento de <span>cubiertas</span> sin inversión inicial</h1>
+        <p>
+          Mejoramos el aislamiento térmico de tu vivienda actuando directamente en la cubierta. Reducimos pérdidas de calor, mejoramos el confort y, si el proyecto es viable, el sistema CAE puede ayudar a financiar la intervención.
+        </p>
+        <p><strong>Intervención rápida en pocas horas · Sin obras complejas</strong></p>
 
-      <div class="impact-grid">
-        <div class="impact-item">
-          <strong>24% - 46%</strong>
-          <span>Ahorro energético</span>
+        <div class="btn-row">
+          <a href="#" class="btn btn-main" data-goto="contacto">Consultar viabilidad</a>
+          <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">WhatsApp técnico</a>
+          <a href="#" class="btn btn-outline" data-goto="cita">Cómo es la cita</a>
         </div>
-        <div class="impact-item">
-          <strong>0€</strong>
-          <span>Inversión inicial*</span>
-        </div>
-        <div class="impact-item">
-          <strong>Horas</strong>
-          <span>Intervención rápida</span>
-        </div>
-      </div>
+      </section>
 
-      <p style="margin-top:22px; font-weight:700; color:var(--primary);">
-        Evalúa tu vivienda sin compromiso
-      </p>
-    </section>
+      <section class="impact-box">
+        <h2 class="impact-title">Reduce tu factura de energía hasta un <span style="color:var(--primary)">46%</span></h2>
+        <div class="impact-highlight" id="counter">0%</div>
+        <p class="impact-sub">
+          Si tu casa es viable dentro del sistema CAE, puedes empezar a ahorrar desde el primer mes sin tener que adelantar el coste de la obra.
+        </p>
 
-    <section class="card fade-in">
-      <h2 style="text-align:center;">Resultado real</h2>
-
-      <div class="ba-container">
-        <div class="ba-image">
-          <img src="images/cubierta_antes.jpg" alt="Cubierta antes del aislamiento" />
-          <span class="ba-label">ANTES</span>
-        </div>
-
-        <div class="ba-image after" id="afterImage">
-          <img src="images/cubierta_despues.jpg" alt="Cubierta después del aislamiento" />
-          <span class="ba-label">DESPUÉS</span>
-        </div>
-
-        <input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
-      </div>
-
-      <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
-        Aislamiento completo en pocas horas, sin obras complejas ni molestias.
-      </p>
-    </section>
-
-    <section class="card fade-in">
-      <h2 style="text-align:center;">Así mejora tu vivienda</h2>
-
-      <p style="text-align:center; font-weight:700; color:var(--primary);">
-        Del frío y el gasto → al confort y ahorro
-      </p>
-
-      <div class="energy-scale">
-        <div class="energy-row energy-a"><span>A</span><div class="bar"></div></div>
-        <div class="energy-row energy-b"><span>B</span><div class="bar"></div></div>
-        <div class="energy-row energy-c highlight"><span>C</span><div class="bar"></div></div>
-        <div class="energy-row energy-d"><span>D</span><div class="bar"></div></div>
-        <div class="energy-row energy-e"><span>E</span><div class="bar"></div></div>
-        <div class="energy-row energy-f"><span>F</span><div class="bar"></div></div>
-        <div class="energy-row energy-g"><span>G</span><div class="bar"></div></div>
-      </div>
-
-      <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:18px;">
-        Una mejora del aislamiento puede ayudar a pasar de calificaciones bajas a niveles energéticos más competitivos.
-      </p>
-
-      <div class="energy-compare">
-        <div class="energy-box">
-          <h3>Antes</h3>
-          <div class="energy-badge g">G</div>
-          <ul class="clean" style="text-align:left;">
-            <li>❌ Pérdida de calor constante</li>
-            <li>❌ Facturas altas</li>
-            <li>❌ Sensación de frío</li>
-          </ul>
-        </div>
-
-        <div class="arrow">→</div>
-
-        <div class="energy-box">
-          <h3>Después</h3>
-          <div class="energy-badge c">C</div>
-          <ul class="clean" style="text-align:left;">
-            <li>✅ Vivienda más cálida</li>
-            <li>✅ Menor consumo</li>
-            <li>✅ Mayor valor de mercado</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="energy-note">
-        La mejora depende de cada vivienda y su certificado energético oficial.
-      </p>
-    </section>
-
-    <section class="card fade-in">
-      <h2>Qué hacemos exactamente</h2>
-      <div class="grid-3">
-        <div class="feature">
-          <h3>Aislamiento de cubierta</h3>
-          <p>Actuamos directamente sobre la cubierta o bajo cubierta para reducir pérdidas térmicas y mejorar el comportamiento energético del inmueble.</p>
-        </div>
-        <div class="feature">
-          <h3>Insuflado como sistema principal</h3>
-          <p>Trabajamos principalmente con aislamiento insuflado por su rapidez, limpieza y gran adaptación a viviendas existentes.</p>
-        </div>
-        <div class="feature">
-          <h3>Más confort y valor</h3>
-          <p>Una vivienda mejor aislada puede consumir menos energía, ofrecer más confort y resultar más atractiva en venta o alquiler.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="proceso-cita" class="card fade-in">
-      <h2>El día de la cita</h2>
-      <p>
-        El mismo día de la actuación, nuestro técnico realiza la validación completa del proyecto y deja toda la documentación preparada.
-      </p>
-
-      <div class="timeline">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div>
-            <h3>Visita técnica</h3>
-            <p>El técnico comienza la cita revisando la vivienda y validando la actuación prevista.</p>
+        <div class="impact-grid">
+          <div class="impact-item">
+            <strong>24% - 46%</strong>
+            <span>Ahorro energético</span>
+          </div>
+          <div class="impact-item">
+            <strong>0€</strong>
+            <span>Inversión inicial*</span>
+          </div>
+          <div class="impact-item">
+            <strong>Horas</strong>
+            <span>Intervención rápida</span>
           </div>
         </div>
 
-        <div class="step">
-          <div class="step-num">2</div>
-          <div>
-            <h3>Fotos y medidas</h3>
-            <p>Se toman fotografías y medidas necesarias para justificar la intervención.</p>
-            <ul class="clean">
-              <li>Fachada</li>
-              <li>Puertas y ventanas</li>
-              <li>Sistema de calefacción</li>
-              <li>Agua caliente</li>
-              <li>Cubierta antes de la obra</li>
+        <p style="margin-top:22px; font-weight:700; color:var(--primary);">
+          Ahorra desde el primer mes
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Resultado real</h2>
+
+        <div class="ba-container">
+          <div class="ba-image">
+            <img src="images/cubierta_antes.jpg" alt="Cubierta antes del aislamiento" />
+            <span class="ba-label">ANTES</span>
+          </div>
+
+          <div class="ba-image after" id="afterImage">
+            <img src="images/cubierta_despues.jpg" alt="Cubierta después del aislamiento" />
+            <span class="ba-label">DESPUÉS</span>
+          </div>
+
+          <input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
+        </div>
+
+        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
+          Aislamiento completo en pocas horas, sin obras complejas ni molestias.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Así mejora tu vivienda</h2>
+
+        <p style="text-align:center; font-weight:700; color:var(--primary);">
+          Del frío y el gasto → al confort y ahorro
+        </p>
+
+        <div class="energy-scale">
+          <div class="energy-row energy-a"><span>A</span><div class="bar"></div></div>
+          <div class="energy-row energy-b"><span>B</span><div class="bar"></div></div>
+          <div class="energy-row energy-c highlight"><span>C</span><div class="bar"></div></div>
+          <div class="energy-row energy-d"><span>D</span><div class="bar"></div></div>
+          <div class="energy-row energy-e"><span>E</span><div class="bar"></div></div>
+          <div class="energy-row energy-f"><span>F</span><div class="bar"></div></div>
+          <div class="energy-row energy-g"><span>G</span><div class="bar"></div></div>
+        </div>
+
+        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:18px;">
+          Una mejora del aislamiento puede ayudar a pasar de calificaciones bajas a niveles energéticos más competitivos.
+        </p>
+
+        <div class="energy-compare">
+          <div class="energy-box">
+            <h3>Antes</h3>
+            <div class="energy-badge g">G</div>
+            <ul class="clean" style="text-align:left;">
+              <li>❌ Pérdida de calor constante</li>
+              <li>❌ Facturas altas</li>
+              <li>❌ Sensación de frío</li>
+            </ul>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="energy-box">
+            <h3>Después</h3>
+            <div class="energy-badge c">C</div>
+            <ul class="clean" style="text-align:left;">
+              <li>✅ Vivienda más cálida</li>
+              <li>✅ Menor consumo</li>
+              <li>✅ Mayor valor de mercado</li>
             </ul>
           </div>
         </div>
 
-        <div class="step">
-          <div class="step-num">3</div>
-          <div>
-            <h3>Intervención rápida</h3>
-            <p>Una vez validado todo, empieza la obra. En muchos casos, la actuación puede completarse en pocas horas.</p>
-          </div>
-        </div>
+        <p class="energy-note">
+          La mejora depende de cada vivienda y su certificado energético oficial.
+        </p>
+      </section>
 
-        <div class="step">
-          <div class="step-num">4</div>
-          <div>
-            <h3>Fotos finales y firma</h3>
-            <p>Al terminar, se realizan fotografías del resultado y se firma la documentación, incluido el acuerdo de cesión.</p>
-          </div>
-        </div>
-
-        <div class="step" style="background:#f0f9f4; border:1px solid #cfe8da;">
-          <div class="step-num">✔</div>
-          <div>
-            <h3>¿Qué necesitas el día de la obra?</h3>
-            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
-            <p>Nos encargamos de todo el proceso técnico, la documentación y la gestión del sistema CAE.</p>
-            <p class="form-note">*Para vivienda unifamiliar</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card fade-in">
-      <h2>Caso real</h2>
-      <p>
-        Intervención real realizada en vivienda. Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
-      </p>
-
-      <div class="photo-grid">
-        <img src="images/cubierta_antes.jpg" alt="Caso real antes" />
-        <img src="images/cubierta_despues.jpg" alt="Caso real después" />
-      </div>
-
-      <img src="images/caso_tecnico.jpg" alt="Técnico trabajando en cubierta" class="single-photo" />
-
-      <p class="form-note" style="margin-top:14px;">
-        Resultado visible desde el primer día, con mejora térmica inmediata.
-      </p>
-    </section>
-
-    <section class="card fade-in">
-      <h2>Trámite CEE y CAE</h2>
-      <p>
-        Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado.
-      </p>
-
-      <div class="timeline">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div>
-            <h3>Documentación de la actuación</h3>
-            <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-num">2</div>
-          <div>
-            <h3>Certificado de eficiencia energética (CEE)</h3>
-            <p>En aproximadamente 2 semanas, el propietario puede solicitar el certificado energético actualizado de la vivienda.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="step-num">3</div>
-          <div>
-            <h3>Gestión completa del CAE</h3>
-            <p style="font-weight:700; color:var(--primary);">
-              Nos encargamos de todo el proceso hasta la obtención de la etiqueta energética.
+      <section class="card">
+        <h2>Qué hacemos exactamente</h2>
+        <div class="grid-3">
+          <div class="feature">
+            <h3>Aislamiento de cubierta</h3>
+            <p>
+              Actuamos directamente sobre la cubierta de la vivienda, que es uno de los principales puntos de pérdida de calor.
             </p>
             <p>
-              Desde la documentación inicial, certificación del ahorro energético y validación, hasta la emisión final de la etiqueta de calificación de la vivienda por parte de la administración.
+              Reducimos la fuga térmica y mejoramos el comportamiento energético global del inmueble.
+            </p>
+          </div>
+
+          <div class="feature">
+            <h3>Intervención rápida</h3>
+            <p>
+              La actuación se realiza en pocas horas, sin obras complejas ni molestias importantes para el propietario.
+            </p>
+            <p>
+              Compatible con viviendas ya habitadas.
+            </p>
+          </div>
+
+          <div class="feature">
+            <h3>Más confort y valor</h3>
+            <p>
+              Una vivienda mejor aislada mantiene mejor la temperatura, consume menos energía y puede aumentar su valor en el mercado.
             </p>
           </div>
         </div>
-      </div>
+      </section>
+    </section>
 
-      <div class="card" style="text-align:center; background:#f8fcf9; margin-top:20px;">
-        <h3 style="margin-bottom:10px;">Tú no te ocupas de nada</h3>
-        <p style="font-size:1.1rem; max-width:700px; margin:0 auto 15px;">
-          Gestionamos todo el proceso técnico, administrativo y energético para que solo tengas que disfrutar del resultado.
+    <!-- CITA -->
+    <section id="cita" class="section">
+      <section class="card">
+        <h2>El día de la cita</h2>
+        <p>
+          El mismo día de la actuación, nuestro técnico realiza la validación completa del proyecto y deja toda la documentación preparada.
         </p>
-        <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
-          Desde la obra hasta la etiqueta energética final
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Visita técnica</h3>
+              <p>El técnico comienza la cita revisando la vivienda y validando la actuación prevista.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Fotos y medidas</h3>
+              <p>Se toman fotografías y medidas necesarias para justificar la intervención.</p>
+              <ul class="clean">
+                <li>Fachada</li>
+                <li>Puertas y ventanas</li>
+                <li>Sistema de calefacción</li>
+                <li>Agua caliente</li>
+                <li>Cubierta antes de la obra</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Intervención rápida</h3>
+              <p>Una vez validado todo, empieza la obra. En muchos casos, la actuación puede completarse en pocas horas.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Fotos finales y firma</h3>
+              <p>Al terminar, se realizan fotografías del resultado y se firma la documentación, incluido el acuerdo de cesión.</p>
+            </div>
+          </div>
+
+          <div class="step" style="background:#f0f9f4; border:1px solid #cfe8da;">
+            <div class="step-num">✔</div>
+            <div>
+              <h3>¿Qué necesitas el día de la obra?</h3>
+              <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
+              <p>Nos encargamos de todo el proceso técnico, la documentación y la gestión del sistema CAE.</p>
+              <p class="form-note">*Para vivienda unifamiliar</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Caso real</h2>
+        <p>
+          Intervención real realizada en vivienda. Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
         </p>
-      </div>
 
-      <img src="images/cae.jpg" alt="Esquema del sistema CAE" class="single-photo" />
-    </section>
-
-    <section class="card reward-card fade-in">
-      <h2>Recomendación</h2>
-      <p>
-        Si conoces a otras personas interesadas, puedes obtener un bono por recomendaciones validadas.
-      </p>
-
-      <div class="reward-grid">
-        <div class="reward-box">
-          <strong>30€</strong>
-          <div>por 2 clientes</div>
+        <div class="photo-grid">
+          <img src="images/cubierta_antes.jpg" alt="Caso real antes" />
+          <img src="images/cubierta_despues.jpg" alt="Caso real después" />
         </div>
-        <div class="reward-box">
-          <strong>100€</strong>
-          <div>por 5 clientes</div>
+
+        <img src="images/caso_tecnico.jpg" alt="Técnico trabajando en cubierta" class="single-photo" />
+
+        <p class="form-note" style="margin-top:14px;">
+          Resultado visible desde el primer día, con mejora térmica inmediata.
+        </p>
+      </section>
+    </section>
+
+    <!-- CAE -->
+    <section id="cae" class="section">
+      <section class="card">
+        <h2>¿Cómo funciona el sistema CAE?</h2>
+
+        <p>
+          El sistema de Certificados de Ahorro Energético (CAE) permite convertir el ahorro energético generado por una actuación en un valor económico.
+        </p>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Se realiza la intervención</h3>
+              <p>Mejoramos el aislamiento de la vivienda actuando sobre la cubierta.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Se certifica el ahorro energético</h3>
+              <p>Se calcula y valida el ahorro generado mediante documentación técnica.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Ese ahorro tiene valor económico</h3>
+              <p>El sistema permite utilizar ese ahorro para ayudar a financiar la intervención.</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <p class="form-note">
-        Bono entregado tras intervención finalizada y validada.
-      </p>
+        <div class="card" style="text-align:center; background:#f8fcf9; margin-top:20px;">
+          <h3>No tienes que gestionar nada</h3>
+          <p style="max-width:700px; margin:0 auto 15px;">
+            Nos encargamos de todo el proceso técnico, administrativo y energético para que solo tengas que disfrutar del resultado.
+          </p>
+          <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
+            Desde la obra hasta la etiqueta energética final
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Trámite CEE y CAE</h2>
+
+        <p>
+          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado.
+        </p>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Documentación de la actuación</h3>
+              <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Certificado de eficiencia energética (CEE)</h3>
+              <p>En aproximadamente 2 semanas, el propietario puede solicitar el certificado energético actualizado de la vivienda.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Gestión completa del CAE</h3>
+              <p style="font-weight:700; color:var(--primary);">
+                Nos encargamos de todo el proceso técnico, administrativo y energético.
+              </p>
+              <p>
+                Desde la documentación inicial, certificación del ahorro energético y validación, hasta la emisión final de la etiqueta energética por parte de la administración.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="text-align:center; background:#f0f9f4; margin-top:20px;">
+          <h3>Tú no te ocupas de nada</h3>
+          <p style="max-width:700px; margin:0 auto 15px;">
+            Gestionamos todo el proceso técnico, administrativo y energético para que solo tengas que disfrutar del resultado.
+          </p>
+          <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
+            Desde la obra hasta la etiqueta energética final
+          </p>
+        </div>
+
+        <img src="images/cae.jpg" alt="Esquema del sistema CAE" class="single-photo" />
+      </section>
     </section>
 
-    <section id="contacto" class="card fade-in">
-      <h2>Solicitar evaluación</h2>
-      <p class="form-note">
-        Déjanos tus datos y analizamos si tu vivienda puede acogerse al modelo sin inversión inicial.
-      </p>
+    <!-- RECOMENDACION -->
+    <section id="ref" class="section">
+      <section class="card reward-card">
+        <h2>Recomendación</h2>
+        <p>
+          Si conoces a otras personas interesadas, puedes obtener un bono por recomendaciones validadas.
+        </p>
 
-      <form action="https://hooks.zapier.com/hooks/catch/XXXX/XXXX" method="POST">
-        <input class="field" type="text" name="nombre" placeholder="Nombre y apellidos" required />
-        <input class="field" type="tel" name="telefono" placeholder="Teléfono" required />
-        <input class="field" type="text" name="material_cubierta" placeholder="Material de la cubierta: hormigón, yeso o madera" />
-        <input class="field" type="text" name="codigo_recomendacion" id="codigo_recomendacion" placeholder="Código de recomendación (opcional)" />
-        <textarea class="field" name="mensaje" rows="4" placeholder="Localidad, tipo de vivienda y cualquier detalle útil"></textarea>
+        <div class="reward-grid">
+          <div class="reward-box">
+            <strong>30€</strong>
+            <div>por 2 clientes</div>
+          </div>
+          <div class="reward-box">
+            <strong>100€</strong>
+            <div>por 5 clientes</div>
+          </div>
+        </div>
 
-        <label class="checkbox-line">
-          <input type="checkbox" required />
-          <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
-        </label>
-
-        <button class="btn btn-main" type="submit">Solicitar estudio gratuito</button>
-      </form>
+        <p class="form-note">
+          Bono entregado tras intervención finalizada y validada.
+        </p>
+      </section>
     </section>
 
-  </div>
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+      <section class="card">
+        <h2>Solicitar evaluación</h2>
+        <p class="form-note">
+          Déjanos tus datos y analizamos si tu vivienda puede acogerse al modelo sin inversión inicial.
+        </p>
 
-  <footer>
-    <p>© 2026 Aislamiento en Casa · Castilla y León y Asturias</p>
-    <p style="font-size:11px; opacity:.7;">Sujeto a viabilidad técnica y condiciones del sistema CAE.</p>
-    <p style="margin-top:10px;">
-      <a href="aviso-legal.html" style="color:inherit;">Aviso legal</a> ·
-      <a href="privacidad.html" style="color:inherit;">Privacidad</a> ·
-      <a href="cookies.html" style="color:inherit;">Cookies</a>
-    </p>
-  </footer>
+        <form action="https://hooks.zapier.com/hooks/catch/XXXX/XXXX" method="POST">
+          <input class="field" type="text" name="nombre" placeholder="Nombre y apellidos" required />
+          <input class="field" type="tel" name="telefono" placeholder="Teléfono" required />
+          <input class="field" type="text" name="material_cubierta" placeholder="Material de la cubierta: hormigón, yeso o madera" />
+          <input class="field" type="text" name="codigo_recomendacion" id="codigo_recomendacion" placeholder="Código de recomendación (opcional)" />
+          <textarea class="field" name="mensaje" rows="4" placeholder="Localidad, tipo de vivienda y cualquier detalle útil"></textarea>
 
-  <a href="tel:+34865450109" class="call-float" id="callBtn">📞 Llamada directa</a>
+          <label class="checkbox-line">
+            <input type="checkbox" required />
+            <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
+          </label>
 
-  <a id="waBtn" href="#" class="whatsapp-float">💬 WhatsApp técnico</a>
+          <button class="btn btn-main" type="submit">Solicitar estudio gratuito</button>
+        </form>
+      </section>
+    </section>
 
-  <div id="wa-popup" class="wa-popup">
-    ¿Quieres saber si tu vivienda es viable?<br />
-    <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" target="_blank">Hablar por WhatsApp</a>
+    <footer>
+      <p>© 2026 Aislamiento en Casa · Castilla y León y Asturias</p>
+      <p style="font-size:11px; opacity:.7;">Sujeto a viabilidad técnica y condiciones del sistema CAE.</p>
+      <p style="margin-top:10px;">
+        <a href="aviso-legal.html" style="color:inherit;">Aviso legal</a> ·
+        <a href="privacidad.html" style="color:inherit;">Privacidad</a> ·
+        <a href="cookies.html" style="color:inherit;">Cookies</a>
+      </p>
+    </footer>
+
+    <a href="tel:+34865450109" class="call-float" id="callBtn">📞 Llamada directa</a>
+
+    <a id="waBtn" href="#" class="whatsapp-float">💬 WhatsApp técnico</a>
+
+    <div id="wa-popup" class="wa-popup">
+      ¿Quieres saber si tu vivienda es viable?<br />
+      <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" target="_blank">Hablar por WhatsApp</a>
+    </div>
+
+    <nav class="app-nav">
+      <button class="nav-btn active" data-tab="inicio"><span>🏠</span>Inicio</button>
+      <button class="nav-btn" data-tab="cita"><span>🛠</span>Cita</button>
+      <button class="nav-btn" data-tab="cae"><span>📄</span>CAE</button>
+      <button class="nav-btn" data-tab="ref"><span>🎁</span>Recom.</button>
+      <button class="nav-btn" data-tab="contacto"><span>📩</span>Contacto</button>
+    </nav>
+
   </div>
 
   <script>
+    /* APP NAV */
+    const sections = document.querySelectorAll('.section');
+    const navButtons = document.querySelectorAll('.nav-btn');
+
+    function showTab(id){
+      sections.forEach(section => section.classList.remove('active'));
+      navButtons.forEach(btn => btn.classList.remove('active'));
+
+      const targetSection = document.getElementById(id);
+      const targetButton = document.querySelector(`.nav-btn[data-tab="${id}"]`);
+
+      if(targetSection) targetSection.classList.add('active');
+      if(targetButton) targetButton.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => showTab(btn.dataset.tab));
+    });
+
+    document.querySelectorAll('[data-goto]').forEach(el => {
+      el.addEventListener('click', function(e){
+        e.preventDefault();
+        showTab(this.dataset.goto);
+      });
+    });
+
+    /* BEFORE / AFTER */
     const slider = document.getElementById("slider");
     const afterImage = document.getElementById("afterImage");
 
@@ -1031,6 +1191,7 @@
       afterImage.style.width = val + "%";
     }, 40);
 
+    /* COUNTER */
     let count = 0;
     const target = 46;
     const speed = 30;
@@ -1046,6 +1207,7 @@
     }
     window.addEventListener("load", animateCounter);
 
+    /* REFERRAL */
     (function () {
       const params = new URLSearchParams(window.location.search);
       const ref = params.get("ref");
@@ -1061,16 +1223,7 @@
       });
     })();
 
-    const elements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
-      });
-    });
-    elements.forEach(el => observer.observe(el));
-
+    /* CALL BUTTON */
     function updateCallButton(){
       const btn = document.getElementById("callBtn");
       const now = new Date();
@@ -1084,6 +1237,7 @@
     }
     updateCallButton();
 
+    /* WHATSAPP DYNAMIC */
     function getFormData(){
       const nombre = document.querySelector('input[name="nombre"]')?.value || "";
       const telefono = document.querySelector('input[name="telefono"]')?.value || "";
@@ -1093,11 +1247,11 @@
 
     document.getElementById("waBtn").addEventListener("click", function(){
       const data = getFormData();
-      let mensaje = "Hola, vengo de la web de aislamiento.\\n";
-      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\\n";
-      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\\n";
-      if(data.material) mensaje += "Cubierta: " + data.material + "\\n";
-      mensaje += "\\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
+      let mensaje = "Hola, vengo de la web de aislamiento.\n";
+      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\n";
+      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\n";
+      if(data.material) mensaje += "Cubierta: " + data.material + "\n";
+      mensaje += "\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
       this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
     });
 
