@@ -2011,33 +2011,28 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     fetch("https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-    .then((res) => {
-      console.log("Respuesta:", res);
-      return res.text();
-    })
-    .then((text) => {
-      console.log("Texto:", text);
+  method: "POST",
+  mode: "no-cors", // 🔥 CLAVE
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(data)
+})
+.then(() => {
+  btn.innerText = "Enviado ✅";
+  btn.disabled = true;
 
-      btn.innerText = "Enviado ✅";
-      btn.disabled = true;
+  form.reset();
 
-      form.reset();
-
-      setTimeout(() => {
-        btn.innerText = "Ver si mi vivienda es viable";
-        btn.disabled = false;
-      }, 3000);
-    })
-    .catch((error) => {
-      console.error("ERROR:", error);
-      btn.innerText = "Error ❌";
-    });
+  setTimeout(() => {
+    btn.innerText = "Ver si mi vivienda es viable";
+    btn.disabled = false;
+  }, 3000);
+})
+.catch((error) => {
+  console.error("ERROR:", error);
+  btn.innerText = "Error ❌";
+});
 
   });
 
