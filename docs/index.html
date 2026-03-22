@@ -20,6 +20,9 @@
       --shadow:0 20px 50px rgba(24,48,40,0.08);
       --shadow-strong:0 25px 60px rgba(24,48,40,0.12);
       --whatsapp:#25d366;
+      --soft-green:#f0f9f4;
+      --soft-border:#cfe8da;
+      --danger:#f44336;
     }
 
     *{box-sizing:border-box}
@@ -32,6 +35,8 @@
       color:var(--dark);
       line-height:1.6;
     }
+
+    a{ color:inherit; }
 
     .app{
       display:flex;
@@ -59,13 +64,14 @@
 
     .sidebar .logo img{
       max-width:100%;
-      max-height:120px;
+      max-height:125px;
       width:auto;
       display:block;
       margin:0 auto;
+      transition:transform .3s ease, opacity .3s ease;
     }
 
-    .sidebar .menu-title{
+    .menu-title{
       font-size:12px;
       text-transform:uppercase;
       letter-spacing:.08em;
@@ -74,7 +80,7 @@
       font-weight:800;
     }
 
-    .sidebar button{
+    .menu-btn{
       width:100%;
       border:none;
       background:none;
@@ -89,13 +95,13 @@
       margin-bottom:8px;
     }
 
-    .sidebar button:hover,
-    .sidebar button.active{
+    .menu-btn:hover,
+    .menu-btn.active{
       background:#f3faf6;
       color:var(--primary);
     }
 
-    .sidebar .sidebar-note{
+    .sidebar-note{
       margin-top:18px;
       padding:14px;
       border:1px solid var(--line);
@@ -160,17 +166,6 @@
       margin-bottom:8px;
     }
 
-    .hero{
-      text-align:center;
-      padding:56px 28px;
-      background:
-        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.96)),
-        url("images/cubierta_despues.jpg") center/cover no-repeat;
-      border-radius:28px;
-      border:1px solid var(--line);
-      box-shadow:var(--shadow-strong);
-    }
-
     .badge{
       display:inline-block;
       background:#e8f3ee;
@@ -180,6 +175,17 @@
       font-size:.9rem;
       font-weight:700;
       margin-bottom:16px;
+    }
+
+    .hero{
+      text-align:center;
+      padding:58px 28px;
+      background:
+        linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.93)),
+        url("images/tejado.jpg") center/cover no-repeat;
+      border-radius:28px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow-strong);
     }
 
     .hero h2{
@@ -318,6 +324,72 @@
       color:var(--primary);
     }
 
+    .ba-container{
+      position:relative;
+      max-width:760px;
+      margin:28px auto 18px;
+      height:390px;
+      overflow:hidden;
+      border-radius:20px;
+      box-shadow:0 30px 80px rgba(0,0,0,0.18);
+    }
+
+    .ba-image{
+      position:absolute;
+      inset:0;
+    }
+
+    .ba-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .after{
+      width:50%;
+      overflow:hidden;
+    }
+
+    .ba-slider{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0;
+      cursor:ew-resize;
+      z-index:10;
+    }
+
+    .ba-divider{
+      position:absolute;
+      top:0;
+      left:50%;
+      width:4px;
+      height:100%;
+      background:#fff;
+      z-index:6;
+      transform:translateX(-50%);
+      box-shadow:0 0 10px rgba(0,0,0,.2);
+      pointer-events:none;
+    }
+
+    .ba-label{
+      position:absolute;
+      top:14px;
+      left:14px;
+      padding:8px 12px;
+      border-radius:10px;
+      font-size:13px;
+      font-weight:800;
+      color:#fff;
+      background:rgba(0,0,0,0.65);
+      z-index:7;
+    }
+
+    .after .ba-label{
+      background:rgba(47,125,87,0.95);
+    }
+
     .compare-graph{
       display:flex;
       align-items:center;
@@ -341,8 +413,8 @@
       animation:growBar 1.2s ease forwards;
     }
 
-    .before .bar{ background:#f44336; width:100%; }
-    .after .bar{ background:#2f7d57; width:55%; animation-delay:0.5s; }
+    .before .bar{ background:var(--danger); width:100%; }
+    .after-graph .bar{ background:var(--primary); width:55%; animation-delay:0.5s; }
 
     .arrow{
       font-size:2rem;
@@ -352,6 +424,12 @@
 
     @keyframes growBar{
       to{ transform:scaleX(1); }
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
     }
 
     .grid-3{
@@ -488,9 +566,47 @@
       margin-top:16px;
     }
 
+    .type-switch{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .type-btn{
+      border:none;
+      border-radius:999px;
+      padding:12px 18px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--dark);
+    }
+
+    .type-btn.active{
+      background:var(--primary);
+      color:#fff;
+      border-color:var(--primary);
+    }
+
+    .type-box{
+      display:none;
+    }
+
+    .type-box.active{
+      display:block;
+    }
+
+    .soft-card{
+      background:var(--soft-green);
+      border:1px solid var(--soft-border);
+    }
+
     .reward-wrap{
-      background:#f0f9f4;
-      border:1px solid #cfe8da;
+      background:var(--soft-green);
+      border:1px solid var(--soft-border);
     }
 
     .reward-grid{
@@ -503,7 +619,7 @@
 
     .reward-box{
       background:#fff;
-      border:1px solid #cfe8da;
+      border:1px solid var(--soft-border);
       border-radius:16px;
       padding:20px;
       width:200px;
@@ -514,6 +630,30 @@
       font-size:2rem;
       color:var(--primary);
       display:block;
+    }
+
+    .social-row{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+
+    .social-btn{
+      padding:10px 18px;
+      border-radius:999px;
+      background:#f3faf6;
+      border:1px solid var(--line);
+      text-decoration:none;
+      font-weight:700;
+      color:var(--dark);
+      transition:.25s ease;
+    }
+
+    .social-btn:hover{
+      background:var(--primary);
+      color:#fff;
     }
 
     form{
@@ -552,9 +692,16 @@
       color:var(--muted);
     }
 
+    footer{
+      text-align:center;
+      padding:10px 0 30px;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
     .call-float{
       position:fixed;
-      bottom:20px;
+      bottom:170px;
       right:20px;
       background:var(--primary);
       color:white;
@@ -568,7 +715,7 @@
 
     .whatsapp-float{
       position:fixed;
-      bottom:82px;
+      bottom:110px;
       right:20px;
       background:var(--whatsapp);
       color:white;
@@ -582,7 +729,7 @@
 
     .wa-popup{
       position:fixed;
-      bottom:144px;
+      bottom:230px;
       right:20px;
       background:white;
       padding:14px 16px;
@@ -600,8 +747,42 @@
       text-decoration:none;
     }
 
+    .logo-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(247,251,248,.94);
+      backdrop-filter:blur(4px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:5000;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .35s ease;
+    }
+
+    .logo-overlay.show{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .logo-overlay img{
+      width:min(240px,60vw);
+      max-height:180px;
+      animation:logoPulse .9s ease;
+    }
+
+    @keyframes logoPulse{
+      0%{ transform:scale(.92); opacity:0; }
+      100%{ transform:scale(1); opacity:1; }
+    }
+
     @media(max-width:1024px){
       .grid-3{
+        grid-template-columns:1fr;
+      }
+
+      .grid-2{
         grid-template-columns:1fr;
       }
     }
@@ -639,8 +820,16 @@
         height:40px;
       }
 
+      .ba-container{
+        height:280px;
+      }
+
       .photo-grid{
         grid-template-columns:1fr;
+      }
+
+      .step{
+        flex-direction:column;
       }
 
       .call-float,
@@ -650,17 +839,26 @@
         text-align:center;
       }
 
-      .whatsapp-float{ bottom:82px; }
+      .whatsapp-float{ bottom:110px; }
+      .call-float{ bottom:170px; }
 
       .wa-popup{
         left:16px;
         right:16px;
         max-width:none;
       }
+
+      .content{
+        padding:16px;
+      }
     }
   </style>
 </head>
 <body>
+
+<div class="logo-overlay" id="logoOverlay">
+  <img src="images/logo.png" alt="Transición logo" />
+</div>
 
 <div class="app">
   <aside class="sidebar">
@@ -682,7 +880,6 @@
   </aside>
 
   <main class="content">
-
     <div class="topbar card" style="padding:18px 22px;">
       <h1 id="section-title">Inicio</h1>
       <p id="section-subtitle">Aislamiento de cubiertas sin inversión inicial, según viabilidad técnica.</p>
@@ -706,8 +903,12 @@
           Evaluación gratuita · Sin compromiso · Respuesta rápida
         </p>
 
+        <p style="font-size:14px; color:var(--muted); margin-top:6px;">
+          Te decimos directamente si puedes hacerlo sin pagar la obra.
+        </p>
+
         <div class="btn-row">
-          <a href="#" class="btn btn-main" data-goto="contacto">Consultar viabilidad</a>
+          <a href="#" class="btn btn-main" data-goto="contacto">Ver si mi vivienda es viable</a>
           <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">WhatsApp técnico</a>
           <a href="#" class="btn btn-outline" data-goto="cita">Cómo es la cita</a>
         </div>
@@ -743,6 +944,44 @@
         <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
           Empiezas a notar el ahorro desde el primer mes
         </p>
+
+        <p style="font-size:14px; color:var(--muted);">
+          Sin cambiar tu forma de vivir ni hacer reformas complejas
+        </p>
+
+        <div style="text-align:center; margin-top:20px;">
+          <p style="font-size:14px; color:var(--muted);">
+            Puedes ver resultados reales de viviendas en nuestra página
+          </p>
+          <div class="social-row">
+            <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" class="btn btn-outline">
+              Ver casos reales
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Resultado real</h2>
+
+        <div class="ba-container">
+          <div class="ba-image">
+            <img src="images/cubierta_antes.jpg" alt="Cubierta antes del aislamiento" />
+            <span class="ba-label">ANTES</span>
+          </div>
+
+          <div class="ba-image after" id="afterImage">
+            <img src="images/cubierta_despues.jpg" alt="Cubierta después del aislamiento" />
+            <span class="ba-label">DESPUÉS</span>
+          </div>
+
+          <div class="ba-divider" id="baDivider"></div>
+          <input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
+        </div>
+
+        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
+          Aislamiento completo en pocas horas, sin obras complejas ni molestias.
+        </p>
       </section>
 
       <section class="card">
@@ -757,7 +996,7 @@
 
           <div class="arrow">→</div>
 
-          <div class="graph-box after">
+          <div class="graph-box after-graph">
             <h3>Después</h3>
             <div class="bar"></div>
             <p>Ahorro energético</p>
@@ -807,74 +1046,200 @@
           Resultado visible desde el primer día
         </p>
 
-        <p style="text-align:center; margin-top:10px; font-weight:700;">
+        <p style="text-align:center; font-size:14px; color:var(--muted);">
           Sin obras complicadas · Sin molestias · Resultado inmediato
         </p>
+      </section>
+
+      <section class="card">
+        <h2>Tipo de aislamiento</h2>
+
+        <div class="grid-2">
+          <div class="feature">
+            <h3>💨 Insuflado (desván no habitable)</h3>
+            <ul>
+              <li>Muy rápido</li>
+              <li>Sin obras complejas</li>
+              <li>Alta eficiencia térmica</li>
+              <li>Ideal para espacios no transitables</li>
+            </ul>
+          </div>
+
+          <div class="feature">
+            <h3>🧱 Manta / rollo (desván habitable)</h3>
+            <ul>
+              <li>Adaptado a uso del espacio</li>
+              <li>Acabado más controlado</li>
+              <li>Solución compatible con espacios transitables</li>
+              <li>Durabilidad y buen comportamiento térmico</li>
+            </ul>
+          </div>
+        </div>
+
+        <p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);">
+          Siempre elegimos la solución más adecuada para tu vivienda
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Obra limpia y de calidad</h2>
+
+        <div class="grid-3">
+          <div class="feature">
+            <h3>✔ Trabajo profesional</h3>
+            <p>Aplicación con equipos técnicos especializados y ejecución cuidada.</p>
+          </div>
+
+          <div class="feature">
+            <h3>✔ Todo impecable</h3>
+            <p>Dejamos la vivienda limpia y lista para su uso.</p>
+          </div>
+
+          <div class="feature">
+            <h3>✔ Nos encargamos de todo</h3>
+            <p>Si hay trastero o almacenaje en la guardilla, gestionamos el movimiento necesario.</p>
+          </div>
+        </div>
+
+        <div class="photo-grid" style="margin-top:20px;">
+          <img src="images/plano1.jpg" alt="Planificación técnica 1" />
+          <img src="images/plano2.jpg" alt="Planificación técnica 2" />
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Entorno y cubiertas</h2>
+        <p>
+          Trabajamos sobre cubiertas reales de viviendas y edificios, adaptando la solución técnica a cada caso.
+        </p>
+
+        <div class="photo-grid">
+          <img src="images/tejado.jpg" alt="Cubierta tradicional" />
+          <img src="images/tejados-zona.jpg" alt="Conjunto de cubiertas" />
+        </div>
       </section>
     </section>
 
     <!-- CITA -->
     <section id="cita" class="section">
       <section class="card">
-        <h2>El día de la cita</h2>
+        <h2>El día de la obra</h2>
 
         <p>
-          El mismo día de la actuación, nuestro técnico realiza la validación completa del proyecto y deja toda la documentación preparada.
+          Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
         </p>
 
-        <div class="timeline">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <h3>Visita técnica</h3>
-              <p>El técnico comienza la cita revisando la vivienda y validando la actuación prevista.</p>
+        <div class="type-switch">
+          <button class="type-btn active" data-type="uni">Vivienda unifamiliar</button>
+          <button class="type-btn" data-type="com">Comunidad edificio</button>
+          <button class="type-btn" data-type="emp">Edificio terciario</button>
+        </div>
+
+        <div id="tipo-uni" class="type-box active">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Visita técnica</h3>
+                <p>Revisión completa de la vivienda y validación de la actuación.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos y medidas</h3>
+                <p>Se documenta fachada, puertas, ventanas, sistema de calefacción, agua caliente y cubierta antes de la obra.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Intervención</h3>
+                <p>Una vez validado todo, empieza la obra. En muchos casos puede completarse en pocas horas.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">4</div>
+              <div>
+                <h3>Fotos finales y documentación</h3>
+                <p>Se realizan fotos finales y se firma la documentación, incluido el acuerdo de cesión del ahorro.</p>
+              </div>
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <h3>Fotos y medidas</h3>
-              <p>Se toman fotografías y medidas necesarias para justificar la intervención.</p>
-              <ul>
-                <li>Fachada</li>
-                <li>Puertas y ventanas</li>
-                <li>Sistema de calefacción</li>
-                <li>Agua caliente</li>
-                <li>Cubierta antes de la obra</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <h3>Intervención rápida</h3>
-              <p>Una vez validado todo, empieza la obra. En muchos casos, la actuación puede completarse en pocas horas.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">4</div>
-            <div>
-              <h3>Fotos finales y firma</h3>
-              <p>Al terminar, se realizan fotografías del resultado y se firma la documentación, incluido el acuerdo de cesión.</p>
-            </div>
-          </div>
-
-          <div class="step" style="background:#f0f9f4; border:1px solid #cfe8da;">
-            <div class="step-num">✔</div>
-            <div>
-              <h3>¿Qué necesitas el día de la obra?</h3>
-              <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
-              <p>Nos encargamos de todo el proceso técnico, la documentación y la gestión del sistema CAE.</p>
-              <p class="form-note">*Para vivienda unifamiliar</p>
-            </div>
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Qué necesitas</h3>
+            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
+            <p>Nos encargamos de todo el proceso técnico, administrativo y energético.</p>
           </div>
         </div>
 
-        <p style="font-weight:700; color:var(--primary);">
-          Solo necesitas tu DNI
+        <div id="tipo-com" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Proceso de obra</h3>
+                <p>El proceso técnico y de ejecución es prácticamente el mismo que en vivienda unifamiliar.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Documentación específica</h3>
+                <ul>
+                  <li>NIF de la comunidad</li>
+                  <li>Certificado digital FNMT</li>
+                  <li>Acta de elección o nombramiento del presidente</li>
+                  <li>Junta de acuerdo para la obra</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Nos encargamos del proceso</h3>
+            <p>Guiamos toda la parte documental para que la comunidad tenga todo correctamente preparado.</p>
+          </div>
+        </div>
+
+        <div id="tipo-emp" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Proceso técnico</h3>
+                <p>Se analiza la cubierta y la actuación del mismo modo, con foco adicional en los consumos energéticos del edificio.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Documentación específica</h3>
+                <ul>
+                  <li>NIF de la sociedad</li>
+                  <li>Certificado del Registro Mercantil</li>
+                  <li>Nota simple</li>
+                  <li>Certificado digital FNMT</li>
+                  <li>Documentación de consumos eléctricos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Edificio terciario</h3>
+            <p>Adaptamos el expediente técnico y documental a la estructura de la sociedad o empresa.</p>
+          </div>
+        </div>
+
+        <p style="font-weight:700; color:var(--primary); margin-top:20px;">
+          Solo necesitas aportar la documentación básica del tipo de inmueble correspondiente.
         </p>
 
         <p style="font-size:13px; color:var(--muted);">
@@ -883,20 +1248,16 @@
       </section>
 
       <section class="card">
-        <h2>Caso real</h2>
+        <h2>Día de la cita: trabajo real</h2>
+
         <p>
-          Intervención real realizada en vivienda. Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
+          Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
         </p>
 
-        <div class="photo-grid">
-          <img src="images/cubierta_antes.jpg" alt="Caso real antes" />
-          <img src="images/cubierta_despues.jpg" alt="Caso real después" />
-        </div>
-
-        <img src="images/caso_tecnico.jpg" alt="Técnico trabajando en cubierta" class="single-photo" />
+        <img src="images/camion.jpg" alt="Camión de insuflado" class="single-photo" />
 
         <p class="form-note" style="margin-top:14px;">
-          Resultado visible desde el primer día, con mejora térmica inmediata.
+          Obra de calidad, ejecución rápida y proceso completamente documentado.
         </p>
       </section>
     </section>
@@ -959,7 +1320,7 @@
           </div>
         </div>
 
-        <div class="card" style="background:#f0f9f4; text-align:center; margin-top:25px; border:1px solid #cfe8da;">
+        <div class="card soft-card" style="text-align:center; margin-top:25px;">
           <h3 style="margin-bottom:10px;">Tú no te ocupas de nada</h3>
 
           <p style="max-width:650px; margin:0 auto 12px;">
@@ -971,8 +1332,34 @@
           </p>
         </div>
 
-        <p style="text-align:center; font-size:14px; color:var(--muted); margin-top:10px;">
+        <p style="font-size:14px; color:var(--muted); margin-top:10px; text-align:center;">
           No tienes que gestionar nada · Nosotros nos encargamos de todo
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Cesión del ahorro y financiación de la obra</h2>
+
+        <p>
+          Dentro del sistema CAE, el propietario cede el ahorro energético generado por la actuación a una empresa del sector energético como <strong>contraprestación económica</strong>.
+        </p>
+
+        <p style="font-weight:700; color:var(--primary);">
+          Esa contraprestación se materializa en forma de obra totalmente financiada, siempre según viabilidad técnica y energética.
+        </p>
+
+        <p>
+          Los distribuidores de combustible, gasóleo doméstico, gas o electricidad, conocidos como los <strong>sujetos obligados</strong>, tienen la obligación de participar en la lucha contra el calentamiento global mediante el financiamiento de obras de mejora energética, bajo el principio de <strong>“quien contamina paga”</strong>.
+        </p>
+
+        <p>
+          Nosotros trabajamos con un <strong>sujeto delegado acreditado por el MITECO</strong> que gestiona el expediente y la tramitación necesaria.
+        </p>
+
+        <p style="margin-top:10px;">
+          <a href="https://www.miteco.gob.es/es/energia/eficiencia/cae.html" target="_blank" style="color:var(--primary); font-weight:700;">
+            Ver información oficial del MITECO
+          </a>
         </p>
       </section>
 
@@ -1016,7 +1403,7 @@
           </div>
         </div>
 
-        <div class="card" style="text-align:center; background:#f0f9f4; margin-top:20px;">
+        <div class="card soft-card" style="text-align:center; margin-top:20px;">
           <h3>Tú no te ocupas de nada</h3>
 
           <p style="max-width:700px; margin:0 auto 15px;">
@@ -1028,7 +1415,7 @@
           </p>
         </div>
 
-        <img src="images/cae.jpg" alt="Esquema del sistema CAE" class="single-photo" />
+        <img src="images/caso_tecnico.jpg" alt="Esquema o imagen del sistema CAE" class="single-photo" />
       </section>
     </section>
 
@@ -1044,12 +1431,12 @@
         <div class="reward-grid">
           <div class="reward-box">
             <strong>30€</strong>
-            <span>2 viviendas realizadas</span>
+            <span>2 clientes con obra realizada</span>
           </div>
 
           <div class="reward-box">
             <strong>100€</strong>
-            <span>5 viviendas realizadas</span>
+            <span>5 clientes con obra realizada</span>
           </div>
         </div>
 
@@ -1094,11 +1481,41 @@
             <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
           </label>
 
-          <button class="btn btn-main" type="submit">Solicitar estudio gratuito</button>
+          <p style="font-size:13px; color:var(--muted);">
+            Te respondemos rápido con la viabilidad real.
+          </p>
+
+          <button class="btn btn-main" type="submit">
+            Ver si mi vivienda es viable
+          </button>
         </form>
       </section>
-    </section>
 
+      <footer>
+        <p>© 2026 Aislamiento en Casa · Castilla y León y Asturias</p>
+        <p style="font-size:11px; opacity:.7;">Sujeto a viabilidad técnica y condiciones del sistema CAE.</p>
+
+        <div style="margin-top:18px;">
+          <p style="font-weight:700; margin-bottom:8px;">Síguenos</p>
+
+          <div class="social-row">
+            <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" class="social-btn">
+              👍 Facebook
+            </a>
+          </div>
+
+          <p style="font-size:13px; color:var(--muted); margin-top:6px;">
+            Casos reales · Antes y después · Obras finalizadas
+          </p>
+        </div>
+
+        <p style="margin-top:12px;">
+          <a href="aviso-legal.html" style="color:inherit;">Aviso legal</a> ·
+          <a href="privacidad.html" style="color:inherit;">Privacidad</a> ·
+          <a href="cookies.html" style="color:inherit;">Cookies</a>
+        </p>
+      </footer>
+    </section>
   </main>
 </div>
 
@@ -1127,7 +1544,7 @@
     },
     recomendacion: {
       title: "Recomendación",
-      subtitle: "Bono por viviendas realizadas tras intervención finalizada y validada."
+      subtitle: "Bono por clientes con obra realizada y validada."
     },
     contacto: {
       title: "Contacto",
@@ -1135,35 +1552,49 @@
     }
   };
 
-  const buttons = document.querySelectorAll(".menu-btn");
+  const menuButtons = document.querySelectorAll(".menu-btn");
   const sections = document.querySelectorAll(".section");
   const titleEl = document.getElementById("section-title");
   const subtitleEl = document.getElementById("section-subtitle");
   const pageSectionInput = document.getElementById("page_section");
+  const logoOverlay = document.getElementById("logoOverlay");
 
-  function showSection(id){
-    sections.forEach(section => section.classList.remove("active"));
-    buttons.forEach(btn => btn.classList.remove("active"));
+  function setActiveMenu(id){
+    menuButtons.forEach(btn => btn.classList.remove("active"));
+    const targetBtn = document.querySelector(`.menu-btn[data-tab="${id}"]`);
+    if(targetBtn) targetBtn.classList.add("active");
+  }
 
-    const targetSection = document.getElementById(id);
-    const targetButton = document.querySelector(`.menu-btn[data-tab="${id}"]`);
-
-    if(targetSection) targetSection.classList.add("active");
-    if(targetButton) targetButton.classList.add("active");
-
-    if(titleEl && subtitleEl && sectionMeta[id]){
+  function updateTopbar(id){
+    if(sectionMeta[id]){
       titleEl.textContent = sectionMeta[id].title;
       subtitleEl.textContent = sectionMeta[id].subtitle;
     }
-
     if(pageSectionInput){
       pageSectionInput.value = id;
     }
+  }
 
+  function switchSection(id){
+    sections.forEach(section => section.classList.remove("active"));
+    const targetSection = document.getElementById(id);
+    if(targetSection) targetSection.classList.add("active");
+    setActiveMenu(id);
+    updateTopbar(id);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  buttons.forEach(btn => {
+  function showSection(id){
+    logoOverlay.classList.add("show");
+    setTimeout(() => {
+      switchSection(id);
+    }, 700);
+    setTimeout(() => {
+      logoOverlay.classList.remove("show");
+    }, 1500);
+  }
+
+  menuButtons.forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.tab));
   });
 
@@ -1188,7 +1619,50 @@
   }
   window.addEventListener("load", animateCounter);
 
-  // referral
+  // slider antes/después
+  const slider = document.getElementById("slider");
+  const afterImage = document.getElementById("afterImage");
+  const baDivider = document.getElementById("baDivider");
+  let autoDir = 1;
+  let autoVal = 50;
+  let manualOverride = false;
+
+  function updateBeforeAfter(value){
+    if(afterImage) afterImage.style.width = value + "%";
+    if(baDivider) baDivider.style.left = value + "%";
+  }
+
+  if(slider){
+    slider.addEventListener("input", function(){
+      manualOverride = true;
+      updateBeforeAfter(this.value);
+    });
+  }
+
+  setInterval(() => {
+    if (!slider || !afterImage || manualOverride) return;
+    autoVal += autoDir;
+    if (autoVal >= 100 || autoVal <= 0) autoDir *= -1;
+    slider.value = autoVal;
+    updateBeforeAfter(autoVal);
+  }, 40);
+
+  // tipos de inmueble
+  const typeButtons = document.querySelectorAll(".type-btn");
+  const typeBoxes = document.querySelectorAll(".type-box");
+
+  function showType(type){
+    typeButtons.forEach(btn => btn.classList.remove("active"));
+    typeBoxes.forEach(box => box.classList.remove("active"));
+    document.querySelector(`.type-btn[data-type="${type}"]`)?.classList.add("active");
+    document.getElementById("tipo-" + type)?.classList.add("active");
+  }
+
+  typeButtons.forEach(btn => {
+    btn.addEventListener("click", () => showType(btn.dataset.type));
+  });
+
+  // referral code
   (function () {
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
@@ -1223,7 +1697,7 @@
   }
   updateCallButton();
 
-  // whatsapp dynamic
+  // whatsapp dinámico
   function getFormData(){
     const nombre = document.querySelector('input[name="nombre"]')?.value || "";
     const telefono = document.querySelector('input[name="telefono"]')?.value || "";
