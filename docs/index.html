@@ -993,6 +993,7 @@
 
 .sidebar.hidden {
   opacity: 0;
+  pointer-events: none;
 }
 
 /* FONDO LIMPIO */
@@ -1897,7 +1898,7 @@ function showSection(id){
   setTimeout(() => {
     logoOverlay.classList.remove("show");
     sidebar.classList.remove("hidden");
-  }, 1400);
+  }, 1600);
 });
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
