@@ -6,24 +6,32 @@
   <title>Aislamiento en Casa | Plataforma</title>
   <meta name="description" content="Aislamiento de cubiertas en Castilla y León y Asturias. Reduce tu factura energética y mejora el confort de tu vivienda sin inversión inicial, según viabilidad técnica." />
   <meta name="theme-color" content="#2f7d57" />
-<link rel="icon" href="images/favicon.png" sizes="32x32">
-<link rel="apple-touch-icon" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+
   <style>
     :root{
       --primary:#2f7d57;
       --primary-dark:#1e5239;
+      --secondary:#12354a;
+      --secondary-soft:#1e5670;
       --dark:#183028;
       --muted:#5f7a70;
-      --bg:#f7fbf8;
-      --bg-soft:#eef7f1;
+      --bg:#f4f8f5;
+      --bg-soft:#edf3ef;
       --card:#ffffff;
-      --line:#dbe9df;
-      --shadow:0 20px 50px rgba(24,48,40,0.08);
-      --shadow-strong:0 25px 60px rgba(24,48,40,0.12);
+      --line:#d7e4db;
+      --line-strong:#c8dacf;
+      --shadow:0 18px 48px rgba(16,38,28,0.08);
+      --shadow-strong:0 22px 60px rgba(16,38,28,0.14);
       --whatsapp:#25d366;
-      --soft-green:#f0f9f4;
-      --soft-border:#cfe8da;
-      --danger:#f44336;
+      --soft-green:#eff7f2;
+      --soft-border:#cfe2d5;
+      --danger:#d64545;
+      --footer:#14241d;
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --radius-sm:12px;
     }
 
     *{box-sizing:border-box}
@@ -31,41 +39,43 @@
 
     body{
       margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      background:linear-gradient(180deg,var(--bg),var(--bg-soft));
+      font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:linear-gradient(180deg,#f7faf8 0%, #eef4f0 100%);
       color:var(--dark);
       line-height:1.6;
     }
 
-    a{ color:inherit; }
+    a{color:inherit}
 
     .app{
       display:flex;
       min-height:100vh;
     }
 
-    /* SIDEBAR */
     .sidebar{
-      width:260px;
-      background:#fff;
+      width:280px;
+      background:rgba(255,255,255,0.94);
       border-right:1px solid var(--line);
-      padding:20px;
+      padding:24px 20px;
       position:fixed;
       top:0;
       left:0;
       bottom:0;
       overflow:auto;
       z-index:1100;
+      backdrop-filter:blur(14px);
     }
 
     .sidebar .logo{
-      margin-bottom:20px;
+      margin-bottom:24px;
       text-align:center;
+      padding:16px 10px 20px;
+      border-bottom:1px solid var(--line);
     }
 
     .sidebar .logo img{
       max-width:100%;
-      max-height:125px;
+      max-height:112px;
       width:auto;
       display:block;
       margin:0 auto;
@@ -73,65 +83,95 @@
     }
 
     .menu-title{
-      font-size:12px;
+      font-size:11px;
       text-transform:uppercase;
-      letter-spacing:.08em;
+      letter-spacing:.14em;
       color:var(--muted);
-      margin:18px 0 10px;
+      margin:22px 0 12px;
       font-weight:800;
     }
 
     .menu-btn{
       width:100%;
-      border:none;
+      border:1px solid transparent;
       background:none;
-      padding:13px 14px;
+      padding:14px 15px;
       text-align:left;
       font:inherit;
       font-weight:700;
       color:var(--dark);
       cursor:pointer;
-      border-radius:14px;
-      transition:.2s ease;
+      border-radius:16px;
+      transition:.25s ease;
       margin-bottom:8px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .menu-btn::before{
+      content:'';
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#dce9e0;
+      flex:0 0 auto;
+      transition:.25s ease;
     }
 
     .menu-btn:hover,
     .menu-btn.active{
-      background:#f3faf6;
+      background:#f4faf6;
       color:var(--primary);
+      border-color:#ddebe1;
+    }
+
+    .menu-btn.active::before,
+    .menu-btn:hover::before{
+      background:var(--primary);
+      box-shadow:0 0 0 5px rgba(47,125,87,0.12);
     }
 
     .sidebar-note{
-      margin-top:18px;
-      padding:14px;
+      margin-top:20px;
+      padding:16px;
       border:1px solid var(--line);
-      border-radius:16px;
-      background:#f8fcf9;
+      border-radius:18px;
+      background:linear-gradient(180deg,#f7fbf8,#f0f6f2);
       color:var(--muted);
       font-size:14px;
     }
 
-    /* CONTENT */
+    .sidebar-note strong{
+      display:block;
+      color:var(--dark);
+      margin-bottom:6px;
+      text-transform:uppercase;
+      font-size:12px;
+      letter-spacing:.08em;
+    }
+
     .content{
-      margin-left:260px;
-      width:calc(100% - 260px);
-      padding:28px;
+      margin-left:280px;
+      width:calc(100% - 280px);
+      padding:30px;
     }
 
     .topbar{
-      background:rgba(255,255,255,0.85);
-      backdrop-filter:blur(8px);
+      background:rgba(255,255,255,0.9);
+      backdrop-filter:blur(10px);
       border:1px solid var(--line);
-      border-radius:22px;
-      padding:18px 22px;
-      margin-bottom:22px;
+      border-radius:24px;
+      padding:20px 24px;
+      margin-bottom:24px;
       box-shadow:var(--shadow);
     }
 
     .topbar h1{
       margin:0;
-      font-size:1.5rem;
+      font-size:1.55rem;
+      text-transform:uppercase;
+      letter-spacing:.03em;
     }
 
     .topbar p{
@@ -139,81 +179,128 @@
       color:var(--muted);
     }
 
-    .section{
-      display:none;
-    }
-
-    .section.active{
-      display:block;
-    }
+    .section{display:none}
+    .section.active{display:block}
 
     .card{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:24px;
-      padding:30px;
+      border-radius:var(--radius-xl);
+      padding:32px;
       box-shadow:var(--shadow);
       margin-bottom:24px;
     }
 
     .card h2{
       margin-top:0;
-      margin-bottom:14px;
-      font-size:1.7rem;
+      margin-bottom:12px;
+      font-size:1.75rem;
+      text-transform:uppercase;
+      letter-spacing:.03em;
     }
 
     .card h3{
       margin-top:0;
       margin-bottom:8px;
+      font-size:1.05rem;
+    }
+
+    .section-intro{
+      color:var(--muted);
+      max-width:760px;
+      margin-bottom:24px;
     }
 
     .badge{
-      display:inline-block;
-      background:#e8f3ee;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#e7f3ec;
       color:var(--primary-dark);
       padding:8px 16px;
       border-radius:999px;
-      font-size:.9rem;
-      font-weight:700;
-      margin-bottom:16px;
+      font-size:.84rem;
+      font-weight:800;
+      margin-bottom:18px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
     }
 
     .hero{
-      text-align:center;
-      padding:58px 28px;
+      text-align:left;
+      padding:42px;
       background:
-        linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.93)),
+        linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.90) 45%, rgba(255,255,255,0.78) 100%),
         url("images/tejado.jpg") center/cover no-repeat;
-      border-radius:28px;
+      border-radius:30px;
       border:1px solid var(--line);
       box-shadow:var(--shadow-strong);
+      display:grid;
+      grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap:26px;
+      align-items:center;
     }
 
-    .hero h2{
-      font-size:clamp(2rem,4.4vw,3.4rem);
-      line-height:1.08;
-      margin:0 0 18px;
+    .hero-copy h2{
+      font-size:clamp(2.2rem,4.5vw,3.6rem);
+      line-height:1.02;
+      margin:0 0 16px;
     }
 
-    .hero h2 span{
-      color:var(--primary);
-    }
+    .hero-copy h2 span{color:var(--primary)}
 
-    .hero p{
-      max-width:820px;
-      margin:0 auto 16px;
+    .hero-sub{
+      max-width:760px;
+      margin:0 0 12px;
       color:var(--muted);
-      font-size:1.06rem;
+      font-size:1.05rem;
     }
 
-    .hero .strong{
+    .hero-strong{
       color:var(--primary);
       font-weight:800;
+      margin:0 0 14px;
+      font-size:1rem;
+    }
+
+    .hero-note{
+      font-size:13px;
+      color:var(--muted);
+      margin:0;
+    }
+
+    .hero-panel{
+      background:rgba(20,53,74,0.96);
+      color:#fff;
+      border-radius:26px;
+      padding:24px;
+      box-shadow:0 20px 50px rgba(18,53,74,0.25);
+    }
+
+    .hero-panel-label{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      opacity:.72;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    .hero-panel strong{
+      display:block;
+      font-size:1.35rem;
+      line-height:1.2;
+      margin-bottom:12px;
+    }
+
+    .hero-panel p{
+      margin:0;
+      font-size:.95rem;
+      color:rgba(255,255,255,.82);
     }
 
     .btn-row{
       display:flex;
-      justify-content:center;
       flex-wrap:wrap;
       gap:12px;
       margin-top:24px;
@@ -223,7 +310,7 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
+      gap:10px;
       padding:14px 22px;
       border-radius:999px;
       text-decoration:none;
@@ -234,27 +321,15 @@
       transition:.25s ease;
       position:relative;
       overflow:hidden;
+      min-height:50px;
     }
 
-    .btn:hover{ transform:translateY(-2px); }
-
-    .btn::after{
-      content:'';
-      position:absolute;
-      top:0;
-      left:-100%;
-      width:100%;
-      height:100%;
-      background:rgba(255,255,255,0.18);
-      transition:.45s ease;
-    }
-
-    .btn:hover::after{ left:100%; }
+    .btn:hover{transform:translateY(-2px)}
 
     .btn-main{
       background:var(--primary);
       color:#fff;
-      animation:pulseBtn 1.8s infinite;
+      box-shadow:0 16px 35px rgba(47,125,87,.22);
     }
 
     .btn-outline{
@@ -266,18 +341,103 @@
     .btn-wa{
       background:var(--whatsapp);
       color:#fff;
+      box-shadow:0 14px 30px rgba(37,211,102,.24);
     }
 
-    @keyframes pulseBtn{
-      0%{ box-shadow:0 0 0 0 rgba(47,125,87,.35); }
-      70%{ box-shadow:0 0 0 14px rgba(47,125,87,0); }
-      100%{ box-shadow:0 0 0 0 rgba(47,125,87,0); }
+    .btn-main::before,
+    .btn-outline::before,
+    .btn-wa::before,
+    .social-btn::before,
+    .call-float::before,
+    .whatsapp-float::before{
+      content:'';
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:currentColor;
+      opacity:.85;
+      display:inline-block;
+      flex:0 0 auto;
     }
+
+    .btn-main::before,
+    .btn-wa::before,
+    .call-float::before,
+    .whatsapp-float::before{background:#fff}
+
+    .btn-outline::before,
+    .social-btn::before{background:var(--primary)}
+
+    .corporate-section{
+      text-align:center;
+      background:#fff;
+    }
+
+    .corp-title{
+      font-size:1.95rem;
+      font-weight:900;
+      letter-spacing:.04em;
+      margin-bottom:12px;
+    }
+
+    .corp-subtitle{
+      max-width:760px;
+      margin:0 auto 28px;
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .corp-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .corp-box{
+      border-radius:20px;
+      padding:24px 22px;
+      color:#fff;
+      min-height:200px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:flex-start;
+      text-align:left;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .corp-box::after{
+      content:'';
+      position:absolute;
+      right:-26px;
+      bottom:-26px;
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.12);
+    }
+
+    .corp-box h3{
+      font-size:1.08rem;
+      margin-bottom:10px;
+    }
+
+    .corp-box p{
+      font-size:.95rem;
+      opacity:.94;
+      margin:0;
+    }
+
+    .corp-box.green{background:linear-gradient(135deg,#2f7d57,#56a072)}
+    .corp-box.blue{background:linear-gradient(135deg,#143b54,#2f6785)}
+    .corp-box.dark{background:linear-gradient(135deg,#1b2025,#2c3339)}
+    .corp-box.light{background:linear-gradient(135deg,#eef3f5,#e1e9ee); color:#22343c}
 
     .impact-box{
-      background:linear-gradient(135deg,#f0f9f4,#ffffff);
+      background:linear-gradient(135deg,#f2f8f4,#ffffff);
       border:1px solid var(--line);
-      border-radius:24px;
+      border-radius:28px;
       padding:36px 24px;
       text-align:center;
       box-shadow:var(--shadow);
@@ -285,15 +445,17 @@
     }
 
     .impact-title{
-      font-size:1.8rem;
+      font-size:1.9rem;
       margin-bottom:10px;
+      text-transform:uppercase;
+      letter-spacing:.03em;
     }
 
     .impact-highlight{
-      font-size:2.8rem;
+      font-size:3rem;
       font-weight:900;
       color:var(--primary);
-      margin:15px 0;
+      margin:14px 0;
     }
 
     .impact-sub{
@@ -306,8 +468,8 @@
     .impact-grid{
       display:flex;
       justify-content:center;
-      gap:25px;
-      margin-top:25px;
+      gap:24px;
+      margin-top:24px;
       flex-wrap:wrap;
     }
 
@@ -316,7 +478,8 @@
       border:1px solid var(--line);
       border-radius:18px;
       padding:20px;
-      width:180px;
+      width:190px;
+      box-shadow:0 10px 25px rgba(20,36,29,0.04);
     }
 
     .impact-item strong{
@@ -327,18 +490,16 @@
 
     .ba-container{
       position:relative;
-      max-width:760px;
+      max-width:800px;
       margin:28px auto 18px;
-      height:390px;
+      height:400px;
       overflow:hidden;
-      border-radius:20px;
-      box-shadow:0 30px 80px rgba(0,0,0,0.18);
+      border-radius:24px;
+      box-shadow:0 28px 70px rgba(0,0,0,0.18);
+      border:1px solid #d6e2da;
     }
 
-    .ba-image{
-      position:absolute;
-      inset:0;
-    }
+    .ba-image{position:absolute; inset:0}
 
     .ba-image img{
       width:100%;
@@ -346,10 +507,7 @@
       object-fit:cover;
     }
 
-    .after{
-      width:50%;
-      overflow:hidden;
-    }
+    .after{width:50%; overflow:hidden}
 
     .ba-slider{
       position:absolute;
@@ -374,22 +532,35 @@
       pointer-events:none;
     }
 
+    .ba-divider::after{
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      background:#fff;
+      box-shadow:0 10px 25px rgba(0,0,0,.18);
+    }
+
     .ba-label{
       position:absolute;
-      top:14px;
-      left:14px;
+      top:16px;
+      left:16px;
       padding:8px 12px;
-      border-radius:10px;
-      font-size:13px;
+      border-radius:12px;
+      font-size:12px;
       font-weight:800;
       color:#fff;
       background:rgba(0,0,0,0.65);
       z-index:7;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .after .ba-label{
-      background:rgba(47,125,87,0.95);
-    }
+    .after .ba-label{background:rgba(47,125,87,0.95)}
 
     .compare-graph{
       display:flex;
@@ -401,12 +572,16 @@
     }
 
     .graph-box{
-      width:220px;
+      width:240px;
       text-align:center;
+      background:#f9fbfa;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px 18px;
     }
 
     .graph-box .bar{
-      height:20px;
+      height:18px;
       border-radius:10px;
       margin:15px 0;
       transform:scaleX(0);
@@ -418,40 +593,44 @@
     .after-graph .bar{ background:var(--primary); width:55%; animation-delay:0.5s; }
 
     .arrow{
-      font-size:2rem;
-      font-weight:900;
-      color:var(--primary);
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      background:#edf5f0;
+      border:1px solid var(--line);
+      position:relative;
+      flex:0 0 auto;
     }
 
-    @keyframes growBar{
-      to{ transform:scaleX(1); }
+    .arrow::before{
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:18px;
+      height:18px;
+      border-top:3px solid var(--primary);
+      border-right:3px solid var(--primary);
+      transform:translate(-58%,-50%) rotate(45deg);
     }
 
-    .grid-2{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
-    }
+    @keyframes growBar{to{transform:scaleX(1)}}
 
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
+    .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
 
     .feature{
-      background:#f8fcf9;
+      background:#f8fbf9;
       border:1px solid var(--line);
-      border-radius:18px;
-      padding:22px;
+      border-radius:20px;
+      padding:24px;
+      min-height:100%;
     }
 
-    .feature h3{ margin-bottom:8px; }
+    .feature ul{padding-left:18px; margin:12px 0 0}
+    .feature li{margin-bottom:6px}
 
-    .timeline{
-      display:grid;
-      gap:18px;
-    }
+    .timeline{display:grid; gap:18px}
 
     .step{
       display:flex;
@@ -459,14 +638,14 @@
       align-items:flex-start;
       background:#fff;
       border:1px solid var(--line);
-      border-radius:20px;
+      border-radius:22px;
       padding:22px;
     }
 
     .step-num{
-      min-width:42px;
-      width:42px;
-      height:42px;
+      min-width:44px;
+      width:44px;
+      height:44px;
       border-radius:50%;
       background:linear-gradient(135deg,var(--primary),var(--primary-dark));
       color:#fff;
@@ -474,12 +653,10 @@
       align-items:center;
       justify-content:center;
       font-weight:800;
+      box-shadow:0 10px 22px rgba(47,125,87,.18);
     }
 
-    .step p{
-      margin:8px 0 0;
-      color:var(--muted);
-    }
+    .step p{margin:8px 0 0; color:var(--muted)}
 
     .cae-flow{
       display:flex;
@@ -487,7 +664,7 @@
       align-items:center;
       gap:20px;
       flex-wrap:wrap;
-      margin-top:20px;
+      margin-top:22px;
     }
 
     .cae-step{
@@ -497,44 +674,42 @@
       animation:fadeUp 0.6s ease forwards;
     }
 
-    .cae-step:nth-child(1){ animation-delay:0.2s }
-    .cae-step:nth-child(3){ animation-delay:0.6s }
-    .cae-step:nth-child(5){ animation-delay:1s }
+    .cae-step:nth-child(1){animation-delay:0.2s}
+    .cae-step:nth-child(3){animation-delay:0.6s}
+    .cae-step:nth-child(5){animation-delay:1s}
 
     .circle{
-      width:72px;
-      height:72px;
+      width:74px;
+      height:74px;
       border-radius:50%;
-      background:linear-gradient(135deg,#2f7d57,#1e5239);
+      background:linear-gradient(135deg,var(--secondary),var(--secondary-soft));
       color:white;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:28px;
+      font-size:14px;
+      font-weight:800;
+      letter-spacing:.05em;
+      text-transform:uppercase;
       margin:auto;
-      box-shadow:0 10px 25px rgba(0,0,0,0.12);
+      box-shadow:0 12px 30px rgba(18,53,74,0.18);
+      padding:8px;
     }
 
     .line{
       width:60px;
       height:4px;
-      background:linear-gradient(90deg,#2f7d57,#8bc34a);
+      background:linear-gradient(90deg,var(--secondary-soft),var(--primary));
       border-radius:4px;
       opacity:0;
       animation:growLine 0.6s ease forwards;
     }
 
-    .line:nth-of-type(1){ animation-delay:0.4s }
-    .line:nth-of-type(2){ animation-delay:0.8s }
+    .line:nth-of-type(1){animation-delay:0.4s}
+    .line:nth-of-type(2){animation-delay:0.8s}
 
-    @keyframes fadeUp{
-      to{ opacity:1; transform:translateY(0); }
-    }
-
-    @keyframes growLine{
-      from{ width:0; opacity:0; }
-      to{ width:60px; opacity:1; }
-    }
+    @keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
+    @keyframes growLine{from{width:0; opacity:0} to{width:60px; opacity:1}}
 
     .cae-final{
       text-align:center;
@@ -585,31 +760,23 @@
       background:#fff;
       border:1px solid var(--line);
       color:var(--dark);
+      transition:.25s ease;
     }
+
+    .type-btn:hover{border-color:#bfd5c5}
 
     .type-btn.active{
       background:var(--primary);
       color:#fff;
       border-color:var(--primary);
+      box-shadow:0 14px 30px rgba(47,125,87,.18);
     }
 
-    .type-box{
-      display:none;
-    }
+    .type-box{display:none}
+    .type-box.active{display:block}
 
-    .type-box.active{
-      display:block;
-    }
-
-    .soft-card{
-      background:var(--soft-green);
-      border:1px solid var(--soft-border);
-    }
-
-    .reward-wrap{
-      background:var(--soft-green);
-      border:1px solid var(--soft-border);
-    }
+    .soft-card{background:var(--soft-green); border:1px solid var(--soft-border)}
+    .reward-wrap{background:var(--soft-green); border:1px solid var(--soft-border)}
 
     .reward-grid{
       display:flex;
@@ -622,10 +789,11 @@
     .reward-box{
       background:#fff;
       border:1px solid var(--soft-border);
-      border-radius:16px;
-      padding:20px;
-      width:200px;
+      border-radius:18px;
+      padding:22px;
+      width:220px;
       text-align:center;
+      box-shadow:0 12px 28px rgba(21,44,31,0.05);
     }
 
     .reward-box strong{
@@ -643,7 +811,7 @@
     }
 
     .social-btn{
-      padding:10px 18px;
+      padding:12px 18px;
       border-radius:999px;
       background:#f3faf6;
       border:1px solid var(--line);
@@ -651,17 +819,15 @@
       font-weight:700;
       color:var(--dark);
       transition:.25s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
     }
 
-    .social-btn:hover{
-      background:var(--primary);
-      color:#fff;
-    }
+    .social-btn:hover{background:var(--primary); color:#fff}
+    .social-btn:hover::before{background:#fff}
 
-    form{
-      display:grid;
-      gap:12px;
-    }
+    form{display:grid; gap:12px}
 
     .field{
       width:100%;
@@ -687,18 +853,17 @@
       color:var(--muted);
     }
 
-    .checkbox-line input{ margin-top:4px; }
-
-    .form-note{
-      font-size:.85rem;
-      color:var(--muted);
-    }
+    .checkbox-line input{margin-top:4px}
+    .form-note{font-size:.85rem; color:var(--muted)}
 
     .global-footer{
       text-align:center;
-      padding:10px 0 30px;
-      color:var(--muted);
+      padding:20px 0 30px;
+      color:#cad7cf;
       font-size:.92rem;
+      background:var(--footer);
+      border-radius:28px;
+      margin-top:8px;
     }
 
     .global-footer a{
@@ -706,15 +871,12 @@
       text-decoration:none;
     }
 
-    .global-footer a:hover{
-      color:var(--primary);
-    }
+    .global-footer a:hover{color:#fff}
 
-    .call-float{
+    .call-float,
+    .whatsapp-float{
       position:fixed;
-      bottom:170px;
       right:20px;
-      background:var(--primary);
       color:white;
       padding:14px 22px;
       border-radius:999px;
@@ -722,25 +884,17 @@
       text-decoration:none;
       box-shadow:0 10px 25px rgba(0,0,0,0.18);
       z-index:1300;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
     }
 
-    .whatsapp-float{
-      position:fixed;
-      bottom:110px;
-      right:20px;
-      background:var(--whatsapp);
-      color:white;
-      padding:14px 22px;
-      border-radius:999px;
-      font-weight:800;
-      text-decoration:none;
-      box-shadow:0 10px 25px rgba(0,0,0,0.16);
-      z-index:1300;
-    }
+    .call-float{bottom:170px; background:var(--secondary)}
+    .whatsapp-float{bottom:110px; background:var(--whatsapp)}
 
     .wa-popup{
       position:fixed;
-      bottom:230px;
+      bottom:232px;
       right:20px;
       background:white;
       padding:14px 16px;
@@ -748,8 +902,9 @@
       box-shadow:0 10px 30px rgba(0,0,0,0.18);
       display:none;
       z-index:1301;
-      max-width:260px;
+      max-width:270px;
       font-size:14px;
+      border:1px solid var(--line);
     }
 
     .wa-popup a{
@@ -762,14 +917,14 @@
       position:fixed;
       inset:0;
       background:rgba(247,251,248,.94);
-      backdrop-filter:blur(4px);
+      backdrop-filter:blur(7px);
       display:flex;
       align-items:center;
       justify-content:center;
       z-index:5000;
       opacity:0;
       pointer-events:none;
-      transition:opacity .35s ease;
+      transition:opacity .45s ease;
     }
 
     .logo-overlay.show{
@@ -778,31 +933,26 @@
     }
 
     .logo-overlay img{
-      width:min(240px,60vw);
+      width:min(250px,60vw);
       max-height:180px;
-      animation:logoPulse .9s ease;
+      animation:logoZoom .8s ease forwards;
     }
 
-    @keyframes logoPulse{
-      0%{ transform:scale(.92); opacity:0; }
-      100%{ transform:scale(1); opacity:1; }
+    @keyframes logoZoom{
+      0%{transform:scale(.8); opacity:0}
+      50%{transform:scale(1.05); opacity:1}
+      100%{transform:scale(1); opacity:1}
     }
 
-    @media(max-width:1024px){
-      .grid-3{
-        grid-template-columns:1fr;
-      }
-
-      .grid-2{
-        grid-template-columns:1fr;
-      }
+    @media(max-width:1100px){
+      .hero{grid-template-columns:1fr}
+      .corp-grid{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
     }
 
     @media(max-width:900px){
-      .app{
-        display:block;
-      }
-
+      .app{display:block}
       .sidebar{
         position:static;
         width:100%;
@@ -810,58 +960,32 @@
         border-right:none;
         border-bottom:1px solid var(--line);
       }
-
       .content{
         margin-left:0;
         width:100%;
         padding:20px;
       }
+      .corp-grid{grid-template-columns:1fr}
     }
 
     @media(max-width:768px){
+      .content{padding:16px}
+      .card{padding:22px}
+      .hero{padding:26px}
+      .hero-copy h2{font-size:2rem}
       .compare-graph,
       .cae-flow,
       .impact-grid,
-      .reward-grid{
-        flex-direction:column;
-      }
-
-      .line{
-        width:4px;
-        height:40px;
-      }
-
-      .ba-container{
-        height:280px;
-      }
-
-      .photo-grid{
-        grid-template-columns:1fr;
-      }
-
-      .step{
-        flex-direction:column;
-      }
-
+      .reward-grid{flex-direction:column}
+      .line{width:4px; height:40px}
+      .ba-container{height:280px}
+      .photo-grid{grid-template-columns:1fr}
+      .step{flex-direction:column}
       .call-float,
-      .whatsapp-float{
-        left:16px;
-        right:16px;
-        text-align:center;
-      }
-
-      .whatsapp-float{ bottom:110px; }
-      .call-float{ bottom:170px; }
-
-      .wa-popup{
-        left:16px;
-        right:16px;
-        max-width:none;
-      }
-
-      .content{
-        padding:16px;
-      }
+      .whatsapp-float{left:16px; right:16px; justify-content:center}
+      .whatsapp-float{bottom:110px}
+      .call-float{bottom:170px}
+      .wa-popup{left:16px; right:16px; max-width:none}
     }
   </style>
 </head>
@@ -878,15 +1002,15 @@
     </div>
 
     <div class="menu-title">Navegación</div>
-    <button class="menu-btn active" data-tab="inicio">🏠 Inicio</button>
-    <button class="menu-btn" data-tab="cita">🛠 Día de la cita</button>
-    <button class="menu-btn" data-tab="cae">📄 Sistema CAE</button>
-    <button class="menu-btn" data-tab="recomendacion">🎁 Recomendación</button>
-    <button class="menu-btn" data-tab="contacto">📩 Contacto</button>
+    <button class="menu-btn active" data-tab="inicio">Inicio</button>
+    <button class="menu-btn" data-tab="cita">Día de la cita</button>
+    <button class="menu-btn" data-tab="cae">Sistema CAE</button>
+    <button class="menu-btn" data-tab="recomendacion">Recomendación</button>
+    <button class="menu-btn" data-tab="contacto">Contacto</button>
 
     <div class="sidebar-note">
-      Aislamiento de cubiertas<br>
-      Confort y ahorro desde el primer mes
+      <strong>Plataforma</strong>
+      Aislamiento de cubiertas con enfoque técnico, ahorro real y proceso gestionado de principio a fin.
     </div>
   </aside>
 
@@ -896,32 +1020,63 @@
       <p id="section-subtitle">Aislamiento de cubiertas sin inversión inicial, según viabilidad técnica.</p>
     </div>
 
-    <!-- INICIO -->
     <section id="inicio" class="section active">
       <section class="card hero">
-        <div class="badge">Castilla y León · Asturias</div>
-        <h2>Aislamiento de <span>cubiertas</span> sin inversión inicial</h2>
+        <div class="hero-copy">
+          <div class="badge">Castilla y León · Asturias</div>
+          <h2>Aislamiento de <span>cubiertas</span></h2>
+          <p class="hero-sub">
+            Mejora la eficiencia energética de tu vivienda sin inversión inicial, según viabilidad técnica dentro del sistema CAE.
+          </p>
+          <p class="hero-strong">
+            Ahorro desde el primer mes · Evaluación gratuita · Proceso gestionado
+          </p>
+          <p class="hero-note">
+            Te indicamos si la actuación es viable y gestionamos el proceso técnico, documental y energético.
+          </p>
 
-        <p style="font-size:1.1rem; max-width:700px; margin:auto;">
-          Reduce tu factura de energía hasta un <strong>46%</strong> mejorando el aislamiento de tu vivienda.
+          <div class="btn-row">
+            <a href="#" class="btn btn-main" data-goto="contacto">Comprobar viabilidad</a>
+            <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">Contacto por WhatsApp</a>
+            <a href="#" class="btn btn-outline" data-goto="cita">Ver proceso de cita</a>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <span class="hero-panel-label">Modelo de actuación</span>
+          <strong>Intervención técnica con ahorro energético verificable</strong>
+          <p>
+            Reducimos pérdidas térmicas en cubierta y convertimos el ahorro energético en financiación de la actuación, siempre según viabilidad.
+          </p>
+        </div>
+      </section>
+
+      <section class="card corporate-section">
+        <h2 class="corp-title">Qué aporta el aislamiento</h2>
+        <p class="corp-subtitle">
+          El sistema CAE permite transformar el ahorro energético en financiación directa, mejorando la eficiencia de la vivienda sin inversión inicial.
         </p>
 
-        <p class="strong">
-          Si tu casa es viable dentro del sistema CAE, puedes empezar a ahorrar desde el primer mes sin tener que adelantar el coste de la obra.
-        </p>
+        <div class="corp-grid">
+          <div class="corp-box green">
+            <h3>Sin inversión inicial</h3>
+            <p>Actuación financiada según viabilidad técnica y energética.</p>
+          </div>
 
-        <p style="font-size:13px; color:var(--muted);">
-          Evaluación gratuita · Sin compromiso · Respuesta rápida
-        </p>
+          <div class="corp-box blue">
+            <h3>Reducción de consumo</h3>
+            <p>Ahorro energético desde el primer mes en calefacción y climatización.</p>
+          </div>
 
-        <p style="font-size:14px; color:var(--muted); margin-top:6px;">
-          Te decimos directamente si puedes hacerlo sin pagar la obra.
-        </p>
+          <div class="corp-box dark">
+            <h3>Mayor confort</h3>
+            <p>Mejora térmica inmediata en la vivienda, con menos pérdidas de calor.</p>
+          </div>
 
-        <div class="btn-row">
-          <a href="#" class="btn btn-main" data-goto="contacto">Ver si mi vivienda es viable</a>
-          <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">WhatsApp técnico</a>
-          <a href="#" class="btn btn-outline" data-goto="cita">Cómo es la cita</a>
+          <div class="corp-box light">
+            <h3>Revalorización</h3>
+            <p>Incremento del valor energético del inmueble y mejora de la etiqueta energética.</p>
+          </div>
         </div>
       </section>
 
@@ -934,7 +1089,7 @@
         </p>
 
         <p class="impact-sub">
-          Aislar tu casa es la forma más directa de recortar tu factura de luz y gas.
+          Aislar tu vivienda es una de las formas más directas de reducir tu factura energética y mejorar el comportamiento térmico de la cubierta.
         </p>
 
         <div class="impact-grid">
@@ -944,7 +1099,7 @@
           </div>
           <div class="impact-item">
             <strong>0€</strong>
-            <span>Inversión inicial*</span>
+            <span>Inversión inicial</span>
           </div>
           <div class="impact-item">
             <strong>Horas</strong>
@@ -957,7 +1112,7 @@
         </p>
 
         <p style="font-size:14px; color:var(--muted);">
-          Sin cambiar tu forma de vivir ni hacer reformas complejas
+          Sin cambiar tu forma de vivir ni asumir reformas complejas
         </p>
 
         <div style="text-align:center; margin-top:20px;">
@@ -973,17 +1128,20 @@
       </section>
 
       <section class="card">
-        <h2 style="text-align:center;">Resultado real</h2>
+        <h2 style="text-align:center;">Resultado real en vivienda</h2>
+        <p style="text-align:center; color:var(--muted); max-width:720px; margin:0 auto;">
+          Intervención rápida con impacto directo en consumo y confort térmico.
+        </p>
 
         <div class="ba-container">
           <div class="ba-image">
             <img src="images/cubierta_antes.jpg" alt="Cubierta antes del aislamiento" />
-            <span class="ba-label">ANTES</span>
+            <span class="ba-label">Antes</span>
           </div>
 
           <div class="ba-image after" id="afterImage">
             <img src="images/cubierta_despues.jpg" alt="Cubierta después del aislamiento" />
-            <span class="ba-label">DESPUÉS</span>
+            <span class="ba-label">Después</span>
           </div>
 
           <div class="ba-divider" id="baDivider"></div>
@@ -991,7 +1149,7 @@
         </div>
 
         <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
-          Aislamiento completo en pocas horas, sin obras complejas ni molestias.
+          Aislamiento completo en pocas horas, sin obras complejas ni molestias relevantes.
         </p>
       </section>
 
@@ -1002,24 +1160,20 @@
           <div class="graph-box before">
             <h3>Antes</h3>
             <div class="bar"></div>
-            <p>Consumo alto</p>
+            <p>Consumo elevado</p>
           </div>
 
-          <div class="arrow">→</div>
+          <div class="arrow" aria-hidden="true"></div>
 
           <div class="graph-box after-graph">
             <h3>Después</h3>
             <div class="bar"></div>
-            <p>Ahorro energético</p>
+            <p>Mayor eficiencia</p>
           </div>
         </div>
 
         <p style="text-align:center; margin-top:20px; color:var(--primary); font-weight:700;">
           Menos consumo · Más confort · Mayor valor
-        </p>
-
-        <p style="text-align:center; font-weight:700; color:var(--primary);">
-          Del gasto constante → al ahorro real
         </p>
       </section>
 
@@ -1032,33 +1186,23 @@
 
         <div class="grid-3">
           <div class="feature">
-            <h3>🏠 Aislamos la cubierta</h3>
-            <p>
-              Reducimos las pérdidas de calor y mejoramos el comportamiento energético global de la vivienda.
-            </p>
+            <h3>Aislamos la cubierta</h3>
+            <p>Reducimos las pérdidas de calor y mejoramos el comportamiento energético global de la vivienda.</p>
           </div>
 
           <div class="feature">
-            <h3>⚡ Intervención rápida</h3>
-            <p>
-              Actuación en pocas horas, sin obras complejas ni molestias importantes.
-            </p>
+            <h3>Intervención rápida</h3>
+            <p>Actuación en pocas horas, sin obras complejas ni molestias importantes.</p>
           </div>
 
           <div class="feature">
-            <h3>📈 Mejora real</h3>
-            <p>
-              Menor consumo, más confort y mayor valor en el mercado inmobiliario.
-            </p>
+            <h3>Mejora real</h3>
+            <p>Menor consumo, más confort y mayor valor en el mercado inmobiliario.</p>
           </div>
         </div>
 
         <p style="text-align:center; margin-top:25px; font-weight:700; color:var(--primary); font-size:1.05rem;">
           Resultado visible desde el primer día
-        </p>
-
-        <p style="text-align:center; font-size:14px; color:var(--muted);">
-          Sin obras complicadas · Sin molestias · Resultado inmediato
         </p>
       </section>
 
@@ -1077,11 +1221,11 @@
           </div>
 
           <div class="feature">
-            <h3>Manta / rollo (desván habitable)</h3>
+            <h3>Manta o rollo (desván habitable)</h3>
             <ul>
               <li>Adaptado al uso del espacio</li>
               <li>Acabado más controlado</li>
-              <li>Solución compatible con espacios transitables</li>
+              <li>Compatible con espacios transitables</li>
               <li>Durabilidad y buen comportamiento térmico</li>
             </ul>
           </div>
@@ -1097,17 +1241,17 @@
 
         <div class="grid-3">
           <div class="feature">
-            <h3>✔ Trabajo profesional</h3>
+            <h3>Trabajo profesional</h3>
             <p>Aplicación con equipos técnicos especializados y ejecución cuidada.</p>
           </div>
 
           <div class="feature">
-            <h3>✔ Todo impecable</h3>
+            <h3>Entrega impecable</h3>
             <p>Dejamos la vivienda limpia y lista para su uso.</p>
           </div>
 
           <div class="feature">
-            <h3>✔ Nos encargamos de todo</h3>
+            <h3>Gestión completa</h3>
             <p>Si hay trastero o almacenaje en la guardilla, gestionamos el movimiento necesario.</p>
           </div>
         </div>
@@ -1131,22 +1275,24 @@
       </section>
     </section>
 
-    <!-- CITA -->
     <section id="cita" class="section">
       <section class="card">
-        <h2>El día de la obra</h2>
-
-        <p>
+        <h2>El día de la cita</h2>
+        <p class="section-intro">
           Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
         </p>
 
+        <p id="type-message" style="text-align:center; font-weight:700; color:var(--primary); margin-bottom:15px;">
+          Selecciona el tipo de inmueble para ver el proceso
+        </p>
+
         <div class="type-switch">
-          <button class="type-btn active" data-type="uni">Vivienda unifamiliar</button>
-          <button class="type-btn" data-type="com">Comunidad edificio</button>
+          <button class="type-btn" data-type="uni">Vivienda unifamiliar</button>
+          <button class="type-btn" data-type="com">Comunidad de propietarios</button>
           <button class="type-btn" data-type="emp">Edificio terciario</button>
         </div>
 
-        <div id="tipo-uni" class="type-box active">
+        <div id="tipo-uni" class="type-box">
           <div class="timeline">
             <div class="step">
               <div class="step-num">1</div>
@@ -1289,32 +1435,31 @@
       </section>
     </section>
 
-    <!-- CAE -->
     <section id="cae" class="section">
       <section class="card">
-        <h2 style="text-align:center;">¿Cómo funciona el sistema CAE?</h2>
+        <h2 style="text-align:center;">Transparencia y control</h2>
 
         <p style="text-align:center; max-width:700px; margin:0 auto 25px; color:var(--muted);">
-          Convertimos el ahorro energético de tu vivienda en una ayuda económica que puede cubrir la intervención.
+          Sistema regulado que permite medir, validar y transformar el ahorro energético en financiación de la actuación.
         </p>
 
         <div class="cae-flow">
           <div class="cae-step">
-            <div class="circle">🏠</div>
+            <div class="circle">Obra</div>
             <p>Realizamos la actuación</p>
           </div>
 
           <div class="line"></div>
 
           <div class="cae-step">
-            <div class="circle">⚡</div>
+            <div class="circle">Ahorro</div>
             <p>Se genera ahorro</p>
           </div>
 
           <div class="line"></div>
 
           <div class="cae-step">
-            <div class="circle">€</div>
+            <div class="circle">CAE</div>
             <p>Financia la obra</p>
           </div>
         </div>
@@ -1446,13 +1591,12 @@
       </section>
     </section>
 
-    <!-- RECOMENDACION -->
     <section id="recomendacion" class="section">
       <section class="card reward-wrap">
         <h2 style="text-align:center;">Recomendación</h2>
 
         <p style="text-align:center; max-width:600px; margin:0 auto 20px;">
-          Si conoces a otras personas interesadas, puedes obtener un bono tras la intervención.
+          Si conoces a otras personas interesadas, puedes obtener un bono tras la intervención finalizada y validada.
         </p>
 
         <div class="reward-grid">
@@ -1467,27 +1611,30 @@
           </div>
         </div>
 
+        <form style="margin-top:24px;">
+          <input class="field" type="text" name="recomienda_nombre" placeholder="Tu nombre" required />
+          <input class="field" type="tel" name="recomienda_telefono" placeholder="Tu teléfono" required />
+          <input class="field" type="text" name="referido_nombre" placeholder="Nombre del recomendado" />
+          <input class="field" type="tel" name="referido_telefono" placeholder="Teléfono del recomendado" />
+          <button class="btn btn-main" type="submit">Enviar recomendación</button>
+        </form>
+
         <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px;">
           Bono entregado tras intervención finalizada y validada
         </p>
       </section>
     </section>
 
-    <!-- CONTACTO -->
     <section id="contacto" class="section">
       <section class="card">
-        <h2 style="text-align:center;">Comprueba si tu vivienda es viable</h2>
+        <h2 style="text-align:center;">Comprueba la viabilidad de tu vivienda</h2>
 
         <p style="text-align:center; color:var(--muted);">
-          Te decimos rápidamente si puedes acceder al sistema sin inversión inicial.
+          Respuesta rápida · Evaluación técnica real · Sin compromiso
         </p>
 
         <p class="form-note">
           Solo necesitamos unos datos básicos para evaluar tu vivienda.
-        </p>
-
-        <p style="font-size:13px; color:var(--muted);">
-          Te respondemos rápido con la viabilidad real.
         </p>
 
         <form action="https://hooks.zapier.com/hooks/catch/XXXX/XXXX" method="POST">
@@ -1507,10 +1654,6 @@
             <input type="checkbox" required />
             <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
           </label>
-
-          <p style="font-size:13px; color:var(--muted);">
-            Te respondemos rápido con la viabilidad real.
-          </p>
 
           <button class="btn btn-main" type="submit">
             Ver si mi vivienda es viable
@@ -1532,7 +1675,7 @@
           </a>
         </div>
 
-        <p style="font-size:13px; color:var(--muted); margin-top:6px;">
+        <p style="font-size:13px; color:#9cb2a5; margin-top:6px;">
           Casos reales · Antes y después · Obras finalizadas
         </p>
       </div>
@@ -1546,9 +1689,8 @@
   </main>
 </div>
 
-<a href="tel:+34865450109" class="call-float" id="callBtn">📞 Llamada directa</a>
-
-<a id="waBtn" href="#" class="whatsapp-float">💬 WhatsApp técnico</a>
+<a href="tel:+34865450109" class="call-float" id="callBtn">Llamada directa</a>
+<a id="waBtn" href="#" class="whatsapp-float">WhatsApp técnico</a>
 
 <div id="wa-popup" class="wa-popup">
   ¿Quieres saber si tu vivienda es viable?<br />
@@ -1615,10 +1757,10 @@
     logoOverlay.classList.add("show");
     setTimeout(() => {
       switchSection(id);
-    }, 700);
+    }, 1000);
     setTimeout(() => {
       logoOverlay.classList.remove("show");
-    }, 1500);
+    }, 2000);
   }
 
   menuButtons.forEach(btn => {
@@ -1632,7 +1774,6 @@
     });
   });
 
-  // contador impacto
   let count = 0;
   const target = 46;
   function animateCounter(){
@@ -1646,7 +1787,6 @@
   }
   window.addEventListener("load", animateCounter);
 
-  // slider antes/después
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
   const baDivider = document.getElementById("baDivider");
@@ -1674,13 +1814,14 @@
     updateBeforeAfter(autoVal);
   }, 40);
 
-  // tipos de inmueble
   const typeButtons = document.querySelectorAll(".type-btn");
   const typeBoxes = document.querySelectorAll(".type-box");
 
   function showType(type){
     typeButtons.forEach(btn => btn.classList.remove("active"));
     typeBoxes.forEach(box => box.classList.remove("active"));
+    const typeMessage = document.getElementById("type-message");
+    if(typeMessage) typeMessage.style.display = "none";
     document.querySelector(`.type-btn[data-type="${type}"]`)?.classList.add("active");
     document.getElementById("tipo-" + type)?.classList.add("active");
   }
@@ -1689,7 +1830,6 @@
     btn.addEventListener("click", () => showType(btn.dataset.type));
   });
 
-  // referral code
   (function () {
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
@@ -1703,7 +1843,6 @@
     });
   })();
 
-  // lead metadata
   window.addEventListener("DOMContentLoaded", function () {
     const submittedAt = document.getElementById("submitted_at");
     const originUrl = document.getElementById("origin_url");
@@ -1711,20 +1850,18 @@
     if (originUrl) originUrl.value = window.location.href;
   });
 
-  // call button
   function updateCallButton(){
     const btn = document.getElementById("callBtn");
     const now = new Date();
     const hour = now.getHours();
     if(hour >= 9 && hour < 20){
-      btn.innerHTML = "🟢 Llamada directa";
+      btn.textContent = "Llamada directa";
     } else {
-      btn.innerHTML = "📞 Llámanos";
+      btn.textContent = "Llámanos";
     }
   }
   updateCallButton();
 
-  // whatsapp dinámico
   function getFormData(){
     const nombre = document.querySelector('input[name="nombre"]')?.value || "";
     const telefono = document.querySelector('input[name="telefono"]')?.value || "";
