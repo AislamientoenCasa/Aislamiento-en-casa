@@ -1999,7 +1999,6 @@ function showSection(id){
   
 
   // === ENVÍO FORMULARIO A ZAPIER (VERSIÓN FINAL FUNCIONANDO) ===
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("formulario");
@@ -2028,30 +2027,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
-    })
-    .then(() => {
-      btn.innerText = "Enviado ✅";
-      btn.disabled = true;
-
-      const texto = encodeURIComponent(
-        `Hola, soy ${data.nombre}.
-Teléfono: ${data.telefono}
-Mensaje: ${data.mensaje}`
-      );
-
-      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-      setTimeout(() => {
-        if (isMobile) {
-          window.location.href = `https://wa.me/34670237842?text=${texto}`;
-        } else {
-          window.open(`https://web.whatsapp.com/send?phone=34670237842&text=${texto}`, "_blank");
-        }
-      }, 1200);
-    })
-    .catch(() => {
-      btn.innerText = "Error ❌";
     });
+
+    // Feedback usuario (sin esperar respuesta)
+    btn.innerText = "Enviado ✅";
+    btn.disabled = true;
+
+    // Limpieza
+    form.reset();
+
+    // Redirección opcional
+    setTimeout(() => {
+      window.location.href = "https://wa.me/34670237842";
+    }, 1200);
 
   });
 
