@@ -932,17 +932,7 @@
       pointer-events:auto;
     }
 
-    .logo-overlay img{
-      width:min(250px,60vw);
-      max-height:180px;
-      animation:logoZoom .8s ease forwards;
-    }
 
-    @keyframes logoZoom{
-      0%{transform:scale(.8); opacity:0}
-      50%{transform:scale(1.05); opacity:1}
-      100%{transform:scale(1); opacity:1}
-    }
 
     @media(max-width:1100px){
       .hero{grid-template-columns:1fr}
@@ -987,19 +977,93 @@
       .call-float{bottom:170px}
       .wa-popup{left:16px; right:16px; max-width:none}
     }
-  </style>
+/* ===== LOGO APPLE MIX 2s ===== */
+
+.logo-animado {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* FOCO */
+.logo-overlay .bombilla {
+  width: 110px;
+  opacity: 0;
+  transform: scale(0.85);
+  animation:
+    focoSuave 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    focoGlowApple 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+
+/* ENTRADA SUAVE */
+@keyframes focoSuave {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ENCENDIDO ORGÁNICO */
+@keyframes focoGlowApple {
+  0% {
+    filter: drop-shadow(0 0 0px #6cc24a);
+  }
+  30% {
+    filter: drop-shadow(0 0 12px #6cc24a);
+  }
+  60% {
+    filter: drop-shadow(0 0 22px #6cc24a);
+  }
+  100% {
+    filter: drop-shadow(0 0 16px #6cc24a);
+  }
+}
+
+/* TEXTO */
+.texto-logo span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  font-weight: 900;
+}
+
+/* EMERGE SUAVE */
+.texto-logo .light {
+  color: #6cc24a;
+  animation: textoApple 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+}
+
+.texto-logo .dark {
+  color: #0b7a3b;
+  animation: textoApple 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+}
+
+@keyframes textoApple {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}  </style>
 </head>
 <body>
 
 <div class="logo-overlay" id="logoOverlay">
-  <img src="images/logo.png" alt="Transición logo" />
-</div>
-
-<div class="app">
-  <aside class="sidebar">
-    <div class="logo">
-      <img src="images/logo.png" alt="Logo Aislamiento en Casa" />
+  <div class="logo-animado">
+    <img src="images/logo.png" class="bombilla">
+    <div class="texto-logo">
+      <span class="light">AISLAMIENTO</span><br>
+      <span class="dark">EN CASA</span>
     </div>
+  </div>
+</div>
 
     <div class="menu-title">Navegación</div>
     <button class="menu-btn active" data-tab="inicio">Inicio</button>
@@ -1757,7 +1821,7 @@
     logoOverlay.classList.add("show");
     setTimeout(() => {
       switchSection(id);
-    }, 1000);
+    }, 900);
     setTimeout(() => {
       logoOverlay.classList.remove("show");
     }, 2000);
