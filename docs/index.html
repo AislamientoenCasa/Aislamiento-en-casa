@@ -1886,16 +1886,15 @@ function showSection(id){
   animateCounter();
 
   const sidebar = document.querySelector(".sidebar");
-  sidebar.style.opacity = "0";
+  sidebar.classList.add("hidden");
 
   logoOverlay.classList.add("show");
 
   setTimeout(() => {
     logoOverlay.classList.remove("show");
-    sidebar.style.opacity = "1";
+    sidebar.classList.remove("hidden");
   }, 1400);
 });
-
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
   const baDivider = document.getElementById("baDivider");
