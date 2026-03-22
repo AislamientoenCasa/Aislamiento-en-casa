@@ -1817,21 +1817,34 @@
   }
 
   function showSection(id){
+function showSection(id){
+
+  const bombilla = document.querySelector(".bombilla");
+  const texto = document.querySelectorAll(".texto-logo span");
+
+  // REINICIAR animaciones
+  bombilla.style.animation = "none";
+  texto.forEach(el => el.style.animation = "none");
+
+  void bombilla.offsetWidth; // reset real
+
+  // volver a activar animaciones
+  bombilla.style.animation = "";
+  texto.forEach(el => el.style.animation = "");
 
   // mostrar overlay
   logoOverlay.classList.add("show");
 
-  // cambiar sección rápido
+  // cambiar sección
   setTimeout(() => {
     switchSection(id);
   }, 400);
 
-  // quitar overlay rápido
+  // quitar overlay
   setTimeout(() => {
     logoOverlay.classList.remove("show");
   }, 1200);
 }
-
   menuButtons.forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.tab));
   });
