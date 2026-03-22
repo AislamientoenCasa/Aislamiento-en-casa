@@ -979,35 +979,38 @@
     }
 /* ===== LOGO APPLE MIX 2s ===== */
 
-.logo-overlay .logo-animado {
+.logo-animado {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-/* FOCO */
-.logo-overlay img.bombilla
+/* OCULTAR SIDEBAR AL INICIO */
+.sidebar {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* FONDO LIMPIO */
+.logo-overlay {
+  background: #f7fbf8;
+}
+
+/* BOMBILLA */
+.logo-overlay .bombilla {
   width: 110px;
   opacity: 0;
   transform: scale(0.85);
   animation:
-    focoSuave 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    focoEntrada 0.6s ease forwards,
     focoGlow 1.2s ease 0.5s forwards;
 }
 
-/* ENTRADA SUAVE */
-@keyframes focoSuave {
-  0% {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes focoEntrada {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* ENCENDIDO ORGÁNICO */
 @keyframes focoGlow {
   0% { filter: drop-shadow(0 0 0px #6cc24a); }
   50% { filter: drop-shadow(0 0 25px #6cc24a); }
@@ -1015,30 +1018,30 @@
 }
 
 /* TEXTO */
+.texto-logo {
+  line-height: 0.95;
+}
+
 .texto-logo span {
   display: inline-block;
   opacity: 0;
   transform: translateY(20px);
   font-weight: 900;
+  font-size: clamp(28px, 4vw, 64px);
 }
 
-/* EMERGE SUAVE */
 .texto-logo .light {
   color: #6cc24a;
-  animation: textoApple 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+  animation: textoEntrada 0.6s ease 0.7s forwards;
 }
 
 .texto-logo .dark {
   color: #0b7a3b;
-  animation: textoApple 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+  animation: textoEntrada 0.6s ease 0.9s forwards;
 }
 
-@keyframes textoApple {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
+@keyframes textoEntrada {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1846,7 +1849,30 @@
     }
   }
   window.addEventListener("load", animateCounter);
+window.addEventListener("load", () => {
+  const sidebar = document.querySelector(".sidebar");
 
+  // ocultamos sidebar al inicio
+  sidebar.style.opacity = "0";
+
+  // mostramos overlay
+  logoOverlay.classList.add("show");
+
+  // reinicia animación
+  void logoOverlay.offsetWidth;
+
+  logoOverlay.classList.remove("show");
+
+  setTimeout(() => {
+    logoOverlay.classList.add("show");
+  }, 50);
+
+  // cerrar overlay
+  setTimeout(() => {
+    logoOverlay.classList.remove("show");
+    sidebar.style.opacity = "1";
+  }, 2200);
+});
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
   const baDivider = document.getElementById("baDivider");
