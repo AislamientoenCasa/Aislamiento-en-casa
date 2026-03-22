@@ -1828,11 +1828,10 @@ function switchSection(id){
   setActiveMenu(id);
   updateTopbar(id);
 
-  toggleFloatingButtons(id); //
+  toggleFloatingButtons(id);
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-  
 function showSection(id){
 
   const bombilla = document.querySelector(".bombilla");
