@@ -1817,14 +1817,21 @@
   }
 
   function showSection(id){
-    logoOverlay.classList.add("show");
-    setTimeout(() => {
-      switchSection(id);
-    }, 900);
-    setTimeout(() => {
-      logoOverlay.classList.remove("show");
-    }, 2000);
-  }
+  // reiniciar animación
+  logoOverlay.classList.remove("show");
+  void logoOverlay.offsetWidth;
+
+  // mostrar overlay
+  logoOverlay.classList.add("show");
+
+  setTimeout(() => {
+    switchSection(id);
+  }, 800);
+
+  setTimeout(() => {
+    logoOverlay.classList.remove("show");
+  }, 2000);
+}
 
   menuButtons.forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.tab));
