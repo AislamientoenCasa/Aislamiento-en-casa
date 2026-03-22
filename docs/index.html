@@ -64,6 +64,13 @@
       overflow:auto;
       z-index:1100;
       backdrop-filter:blur(14px);
+      opacity:1;
+      transition:opacity .5s ease;
+    }
+
+    .sidebar.hidden{
+      opacity:0;
+      pointer-events:none;
     }
 
     .sidebar .logo{
@@ -711,13 +718,6 @@
     @keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
     @keyframes growLine{from{width:0; opacity:0} to{width:60px; opacity:1}}
 
-    .cae-final{
-      text-align:center;
-      margin-top:25px;
-      font-weight:700;
-      color:var(--primary);
-    }
-
     .photo-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -856,6 +856,27 @@
     .checkbox-line input{margin-top:4px}
     .form-note{font-size:.85rem; color:var(--muted)}
 
+    .success-note,
+    .error-note{
+      display:none;
+      padding:12px 14px;
+      border-radius:12px;
+      font-size:.92rem;
+      font-weight:700;
+    }
+
+    .success-note{
+      background:#ecf8f0;
+      color:#1f6f47;
+      border:1px solid #cfe7d7;
+    }
+
+    .error-note{
+      background:#fff2f2;
+      color:#b53535;
+      border:1px solid #f0cccc;
+    }
+
     .global-footer{
       text-align:center;
       padding:20px 0 30px;
@@ -932,7 +953,60 @@
       pointer-events:auto;
     }
 
+    .logo-animado{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
 
+    .logo-overlay .bombilla{
+      width:110px;
+      opacity:0;
+      transform:scale(0.85);
+      animation:
+        focoEntrada 0.6s ease forwards,
+        focoGlow 1.2s ease 0.5s forwards;
+    }
+
+    @keyframes focoEntrada {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes focoGlow {
+      0% { filter: drop-shadow(0 0 0px #6cc24a); }
+      50% { filter: drop-shadow(0 0 25px #6cc24a); }
+      100% { filter: drop-shadow(0 0 18px #6cc24a); }
+    }
+
+    .texto-logo {
+      line-height: 0.95;
+    }
+
+    .texto-logo span {
+      display:inline-block;
+      opacity:0;
+      transform:translateY(20px);
+      font-weight:900;
+      font-size:clamp(28px, 4vw, 64px);
+    }
+
+    .texto-logo .light {
+      color:#6cc24a;
+      animation:textoEntrada 0.6s ease 0.7s forwards;
+    }
+
+    .texto-logo .dark {
+      color:#0b7a3b;
+      animation:textoEntrada 0.6s ease 0.9s forwards;
+    }
+
+    @keyframes textoEntrada {
+      to {
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
 
     @media(max-width:1100px){
       .hero{grid-template-columns:1fr}
@@ -977,98 +1051,26 @@
       .call-float{bottom:170px}
       .wa-popup{left:16px; right:16px; max-width:none}
     }
-/* ===== LOGO APPLE MIX 2s ===== */
-
-.logo-animado {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* OCULTAR SIDEBAR AL INICIO */
-.sidebar {
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
-.sidebar.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* FONDO LIMPIO */
-.logo-overlay {
-  background: #f7fbf8;
-}
-
-/* BOMBILLA */
-.logo-overlay .bombilla {
-  width: 110px;
-  opacity: 0;
-  transform: scale(0.85);
-  animation:
-    focoEntrada 0.6s ease forwards,
-    focoGlow 1.2s ease 0.5s forwards;
-}
-
-@keyframes focoEntrada {
-  from { opacity: 0; transform: scale(0.85); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes focoGlow {
-  0% { filter: drop-shadow(0 0 0px #6cc24a); }
-  50% { filter: drop-shadow(0 0 25px #6cc24a); }
-  100% { filter: drop-shadow(0 0 18px #6cc24a); }
-}
-
-/* TEXTO */
-.texto-logo {
-  line-height: 0.95;
-}
-
-.texto-logo span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
-  font-weight: 900;
-  font-size: clamp(28px, 4vw, 64px);
-}
-
-.texto-logo .light {
-  color: #6cc24a;
-  animation: textoEntrada 0.6s ease 0.7s forwards;
-}
-
-.texto-logo .dark {
-  color: #0b7a3b;
-  animation: textoEntrada 0.6s ease 0.9s forwards;
-}
-
-@keyframes textoEntrada {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}  </style>
+  </style>
 </head>
 <body>
 
 <div class="logo-overlay" id="logoOverlay">
   <div class="logo-animado">
-    <img src="images/bombilla.png" class="bombilla">
+    <img src="images/bombilla.png" class="bombilla" alt="Bombilla">
     <div class="texto-logo">
       <span class="light">AISLAMIENTO</span><br>
       <span class="dark">EN CASA</span>
     </div>
   </div>
 </div>
+
 <div class="app">
   <aside class="sidebar">
-
     <div class="logo">
-    <img src="images/logo.png" alt="Logo Aislamiento en Casa" />
+      <img src="images/logo.png" alt="Logo Aislamiento en Casa" />
     </div>
+
     <div class="menu-title">Navegación</div>
     <button class="menu-btn active" data-tab="inicio">Inicio</button>
     <button class="menu-btn" data-tab="cita">Día de la cita</button>
@@ -1088,6 +1090,7 @@
       <p id="section-subtitle">Aislamiento de cubiertas sin inversión inicial, según viabilidad técnica.</p>
     </div>
 
+    <!-- INICIO -->
     <section id="inicio" class="section active">
       <section class="card hero">
         <div class="hero-copy">
@@ -1105,7 +1108,7 @@
 
           <div class="btn-row">
             <a href="#" class="btn btn-main" data-goto="contacto">Comprobar viabilidad</a>
-            <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa">Contacto por WhatsApp</a>
+            <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa" target="_blank" rel="noopener">Contacto por WhatsApp</a>
             <a href="#" class="btn btn-outline" data-goto="cita">Ver proceso de cita</a>
           </div>
         </div>
@@ -1130,17 +1133,14 @@
             <h3>Sin inversión inicial</h3>
             <p>Actuación financiada según viabilidad técnica y energética.</p>
           </div>
-
           <div class="corp-box blue">
             <h3>Reducción de consumo</h3>
             <p>Ahorro energético desde el primer mes en calefacción y climatización.</p>
           </div>
-
           <div class="corp-box dark">
             <h3>Mayor confort</h3>
             <p>Mejora térmica inmediata en la vivienda, con menos pérdidas de calor.</p>
           </div>
-
           <div class="corp-box light">
             <h3>Revalorización</h3>
             <p>Incremento del valor energético del inmueble y mejora de la etiqueta energética.</p>
@@ -1152,9 +1152,7 @@
         <h2 class="impact-title">Impacto económico</h2>
         <div class="impact-highlight" id="counter">0%</div>
 
-        <p style="text-align:center; font-weight:700;">
-          Ahorro real en calefacción y aire acondicionado
-        </p>
+        <p style="text-align:center; font-weight:700;">Ahorro real en calefacción y aire acondicionado</p>
 
         <p class="impact-sub">
           Aislar tu vivienda es una de las formas más directas de reducir tu factura energética y mejorar el comportamiento térmico de la cubierta.
@@ -1182,17 +1180,6 @@
         <p style="font-size:14px; color:var(--muted);">
           Sin cambiar tu forma de vivir ni asumir reformas complejas
         </p>
-
-        <div style="text-align:center; margin-top:20px;">
-          <p style="font-size:14px; color:var(--muted);">
-            Puedes ver resultados reales de viviendas en nuestra página
-          </p>
-          <div class="social-row">
-            <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" class="btn btn-outline">
-              Ver casos reales
-            </a>
-          </div>
-        </div>
       </section>
 
       <section class="card">
@@ -1215,134 +1202,10 @@
           <div class="ba-divider" id="baDivider"></div>
           <input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
         </div>
-
-        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;">
-          Aislamiento completo en pocas horas, sin obras complejas ni molestias relevantes.
-        </p>
-      </section>
-
-      <section class="card">
-        <h2 style="text-align:center;">Impacto en tu vivienda</h2>
-
-        <div class="compare-graph">
-          <div class="graph-box before">
-            <h3>Antes</h3>
-            <div class="bar"></div>
-            <p>Consumo elevado</p>
-          </div>
-
-          <div class="arrow" aria-hidden="true"></div>
-
-          <div class="graph-box after-graph">
-            <h3>Después</h3>
-            <div class="bar"></div>
-            <p>Mayor eficiencia</p>
-          </div>
-        </div>
-
-        <p style="text-align:center; margin-top:20px; color:var(--primary); font-weight:700;">
-          Menos consumo · Más confort · Mayor valor
-        </p>
-      </section>
-
-      <section class="card">
-        <h2 style="text-align:center;">Qué hacemos</h2>
-
-        <p style="text-align:center; max-width:700px; margin:0 auto 25px; color:var(--muted);">
-          Actuamos directamente sobre la cubierta, uno de los principales puntos de pérdida energética de cualquier vivienda.
-        </p>
-
-        <div class="grid-3">
-          <div class="feature">
-            <h3>Aislamos la cubierta</h3>
-            <p>Reducimos las pérdidas de calor y mejoramos el comportamiento energético global de la vivienda.</p>
-          </div>
-
-          <div class="feature">
-            <h3>Intervención rápida</h3>
-            <p>Actuación en pocas horas, sin obras complejas ni molestias importantes.</p>
-          </div>
-
-          <div class="feature">
-            <h3>Mejora real</h3>
-            <p>Menor consumo, más confort y mayor valor en el mercado inmobiliario.</p>
-          </div>
-        </div>
-
-        <p style="text-align:center; margin-top:25px; font-weight:700; color:var(--primary); font-size:1.05rem;">
-          Resultado visible desde el primer día
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Tipo de aislamiento</h2>
-
-        <div class="grid-2">
-          <div class="feature">
-            <h3>Insuflado (desván no habitable)</h3>
-            <ul>
-              <li>Muy rápido</li>
-              <li>Sin obras complejas</li>
-              <li>Alta eficiencia térmica</li>
-              <li>Ideal para espacios no transitables</li>
-            </ul>
-          </div>
-
-          <div class="feature">
-            <h3>Manta o rollo (desván habitable)</h3>
-            <ul>
-              <li>Adaptado al uso del espacio</li>
-              <li>Acabado más controlado</li>
-              <li>Compatible con espacios transitables</li>
-              <li>Durabilidad y buen comportamiento térmico</li>
-            </ul>
-          </div>
-        </div>
-
-        <p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);">
-          Siempre elegimos la solución más adecuada para tu vivienda
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Obra limpia y de calidad</h2>
-
-        <div class="grid-3">
-          <div class="feature">
-            <h3>Trabajo profesional</h3>
-            <p>Aplicación con equipos técnicos especializados y ejecución cuidada.</p>
-          </div>
-
-          <div class="feature">
-            <h3>Entrega impecable</h3>
-            <p>Dejamos la vivienda limpia y lista para su uso.</p>
-          </div>
-
-          <div class="feature">
-            <h3>Gestión completa</h3>
-            <p>Si hay trastero o almacenaje en la guardilla, gestionamos el movimiento necesario.</p>
-          </div>
-        </div>
-
-        <div class="photo-grid" style="margin-top:20px;">
-          <img src="images/plano1.jpg" alt="Planificación técnica 1" />
-          <img src="images/plano2.jpg" alt="Planificación técnica 2" />
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Entorno y cubiertas</h2>
-        <p>
-          Trabajamos sobre cubiertas reales de viviendas y edificios, adaptando la solución técnica a cada caso.
-        </p>
-
-        <div class="photo-grid">
-          <img src="images/tejado.jpg" alt="Cubierta tradicional" />
-          <img src="images/tejados-zona.jpg" alt="Conjunto de cubiertas" />
-        </div>
       </section>
     </section>
 
+    <!-- CITA -->
     <section id="cita" class="section">
       <section class="card">
         <h2>El día de la cita</h2>
@@ -1369,7 +1232,6 @@
                 <p>Inspección completa de la vivienda, la cubierta y sus condiciones reales para validar la actuación.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">2</div>
               <div>
@@ -1377,7 +1239,6 @@
                 <p>Se documenta fachada, puertas, ventanas, sistema de calefacción, agua caliente y cubierta antes de la obra.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">3</div>
               <div>
@@ -1385,7 +1246,6 @@
                 <p>Una vez validado todo, empieza la obra. En muchos casos puede completarse en pocas horas.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">4</div>
               <div>
@@ -1411,7 +1271,6 @@
                 <p>Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para validar la actuación y preparar el expediente técnico.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">2</div>
               <div>
@@ -1419,7 +1278,6 @@
                 <p>Se recopila la información del edificio, se documenta el estado previo y se prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">3</div>
               <div>
@@ -1433,11 +1291,6 @@
               </div>
             </div>
           </div>
-
-          <div class="card soft-card" style="margin-top:18px;">
-            <h3>Nos encargamos del proceso</h3>
-            <p>Guiamos toda la parte documental para que la comunidad tenga todo correctamente preparado.</p>
-          </div>
         </div>
 
         <div id="tipo-emp" class="type-box">
@@ -1449,7 +1302,6 @@
                 <p>Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas para validar la actuación y adaptar la solución al edificio terciario.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">2</div>
               <div>
@@ -1457,7 +1309,6 @@
                 <p>Se documenta técnicamente el estado del edificio y se recopilan los datos necesarios para la tramitación energética y administrativa.</p>
               </div>
             </div>
-
             <div class="step">
               <div class="step-num">3</div>
               <div>
@@ -1472,37 +1323,11 @@
               </div>
             </div>
           </div>
-
-          <div class="card soft-card" style="margin-top:18px;">
-            <h3>Edificio terciario</h3>
-            <p>Adaptamos el expediente técnico y documental a la estructura de la sociedad o empresa.</p>
-          </div>
         </div>
-
-        <p style="font-weight:700; color:var(--primary); margin-top:20px;">
-          Solo necesitas aportar la documentación básica del tipo de inmueble correspondiente.
-        </p>
-
-        <p style="font-size:13px; color:var(--muted);">
-          Nos encargamos de todo el resto
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Día de la cita: trabajo real</h2>
-
-        <p>
-          Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
-        </p>
-
-        <img src="images/camion.jpg" alt="Camión de insuflado" class="single-photo" />
-
-        <p class="form-note" style="margin-top:14px;">
-          Obra de calidad, ejecución rápida y proceso completamente documentado.
-        </p>
       </section>
     </section>
 
+    <!-- CAE -->
     <section id="cae" class="section">
       <section class="card">
         <h2 style="text-align:center;">Transparencia y control</h2>
@@ -1531,139 +1356,28 @@
             <p>Financia la obra</p>
           </div>
         </div>
-
-        <div class="timeline" style="margin-top:26px;">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <h3>Realizamos la actuación</h3>
-              <p>Aislamos la cubierta de tu vivienda, reduciendo pérdidas de energía desde el primer día.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <h3>Se genera ahorro energético</h3>
-              <p>Ese ahorro se mide y se certifica mediante documentación técnica oficial.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <h3>Ese ahorro se transforma en financiación</h3>
-              <p style="font-weight:700; color:var(--primary);">
-                El sistema CAE permite convertir ese ahorro en ayuda económica para la obra.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card soft-card" style="text-align:center; margin-top:25px;">
-          <h3 style="margin-bottom:10px;">Tú no te ocupas de nada</h3>
-
-          <p style="max-width:650px; margin:0 auto 12px;">
-            Gestionamos todo el proceso técnico, administrativo y energético para que solo tengas que disfrutar del resultado.
-          </p>
-
-          <p style="font-weight:900; color:var(--primary); font-size:1.2rem;">
-            Desde la obra hasta la etiqueta energética final
-          </p>
-        </div>
-
-        <p style="font-size:14px; color:var(--muted); margin-top:10px; text-align:center;">
-          No tienes que gestionar nada · Nosotros nos encargamos de todo
-        </p>
       </section>
 
       <section class="card">
         <h2>Cesión del ahorro y financiación de la obra</h2>
-
         <p>
           Dentro del sistema CAE, el propietario cede el ahorro energético generado por la actuación a una empresa del sector energético como <strong>contraprestación económica</strong>.
         </p>
-
         <p style="font-weight:700; color:var(--primary);">
           Esa contraprestación se materializa en forma de obra totalmente financiada, siempre según viabilidad técnica y energética.
         </p>
-
-        <p>
-          Los distribuidores de combustible, gasóleo doméstico, gas o electricidad, conocidos como los <strong>sujetos obligados</strong>, participan en la financiación de actuaciones de eficiencia energética, permitiendo transformar el ahorro generado en apoyo económico para la obra.
-        </p>
-
         <p>
           Nosotros trabajamos con un <strong>sujeto delegado acreditado por el MITECO</strong> que gestiona el expediente y la tramitación necesaria.
         </p>
-
-        <p style="margin-top:10px;">
-          <a href="https://www.miteco.gob.es/es/energia/eficiencia/cae.html" target="_blank" style="color:var(--primary); font-weight:700;">
-            Ver información oficial del MITECO
-          </a>
-        </p>
-      </section>
-
-      <section class="card">
-        <h2>Trámite CEE y CAE</h2>
-
-        <p>
-          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado y reflejar la mejora de la vivienda.
-        </p>
-
-        <div class="timeline">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <h3>Documentación de la actuación</h3>
-              <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <h3>Certificado de eficiencia energética (CEE)</h3>
-              <p>En aproximadamente 2 semanas, el propietario puede solicitar el certificado energético actualizado de la vivienda.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <h3>Gestión completa del CAE</h3>
-
-              <p style="font-weight:700; color:var(--primary);">
-                Nos encargamos de todo el proceso técnico, administrativo y energético.
-              </p>
-
-              <p>
-                Desde la documentación inicial, la certificación del ahorro energético y la validación, hasta la emisión final de la etiqueta energética por parte de la administración.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card soft-card" style="text-align:center; margin-top:20px;">
-          <h3>Mejora de la calificación energética</h3>
-
-          <p style="max-width:700px; margin:0 auto 15px;">
-            Tras la intervención, la vivienda mejora su calificación energética, reduciendo su consumo y aumentando su valor en el mercado.
-          </p>
-
-          <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
-            Mejora real reflejada en la etiqueta energética oficial
-          </p>
-        </div>
-
-        <img src="images/caso_tecnico.jpg" alt="Esquema o imagen del sistema CAE" class="single-photo" />
       </section>
     </section>
 
+    <!-- RECOMENDACION -->
     <section id="recomendacion" class="section">
       <section class="card reward-wrap">
         <h2 style="text-align:center;">Recomendación</h2>
 
-        <p style="text-align:center; max-width:600px; margin:0 auto 20px;">
+        <p style="text-align:center; max-width:650px; margin:0 auto 20px;">
           Si conoces a otras personas interesadas, puedes obtener un bono tras la intervención finalizada y validada.
         </p>
 
@@ -1672,27 +1386,37 @@
             <strong>30€</strong>
             <span>2 clientes con obra realizada</span>
           </div>
-
           <div class="reward-box">
             <strong>100€</strong>
             <span>5 clientes con obra realizada</span>
           </div>
         </div>
 
-        <form style="margin-top:24px;">
+        <p style="text-align:center; font-size:14px; color:var(--muted); margin-top:18px;">
+          Los bonos se entregan en tarjeta regalo / ticket de Amazon o El Corte Inglés, tras validación final.
+        </p>
+
+        <form id="formRecomendacion" style="margin-top:24px;">
+          <input type="hidden" name="tipo_formulario" value="recomendacion" />
+
           <input class="field" type="text" name="recomienda_nombre" placeholder="Tu nombre" required />
           <input class="field" type="tel" name="recomienda_telefono" placeholder="Tu teléfono" required />
-          <input class="field" type="text" name="referido_nombre" placeholder="Nombre del recomendado" />
-          <input class="field" type="tel" name="referido_telefono" placeholder="Teléfono del recomendado" />
+          <input class="field" type="text" name="referido_nombre" placeholder="Nombre del recomendado" required />
+          <input class="field" type="tel" name="referido_telefono" placeholder="Teléfono del recomendado" required />
+
           <button class="btn btn-main" type="submit">Enviar recomendación</button>
+
+          <div class="success-note" id="recSuccess">Recomendación enviada correctamente ✅</div>
+          <div class="error-note" id="recError">Ha habido un error al enviar ❌</div>
         </form>
 
         <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px;">
-          Bono entregado tras intervención finalizada y validada
+          El cliente recomendado debe registrarse indicando el código o teléfono del recomendador.
         </p>
       </section>
     </section>
 
+    <!-- CONTACTO -->
     <section id="contacto" class="section">
       <section class="card">
         <h2 style="text-align:center;">Comprueba la viabilidad de tu vivienda</h2>
@@ -1706,6 +1430,7 @@
         </p>
 
         <form id="formulario">
+          <input type="hidden" name="tipo_formulario" value="contacto" />
           <input type="hidden" name="source" value="webapp-aislamiento-dashboard" />
           <input type="hidden" name="page_section" id="page_section" value="contacto" />
           <input type="hidden" name="submitted_at" id="submitted_at" value="" />
@@ -1723,9 +1448,10 @@
             <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
           </label>
 
-          <button class="btn btn-main" type="submit">
-            Ver si mi vivienda es viable
-          </button>
+          <button class="btn btn-main" type="submit">Ver si mi vivienda es viable</button>
+
+          <div class="success-note" id="contactoSuccess">Formulario enviado correctamente ✅</div>
+          <div class="error-note" id="contactoError">Ha habido un error al enviar ❌</div>
         </form>
       </section>
     </section>
@@ -1766,6 +1492,8 @@
 </div>
 
 <script>
+  const ZAPIER_WEBHOOK = "https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/";
+
   const sectionMeta = {
     inicio: {
       title: "Inicio",
@@ -1781,7 +1509,7 @@
     },
     recomendacion: {
       title: "Recomendación",
-      subtitle: "Bono por clientes con obra realizada y validada."
+      subtitle: "Bonos por clientes con obra realizada y validada."
     },
     contacto: {
       title: "Contacto",
@@ -1811,60 +1539,57 @@
       pageSectionInput.value = id;
     }
   }
-function toggleFloatingButtons(sectionId) {
-  const callBtn = document.querySelector(".call-float");
-  const waBtn = document.querySelector(".whatsapp-float");
-  const popup = document.getElementById("wa-popup");
 
-  if (sectionId === "contacto") {
-    if (callBtn) callBtn.style.display = "none";
-    if (waBtn) waBtn.style.display = "none";
-    if (popup) popup.style.display = "none";
-  } else {
-    if (callBtn) callBtn.style.display = "flex";
-    if (waBtn) waBtn.style.display = "flex";
+  function toggleFloatingButtons(sectionId) {
+    const callBtn = document.querySelector(".call-float");
+    const waBtn = document.querySelector(".whatsapp-float");
+    const popup = document.getElementById("wa-popup");
+
+    if (sectionId === "contacto") {
+      if (callBtn) callBtn.style.display = "none";
+      if (waBtn) waBtn.style.display = "none";
+      if (popup) popup.style.display = "none";
+    } else {
+      if (callBtn) callBtn.style.display = "flex";
+      if (waBtn) waBtn.style.display = "flex";
+    }
   }
-} //
-function switchSection(id){
-  sections.forEach(section => section.classList.remove("active"));
-  const targetSection = document.getElementById(id);
-  if(targetSection) targetSection.classList.add("active");
 
-  setActiveMenu(id);
-  updateTopbar(id);
+  function switchSection(id){
+    sections.forEach(section => section.classList.remove("active"));
+    const targetSection = document.getElementById(id);
+    if(targetSection) targetSection.classList.add("active");
 
-  toggleFloatingButtons(id);
+    setActiveMenu(id);
+    updateTopbar(id);
+    toggleFloatingButtons(id);
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-function showSection(id){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
-  const bombilla = document.querySelector(".bombilla");
-  const texto = document.querySelectorAll(".texto-logo span");
+  function showSection(id){
+    const bombilla = document.querySelector(".bombilla");
+    const texto = document.querySelectorAll(".texto-logo span");
 
-  // reset animaciones
-  bombilla.style.animation = "none";
-  texto.forEach(el => el.style.animation = "none");
+    if (bombilla) bombilla.style.animation = "none";
+    texto.forEach(el => el.style.animation = "none");
 
-  void bombilla.offsetWidth;
+    void logoOverlay.offsetWidth;
 
-  // reactivar animaciones
-  bombilla.style.animation = "";
-  texto.forEach(el => el.style.animation = "");
+    if (bombilla) bombilla.style.animation = "";
+    texto.forEach(el => el.style.animation = "");
 
-  // mostrar overlay
-  logoOverlay.classList.add("show");
+    logoOverlay.classList.add("show");
 
-  // cambiar sección (más rápido)
-  setTimeout(() => {
-    switchSection(id);
-  }, 700);
+    setTimeout(() => {
+      switchSection(id);
+    }, 700);
 
-  // quitar overlay (duración total corta)
-  setTimeout(() => {
-    logoOverlay.classList.remove("show");
-  }, 1600);
-}
+    setTimeout(() => {
+      logoOverlay.classList.remove("show");
+    }, 1600);
+  }
+
   menuButtons.forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.tab));
   });
@@ -1887,19 +1612,21 @@ function showSection(id){
       setTimeout(animateCounter, 30);
     }
   }
+
   window.addEventListener("load", () => {
-  animateCounter();
+    animateCounter();
 
-  const sidebar = document.querySelector(".sidebar");
-  sidebar.classList.add("hidden");
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar) sidebar.classList.add("hidden");
 
-  logoOverlay.classList.add("show");
+    logoOverlay.classList.add("show");
 
-  setTimeout(() => {
-    logoOverlay.classList.remove("show");
-    sidebar.classList.remove("hidden");
-  }, 1600);
-});
+    setTimeout(() => {
+      logoOverlay.classList.remove("show");
+      if (sidebar) sidebar.classList.remove("hidden");
+    }, 1600);
+  });
+
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
   const baDivider = document.getElementById("baDivider");
@@ -1949,6 +1676,7 @@ function showSection(id){
     if (ref) {
       localStorage.setItem("codigo_recomendacion", ref);
     }
+
     window.addEventListener("DOMContentLoaded", function () {
       const input = document.getElementById("codigo_recomendacion");
       const savedRef = localStorage.getItem("codigo_recomendacion");
@@ -1965,13 +1693,10 @@ function showSection(id){
 
   function updateCallButton(){
     const btn = document.getElementById("callBtn");
+    if (!btn) return;
     const now = new Date();
     const hour = now.getHours();
-    if(hour >= 9 && hour < 20){
-      btn.textContent = "Llamada directa";
-    } else {
-      btn.textContent = "Llámanos";
-    }
+    btn.textContent = (hour >= 9 && hour < 20) ? "Llamada directa" : "Llámanos";
   }
   updateCallButton();
 
@@ -1982,68 +1707,131 @@ function showSection(id){
     return { nombre, telefono, material };
   }
 
-  document.getElementById("waBtn").addEventListener("click", function(){
-    const data = getFormData();
-    let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\n";
-    if(data.nombre) mensaje += "Nombre: " + data.nombre + "\n";
-    if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\n";
-    if(data.material) mensaje += "Cubierta: " + data.material + "\n";
-    mensaje += "\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
-    this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
-  });
+  const waBtn = document.getElementById("waBtn");
+  if (waBtn) {
+    waBtn.addEventListener("click", function(){
+      const data = getFormData();
+      let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\n";
+      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\n";
+      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\n";
+      if(data.material) mensaje += "Cubierta: " + data.material + "\n";
+      mensaje += "\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
+      this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
+    });
+  }
 
   setTimeout(() => {
     const popup = document.getElementById("wa-popup");
     if (popup) popup.style.display = "block";
   }, 10000);
-  
 
-  // === ENVÍO FORMULARIO A ZAPIER (VERSIÓN FINAL FUNCIONANDO) ===
-document.addEventListener("DOMContentLoaded", function () {
-
-  const form = document.getElementById("formulario");
-  if (!form) return;
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const btn = form.querySelector("button");
-
-    const data = {
-      nombre: form.nombre.value,
-      telefono: form.telefono.value,
-      email: form.email.value,
-      material_cubierta: form.material_cubierta.value,
-      codigo_recomendacion: form.codigo_recomendacion.value,
-      mensaje: form.mensaje.value,
-      submitted_at: new Date().toISOString(),
-      origin_url: window.location.href
-    };
-
-    fetch("https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/", {
+  async function sendToZapier(data){
+    const response = await fetch(ZAPIER_WEBHOOK, {
       method: "POST",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     });
 
-    // Feedback usuario (sin esperar respuesta)
-    btn.innerText = "Enviado ✅";
-    btn.disabled = true;
+    if (!response.ok) {
+      throw new Error("Error al enviar a Zapier");
+    }
 
-    // Limpieza
-    form.reset();
+    return response;
+  }
 
-    // Redirección opcional
-    setTimeout(() => {
-      window.location.href = "https://wa.me/34670237842";
-    }, 1200);
+  // FORMULARIO CONTACTO
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("formulario");
+    const success = document.getElementById("contactoSuccess");
+    const error = document.getElementById("contactoError");
+    if (!form) return;
 
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const btn = form.querySelector("button");
+      if (!btn) return;
+
+      success.style.display = "none";
+      error.style.display = "none";
+
+      const data = {
+        tipo_formulario: "contacto",
+        source: "webapp-aislamiento-dashboard",
+        nombre: form.nombre.value,
+        telefono: form.telefono.value,
+        email: form.email.value,
+        material_cubierta: form.material_cubierta.value,
+        codigo_recomendacion: form.codigo_recomendacion.value,
+        mensaje: form.mensaje.value,
+        submitted_at: new Date().toISOString(),
+        origin_url: window.location.href
+      };
+
+      btn.innerText = "Enviando...";
+      btn.disabled = true;
+
+      try {
+        await sendToZapier(data);
+        btn.innerText = "Enviado ✅";
+        success.style.display = "block";
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        btn.innerText = "Error ❌";
+        error.style.display = "block";
+        btn.disabled = false;
+      }
+    });
   });
 
-});
+  // FORMULARIO RECOMENDACION
+  document.addEventListener("DOMContentLoaded", function () {
+    const formRec = document.getElementById("formRecomendacion");
+    const success = document.getElementById("recSuccess");
+    const error = document.getElementById("recError");
+    if (!formRec) return;
+
+    formRec.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const btn = formRec.querySelector("button");
+      if (!btn) return;
+
+      success.style.display = "none";
+      error.style.display = "none";
+
+      const telefonoRecomendador = formRec.recomienda_telefono.value.trim();
+
+      const data = {
+        tipo_formulario: "recomendacion",
+        recomienda_nombre: formRec.recomienda_nombre.value,
+        recomienda_telefono: telefonoRecomendador,
+        referido_nombre: formRec.referido_nombre.value,
+        referido_telefono: formRec.referido_telefono.value,
+        enlace_referido: window.location.origin + window.location.pathname + "?ref=" + encodeURIComponent(telefonoRecomendador),
+        submitted_at: new Date().toISOString(),
+        origin_url: window.location.href
+      };
+
+      btn.innerText = "Enviando...";
+      btn.disabled = true;
+
+      try {
+        await sendToZapier(data);
+        btn.innerText = "Enviado ✅";
+        success.style.display = "block";
+        formRec.reset();
+      } catch (err) {
+        console.error(err);
+        btn.innerText = "Error ❌";
+        error.style.display = "block";
+        btn.disabled = false;
+      }
+    });
+  });
 </script>
 
 </body>
