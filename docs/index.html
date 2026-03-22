@@ -2022,12 +2022,18 @@ document.addEventListener("DOMContentLoaded", function () {
   btn.innerText = "Enviado ✅";
   btn.disabled = true;
 
-  form.reset();
+  const nombre = form.nombre.value;
+  const telefono = form.telefono.value;
+  const mensaje = form.mensaje.value;
 
+  // 👇 Esperamos para asegurar envío a Zapier
   setTimeout(() => {
-    btn.innerText = "Ver si mi vivienda es viable";
-    btn.disabled = false;
-  }, 3000);
+    window.location.href =
+      "https://wa.me/34670237842?text=" +
+      encodeURIComponent(
+        `Hola, soy ${nombre}. Acabo de enviar el formulario.\nTeléfono: ${telefono}\nZona: ${mensaje}\n\nQuiero saber si mi vivienda es viable.`
+      );
+  }, 1200);
 })
 .catch((error) => {
   console.error("ERROR:", error);
