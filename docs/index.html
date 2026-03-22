@@ -1819,6 +1819,7 @@ function toggleFloatingButtons(sectionId) {
     if (callBtn) callBtn.style.display = "flex";
     if (waBtn) waBtn.style.display = "flex";
   }
+} //
 function switchSection(id){
   sections.forEach(section => section.classList.remove("active"));
   const targetSection = document.getElementById(id);
@@ -1827,7 +1828,7 @@ function switchSection(id){
   setActiveMenu(id);
   updateTopbar(id);
 
-  toggleFloatingButtons(id); // 👈 AQUÍ
+  toggleFloatingButtons(id); //
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
