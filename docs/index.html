@@ -1815,35 +1815,33 @@
     updateTopbar(id);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
-  function showSection(id){
 function showSection(id){
 
   const bombilla = document.querySelector(".bombilla");
   const texto = document.querySelectorAll(".texto-logo span");
 
-  // REINICIAR animaciones
+  // reset animaciones
   bombilla.style.animation = "none";
   texto.forEach(el => el.style.animation = "none");
 
-  void bombilla.offsetWidth; // reset real
+  void bombilla.offsetWidth;
 
-  // volver a activar animaciones
+  // reactivar animaciones
   bombilla.style.animation = "";
   texto.forEach(el => el.style.animation = "");
 
   // mostrar overlay
   logoOverlay.classList.add("show");
 
-  // cambiar sección
+  // cambiar sección (más rápido)
   setTimeout(() => {
     switchSection(id);
-  }, 400);
+  }, 300);
 
-  // quitar overlay
+  // quitar overlay (duración total corta)
   setTimeout(() => {
     logoOverlay.classList.remove("show");
-  }, 1200);
+  }, 1000);
 }
   menuButtons.forEach(btn => {
     btn.addEventListener("click", () => showSection(btn.dataset.tab));
@@ -1890,7 +1888,7 @@ window.addEventListener("load", () => {
   setTimeout(() => {
     logoOverlay.classList.remove("show");
     sidebar.style.opacity = "1";
-  }, 2200);
+  }, 1400);
 });
   const slider = document.getElementById("slider");
   const afterImage = document.getElementById("afterImage");
