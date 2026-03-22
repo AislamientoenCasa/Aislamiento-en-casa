@@ -1,3 +1,6 @@
+
+angie <angiechaumeil@gmail.com>	23 mars 2026 à 01:49
+À : angie <angiechaumeil@gmail.com>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -961,7 +964,7 @@
 
     .logo-overlay.show{
       opacity:1;
-      pointer-events:auto;
+      pointer-events:none;
     }
 
     .logo-animado{
@@ -1019,6 +1022,67 @@
       }
     }
 
+    .cookie-banner{
+      position:fixed;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      z-index:6000;
+      background:#ffffff;
+      border:1px solid var(--line);
+      box-shadow:0 20px 50px rgba(0,0,0,.12);
+      border-radius:18px;
+      padding:16px;
+      display:none;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+
+    .cookie-banner.show{
+      display:flex;
+    }
+
+    .cookie-copy{
+      flex:1 1 auto;
+      min-width:0;
+    }
+
+    .cookie-copy strong{
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .cookie-copy p{
+      margin:0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .cookie-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      flex:0 0 auto;
+    }
+
+    .btn-cookie{
+      min-height:44px;
+      padding:12px 18px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      cursor:pointer;
+      font:inherit;
+      font-weight:700;
+    }
+
+    .btn-cookie.primary{
+      background:var(--primary);
+      color:#fff;
+      border-color:var(--primary);
+    }
+
     @media(max-width:1100px){
       .hero{grid-template-columns:1fr}
       .corp-grid{grid-template-columns:repeat(2,1fr)}
@@ -1061,6 +1125,18 @@
       .whatsapp-float{bottom:110px}
       .call-float{bottom:170px}
       .wa-popup{left:16px; right:16px; max-width:none}
+      .cookie-banner{
+        left:12px;
+        right:12px;
+        bottom:12px;
+        flex-direction:column;
+      }
+      .cookie-actions{
+        width:100%;
+      }
+      .btn-cookie{
+        flex:1 1 auto;
+      }
     }
   </style>
 </head>
@@ -1253,8 +1329,9 @@
         <p style="font-size:14px; color:var(--muted);">
           Sin cambiar tu forma de vivir ni asumir reformas complejas
         </p>
-      </section> 
-            <section class="card">
+      </section>
+
+      <section class="card">
         <h2 style="text-align:center;">Resultado real en vivienda</h2>
         <p style="text-align:center; color:var(--muted); max-width:720px; margin:0 auto;">
           Intervención rápida con impacto directo en consumo y confort térmico.
@@ -1486,7 +1563,9 @@
             Ver información oficial del MITECO
           </a>
         </p>
-   </section>         <section class="card">
+      </section>
+
+      <section class="card">
         <h2>Trámite CEE y CAE</h2>
 
         <p>
@@ -1747,269 +1826,9 @@
           El cliente recomendado debe registrarse indicando el código o teléfono del recomendador.
         </p>
       </section>
-          <section class="card">
-        <h2>Trámite CEE y CAE</h2>
-
-        <p>
-          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado y reflejar la mejora de la vivienda.
-        </p>
-
-        <div class="timeline">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div>
-              <h3>Documentación de la actuación</h3>
-              <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">2</div>
-            <div>
-              <h3>Certificado de eficiencia energética (CEE)</h3>
-              <p>Tras la actuación, la vivienda puede solicitar la actualización del certificado energético para reflejar la mejora conseguida.</p>
-            </div>
-          </div>
-
-          <div class="step">
-            <div class="step-num">3</div>
-            <div>
-              <h3>Gestión completa del CAE</h3>
-
-              <p style="font-weight:700; color:var(--primary);">
-                Nos encargamos de todo el proceso técnico, administrativo y energético.
-              </p>
-
-              <p>
-                Desde la documentación inicial, la certificación del ahorro energético y la validación, hasta el cierre del expediente correspondiente.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card soft-card" style="text-align:center; margin-top:20px;">
-          <h3>Mejora de la calificación energética</h3>
-
-          <p style="max-width:700px; margin:0 auto 15px;">
-            Tras la intervención, la vivienda mejora su comportamiento energético, reduciendo su consumo y aumentando su valor en el mercado.
-          </p>
-
-          <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
-            Mejora real reflejada en el rendimiento energético de la vivienda
-          </p>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2 style="text-align:center;">Quién está detrás</h2>
-
-        <p style="text-align:center; max-width:700px; margin:0 auto;">
-          Trabajamos con un sujeto delegado acreditado, encargado de validar y gestionar el ahorro energético asociado a la actuación.
-        </p>
-
-        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:12px;">
-          Sistema oficial regulado en España
-        </p>
-      </section>
     </section>
 
-    <!-- CITA -->
-    <section id="cita" class="section">
-      <section class="card">
-        <h2>El día de la cita</h2>
-        <p class="section-intro">
-          Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
-        </p>
-
-        <p id="type-message" style="text-align:center; font-weight:700; color:var(--primary); margin-bottom:15px;">
-          Selecciona el tipo de inmueble para ver el proceso
-        </p>
-
-        <div class="type-switch">
-          <button class="type-btn" data-type="uni">Vivienda unifamiliar</button>
-          <button class="type-btn" data-type="com">Comunidad de propietarios</button>
-          <button class="type-btn" data-type="emp">Edificio terciario</button>
-        </div>
-
-        <div id="tipo-uni" class="type-box">
-          <div class="timeline">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <h3>Revisión completa de la vivienda</h3>
-                <p>Inspección completa de la vivienda, la cubierta y sus condiciones reales para validar la actuación.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <h3>Fotos y medidas</h3>
-                <p>Se documenta la vivienda y la cubierta antes de la obra para preparar correctamente el expediente técnico.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <h3>Intervención</h3>
-                <p>Una vez validado todo, se realiza la actuación sobre la cubierta. En muchos casos puede completarse en pocas horas.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">4</div>
-              <div>
-                <h3>Fotos finales y documentación</h3>
-                <p>Se realizan fotos finales y se firma la documentación vinculada a la actuación y a la cesión del ahorro.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card soft-card" style="margin-top:18px;">
-            <h3>Qué necesitas</h3>
-            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
-            <p>Nos encargamos de todo el proceso técnico, administrativo y energético.</p>
-          </div>
-        </div>
-
-        <div id="tipo-com" class="type-box">
-          <div class="timeline">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <h3>Revisión completa del edificio</h3>
-                <p>Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para validar la actuación y preparar el expediente técnico.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <h3>Fotos, medidas y documentación</h3>
-                <p>Se recopila la información del edificio, se documenta el estado previo y se prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <h3>Documentación específica</h3>
-                <ul>
-                  <li>NIF de la comunidad</li>
-                  <li>Certificado digital FNMT</li>
-                  <li>Acta de elección o nombramiento del presidente</li>
-                  <li>Junta de acuerdo para la obra</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card soft-card" style="margin-top:18px;">
-            <h3>Nos encargamos del proceso</h3>
-            <p>Guiamos toda la parte documental para que la comunidad tenga todo correctamente preparado.</p>
-          </div>
-        </div>
-
-        <div id="tipo-emp" class="type-box">
-          <div class="timeline">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <h3>Revisión completa del edificio</h3>
-                <p>Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas para validar la actuación y adaptar la solución al edificio terciario.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <h3>Fotos, medidas y documentación</h3>
-                <p>Se documenta técnicamente el estado del edificio y se recopilan los datos necesarios para la tramitación energética y administrativa.</p>
-              </div>
-            </div>
-
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <h3>Documentación específica</h3>
-                <ul>
-                  <li>NIF de la sociedad</li>
-                  <li>Certificado del Registro Mercantil</li>
-                  <li>Nota simple</li>
-                  <li>Certificado digital FNMT</li>
-                  <li>Documentación de consumos eléctricos</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card soft-card" style="margin-top:18px;">
-            <h3>Edificio terciario</h3>
-            <p>Adaptamos el expediente técnico y documental a la estructura de la sociedad o empresa.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Día de la cita: trabajo real</h2>
-
-        <p>
-          Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
-        </p>
-
-        <img src="images/camion.jpg" alt="Camión de insuflado en la cita técnica" class="single-photo" />
-
-        <p class="form-note" style="margin-top:14px;">
-          Obra de calidad, ejecución rápida y proceso completamente documentado.
-        </p>
-      </section>
-    </section>
-
-    <!-- RECOMENDACION -->
-    <section id="recomendacion" class="section">
-      <section class="card reward-wrap">
-        <h2 style="text-align:center;">Recomendación</h2>
-
-        <p style="text-align:center; max-width:650px; margin:0 auto 20px;">
-          Si conoces a otras personas interesadas, puedes obtener un bono tras la intervención finalizada y validada.
-        </p>
-
-        <div class="reward-grid">
-          <div class="reward-box">
-            <strong>30€</strong>
-            <span>2 clientes con obra realizada</span>
-          </div>
-          <div class="reward-box">
-            <strong>100€</strong>
-            <span>5 clientes con obra realizada</span>
-          </div>
-        </div>
-
-        <p style="text-align:center; font-size:14px; color:var(--muted); margin-top:18px;">
-          Los bonos se entregan en tarjeta regalo / ticket de Amazon o El Corte Inglés, tras validación final.
-        </p>
-
-        <form id="formRecomendacion" style="margin-top:24px;">
-          <input type="hidden" name="tipo_formulario" value="recomendacion" />
-
-          <input class="field" type="text" name="recomienda_nombre" placeholder="Tu nombre" required />
-          <input class="field" type="tel" name="recomienda_telefono" placeholder="Tu teléfono" required />
-          <input class="field" type="text" name="referido_nombre" placeholder="Nombre del recomendado" required />
-          <input class="field" type="tel" name="referido_telefono" placeholder="Teléfono del recomendado" required />
-
-          <button class="btn btn-main" type="submit">Enviar recomendación</button>
-
-          <div class="success-note" id="recSuccess">Recomendación enviada correctamente ✅</div>
-          <div class="error-note" id="recError">Ha habido un error al enviar ❌</div>
-        </form>
-
-        <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px;">
-          El cliente recomendado debe registrarse indicando el código o teléfono del recomendador.
-        </p>
-      </section>
-    </section>
-        <!-- CONTACTO -->
+    <!-- CONTACTO -->
     <section id="contacto" class="section">
       <section class="card">
         <h2 style="text-align:center;">Comprueba la viabilidad de tu vivienda</h2>
@@ -2088,6 +1907,20 @@
   <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" target="_blank" rel="noopener">Hablar por WhatsApp</a>
 </div>
 
+<div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-copy">
+    <strong>Usamos cookies</strong>
+    <p>
+      Utilizamos cookies técnicas y, si aceptas, también de análisis para mejorar tu experiencia. Puedes consultar más información en nuestra
+      <a href="cookies.html" target="_blank" rel="noopener" style="color:var(--primary); font-weight:700;">Política de Cookies</a>.
+    </p>
+  </div>
+  <div class="cookie-actions">
+    <button class="btn-cookie" id="rejectCookies" type="button">Rechazar</button>
+    <button class="btn-cookie primary" id="acceptCookies" type="button">Aceptar</button>
+  </div>
+</div>
+
 <script>
   const ZAPIER_WEBHOOK = "https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/";
 
@@ -2164,27 +1997,36 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
+  function restartOverlayAnimation(){
+    if(!logoOverlay) return;
+
+    const bombilla = logoOverlay.querySelector(".bombilla");
+    const texto = logoOverlay.querySelectorAll(".texto-logo span");
+
+    if (bombilla) {
+      bombilla.style.animation = "none";
+      void bombilla.offsetWidth;
+      bombilla.style.animation = "";
+    }
+
+    texto.forEach(el => {
+      el.style.animation = "none";
+      void el.offsetWidth;
+      el.style.animation = "";
+    });
+  }
+
   function showSection(id){
-    const bombilla = document.querySelector(".bombilla");
-    const texto = document.querySelectorAll(".texto-logo span");
-
-    if (bombilla) bombilla.style.animation = "none";
-    texto.forEach(el => el.style.animation = "none");
-
-    void logoOverlay.offsetWidth;
-
-    if (bombilla) bombilla.style.animation = "";
-    texto.forEach(el => el.style.animation = "";
-
+    restartOverlayAnimation();
     logoOverlay.classList.add("show");
 
     setTimeout(() => {
       switchSection(id);
-    }, 700);
+    }, 500);
 
     setTimeout(() => {
       logoOverlay.classList.remove("show");
-    }, 1600);
+    }, 1300);
   }
 
   menuButtons.forEach(btn => {
@@ -2217,12 +2059,13 @@
     const sidebar = document.querySelector(".sidebar");
     if (sidebar) sidebar.classList.add("hidden");
 
+    restartOverlayAnimation();
     logoOverlay.classList.add("show");
 
     setTimeout(() => {
       logoOverlay.classList.remove("show");
       if (sidebar) sidebar.classList.remove("hidden");
-    }, 1600);
+    }, 1300);
   });
 
   const slider = document.getElementById("slider");
@@ -2313,11 +2156,11 @@
   if (waBtn) {
     waBtn.addEventListener("click", function(){
       const data = getFormData();
-      let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\\n";
-      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\\n";
-      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\\n";
-      if(data.material) mensaje += "Cubierta: " + data.material + "\\n";
-      mensaje += "\\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
+      let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\n";
+      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\n";
+      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\n";
+      if(data.material) mensaje += "Cubierta: " + data.material + "\n";
+      mensaje += "\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
       this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
     });
   }
@@ -2430,6 +2273,27 @@
         error.style.display = "block";
         btn.disabled = false;
       }
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const cookieBanner = document.getElementById("cookieBanner");
+    const acceptCookies = document.getElementById("acceptCookies");
+    const rejectCookies = document.getElementById("rejectCookies");
+    const cookieKey = "aec_cookie_consent";
+
+    if (!localStorage.getItem(cookieKey)) {
+      cookieBanner.classList.add("show");
+    }
+
+    acceptCookies.addEventListener("click", function () {
+      localStorage.setItem(cookieKey, "accepted");
+      cookieBanner.classList.remove("show");
+    });
+
+    rejectCookies.addEventListener("click", function () {
+      localStorage.setItem(cookieKey, "rejected");
+      cookieBanner.classList.remove("show");
     });
   });
 </script>
