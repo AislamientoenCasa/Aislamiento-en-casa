@@ -1806,14 +1806,31 @@
       pageSectionInput.value = id;
     }
   }
+function toggleFloatingButtons(sectionId) {
+  const callBtn = document.querySelector(".call-float");
+  const waBtn = document.querySelector(".whatsapp-float");
+  const popup = document.getElementById("wa-popup");
 
-  function switchSection(id){
-    sections.forEach(section => section.classList.remove("active"));
-    const targetSection = document.getElementById(id);
-    if(targetSection) targetSection.classList.add("active");
-    setActiveMenu(id);
-    updateTopbar(id);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  if (sectionId === "contacto") {
+    if (callBtn) callBtn.style.display = "none";
+    if (waBtn) waBtn.style.display = "none";
+    if (popup) popup.style.display = "none";
+  } else {
+    if (callBtn) callBtn.style.display = "flex";
+    if (waBtn) waBtn.style.display = "flex";
+  }
+}function switchSection(id){
+  sections.forEach(section => section.classList.remove("active"));
+  const targetSection = document.getElementById(id);
+  if(targetSection) targetSection.classList.add("active");
+
+  setActiveMenu(id);
+  updateTopbar(id);
+
+  toggleFloatingButtons(id); // 👈 AQUÍ
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
   }
 function showSection(id){
 
