@@ -1999,6 +1999,7 @@ function showSection(id){
   
 
   // === ENVÍO FORMULARIO A ZAPIER (VERSIÓN FINAL FUNCIONANDO) ===
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const form = document.getElementById("formulario");
@@ -2021,32 +2022,39 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     fetch("https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/", {
-  method: "POST",
-  mode: "no-cors", // 🔥 CLAVE
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(data)
-})
-.then(() => {
-  btn.innerText = "Enviado ✅";
-  btn.disabled = true;
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(() => {
+      btn.innerText = "Enviado ✅";
+      btn.disabled = true;
 
-  const nombre = form.nombre.value;
-  const telefono = form.telefono.value;
-  const mensaje = form.mensaje.value;
-window.addEventListener("load", () => {
-  animateCounter();
+      const texto = encodeURIComponent(
+        `Hola, soy ${data.nombre}.
+Teléfono: ${data.telefono}
+Mensaje: ${data.mensaje}`
+      );
 
-  const sidebar = document.querySelector(".sidebar");
-  sidebar.classList.add("hidden");
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-  logoOverlay.classList.add("show");
+      setTimeout(() => {
+        if (isMobile) {
+          window.location.href = `https://wa.me/34670237842?text=${texto}`;
+        } else {
+          window.open(`https://web.whatsapp.com/send?phone=34670237842&text=${texto}`, "_blank");
+        }
+      }, 1200);
+    })
+    .catch(() => {
+      btn.innerText = "Error ❌";
+    });
 
-  setTimeout(() => {
-    logoOverlay.classList.remove("show");
-    sidebar.classList.remove("hidden");
-  }, 1600);
+  });
+
 });
 </script>
 
