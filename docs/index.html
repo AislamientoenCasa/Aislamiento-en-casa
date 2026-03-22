@@ -2001,14 +2001,18 @@ const data = Object.fromEntries(formData.entries());
     },
     body: JSON.stringify(data)
   })
-  .then(() => {
-  alert("✅ Solicitud enviada correctamente");
-})
-  .catch(() => {
-    alert("Error al enviar");
-  });
-});
+.then(() => {
   form.reset();
+
+  const btn = form.querySelector("button");
+  btn.innerText = "Enviado ✅";
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.innerText = "Ver si mi vivienda es viable";
+    btn.disabled = false;
+  }, 3000);
+})
 </script>
 
 </body>
