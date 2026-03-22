@@ -1989,10 +1989,9 @@ window.addEventListener("load", () => {
   document.getElementById("formulario").addEventListener("submit", function(e){
   e.preventDefault();
 
-const form = document.getElementById("formulario");
-const formData = new FormData(form);
-
-const data = Object.fromEntries(formData.entries());
+  const form = document.getElementById("formulario");
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
 
   fetch("https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/", {
     method: "POST",
@@ -2001,9 +2000,14 @@ const data = Object.fromEntries(formData.entries());
     },
     body: JSON.stringify(data)
   })
-.then(() => {
-  form.reset();
-
+  .then(() => {
+    alert("✅ Solicitud enviada correctamente");
+    form.reset();
+  })
+  .catch(() => {
+    alert("Error al enviar");
+  });
+});
   const btn = form.querySelector("button");
   btn.innerText = "Enviado ✅";
   btn.disabled = true;
