@@ -2035,33 +2035,18 @@ document.addEventListener("DOMContentLoaded", function () {
   const nombre = form.nombre.value;
   const telefono = form.telefono.value;
   const mensaje = form.mensaje.value;
+window.addEventListener("load", () => {
+  animateCounter();
 
-  const texto = encodeURIComponent(
-    `Hola, soy ${nombre}. Acabo de enviar el formulario.\nTeléfono: ${telefono}\nZona: ${mensaje}\n\nQuiero saber si mi vivienda es viable.`
-  );
+  const sidebar = document.querySelector(".sidebar");
+  sidebar.classList.add("hidden");
 
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  logoOverlay.classList.add("show");
 
   setTimeout(() => {
-    if (isMobile) {
-      // 👉 MÓVIL → abre app WhatsApp
-      window.location.href = `https://wa.me/34670237842?text=${texto}`;
-    } else {
-      // 👉 ORDENADOR → abrir WhatsApp Web
-      window.open(`https://web.whatsapp.com/send?phone=34670237842&text=${texto}`, "_blank");
-
-      // 👉 mensaje en pantalla
-      alert("Hemos abierto WhatsApp Web. Si no lo tienes configurado, revisa tu email o te llamaremos.");
-    }
-  }, 1200);
-});
-.catch((error) => {
-  console.error("ERROR:", error);
-  btn.innerText = "Error ❌";
-});
-
-  });
-
+    logoOverlay.classList.remove("show");
+    sidebar.classList.remove("hidden");
+  }, 1600);
 });
 </script>
 
