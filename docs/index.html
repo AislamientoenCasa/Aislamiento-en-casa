@@ -47,6 +47,14 @@
 
     a{color:inherit}
 
+    img{
+      transition:transform .3s ease;
+    }
+
+    img:hover{
+      transform:scale(1.02);
+    }
+
     .app{
       display:flex;
       min-height:100vh;
@@ -196,6 +204,7 @@
       padding:32px;
       box-shadow:var(--shadow);
       margin-bottom:24px;
+      backdrop-filter:blur(6px);
     }
 
     .card h2{
@@ -237,10 +246,10 @@
       text-align:left;
       padding:42px;
       background:
-        linear-gradient(90deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.90) 45%, rgba(255,255,255,0.78) 100%),
-        url("images/tejado.jpg") center/cover no-repeat;
+        linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 52%, rgba(255,255,255,0.84) 100%),
+        url("images/toiture-castilla.png") right bottom / contain no-repeat;
       border-radius:30px;
-      border:1px solid var(--line);
+      border:1px solid rgba(255,255,255,0.6);
       box-shadow:var(--shadow-strong);
       display:grid;
       grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr);
@@ -442,7 +451,9 @@
     .corp-box.light{background:linear-gradient(135deg,#eef3f5,#e1e9ee); color:#22343c}
 
     .impact-box{
-      background:linear-gradient(135deg,#f2f8f4,#ffffff);
+      background:
+        linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.96)),
+        url("images/factura.jpg") center/cover no-repeat;
       border:1px solid var(--line);
       border-radius:28px;
       padding:36px 24px;
@@ -737,7 +748,7 @@
       width:100%;
       height:320px;
       object-fit:cover;
-      object-position:right center;
+      object-position:center;
       border-radius:18px;
       border:1px solid var(--line);
       margin-top:16px;
@@ -937,7 +948,7 @@
     .logo-overlay{
       position:fixed;
       inset:0;
-      background:rgba(247,251,248,.94);
+      background:#f7fbf8;
       backdrop-filter:blur(7px);
       display:flex;
       align-items:center;
@@ -1073,8 +1084,8 @@
 
     <div class="menu-title">Navegación</div>
     <button class="menu-btn active" data-tab="inicio">Inicio</button>
-    <button class="menu-btn" data-tab="cita">Día de la cita</button>
     <button class="menu-btn" data-tab="cae">Sistema CAE</button>
+    <button class="menu-btn" data-tab="cita">Día de la cita</button>
     <button class="menu-btn" data-tab="recomendacion">Recomendación</button>
     <button class="menu-btn" data-tab="contacto">Contacto</button>
 
@@ -1095,31 +1106,89 @@
       <section class="card hero">
         <div class="hero-copy">
           <div class="badge">Castilla y León · Asturias</div>
-          <h2>Aislamiento de <span>cubiertas</span></h2>
+          <h2>Aísla tu vivienda <br><span>sin pagar la obra</span></h2>
           <p class="hero-sub">
-            Mejora la eficiencia energética de tu vivienda sin inversión inicial, según viabilidad técnica dentro del sistema CAE.
+            Actuamos directamente sobre la cubierta, uno de los principales puntos de pérdida energética de la vivienda.
           </p>
           <p class="hero-strong">
-            Ahorro desde el primer mes · Evaluación gratuita · Proceso gestionado
+            Evaluación gratuita · Ahorro desde el primer mes
           </p>
           <p class="hero-note">
             Te indicamos si la actuación es viable y gestionamos el proceso técnico, documental y energético.
           </p>
 
           <div class="btn-row">
-            <a href="#" class="btn btn-main" data-goto="contacto">Comprobar viabilidad</a>
+            <a href="#" class="btn btn-main" data-goto="contacto">Comprobar si puedo aislar sin pagar</a>
             <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" class="btn btn-wa" target="_blank" rel="noopener">Contacto por WhatsApp</a>
-            <a href="#" class="btn btn-outline" data-goto="cita">Ver proceso de cita</a>
+            <a href="#" class="btn btn-outline" data-goto="cae">Ver cómo funciona el sistema CAE</a>
           </div>
         </div>
 
         <div class="hero-panel">
-          <span class="hero-panel-label">Modelo de actuación</span>
-          <strong>Intervención técnica con ahorro energético verificable</strong>
+          <span class="hero-panel-label">Aislamiento de cubierta</span>
+          <strong>Intervención técnica sobre el punto clave de pérdida energética</strong>
           <p>
             Reducimos pérdidas térmicas en cubierta y convertimos el ahorro energético en financiación de la actuación, siempre según viabilidad.
           </p>
         </div>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">¿Tu vivienda pierde calor por el tejado?</h2>
+
+        <p style="text-align:center; max-width:760px; margin:0 auto 24px; color:var(--muted);">
+          En muchas viviendas, una parte importante de la pérdida energética se produce por la cubierta. Si notas alguna de estas situaciones, puede haber fuga térmica por esa zona.
+        </p>
+
+        <div class="grid-3">
+          <div class="feature">
+            <h3>La casa se enfría rápido</h3>
+            <p>Cuando apagas la calefacción, la temperatura interior cae antes de lo normal.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Necesitas más calefacción</h3>
+            <p>Tu vivienda requiere más energía para mantener una sensación de confort estable.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Diferencias entre plantas</h3>
+            <p>La parte superior de la vivienda pierde temperatura o se comporta de forma irregular.</p>
+          </div>
+        </div>
+
+        <p style="text-align:center; margin-top:22px; font-weight:800; color:var(--primary);">
+          Probablemente estás perdiendo energía por la cubierta
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Actuamos sobre la cubierta</h2>
+
+        <p style="text-align:center; max-width:700px; margin:0 auto; color:var(--muted);">
+          La cubierta es uno de los principales puntos de pérdida energética de una vivienda. Intervenimos directamente sobre ella para reducir esas pérdidas y mejorar el comportamiento térmico global.
+        </p>
+
+        <div class="grid-3" style="margin-top:20px;">
+          <div class="feature">
+            <h3>Menos pérdidas de calor</h3>
+            <p>Reducimos la fuga térmica por la parte superior de la vivienda.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Mejor comportamiento térmico</h3>
+            <p>La vivienda mantiene mejor la temperatura interior durante más tiempo.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Menor consumo energético</h3>
+            <p>Disminuye la necesidad de calefacción y climatización para lograr confort.</p>
+          </div>
+        </div>
+
+        <p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);">
+          Actuación directa sobre el punto clave de pérdida energética
+        </p>
       </section>
 
       <section class="card corporate-section">
@@ -1139,7 +1208,7 @@
           </div>
           <div class="corp-box dark">
             <h3>Mayor confort</h3>
-            <p>Mejora térmica inmediata en la vivienda, con menos pérdidas de calor.</p>
+            <p>Mejora térmica inmediata en la vivienda, con menos pérdidas de calor por cubierta.</p>
           </div>
           <div class="corp-box light">
             <h3>Revalorización</h3>
@@ -1156,6 +1225,10 @@
 
         <p class="impact-sub">
           Aislar tu vivienda es una de las formas más directas de reducir tu factura energética y mejorar el comportamiento térmico de la cubierta.
+        </p>
+
+        <p style="text-align:center; font-size:15px; margin-top:10px;">
+          En muchos casos, el ahorro anual supera una parte importante de la energía que se pierde por cubierta.
         </p>
 
         <div class="impact-grid">
@@ -1180,9 +1253,8 @@
         <p style="font-size:14px; color:var(--muted);">
           Sin cambiar tu forma de vivir ni asumir reformas complejas
         </p>
-      </section>
-
-      <section class="card">
+      </section> 
+            <section class="card">
         <h2 style="text-align:center;">Resultado real en vivienda</h2>
         <p style="text-align:center; color:var(--muted); max-width:720px; margin:0 auto;">
           Intervención rápida con impacto directo en consumo y confort térmico.
@@ -1203,127 +1275,102 @@
           <input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
         </div>
       </section>
-    </section>
 
-    <!-- CITA -->
-    <section id="cita" class="section">
       <section class="card">
-        <h2>El día de la cita</h2>
-        <p class="section-intro">
-          Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
+        <h2 style="text-align:center;">Cómo realizamos la obra</h2>
+
+        <p style="text-align:center; max-width:700px; margin:0 auto; color:var(--muted);">
+          Utilizamos equipos profesionales de insuflado que permiten realizar la intervención de forma rápida, limpia y sin obras complejas.
         </p>
 
-        <p id="type-message" style="text-align:center; font-weight:700; color:var(--primary); margin-bottom:15px;">
-          Selecciona el tipo de inmueble para ver el proceso
+        <img src="images/camion.jpg" alt="Camión de insuflado" class="single-photo" />
+
+        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:16px;">
+          Intervención en pocas horas · Sin molestias · Resultado inmediato
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Impacto en tu vivienda</h2>
+
+        <div class="compare-graph">
+          <div class="graph-box before">
+            <h3>Antes</h3>
+            <div class="bar"></div>
+            <p>Consumo elevado</p>
+          </div>
+
+          <div class="arrow" aria-hidden="true"></div>
+
+          <div class="graph-box after-graph">
+            <h3>Después</h3>
+            <div class="bar"></div>
+            <p>Mayor eficiencia</p>
+          </div>
+        </div>
+
+        <p style="text-align:center; margin-top:20px; color:var(--primary); font-weight:700;">
+          Menos consumo · Más confort · Mayor valor
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Tipo de aislamiento</h2>
+
+        <p style="text-align:center; max-width:700px; margin:0 auto 20px; color:var(--muted);">
+          La solución se adapta al tipo de cubierta y al uso del espacio bajo cubierta.
         </p>
 
-        <div class="type-switch">
-          <button class="type-btn" data-type="uni">Vivienda unifamiliar</button>
-          <button class="type-btn" data-type="com">Comunidad de propietarios</button>
-          <button class="type-btn" data-type="emp">Edificio terciario</button>
-        </div>
-
-        <div id="tipo-uni" class="type-box">
-          <div class="timeline">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <h3>Revisión completa de la vivienda</h3>
-                <p>Inspección completa de la vivienda, la cubierta y sus condiciones reales para validar la actuación.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <h3>Fotos y medidas</h3>
-                <p>Se documenta fachada, puertas, ventanas, sistema de calefacción, agua caliente y cubierta antes de la obra.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <h3>Intervención</h3>
-                <p>Una vez validado todo, empieza la obra. En muchos casos puede completarse en pocas horas.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">4</div>
-              <div>
-                <h3>Fotos finales y documentación</h3>
-                <p>Se realizan fotos finales y se firma la documentación, incluido el acuerdo de cesión del ahorro.</p>
-              </div>
-            </div>
+        <div class="grid-2">
+          <div class="feature">
+            <h3>Insuflado (desván no habitable)</h3>
+            <ul>
+              <li>Aplicación rápida en pocas horas</li>
+              <li>Sin obras complejas</li>
+              <li>Alta eficiencia térmica</li>
+              <li>Ideal para espacios no transitables</li>
+            </ul>
           </div>
 
-          <div class="card soft-card" style="margin-top:18px;">
-            <h3>Qué necesitas</h3>
-            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
-            <p>Nos encargamos de todo el proceso técnico, administrativo y energético.</p>
+          <div class="feature">
+            <h3>Manta / rollo (desván habitable)</h3>
+            <ul>
+              <li>Adaptado a espacios transitables</li>
+              <li>Instalación controlada</li>
+              <li>Buen comportamiento térmico</li>
+              <li>Solución duradera</li>
+            </ul>
           </div>
         </div>
 
-        <div id="tipo-com" class="type-box">
-          <div class="timeline">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <h3>Revisión completa del edificio</h3>
-                <p>Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para validar la actuación y preparar el expediente técnico.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <h3>Fotos, medidas y documentación</h3>
-                <p>Se recopila la información del edificio, se documenta el estado previo y se prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <h3>Documentación específica</h3>
-                <ul>
-                  <li>NIF de la comunidad</li>
-                  <li>Certificado digital FNMT</li>
-                  <li>Acta de elección o nombramiento del presidente</li>
-                  <li>Junta de acuerdo para la obra</li>
-                </ul>
-              </div>
-            </div>
+        <p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);">
+          Siempre aplicamos la solución más adecuada según la cubierta de tu vivienda
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Obra profesional y cuidada</h2>
+
+        <div class="grid-3">
+          <div class="feature">
+            <h3>Especialistas en cubierta</h3>
+            <p>Intervenimos específicamente en aislamiento de cubiertas con técnicas adaptadas a cada vivienda.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Obra limpia</h3>
+            <p>Trabajamos de forma ordenada y sin reformas complejas ni molestias innecesarias.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Resultado real</h3>
+            <p>Mejora real en consumo, confort y eficiencia energética desde el primer mes.</p>
           </div>
         </div>
 
-        <div id="tipo-emp" class="type-box">
-          <div class="timeline">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div>
-                <h3>Revisión completa del edificio</h3>
-                <p>Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas para validar la actuación y adaptar la solución al edificio terciario.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <div>
-                <h3>Fotos, medidas y documentación</h3>
-                <p>Se documenta técnicamente el estado del edificio y se recopilan los datos necesarios para la tramitación energética y administrativa.</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <div>
-                <h3>Documentación específica</h3>
-                <ul>
-                  <li>NIF de la sociedad</li>
-                  <li>Certificado del Registro Mercantil</li>
-                  <li>Nota simple</li>
-                  <li>Certificado digital FNMT</li>
-                  <li>Documentación de consumos eléctricos</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);">
+          Intervención rápida, limpia y controlada
+        </p>
       </section>
     </section>
 
@@ -1356,18 +1403,565 @@
             <p>Financia la obra</p>
           </div>
         </div>
+
+        <div class="photo-grid" style="margin-top:20px;">
+          <img src="images/arquitecto.jpg" alt="Revisión técnica de cubierta" />
+          <img src="images/planning.jpg" alt="Planificación técnica y energética" />
+        </div>
+      </section>
+
+      <section class="card soft-card">
+        <h2 style="text-align:center;">Qué implica para ti</h2>
+
+        <div class="grid-3" style="margin-top:20px;">
+          <div class="feature">
+            <h3>No pagas la obra</h3>
+            <p>El coste se cubre con el ahorro energético generado, siempre según viabilidad.</p>
+          </div>
+
+          <div class="feature">
+            <h3>No asumes gestiones</h3>
+            <p>La actuación solo se realiza si cumple criterios técnicos y energéticos y nosotros coordinamos el proceso.</p>
+          </div>
+
+          <div class="feature">
+            <h3>Sistema regulado</h3>
+            <p>El sistema CAE está supervisado por el Ministerio para la Transición Ecológica.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Así se paga la obra</h2>
+
+        <div class="grid-3">
+          <div class="feature">
+            <h3>1. Aislamos la cubierta</h3>
+            <p>Reducimos pérdidas energéticas actuando sobre la parte superior de la vivienda.</p>
+          </div>
+
+          <div class="feature">
+            <h3>2. Se genera ahorro</h3>
+            <p>Ese ahorro se mide, se documenta y se certifica técnicamente.</p>
+          </div>
+
+          <div class="feature">
+            <h3>3. El ahorro financia la actuación</h3>
+            <p>El sistema CAE transforma ese ahorro en financiación de la obra.</p>
+          </div>
+        </div>
+
+        <p style="text-align:center; font-weight:900; color:var(--primary); margin-top:20px;">
+          Tú mejoras tu vivienda sin asumir el coste de la obra
+        </p>
       </section>
 
       <section class="card">
         <h2>Cesión del ahorro y financiación de la obra</h2>
+
         <p>
           Dentro del sistema CAE, el propietario cede el ahorro energético generado por la actuación a una empresa del sector energético como <strong>contraprestación económica</strong>.
         </p>
+
         <p style="font-weight:700; color:var(--primary);">
           Esa contraprestación se materializa en forma de obra totalmente financiada, siempre según viabilidad técnica y energética.
         </p>
+
         <p>
-          Nosotros trabajamos con un <strong>sujeto delegado acreditado por el MITECO</strong> que gestiona el expediente y la tramitación necesaria.
+          Los distribuidores de combustible, gasóleo doméstico, gas o electricidad, conocidos como los <strong>sujetos obligados</strong>, participan en la financiación de actuaciones de eficiencia energética, permitiendo transformar el ahorro generado en apoyo económico para la obra.
+        </p>
+
+        <p>
+          Nosotros trabajamos con un <strong>sujeto delegado acreditado</strong> que gestiona el expediente y la tramitación necesaria.
+        </p>
+
+        <img src="images/ministerio.jpg" alt="Ministerio para la Transición Ecológica" class="single-photo" />
+
+        <p style="text-align:center; font-size:13px; color:var(--muted);">
+          Sistema regulado por el Ministerio para la Transición Ecológica y el Reto Demográfico
+        </p>
+
+        <p style="margin-top:10px;">
+          <a href="https://www.miteco.gob.es/es/energia/eficiencia/cae.html" target="_blank" rel="noopener" style="color:var(--primary); font-weight:700;">
+            Ver información oficial del MITECO
+          </a>
+        </p>
+   </section>         <section class="card">
+        <h2>Trámite CEE y CAE</h2>
+
+        <p>
+          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado y reflejar la mejora de la vivienda.
+        </p>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Documentación de la actuación</h3>
+              <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Certificado de eficiencia energética (CEE)</h3>
+              <p>Tras la actuación, la vivienda puede solicitar la actualización del certificado energético para reflejar la mejora conseguida.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Gestión completa del CAE</h3>
+
+              <p style="font-weight:700; color:var(--primary);">
+                Nos encargamos de todo el proceso técnico, administrativo y energético.
+              </p>
+
+              <p>
+                Desde la documentación inicial, la certificación del ahorro energético y la validación, hasta el cierre del expediente correspondiente.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card soft-card" style="text-align:center; margin-top:20px;">
+          <h3>Mejora de la calificación energética</h3>
+
+          <p style="max-width:700px; margin:0 auto 15px;">
+            Tras la intervención, la vivienda mejora su comportamiento energético, reduciendo su consumo y aumentando su valor en el mercado.
+          </p>
+
+          <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
+            Mejora real reflejada en el rendimiento energético de la vivienda
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Quién está detrás</h2>
+
+        <p style="text-align:center; max-width:700px; margin:0 auto;">
+          Trabajamos con un sujeto delegado acreditado, encargado de validar y gestionar el ahorro energético asociado a la actuación.
+        </p>
+
+        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:12px;">
+          Sistema oficial regulado en España
+        </p>
+      </section>
+    </section>
+
+    <!-- CITA -->
+    <section id="cita" class="section">
+      <section class="card">
+        <h2>El día de la cita</h2>
+        <p class="section-intro">
+          Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
+        </p>
+
+        <p id="type-message" style="text-align:center; font-weight:700; color:var(--primary); margin-bottom:15px;">
+          Selecciona el tipo de inmueble para ver el proceso
+        </p>
+
+        <div class="type-switch">
+          <button class="type-btn" data-type="uni">Vivienda unifamiliar</button>
+          <button class="type-btn" data-type="com">Comunidad de propietarios</button>
+          <button class="type-btn" data-type="emp">Edificio terciario</button>
+        </div>
+
+        <div id="tipo-uni" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Revisión completa de la vivienda</h3>
+                <p>Inspección completa de la vivienda, la cubierta y sus condiciones reales para validar la actuación.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos y medidas</h3>
+                <p>Se documenta la vivienda y la cubierta antes de la obra para preparar correctamente el expediente técnico.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Intervención</h3>
+                <p>Una vez validado todo, se realiza la actuación sobre la cubierta. En muchos casos puede completarse en pocas horas.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">4</div>
+              <div>
+                <h3>Fotos finales y documentación</h3>
+                <p>Se realizan fotos finales y se firma la documentación vinculada a la actuación y a la cesión del ahorro.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Qué necesitas</h3>
+            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
+            <p>Nos encargamos de todo el proceso técnico, administrativo y energético.</p>
+          </div>
+        </div>
+
+        <div id="tipo-com" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Revisión completa del edificio</h3>
+                <p>Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para validar la actuación y preparar el expediente técnico.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos, medidas y documentación</h3>
+                <p>Se recopila la información del edificio, se documenta el estado previo y se prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Documentación específica</h3>
+                <ul>
+                  <li>NIF de la comunidad</li>
+                  <li>Certificado digital FNMT</li>
+                  <li>Acta de elección o nombramiento del presidente</li>
+                  <li>Junta de acuerdo para la obra</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Nos encargamos del proceso</h3>
+            <p>Guiamos toda la parte documental para que la comunidad tenga todo correctamente preparado.</p>
+          </div>
+        </div>
+
+        <div id="tipo-emp" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Revisión completa del edificio</h3>
+                <p>Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas para validar la actuación y adaptar la solución al edificio terciario.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos, medidas y documentación</h3>
+                <p>Se documenta técnicamente el estado del edificio y se recopilan los datos necesarios para la tramitación energética y administrativa.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Documentación específica</h3>
+                <ul>
+                  <li>NIF de la sociedad</li>
+                  <li>Certificado del Registro Mercantil</li>
+                  <li>Nota simple</li>
+                  <li>Certificado digital FNMT</li>
+                  <li>Documentación de consumos eléctricos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Edificio terciario</h3>
+            <p>Adaptamos el expediente técnico y documental a la estructura de la sociedad o empresa.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Día de la cita: trabajo real</h2>
+
+        <p>
+          Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
+        </p>
+
+        <img src="images/camion.jpg" alt="Camión de insuflado en la cita técnica" class="single-photo" />
+
+        <p class="form-note" style="margin-top:14px;">
+          Obra de calidad, ejecución rápida y proceso completamente documentado.
+        </p>
+      </section>
+    </section>
+
+    <!-- RECOMENDACION -->
+    <section id="recomendacion" class="section">
+      <section class="card reward-wrap">
+        <h2 style="text-align:center;">Recomendación</h2>
+
+        <p style="text-align:center; max-width:650px; margin:0 auto 20px;">
+          Si conoces a otras personas interesadas, puedes obtener un bono tras la intervención finalizada y validada.
+        </p>
+
+        <div class="reward-grid">
+          <div class="reward-box">
+            <strong>30€</strong>
+            <span>2 clientes con obra realizada</span>
+          </div>
+          <div class="reward-box">
+            <strong>100€</strong>
+            <span>5 clientes con obra realizada</span>
+          </div>
+        </div>
+
+        <p style="text-align:center; font-size:14px; color:var(--muted); margin-top:18px;">
+          Los bonos se entregan en tarjeta regalo / ticket de Amazon o El Corte Inglés, tras validación final.
+        </p>
+
+        <form id="formRecomendacion" style="margin-top:24px;">
+          <input type="hidden" name="tipo_formulario" value="recomendacion" />
+
+          <input class="field" type="text" name="recomienda_nombre" placeholder="Tu nombre" required />
+          <input class="field" type="tel" name="recomienda_telefono" placeholder="Tu teléfono" required />
+          <input class="field" type="text" name="referido_nombre" placeholder="Nombre del recomendado" required />
+          <input class="field" type="tel" name="referido_telefono" placeholder="Teléfono del recomendado" required />
+
+          <button class="btn btn-main" type="submit">Enviar recomendación</button>
+
+          <div class="success-note" id="recSuccess">Recomendación enviada correctamente ✅</div>
+          <div class="error-note" id="recError">Ha habido un error al enviar ❌</div>
+        </form>
+
+        <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px;">
+          El cliente recomendado debe registrarse indicando el código o teléfono del recomendador.
+        </p>
+      </section>
+          <section class="card">
+        <h2>Trámite CEE y CAE</h2>
+
+        <p>
+          Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético generado y reflejar la mejora de la vivienda.
+        </p>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Documentación de la actuación</h3>
+              <p>Se recopilan fotos de antes y después, mediciones, firma del cliente y documentación técnica de la intervención.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Certificado de eficiencia energética (CEE)</h3>
+              <p>Tras la actuación, la vivienda puede solicitar la actualización del certificado energético para reflejar la mejora conseguida.</p>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>Gestión completa del CAE</h3>
+
+              <p style="font-weight:700; color:var(--primary);">
+                Nos encargamos de todo el proceso técnico, administrativo y energético.
+              </p>
+
+              <p>
+                Desde la documentación inicial, la certificación del ahorro energético y la validación, hasta el cierre del expediente correspondiente.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card soft-card" style="text-align:center; margin-top:20px;">
+          <h3>Mejora de la calificación energética</h3>
+
+          <p style="max-width:700px; margin:0 auto 15px;">
+            Tras la intervención, la vivienda mejora su comportamiento energético, reduciendo su consumo y aumentando su valor en el mercado.
+          </p>
+
+          <p style="font-weight:800; color:var(--primary); font-size:1.2rem;">
+            Mejora real reflejada en el rendimiento energético de la vivienda
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 style="text-align:center;">Quién está detrás</h2>
+
+        <p style="text-align:center; max-width:700px; margin:0 auto;">
+          Trabajamos con un sujeto delegado acreditado, encargado de validar y gestionar el ahorro energético asociado a la actuación.
+        </p>
+
+        <p style="text-align:center; font-weight:700; color:var(--primary); margin-top:12px;">
+          Sistema oficial regulado en España
+        </p>
+      </section>
+    </section>
+
+    <!-- CITA -->
+    <section id="cita" class="section">
+      <section class="card">
+        <h2>El día de la cita</h2>
+        <p class="section-intro">
+          Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
+        </p>
+
+        <p id="type-message" style="text-align:center; font-weight:700; color:var(--primary); margin-bottom:15px;">
+          Selecciona el tipo de inmueble para ver el proceso
+        </p>
+
+        <div class="type-switch">
+          <button class="type-btn" data-type="uni">Vivienda unifamiliar</button>
+          <button class="type-btn" data-type="com">Comunidad de propietarios</button>
+          <button class="type-btn" data-type="emp">Edificio terciario</button>
+        </div>
+
+        <div id="tipo-uni" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Revisión completa de la vivienda</h3>
+                <p>Inspección completa de la vivienda, la cubierta y sus condiciones reales para validar la actuación.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos y medidas</h3>
+                <p>Se documenta la vivienda y la cubierta antes de la obra para preparar correctamente el expediente técnico.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Intervención</h3>
+                <p>Una vez validado todo, se realiza la actuación sobre la cubierta. En muchos casos puede completarse en pocas horas.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">4</div>
+              <div>
+                <h3>Fotos finales y documentación</h3>
+                <p>Se realizan fotos finales y se firma la documentación vinculada a la actuación y a la cesión del ahorro.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Qué necesitas</h3>
+            <p style="font-weight:700; color:var(--primary); margin-bottom:8px;">Solo tu DNI</p>
+            <p>Nos encargamos de todo el proceso técnico, administrativo y energético.</p>
+          </div>
+        </div>
+
+        <div id="tipo-com" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Revisión completa del edificio</h3>
+                <p>Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para validar la actuación y preparar el expediente técnico.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos, medidas y documentación</h3>
+                <p>Se recopila la información del edificio, se documenta el estado previo y se prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Documentación específica</h3>
+                <ul>
+                  <li>NIF de la comunidad</li>
+                  <li>Certificado digital FNMT</li>
+                  <li>Acta de elección o nombramiento del presidente</li>
+                  <li>Junta de acuerdo para la obra</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Nos encargamos del proceso</h3>
+            <p>Guiamos toda la parte documental para que la comunidad tenga todo correctamente preparado.</p>
+          </div>
+        </div>
+
+        <div id="tipo-emp" class="type-box">
+          <div class="timeline">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <h3>Revisión completa del edificio</h3>
+                <p>Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas para validar la actuación y adaptar la solución al edificio terciario.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <h3>Fotos, medidas y documentación</h3>
+                <p>Se documenta técnicamente el estado del edificio y se recopilan los datos necesarios para la tramitación energética y administrativa.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <h3>Documentación específica</h3>
+                <ul>
+                  <li>NIF de la sociedad</li>
+                  <li>Certificado del Registro Mercantil</li>
+                  <li>Nota simple</li>
+                  <li>Certificado digital FNMT</li>
+                  <li>Documentación de consumos eléctricos</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card soft-card" style="margin-top:18px;">
+            <h3>Edificio terciario</h3>
+            <p>Adaptamos el expediente técnico y documental a la estructura de la sociedad o empresa.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Día de la cita: trabajo real</h2>
+
+        <p>
+          Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
+        </p>
+
+        <img src="images/camion.jpg" alt="Camión de insuflado en la cita técnica" class="single-photo" />
+
+        <p class="form-note" style="margin-top:14px;">
+          Obra de calidad, ejecución rápida y proceso completamente documentado.
         </p>
       </section>
     </section>
@@ -1415,8 +2009,7 @@
         </p>
       </section>
     </section>
-
-    <!-- CONTACTO -->
+        <!-- CONTACTO -->
     <section id="contacto" class="section">
       <section class="card">
         <h2 style="text-align:center;">Comprueba la viabilidad de tu vivienda</h2>
@@ -1426,7 +2019,7 @@
         </p>
 
         <p class="form-note">
-          Solo necesitamos unos datos básicos para evaluar tu vivienda.
+          Solo necesitamos unos datos básicos para evaluar tu vivienda y su cubierta.
         </p>
 
         <form id="formulario">
@@ -1448,11 +2041,15 @@
             <span>He leído y acepto la <a href="privacidad.html" target="_blank">Política de Privacidad</a>.</span>
           </label>
 
-          <button class="btn btn-main" type="submit">Ver si mi vivienda es viable</button>
+          <button class="btn btn-main" type="submit">Comprobar si puedo aislar sin pagar</button>
 
           <div class="success-note" id="contactoSuccess">Formulario enviado correctamente ✅</div>
           <div class="error-note" id="contactoError">Ha habido un error al enviar ❌</div>
         </form>
+
+        <p style="text-align:center; font-size:13px; color:var(--muted); margin-top:12px;">
+          Te llamamos en menos de 24h · Sin compromiso
+        </p>
       </section>
     </section>
 
@@ -1464,7 +2061,7 @@
         <p style="font-weight:700; margin-bottom:8px;">Síguenos</p>
 
         <div class="social-row">
-          <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" class="social-btn">
+          <a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" rel="noopener" class="social-btn">
             Facebook
           </a>
         </div>
@@ -1488,7 +2085,7 @@
 
 <div id="wa-popup" class="wa-popup">
   ¿Quieres saber si tu vivienda es viable?<br />
-  <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" target="_blank">Hablar por WhatsApp</a>
+  <a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta" target="_blank" rel="noopener">Hablar por WhatsApp</a>
 </div>
 
 <script>
@@ -1499,13 +2096,13 @@
       title: "Inicio",
       subtitle: "Aislamiento de cubiertas sin inversión inicial, según viabilidad técnica."
     },
-    cita: {
-      title: "Día de la cita",
-      subtitle: "Proceso de revisión técnica, documentación, intervención y firma."
-    },
     cae: {
       title: "Sistema CAE",
       subtitle: "Cómo se genera el ahorro y cómo se transforma en financiación de la obra."
+    },
+    cita: {
+      title: "Día de la cita",
+      subtitle: "Proceso de revisión técnica, documentación, intervención y firma."
     },
     recomendacion: {
       title: "Recomendación",
@@ -1526,7 +2123,7 @@
 
   function setActiveMenu(id){
     menuButtons.forEach(btn => btn.classList.remove("active"));
-    const targetBtn = document.querySelector(`.menu-btn[data-tab="${id}"]`);
+    const targetBtn = document.querySelector('.menu-btn[data-tab="' + id + '"]');
     if(targetBtn) targetBtn.classList.add("active");
   }
 
@@ -1577,7 +2174,7 @@
     void logoOverlay.offsetWidth;
 
     if (bombilla) bombilla.style.animation = "";
-    texto.forEach(el => el.style.animation = "");
+    texto.forEach(el => el.style.animation = "";
 
     logoOverlay.classList.add("show");
 
@@ -1603,6 +2200,7 @@
 
   let count = 0;
   const target = 46;
+
   function animateCounter(){
     const counter = document.getElementById("counter");
     if (!counter) return;
@@ -1662,8 +2260,12 @@
     typeBoxes.forEach(box => box.classList.remove("active"));
     const typeMessage = document.getElementById("type-message");
     if(typeMessage) typeMessage.style.display = "none";
-    document.querySelector(`.type-btn[data-type="${type}"]`)?.classList.add("active");
-    document.getElementById("tipo-" + type)?.classList.add("active");
+
+    const activeBtn = document.querySelector('.type-btn[data-type="' + type + '"]');
+    const activeBox = document.getElementById("tipo-" + type);
+
+    if(activeBtn) activeBtn.classList.add("active");
+    if(activeBox) activeBox.classList.add("active");
   }
 
   typeButtons.forEach(btn => {
@@ -1711,11 +2313,11 @@
   if (waBtn) {
     waBtn.addEventListener("click", function(){
       const data = getFormData();
-      let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\n";
-      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\n";
-      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\n";
-      if(data.material) mensaje += "Cubierta: " + data.material + "\n";
-      mensaje += "\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
+      let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\\n";
+      if(data.nombre) mensaje += "Nombre: " + data.nombre + "\\n";
+      if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\\n";
+      if(data.material) mensaje += "Cubierta: " + data.material + "\\n";
+      mensaje += "\\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
       this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
     });
   }
@@ -1741,7 +2343,6 @@
     return response;
   }
 
-  // FORMULARIO CONTACTO
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("formulario");
     const success = document.getElementById("contactoSuccess");
@@ -1787,7 +2388,6 @@
     });
   });
 
-  // FORMULARIO RECOMENDACION
   document.addEventListener("DOMContentLoaded", function () {
     const formRec = document.getElementById("formRecomendacion");
     const success = document.getElementById("recSuccess");
