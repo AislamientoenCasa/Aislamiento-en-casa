@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aislamiento en Casa</title>
+
+<style>
+body{font-family:Arial;margin:0;background:#f5f5f5;}
+#btnEditarAdmin{
+display:none;
+position:fixed;
+bottom:20px;
+left:20px;
+background:#12354a;
+color:#fff;
+padding:12px 16px;
+border:none;
+border-radius:8px;
+z-index:9999;
+cursor:pointer;
+}
+#panelAdmin{
+display:none;
+position:fixed;
+top:0;
+right:0;
+width:320px;
+height:100%;
+background:#fff;
+box-shadow:-2px 0 10px rgba(0,0,0,0.2);
+padding:20px;
+z-index:10000;
+overflow:auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="tituloHero">AÍSLA TU VIVIENDA</h1>
+<p id="textoHero">Sin pagar la obra</p>
+
+<button id="btnEditarAdmin">Editar web</button>
+
+<div id="panelAdmin">
+<h3>Editor</h3>
+
+<label>Título</label>
+<input id="inputTitulo" style="width:100%;margin-bottom:10px;">
+
+<label>Texto</label>
+<textarea id="inputTexto" style="width:100%;margin-bottom:10px;"></textarea>
+
+<button onclick="guardar()">Guardar</button>
+<button onclick="cerrar()">Cerrar</button>
+</div>
+
+<script>
+// ADMIN DETECCIÓN
+const params = new URLSearchParams(window.location.search);
+const isAdmin = params.get("admin") === "MANCAE2025";
+
+if(isAdmin){
+ document.getElementById("btnEditarAdmin").style.display = "block";
+}
+
+// ABRIR PANEL
+document.getElementById("btnEditarAdmin").onclick = () =>{
+ document.getElementById("panelAdmin").style.display = "block";
+ document.getElementById("inputTitulo").value = document.getElementById("tituloHero").innerText;
+ document.getElementById("inputTexto").value = document.getElementById("textoHero").innerText;
+};
+
+// GUARDAR
+function guardar(){
+ document.getElementById("tituloHero").innerText = document.getElementById("inputTitulo").value;
+ document.getElementById("textoHero").innerText = document.getElementById("inputTexto").value;
+ localStorage.setItem("titulo", document.getElementById("inputTitulo").value);
+ localStorage.setItem("texto", document.getElementById("inputTexto").value);
+}
+
+// CARGAR
+window.onload = () =>{
+ if(localStorage.getItem("titulo")){
+  document.getElementById("tituloHero").innerText = localStorage.getItem("titulo");
+ }
+ if(localStorage.getItem("texto")){
+  document.getElementById("textoHero").innerText = localStorage.getItem("texto");
+ }
+};
+
+// CERRAR
+function cerrar(){
+ document.getElementById("panelAdmin").style.display = "none";
+}
+</script>
+
+</body>
+</html>
