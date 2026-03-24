@@ -1,0 +1,3768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aislamiento en Casa | Plataforma</title>
+<meta name="description" content="Aislamiento de cubiertas en Castilla y León, Asturias y Galicia. Reduce tu factura
+energética y mejora el confort de tu vivienda sin inversión inicial, según viabilidad técnica." />
+<meta name="theme-color" content="#2f7d57" />
+<link rel="icon" type="image/png" href="images/favicon.png" / data-admin-key="auto_1">
+<style>
+:root{
+--primary:#2f7d57;
+--primary-dark:#1e5239;
+--secondary:#12354a;
+--secondary-soft:#1e5670;
+--dark:#183028;
+--muted:#5f7a70;
+--bg:#f4f8f5;
+--bg-soft:#edf3ef;
+--card:#ffffff;
+--line:#d7e4db;
+--line-strong:#c8dacf;
+--shadow:0 18px 48px rgba(16,38,28,0.08);
+--shadow-strong:0 22px 60px rgba(16,38,28,0.14);
+--whatsapp:#25d366;
+--soft-green:#eff7f2;
+--soft-border:#cfe2d5;
+--danger:#d64545;
+--footer:#14241d;
+--radius-xl:28px;
+--radius-lg:22px;
+--radius-md:16px;
+--radius-sm:12px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+font-family:Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+background:linear-gradient(180deg,#f7faf8 0%, #eef4f0 100%);
+color:var(--dark);
+line-height:1.6;
+}
+a{color:inherit}
+img{
+transition:transform .3s ease;
+}
+img:hover{
+transform:scale(1.02);
+}
+.app{
+display:flex;
+min-height:100vh;
+}
+.sidebar{
+width:280px;
+background:rgba(255,255,255,0.94);
+border-right:1px solid var(--line);
+padding:24px 20px;
+position:fixed;
+top:0;
+left:0;
+bottom:0;
+overflow:auto;
+z-index:1100;
+backdrop-filter:blur(14px);
+opacity:1;
+transition:opacity .5s ease;
+}
+.sidebar.hidden{
+opacity:0;
+pointer-events:none;
+
+}
+.sidebar .logo{
+margin-bottom:24px;
+text-align:center;
+padding:16px 10px 20px;
+border-bottom:1px solid var(--line);
+}
+.sidebar .logo img{
+max-width:100%;
+max-height:112px;
+width:auto;
+display:block;
+margin:0 auto;
+transition:transform .3s ease, opacity .3s ease;
+}
+.menu-title{
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.14em;
+color:var(--muted);
+margin:22px 0 12px;
+font-weight:800;
+}
+.menu-btn{
+width:100%;
+border:1px solid transparent;
+background:none;
+padding:14px 15px;
+text-align:left;
+font:inherit;
+font-weight:700;
+color:var(--dark);
+cursor:pointer;
+border-radius:16px;
+transition:.25s ease;
+margin-bottom:8px;
+display:flex;
+align-items:center;
+gap:12px;
+}
+.menu-btn::before{
+content:'';
+width:10px;
+height:10px;
+border-radius:50%;
+background:#dce9e0;
+flex:0 0 auto;
+transition:.25s ease;
+}
+.menu-btn:hover,
+.menu-btn.active{
+background:#f4faf6;
+color:var(--primary);
+border-color:#ddebe1;
+}
+.menu-btn.active::before,
+.menu-btn:hover::before{
+background:var(--primary);
+box-shadow:0 0 0 5px rgba(47,125,87,0.12);
+}
+.sidebar-note{
+margin-top:20px;
+padding:16px;
+border:1px solid var(--line);
+border-radius:18px;
+background:linear-gradient(180deg,#f7fbf8,#f0f6f2);
+color:var(--muted);
+font-size:14px;
+}
+.sidebar-note strong{
+display:block;
+color:var(--dark);
+margin-bottom:6px;
+text-transform:uppercase;
+font-size:12px;
+letter-spacing:.08em;
+
+}
+.content{
+margin-left:280px;
+width:calc(100% - 280px);
+padding:30px;
+}
+.topbar{
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
+border:1px solid var(--line);
+border-radius:24px;
+padding:20px 24px;
+margin-bottom:24px;
+box-shadow:var(--shadow);
+}
+.topbar h1{
+margin:0;
+font-size:1.55rem;
+text-transform:uppercase;
+letter-spacing:.03em;
+}
+.topbar p{
+margin:6px 0 0;
+color:var(--muted);
+}
+.section{display:none}
+.section.active{display:block}
+.card{
+background:var(--card);
+border:1px solid var(--line);
+border-radius:var(--radius-xl);
+padding:32px;
+box-shadow:var(--shadow);
+margin-bottom:24px;
+backdrop-filter:blur(6px);
+}
+.card h2{
+margin-top:0;
+margin-bottom:12px;
+font-size:1.75rem;
+text-transform:uppercase;
+letter-spacing:.03em;
+}
+.card h3{
+margin-top:0;
+margin-bottom:8px;
+font-size:1.05rem;
+}
+.section-intro{
+color:var(--muted);
+max-width:760px;
+margin-bottom:24px;
+}
+.badge{
+display:inline-flex;
+align-items:center;
+gap:8px;
+background:#e7f3ec;
+color:var(--primary-dark);
+padding:8px 16px;
+border-radius:999px;
+font-size:.84rem;
+font-weight:800;
+margin-bottom:18px;
+text-transform:uppercase;
+letter-spacing:.06em;
+}
+.hero{
+text-align:left;
+padding:42px;
+background:
+linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 52%, rgba(255,255,255,0.84) 100%),
+url("images/toiture-castilla.png") right bottom / contain no-repeat;
+border-radius:30px;
+
+border:1px solid rgba(255,255,255,0.6);
+box-shadow:var(--shadow-strong);
+display:grid;
+grid-template-columns:minmax(0, 1.2fr) minmax(260px, .8fr);
+gap:26px;
+align-items:center;
+}
+.hero-copy h2{
+font-size:clamp(2.2rem,4.5vw,3.6rem);
+line-height:1.02;
+margin:0 0 16px;
+}
+.hero-copy h2 span{color:var(--primary)}
+.hero-sub{
+max-width:760px;
+margin:0 0 12px;
+color:var(--muted);
+font-size:1.05rem;
+}
+.hero-strong{
+color:var(--primary);
+font-weight:800;
+margin:0 0 14px;
+font-size:1rem;
+}
+.hero-note{
+font-size:13px;
+color:var(--muted);
+margin:0;
+}
+.hero-panel{
+background:rgba(20,53,74,0.96);
+color:#fff;
+border-radius:26px;
+padding:24px;
+box-shadow:0 20px 50px rgba(18,53,74,0.25);
+}
+.hero-panel-label{
+font-size:11px;
+text-transform:uppercase;
+letter-spacing:.12em;
+opacity:.72;
+margin-bottom:10px;
+display:block;
+}
+.hero-panel strong{
+display:block;
+font-size:1.35rem;
+line-height:1.2;
+margin-bottom:12px;
+}
+.hero-panel p{
+margin:0;
+font-size:.95rem;
+color:rgba(255,255,255,.82);
+}
+.btn-row{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:24px;
+}
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+padding:14px 22px;
+border-radius:999px;
+text-decoration:none;
+border:none;
+cursor:pointer;
+font:inherit;
+font-weight:800;
+
+transition:.25s ease;
+position:relative;
+overflow:hidden;
+min-height:50px;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-main{
+background:var(--primary);
+color:#fff;
+box-shadow:0 16px 35px rgba(47,125,87,.22);
+}
+.btn-outline{
+background:#fff;
+color:var(--dark);
+border:1px solid var(--line);
+}
+.btn-wa{
+background:var(--whatsapp);
+color:#fff;
+box-shadow:0 14px 30px rgba(37,211,102,.24);
+}
+.btn-main::before,
+.btn-outline::before,
+.btn-wa::before,
+.social-btn::before,
+.call-float::before,
+.whatsapp-float::before{
+content:'';
+width:10px;
+height:10px;
+border-radius:50%;
+background:currentColor;
+opacity:.85;
+display:inline-block;
+flex:0 0 auto;
+}
+.btn-main::before,
+.btn-wa::before,
+.call-float::before,
+.whatsapp-float::before{background:#fff}
+.btn-outline::before,
+.social-btn::before{background:var(--primary)}
+.corporate-section{
+text-align:center;
+background:#fff;
+}
+.corp-title{
+font-size:1.95rem;
+font-weight:900;
+letter-spacing:.04em;
+margin-bottom:12px;
+}
+.corp-subtitle{
+max-width:760px;
+margin:0 auto 28px;
+color:var(--muted);
+font-size:1rem;
+}
+.corp-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+.corp-box{
+border-radius:20px;
+padding:24px 22px;
+color:#fff;
+min-height:200px;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+align-items:flex-start;
+text-align:left;
+
+position:relative;
+overflow:hidden;
+}
+.corp-box::after{
+content:'';
+position:absolute;
+right:-26px;
+bottom:-26px;
+width:92px;
+height:92px;
+border-radius:50%;
+background:rgba(255,255,255,0.12);
+}
+.corp-box h3{
+font-size:1.08rem;
+margin-bottom:10px;
+}
+.corp-box p{
+font-size:.95rem;
+opacity:.94;
+margin:0;
+}
+.corp-box.green{background:linear-gradient(135deg,#2f7d57,#56a072)}
+.corp-box.blue{background:linear-gradient(135deg,#143b54,#2f6785)}
+.corp-box.dark{background:linear-gradient(135deg,#1b2025,#2c3339)}
+.corp-box.light{background:linear-gradient(135deg,#eef3f5,#e1e9ee); color:#22343c}
+.impact-box{
+background:
+linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.96)),
+url("images/factura.jpg") center/cover no-repeat;
+border:1px solid var(--line);
+border-radius:28px;
+padding:36px 24px;
+text-align:center;
+box-shadow:var(--shadow);
+margin-bottom:24px;
+}
+.impact-title{
+font-size:1.9rem;
+margin-bottom:10px;
+text-transform:uppercase;
+letter-spacing:.03em;
+}
+.impact-highlight{
+font-size:3rem;
+font-weight:900;
+color:var(--primary);
+margin:14px 0;
+}
+.impact-sub{
+color:var(--muted);
+font-size:1rem;
+max-width:680px;
+margin:0 auto 20px;
+}
+.impact-grid{
+display:flex;
+justify-content:center;
+gap:24px;
+margin-top:24px;
+flex-wrap:wrap;
+}
+.impact-item{
+background:#fff;
+border:1px solid var(--line);
+border-radius:18px;
+padding:20px;
+width:190px;
+box-shadow:0 10px 25px rgba(20,36,29,0.04);
+}
+.impact-item strong{
+display:block;
+font-size:1.6rem;
+color:var(--primary);
+
+}
+.ba-container{
+position:relative;
+max-width:800px;
+margin:28px auto 18px;
+height:400px;
+overflow:hidden;
+border-radius:24px;
+box-shadow:0 28px 70px rgba(0,0,0,0.18);
+border:1px solid #d6e2da;
+}
+.ba-image{position:absolute; inset:0}
+.ba-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.after{width:50%; overflow:hidden}
+.ba-slider{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+opacity:0;
+cursor:ew-resize;
+z-index:10;
+}
+.ba-divider{
+position:absolute;
+top:0;
+left:50%;
+width:4px;
+height:100%;
+background:#fff;
+z-index:6;
+transform:translateX(-50%);
+box-shadow:0 0 10px rgba(0,0,0,.2);
+pointer-events:none;
+}
+.ba-divider::after{
+content:'';
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:44px;
+height:44px;
+border-radius:50%;
+background:#fff;
+box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+.ba-label{
+position:absolute;
+top:16px;
+left:16px;
+padding:8px 12px;
+border-radius:12px;
+font-size:12px;
+font-weight:800;
+color:#fff;
+background:rgba(0,0,0,0.65);
+z-index:7;
+text-transform:uppercase;
+letter-spacing:.08em;
+}
+.after .ba-label{background:rgba(47,125,87,0.95)}
+.compare-graph{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:30px;
+margin-top:30px;
+flex-wrap:wrap;
+}
+
+.graph-box{
+width:240px;
+text-align:center;
+background:#f9fbfa;
+border:1px solid var(--line);
+border-radius:18px;
+padding:22px 18px;
+}
+.graph-box .bar{
+height:18px;
+border-radius:10px;
+margin:15px 0;
+transform:scaleX(0);
+transform-origin:left;
+animation:growBar 1.2s ease forwards;
+}
+.before .bar{ background:var(--danger); width:100%; }
+.after-graph .bar{ background:var(--primary); width:55%; animation-delay:0.5s; }
+.arrow{
+width:56px;
+height:56px;
+border-radius:50%;
+background:#edf5f0;
+border:1px solid var(--line);
+position:relative;
+flex:0 0 auto;
+}
+.arrow::before{
+content:'';
+position:absolute;
+top:50%;
+left:50%;
+width:18px;
+height:18px;
+border-top:3px solid var(--primary);
+border-right:3px solid var(--primary);
+transform:translate(-58%,-50%) rotate(45deg);
+}
+@keyframes growBar{to{transform:scaleX(1)}}
+.grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:18px}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.feature{
+background:#f8fbf9;
+border:1px solid var(--line);
+border-radius:20px;
+padding:24px;
+min-height:100%;
+}
+.feature ul{padding-left:18px; margin:12px 0 0}
+.feature li{margin-bottom:6px}
+.timeline{display:grid; gap:18px}
+.step{
+display:flex;
+gap:16px;
+align-items:flex-start;
+background:#fff;
+border:1px solid var(--line);
+border-radius:22px;
+padding:22px;
+}
+.step-num{
+min-width:44px;
+width:44px;
+height:44px;
+border-radius:50%;
+background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:800;
+box-shadow:0 10px 22px rgba(47,125,87,.18);
+}
+
+.step p{margin:8px 0 0; color:var(--muted)}
+.cae-flow{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:22px;
+}
+.cae-step{
+text-align:center;
+opacity:0;
+transform:translateY(20px);
+animation:fadeUp 0.6s ease forwards;
+}
+.cae-step:nth-child(1){animation-delay:0.2s}
+.cae-step:nth-child(3){animation-delay:0.6s}
+.cae-step:nth-child(5){animation-delay:1s}
+.circle{
+width:74px;
+height:74px;
+border-radius:50%;
+background:linear-gradient(135deg,var(--secondary),var(--secondary-soft));
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:14px;
+font-weight:800;
+letter-spacing:.05em;
+text-transform:uppercase;
+margin:auto;
+box-shadow:0 12px 30px rgba(18,53,74,0.18);
+padding:8px;
+}
+.line{
+width:60px;
+height:4px;
+background:linear-gradient(90deg,var(--secondary-soft),var(--primary));
+border-radius:4px;
+opacity:0;
+animation:growLine 0.6s ease forwards;
+}
+.line:nth-of-type(1){animation-delay:0.4s}
+.line:nth-of-type(2){animation-delay:0.8s}
+@keyframes fadeUp{to{opacity:1; transform:translateY(0)}}
+@keyframes growLine{from{width:0; opacity:0} to{width:60px; opacity:1}}
+.photo-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:16px;
+margin-top:18px;
+}
+.photo-grid img{
+width:100%;
+height:260px;
+object-fit:cover;
+border-radius:18px;
+border:1px solid var(--line);
+}
+.single-photo{
+width:100%;
+height:320px;
+object-fit:cover;
+object-position:center;
+border-radius:18px;
+border:1px solid var(--line);
+margin-top:16px;
+}
+.type-switch{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:18px;
+
+}
+.type-btn{
+border:none;
+border-radius:999px;
+padding:12px 18px;
+font:inherit;
+font-weight:700;
+cursor:pointer;
+background:#fff;
+border:1px solid var(--line);
+color:var(--dark);
+transition:.25s ease;
+}
+.type-btn:hover{border-color:#bfd5c5}
+.type-btn.active{
+background:var(--primary);
+color:#fff;
+border-color:var(--primary);
+box-shadow:0 14px 30px rgba(47,125,87,.18);
+}
+.type-box{display:none}
+.type-box.active{display:block}
+.soft-card{background:var(--soft-green); border:1px solid var(--soft-border)}
+.reward-wrap{background:var(--soft-green); border:1px solid var(--soft-border)}
+.reward-grid{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+.reward-box{
+background:#fff;
+border:1px solid var(--soft-border);
+border-radius:18px;
+padding:22px;
+width:220px;
+text-align:center;
+box-shadow:0 12px 28px rgba(21,44,31,0.05);
+}
+.reward-box strong{
+font-size:2rem;
+color:var(--primary);
+display:block;
+}
+.social-row{
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+.social-btn{
+padding:12px 18px;
+border-radius:999px;
+background:#f3faf6;
+border:1px solid var(--line);
+text-decoration:none;
+font-weight:700;
+color:var(--dark);
+transition:.25s ease;
+display:inline-flex;
+align-items:center;
+gap:10px;
+}
+.social-btn:hover{background:var(--primary); color:#fff}
+.social-btn:hover::before{background:#fff}
+form{display:grid; gap:12px}
+.field{
+width:100%;
+padding:15px 16px;
+border-radius:14px;
+
+border:1px solid #ccdcd0;
+font:inherit;
+background:#fff;
+color:var(--dark);
+}
+.field:focus{
+outline:none;
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(47,125,87,0.12);
+}
+.checkbox-line{
+display:flex;
+gap:10px;
+align-items:flex-start;
+font-size:.92rem;
+color:var(--muted);
+}
+.checkbox-line input{margin-top:4px}
+.form-note{font-size:.85rem; color:var(--muted)}
+.success-note,
+.error-note{
+display:none;
+padding:12px 14px;
+border-radius:12px;
+font-size:.92rem;
+font-weight:700;
+}
+.success-note{
+background:#ecf8f0;
+color:#1f6f47;
+border:1px solid #cfe7d7;
+}
+.error-note{
+background:#fff2f2;
+color:#b53535;
+border:1px solid #f0cccc;
+}
+.global-footer{
+text-align:center;
+padding:20px 0 30px;
+color:#cad7cf;
+font-size:.92rem;
+background:var(--footer);
+border-radius:28px;
+margin-top:8px;
+}
+.global-footer a{
+color:inherit;
+text-decoration:none;
+}
+.global-footer a:hover{color:#fff}
+.call-float,
+.whatsapp-float{
+position:fixed;
+right:20px;
+color:white;
+padding:14px 22px;
+border-radius:999px;
+font-weight:800;
+text-decoration:none;
+box-shadow:0 10px 25px rgba(0,0,0,0.18);
+z-index:1300;
+display:inline-flex;
+align-items:center;
+gap:10px;
+}
+.call-float{bottom:170px; background:var(--secondary)}
+.whatsapp-float{bottom:110px; background:var(--whatsapp)}
+.wa-popup{
+position:fixed;
+bottom:232px;
+right:20px;
+background:white;
+
+padding:14px 16px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.18);
+display:none;
+z-index:1301;
+max-width:270px;
+font-size:14px;
+border:1px solid var(--line);
+}
+.wa-popup a{
+color:var(--primary);
+font-weight:700;
+text-decoration:none;
+}
+.logo-overlay{
+position:fixed;
+inset:0;
+background:#f7fbf8;
+backdrop-filter:blur(7px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:5000;
+opacity:0;
+pointer-events:none;
+transition:opacity .45s ease;
+}
+.logo-overlay.show{
+opacity:1;
+pointer-events:none;
+}
+.logo-animado{
+display:flex;
+align-items:center;
+gap:20px;
+}
+.logo-overlay .bombilla{
+width:110px;
+opacity:0;
+transform:scale(0.85);
+animation:
+focoEntrada 0.6s ease forwards,
+focoGlow 1.2s ease 0.5s forwards;
+}
+@keyframes focoEntrada {
+from { opacity: 0; transform: scale(0.85); }
+to { opacity: 1; transform: scale(1); }
+}
+@keyframes focoGlow {
+0% { filter: drop-shadow(0 0 0px #6cc24a); }
+50% { filter: drop-shadow(0 0 25px #6cc24a); }
+100% { filter: drop-shadow(0 0 18px #6cc24a); }
+}
+.texto-logo {
+line-height: 0.95;
+}
+.texto-logo span {
+display:inline-block;
+opacity:0;
+transform:translateY(20px);
+font-weight:900;
+font-size:clamp(28px, 4vw, 64px);
+}
+.texto-logo .light {
+color:#6cc24a;
+animation:textoEntrada 0.6s ease 0.7s forwards;
+}
+.texto-logo .dark {
+color:#0b7a3b;
+animation:textoEntrada 0.6s ease 0.9s forwards;
+}
+@keyframes textoEntrada {
+to {
+
+opacity:1;
+transform:translateY(0);
+}
+}
+.cookie-banner{
+position:fixed;
+left:16px;
+right:16px;
+bottom:16px;
+z-index:6000;
+background:#ffffff;
+border:1px solid var(--line);
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+border-radius:18px;
+padding:16px;
+display:none;
+gap:14px;
+align-items:flex-start;
+justify-content:space-between;
+}
+.cookie-banner.show{
+display:flex;
+}
+.cookie-copy{
+flex:1 1 auto;
+min-width:0;
+}
+.cookie-copy strong{
+display:block;
+margin-bottom:4px;
+}
+.cookie-copy p{
+margin:0;
+color:var(--muted);
+font-size:.95rem;
+}
+.cookie-actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+flex:0 0 auto;
+}
+.btn-cookie{
+min-height:44px;
+padding:12px 18px;
+border-radius:999px;
+border:1px solid var(--line);
+background:#fff;
+cursor:pointer;
+font:inherit;
+font-weight:700;
+}
+.btn-cookie.primary{
+background:var(--primary);
+color:#fff;
+border-color:var(--primary);
+}
+@media(max-width:1100px){
+.hero{grid-template-columns:1fr}
+.corp-grid{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:1fr}
+.grid-2{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+.app{display:block}
+.sidebar{
+position:static;
+width:100%;
+height:auto;
+border-right:none;
+border-bottom:1px solid var(--line);
+}
+.content{
+margin-left:0;
+width:100%;
+
+padding:20px;
+}
+.corp-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+.content{padding:16px}
+.card{padding:22px}
+.hero{padding:26px}
+.hero-copy h2{font-size:2rem}
+.compare-graph,
+.cae-flow,
+.impact-grid,
+.reward-grid{flex-direction:column}
+.line{width:4px; height:40px}
+.ba-container{height:280px}
+.photo-grid{grid-template-columns:1fr}
+.step{flex-direction:column}
+.call-float,
+.whatsapp-float{left:16px; right:16px; justify-content:center}
+.whatsapp-float{bottom:110px}
+.call-float{bottom:170px}
+.wa-popup{left:16px; right:16px; max-width:none}
+.cookie-banner{
+left:12px;
+right:12px;
+bottom:12px;
+flex-direction:column;
+}
+.cookie-actions{
+width:100%;
+}
+.btn-cookie{
+flex:1 1 auto;
+}
+}
+.admin-editing [data-admin-key]{
+outline:2px dashed rgba(47,125,87,.45);
+outline-offset:4px;
+cursor:text;
+}
+.admin-editing [data-admin-img]{
+outline:3px dashed rgba(18,53,74,.55);
+outline-offset:4px;
+cursor:pointer;
+}
+.admin-editing #heroInicio{
+box-shadow:0 0 0 4px rgba(18,53,74,.28) inset;
+cursor:pointer;
+}
+
+
+.testimonials-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
+margin-top:22px;
+}
+.testimonial-card{
+background:#fff;
+border:1px solid var(--line);
+border-radius:22px;
+padding:24px;
+box-shadow:0 14px 35px rgba(16,38,28,0.06);
+position:relative;
+}
+.testimonial-quote{
+font-size:1rem;
+color:var(--dark);
+margin:0 0 16px;
+}
+.testimonial-name{
+font-weight:800;
+color:var(--primary);
+margin:0;
+}
+.testimonial-meta{
+font-size:.92rem;
+color:var(--muted);
+margin-top:4px;
+}
+.admin-panel-group{
+margin-top:18px;
+padding-top:18px;
+border-top:1px solid var(--line);
+}
+.admin-mini-help{
+font-size:13px;
+color:var(--muted);
+margin:6px 0 0;
+}
+.admin-toggle-list{
+display:grid;
+gap:10px;
+margin-top:10px;
+}
+.admin-toggle-row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+padding:12px 14px;
+border:1px solid var(--line);
+border-radius:14px;
+background:#f8fbf9;
+}
+.admin-toggle-row span{
+font-weight:700;
+font-size:14px;
+}
+.admin-block{
+position:relative;
+}
+.admin-block-hidden{
+display:none !important;
+}
+.admin-control-chip{
+position:absolute;
+right:12px;
+top:12px;
+z-index:30;
+display:none;
+gap:8px;
+flex-wrap:wrap;
+}
+.admin-editing .admin-block:hover .admin-control-chip,
+.admin-editing .testimonial-card:hover .admin-control-chip{
+display:flex;
+}
+.admin-icon-btn{
+width:36px;
+height:36px;
+border:none;
+border-radius:999px;
+background:#12354a;
+color:#fff;
+font-weight:900;
+cursor:pointer;
+box-shadow:0 10px 24px rgba(0,0,0,.18);
+}
+.admin-icon-btn.duplicate{
+background:#2f7d57;
+}
+.admin-icon-btn.delete{
+background:#d64545;
+}
+.admin-sort-handle{
+cursor:grab;
+}
+.admin-block-selected{
+box-shadow:0 0 0 3px rgba(47,125,87,.3), var(--shadow) !important;
+}
+.admin-selected-label{
+font-size:13px;
+font-weight:700;
+color:var(--primary);
+margin-top:8px;
+}
+.range-output{
+font-size:12px;
+color:var(--muted);
+float:right;
+}
+.admin-field{
+width:100%;
+padding:12px;
+border:1px solid #ccdcd0;
+border-radius:12px;
+font:inherit;
+margin-top:8px;
+}
+.admin-inline-btn{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+font-weight:800;
+cursor:pointer;
+margin-top:10px;
+}
+.admin-inline-btn.primary{
+background:#2f7d57;
+color:#fff;
+}
+.admin-inline-btn.secondary{
+background:#edf3ef;
+color:#12354a;
+}
+.testimonial-editable[contenteditable="true"]{
+outline:2px dashed rgba(47,125,87,.35);
+outline-offset:3px;
+border-radius:8px;
+}
+@media(max-width:768px){
+.admin-control-chip{
+position:static;
+display:flex;
+margin-bottom:12px;
+}
+}
+
+
+/* ===== CMS FLOW / CANVA SHELL ===== */
+body.admin-editing{
+  background:
+    radial-gradient(circle at top left, rgba(47,125,87,.08), transparent 24%),
+    radial-gradient(circle at top right, rgba(18,53,74,.09), transparent 28%),
+    linear-gradient(180deg,#eef4f0 0%, #e8efea 100%);
+}
+body.admin-editing .app{
+  position:relative;
+  margin:96px auto 38px;
+  max-width:1440px;
+  min-height:calc(100vh - 150px);
+  border-radius:30px;
+  overflow:hidden;
+  border:1px solid rgba(20,53,74,.08);
+  box-shadow:0 28px 80px rgba(17,37,28,.12);
+  background:#f7faf8;
+}
+body.admin-editing .sidebar{
+  box-shadow:0 0 0 1px rgba(20,53,74,.04), 20px 0 40px rgba(16,38,28,.04);
+}
+body.admin-editing .content{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.72)),
+    linear-gradient(180deg,#f6faf7 0%, #eef4f0 100%);
+  min-height:100vh;
+}
+#cmsShell{
+  display:none;
+}
+body.admin-editing #cmsShell{
+  display:block;
+}
+#cmsTopbar{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:1700;
+  width:min(1240px, calc(100vw - 28px));
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:12px 14px;
+  border-radius:24px;
+  border:1px solid rgba(20,53,74,.08);
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(18px);
+  box-shadow:0 18px 50px rgba(17,37,28,.12);
+}
+.cms-topbar-left,.cms-topbar-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.cms-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#12354a,#2f7d57);
+  color:#fff;
+  font-weight:900;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+.cms-brand-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 6px rgba(255,255,255,.16);
+}
+.cms-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border:none;
+  border-radius:16px;
+  background:#fff;
+  color:#12354a;
+  font:inherit;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(17,37,28,.08);
+}
+.cms-pill:hover{
+  transform:translateY(-1px);
+}
+.cms-pill.active{
+  background:#12354a;
+  color:#fff;
+}
+.cms-pill.primary{
+  background:#2f7d57;
+  color:#fff;
+}
+.cms-pill.ghost{
+  background:#f2f6f3;
+  color:#12354a;
+}
+#cmsStatus{
+  font-size:12px;
+  font-weight:800;
+  color:#5f7a70;
+  padding:10px 12px;
+  border-radius:14px;
+  background:#f6faf7;
+  border:1px solid #d7e4db;
+}
+#cmsInspectorToggle.active{
+  background:#12354a;
+  color:#fff;
+}
+body.admin-editing.cms-zen .sidebar,
+body.admin-editing.cms-zen .topbar,
+body.admin-editing.cms-zen .call-float,
+body.admin-editing.cms-zen .whatsapp-float,
+body.admin-editing.cms-zen .cookie-banner,
+body.admin-editing.cms-zen #adminHelpBadge,
+body.admin-editing.cms-zen #btnEditarAdmin,
+body.admin-editing.cms-zen .admin-control-chip{
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+body.admin-editing.cms-zen [data-admin-key],
+body.admin-editing.cms-zen [data-admin-img],
+body.admin-editing.cms-zen .admin-block{
+  outline:none !important;
+  box-shadow:none !important;
+}
+body.admin-editing.cms-compact .sidebar{
+  width:88px;
+  padding:20px 12px;
+}
+body.admin-editing.cms-compact .sidebar .logo,
+body.admin-editing.cms-compact .sidebar-note,
+body.admin-editing.cms-compact .menu-title{
+  display:none;
+}
+body.admin-editing.cms-compact .menu-btn{
+  justify-content:center;
+  padding:14px 10px;
+  font-size:0;
+}
+body.admin-editing.cms-compact .menu-btn::before{
+  margin:0;
+}
+body.admin-editing.cms-compact .content{
+  margin-left:88px;
+  width:calc(100% - 88px);
+}
+#panelAdmin{
+  display:none;
+  width:min(440px, 100vw);
+  background:rgba(255,255,255,.96) !important;
+  backdrop-filter:blur(18px);
+  border-left:1px solid rgba(20,53,74,.08);
+  box-shadow:-18px 0 50px rgba(17,37,28,.16) !important;
+}
+#panelAdmin.show{
+  display:block !important;
+}
+#panelAdmin h3{
+  font-size:1.2rem;
+}
+#cmsBottomBar{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:18px;
+  z-index:1700;
+  width:min(620px, calc(100vw - 28px));
+  padding:10px 12px;
+  border-radius:22px;
+  border:1px solid rgba(20,53,74,.08);
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  box-shadow:0 18px 50px rgba(17,37,28,.12);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.cms-mini{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.cms-tag{
+  font-size:12px;
+  font-weight:800;
+  color:#12354a;
+  background:#eef4f0;
+  border:1px solid #d7e4db;
+  border-radius:999px;
+  padding:8px 12px;
+}
+@media(max-width:980px){
+  body.admin-editing .app{
+    margin:82px 12px 88px;
+  }
+  #cmsTopbar{
+    top:10px;
+    width:calc(100vw - 20px);
+    border-radius:20px;
+  }
+  #cmsBottomBar{
+    width:calc(100vw - 20px);
+    bottom:10px;
+    border-radius:18px;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .cms-topbar-left,.cms-topbar-right,.cms-mini{
+    width:100%;
+    justify-content:center;
+  }
+}
+
+
+/* ===== PRO+ ESTABLE ===== */
+.before-after-gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:18px;
+  margin-top:22px;
+}
+.before-after-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px;
+  box-shadow:0 14px 35px rgba(16,38,28,0.06);
+}
+.before-after-card h3{
+  margin:0 0 12px;
+  font-size:1rem;
+}
+.before-after-card .ba-container{
+  max-width:none;
+  height:260px;
+  margin:0;
+}
+.undo-redo-row,.template-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:10px;
+}
+.seo-note{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:8px;
+}
+@media(max-width:768px){
+  .call-float,
+  .whatsapp-float{
+    left:auto;
+    right:16px;
+    width:auto;
+    justify-content:center;
+  }
+  .whatsapp-float{bottom:86px;}
+  .call-float{bottom:144px;}
+}
+
+</style>
+</head>
+<body>
+<div class="logo-overlay" id="logoOverlay">
+<div class="logo-animado">
+<img src="images/bombilla.png" class="bombilla" alt="Bombilla">
+<div class="texto-logo">
+<span class="light" data-admin-key="auto_2">AISLAMIENTO</span><br>
+<span class="dark" data-admin-key="auto_3">EN CASA</span>
+</div>
+</div>
+</div>
+<div class="app">
+<aside class="sidebar">
+<div class="logo">
+<img src="images/logo.png" alt="Logo Aislamiento en Casa" />
+</div>
+<div class="menu-title">Navegación</div>
+<button class="menu-btn active" data-tab="inicio" data-admin-key="menu1">Inicio</button>
+<button class="menu-btn" data-tab="cae" data-admin-key="menu2">Sistema CAE</button>
+<button class="menu-btn" data-tab="cita" data-admin-key="menu3">Día de la cita</button>
+<button class="menu-btn" data-tab="recomendacion" data-admin-key="menu4">Recomendación</button>
+<button class="menu-btn" data-tab="contacto" data-admin-key="menu5">Contacto</button>
+<div class="sidebar-note">
+<strong>Plataforma</strong>
+Aislamiento de cubiertas con enfoque técnico, ahorro real y proceso gestionado de principio a fin.
+</div>
+</aside>
+
+<main class="content">
+<div class="topbar card" style="padding:18px 22px;">
+<h1 id="section-title" data-admin-key="sectionTitle">Inicio</h1>
+<p id="section-subtitle" data-admin-key="sectionSubtitle">Aislamiento de cubiertas sin inversión inicial, según
+viabilidad técnica.</p>
+</div>
+<!-- INICIO -->
+<section id="inicio" class="section active">
+<section class="card hero" id="heroInicio">
+<div class="hero-copy">
+<div class="badge" data-admin-key="heroBadge">Castilla y León · Asturias · Galicia</div>
+<h2 data-admin-key="heroTitulo">Aísla tu vivienda <br><span data-admin-key="auto_4">sin pagar la
+obra</span></h2>
+<p class="hero-sub" data-admin-key="heroTexto">
+Actuamos directamente sobre la cubierta, uno de los principales puntos de pérdida energética de la vivienda.
+</p>
+<p class="hero-strong" data-admin-key="heroFuerte">
+Evaluación gratuita · Ahorro desde el primer mes
+</p>
+<p class="hero-note" data-admin-key="heroNote">
+Te indicamos si la actuación es viable y gestionamos el proceso técnico, documental y energético.
+</p>
+<div class="btn-row">
+<a href="#" class="btn btn-main" data-goto="contacto" data-admin-key="ctaPrincipal">Comprobar si puedo aislar
+sin pagar</a>
+<a
+href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta"
+class="btn btn-wa" target="_blank" rel="noopener" data-admin-key="ctaWhatsapp">Contacto por WhatsApp</a>
+<a href="#" class="btn btn-outline" data-goto="cae" data-admin-key="ctaCae">Ver cómo funciona el sistema
+CAE</a>
+</div>
+</div>
+<div class="hero-panel">
+<img id="heroCaeLogo" data-admin-img="heroCaeLogo" src="images/ministerio.jpg" alt="Logo sistema CAE o
+Ministerio" style="width:74px;height:auto;display:block;margin:0 0
+12px;border-radius:12px;background:#fff;padding:6px;border:1px solid rgba(255,255,255,.18);" />
+<span class="hero-panel-label" data-admin-key="heroPanelLabel">Aislamiento de cubierta</span>
+<strong data-admin-key="heroPanelTitle">Intervención técnica sobre el punto clave de pérdida energética</strong>
+<p data-admin-key="heroPanelText">
+Reducimos pérdidas térmicas en cubierta y convertimos el ahorro energético en financiación de la actuación,
+siempre según viabilidad.
+</p>
+</div>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="b1Title">¿Tu vivienda pierde calor por el tejado?</h2>
+<p style="text-align:center; max-width:760px; margin:0 auto 24px; color:var(--muted);" data-admin-key="b1Text">
+En muchas viviendas, una parte importante de la pérdida energética se produce por la cubierta. Si notas alguna
+de estas situaciones, puede haber fuga térmica por esa zona.
+</p>
+<div class="grid-3">
+<div class="feature">
+<h3 data-admin-key="auto_5">La casa se enfría rápido</h3>
+<p data-admin-key="auto_6">Cuando apagas la calefacción, la temperatura interior cae antes de lo normal.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_7">Necesitas más calefacción</h3>
+<p data-admin-key="auto_8">Tu vivienda requiere más energía para mantener una sensación de confort
+estable.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_9">Diferencias entre plantas</h3>
+<p data-admin-key="auto_10">La parte superior de la vivienda pierde temperatura o se comporta de forma
+irregular.</p>
+</div>
+</div>
+<p style="text-align:center; margin-top:22px; font-weight:800; color:var(--primary);" data-admin-key="auto_11">
+Probablemente estás perdiendo energía por la cubierta
+</p>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_12">Actuamos sobre la cubierta</h2>
+<p style="text-align:center; max-width:700px; margin:0 auto; color:var(--muted);" data-admin-key="auto_13">
+La cubierta es uno de los principales puntos de pérdida energética de una vivienda. Intervenimos directamente
+
+sobre ella para reducir esas pérdidas y mejorar el comportamiento térmico global.
+</p>
+<div class="grid-3" style="margin-top:20px;">
+<div class="feature">
+<h3 data-admin-key="auto_14">Menos pérdidas de calor</h3>
+<p data-admin-key="auto_15">Reducimos la fuga térmica por la parte superior de la vivienda.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_16">Mejor comportamiento térmico</h3>
+<p data-admin-key="auto_17">La vivienda mantiene mejor la temperatura interior durante más tiempo.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_18">Menor consumo energético</h3>
+<p data-admin-key="auto_19">Disminuye la necesidad de calefacción y climatización para lograr confort.</p>
+</div>
+</div>
+<p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);" data-admin-key="auto_20">
+Actuación directa sobre el punto clave de pérdida energética
+</p>
+</section>
+<section class="card corporate-section">
+<h2 class="corp-title" data-admin-key="auto_21">Qué aporta el aislamiento</h2>
+<p class="corp-subtitle" data-admin-key="auto_22">
+El sistema CAE permite transformar el ahorro energético en financiación directa, mejorando la eficiencia de la
+vivienda sin inversión inicial.
+</p>
+<div class="corp-grid">
+<div class="corp-box green">
+<h3 data-admin-key="auto_23">Sin inversión inicial</h3>
+<p data-admin-key="auto_24">Actuación financiada según viabilidad técnica y energética.</p>
+</div>
+<div class="corp-box blue">
+<h3 data-admin-key="auto_25">Reducción de consumo</h3>
+<p data-admin-key="auto_26">Ahorro energético desde el primer mes en calefacción y climatización.</p>
+</div>
+<div class="corp-box dark">
+<h3 data-admin-key="auto_27">Mayor confort</h3>
+<p data-admin-key="auto_28">Mejora térmica inmediata en la vivienda, con menos pérdidas de calor por
+cubierta.</p>
+</div>
+<div class="corp-box light">
+<h3 data-admin-key="auto_29">Revalorización</h3>
+<p data-admin-key="auto_30">Incremento del valor energético del inmueble y mejora de la etiqueta
+energética.</p>
+</div>
+</div>
+</section>
+<section class="impact-box">
+<h2 class="impact-title" data-admin-key="auto_31">Impacto económico</h2>
+<div class="impact-highlight" id="counter">0%</div>
+<p style="text-align:center; font-weight:700;" data-admin-key="auto_32">Ahorro real en calefacción y aire
+acondicionado</p>
+<img id="imgImpactoEconomico" data-admin-img="imgImpactoEconomico" src="images/factura.jpg" alt="Factura y ahorro"
+class="single-photo" style="max-width:760px;margin:0 auto 18px;display:block;height:220px;" />
+<p class="impact-sub" data-admin-key="auto_33">
+Aislar tu vivienda es una de las formas más directas de reducir tu factura energética y mejorar el
+comportamiento térmico de la cubierta.
+</p>
+<p style="text-align:center; font-size:15px; margin-top:10px;" data-admin-key="auto_34">
+En muchos casos, el ahorro anual supera una parte importante de la energía que se pierde por cubierta.
+</p>
+<div class="impact-grid">
+<div class="impact-item">
+<strong>24% - 46%</strong>
+<span data-admin-key="auto_35">Ahorro energético</span>
+</div>
+<div class="impact-item">
+<strong>0€</strong>
+<span data-admin-key="auto_36">Inversión inicial</span>
+</div>
+<div class="impact-item">
+<strong>Horas</strong>
+<span data-admin-key="auto_37">Intervención rápida</span>
+
+</div>
+</div>
+<p style="text-align:center; font-weight:700; color:var(--primary); margin-top:20px;" data-admin-key="auto_38">
+Empiezas a notar el ahorro desde el primer mes
+</p>
+<p style="font-size:14px; color:var(--muted);" data-admin-key="auto_39">
+Sin cambiar tu forma de vivir ni asumir reformas complejas
+</p>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_40">Resultado real en vivienda</h2>
+<p style="text-align:center; color:var(--muted); max-width:720px; margin:0 auto;" data-admin-key="auto_41">
+Intervención rápida con impacto directo en consumo y confort térmico.
+</p>
+<div class="ba-container">
+<div class="ba-image">
+<img id="imgAntesDespuesAntes" data-admin-img="imgAntesDespuesAntes" src="images/cubierta_antes.jpg"
+alt="Cubierta antes del aislamiento" />
+<span class="ba-label" data-admin-key="auto_42">Antes</span>
+</div>
+<div class="ba-image after" id="afterImage">
+<img id="imgAntesDespuesDespues" data-admin-img="imgAntesDespuesDespues" src="images/cubierta_despues.jpg"
+alt="Cubierta después del aislamiento" />
+<span class="ba-label" data-admin-key="auto_43">Después</span>
+</div>
+<div class="ba-divider" id="baDivider"></div>
+<input type="range" id="slider" min="0" max="100" value="50" class="ba-slider" />
+</div>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_44">Cómo realizamos la obra</h2>
+<p style="text-align:center; max-width:700px; margin:0 auto; color:var(--muted);" data-admin-key="auto_45">
+Utilizamos equipos profesionales de insuflado que permiten realizar la intervención de forma rápida, limpia y
+sin obras complejas.
+</p>
+<img src="images/camion.jpg" alt="Camión de insuflado" class="single-photo" />
+<p style="text-align:center; font-weight:700; color:var(--primary); margin-top:16px;" data-admin-key="auto_46">
+Intervención en pocas horas · Sin molestias · Resultado inmediato
+</p>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_47">Impacto en tu vivienda</h2>
+<div class="compare-graph">
+<div class="graph-box before">
+<h3 data-admin-key="auto_48">Antes</h3>
+<div class="bar"></div>
+<p data-admin-key="auto_49">Consumo elevado</p>
+</div>
+<div class="arrow" aria-hidden="true"></div>
+<div class="graph-box after-graph">
+<h3 data-admin-key="auto_50">Después</h3>
+<div class="bar"></div>
+<p data-admin-key="auto_51">Mayor eficiencia</p>
+</div>
+</div>
+<p style="text-align:center; margin-top:20px; color:var(--primary); font-weight:700;" data-admin-key="auto_52">
+Menos consumo · Más confort · Mayor valor
+</p>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_53">Tipo de aislamiento</h2>
+<p style="text-align:center; max-width:700px; margin:0 auto 20px; color:var(--muted);" data-admin-key="auto_54">
+La solución se adapta al tipo de cubierta y al uso del espacio bajo cubierta.
+</p>
+<div class="grid-2">
+<div class="feature">
+<h3 data-admin-key="auto_55">Insuflado (desván no habitable)</h3>
+
+<ul>
+<li data-admin-key="auto_56">Aplicación rápida en pocas horas</li>
+<li data-admin-key="auto_57">Sin obras complejas</li>
+<li data-admin-key="auto_58">Alta eficiencia térmica</li>
+<li data-admin-key="auto_59">Ideal para espacios no transitables</li>
+</ul>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_60">Manta / rollo (desván habitable)</h3>
+<ul>
+<li data-admin-key="auto_61">Adaptado a espacios transitables</li>
+<li data-admin-key="auto_62">Instalación controlada</li>
+<li data-admin-key="auto_63">Buen comportamiento térmico</li>
+<li data-admin-key="auto_64">Solución duradera</li>
+</ul>
+</div>
+</div>
+<p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);" data-admin-key="auto_65">
+Siempre aplicamos la solución más adecuada según la cubierta de tu vivienda
+</p>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_66">Obra profesional y cuidada</h2>
+<div class="grid-3">
+<div class="feature">
+<h3 data-admin-key="auto_67">Especialistas en cubierta</h3>
+<p data-admin-key="auto_68">Intervenimos específicamente en aislamiento de cubiertas con técnicas adaptadas a
+cada vivienda.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_69">Obra limpia</h3>
+<p data-admin-key="auto_70">Trabajamos de forma ordenada y sin reformas complejas ni molestias
+innecesarias.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_71">Resultado real</h3>
+<p data-admin-key="auto_72">Mejora real en consumo, confort y eficiencia energética desde el primer mes.</p>
+</div>
+</div>
+<p style="text-align:center; margin-top:20px; font-weight:700; color:var(--primary);" data-admin-key="auto_73">
+Intervención rápida, limpia y controlada
+</p>
+</section>
+
+
+<section class="card" id="galeriaAntesDespues">
+<h2 style="text-align:center;" data-admin-key="galleryTitle">Galería antes y después</h2>
+<p style="text-align:center; max-width:760px; margin:0 auto 20px; color:var(--muted);" data-admin-key="gallerySubtitle">
+Casos reales adicionales para mostrar varios trabajos sin romper el diseño.
+</p>
+<div class="before-after-gallery">
+  <article class="before-after-card">
+    <h3 data-admin-key="galleryCase1">Caso real 1</h3>
+    <div class="ba-container">
+      <div class="ba-image">
+        <img data-admin-img="galleryBefore1" src="images/cubierta_antes.jpg" alt="Antes galería 1" />
+        <span class="ba-label" data-admin-key="galleryBeforeLabel1">Antes</span>
+      </div>
+      <div class="ba-image after">
+        <img data-admin-img="galleryAfter1" src="images/cubierta_despues.jpg" alt="Después galería 1" />
+        <span class="ba-label" data-admin-key="galleryAfterLabel1">Después</span>
+      </div>
+      <input type="range" min="0" max="100" value="50" class="ba-slider" />
+      <div class="ba-divider"></div>
+    </div>
+  </article>
+  <article class="before-after-card">
+    <h3 data-admin-key="galleryCase2">Caso real 2</h3>
+    <div class="ba-container">
+      <div class="ba-image">
+        <img data-admin-img="galleryBefore2" src="images/cubierta_antes.jpg" alt="Antes galería 2" />
+        <span class="ba-label" data-admin-key="galleryBeforeLabel2">Antes</span>
+      </div>
+      <div class="ba-image after">
+        <img data-admin-img="galleryAfter2" src="images/cubierta_despues.jpg" alt="Después galería 2" />
+        <span class="ba-label" data-admin-key="galleryAfterLabel2">Después</span>
+      </div>
+      <input type="range" min="0" max="100" value="50" class="ba-slider" />
+      <div class="ba-divider"></div>
+    </div>
+  </article>
+</div>
+</section>
+
+<section class="card" id="testimoniosSection">
+<h2 style="text-align:center;" data-admin-key="testimonialsTitle">Lo que dicen nuestros clientes</h2>
+<p style="text-align:center; max-width:760px; margin:0 auto 20px; color:var(--muted);" data-admin-key="testimonialsSubtitle">
+Casos reales, ahorro real y una experiencia cuidada de principio a fin.
+</p>
+<div id="testimonialsList" class="testimonials-grid"></div>
+</section>
+
+</section>
+<!-- CAE -->
+<section id="cae" class="section">
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_74">Transparencia y control</h2>
+<p style="text-align:center; max-width:700px; margin:0 auto 25px; color:var(--muted);" data-admin-key="auto_75">
+Sistema regulado que permite medir, validar y transformar el ahorro energético en financiación de la actuación.
+</p>
+<div class="cae-flow">
+<div class="cae-step">
+<div class="circle">Obra</div>
+<p data-admin-key="auto_76">Realizamos la actuación</p>
+</div>
+<div class="line"></div>
+<div class="cae-step">
+<div class="circle">Ahorro</div>
+<p data-admin-key="auto_77">Se genera ahorro</p>
+</div>
+<div class="line"></div>
+<div class="cae-step">
+<div class="circle">CAE</div>
+<p data-admin-key="auto_78">Financia la obra</p>
+</div>
+</div>
+<div class="photo-grid" style="margin-top:20px;">
+<img src="images/arquitecto.jpg" alt="Revisión técnica de cubierta" />
+<img src="images/planning.jpg" alt="Planificación técnica y energética" />
+
+</div>
+</section>
+<section class="card soft-card">
+<h2 style="text-align:center;" data-admin-key="auto_79">Qué implica para ti</h2>
+<div class="grid-3" style="margin-top:20px;">
+<div class="feature">
+<h3 data-admin-key="auto_80">No pagas la obra</h3>
+<p data-admin-key="auto_81">El coste se cubre con el ahorro energético generado, siempre según viabilidad.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_82">No asumes gestiones</h3>
+<p data-admin-key="auto_83">La actuación solo se realiza si cumple criterios técnicos y energéticos y nosotros
+coordinamos el proceso.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_84">Sistema regulado</h3>
+<p data-admin-key="auto_85">El sistema CAE está supervisado por el Ministerio para la Transición
+Ecológica.</p>
+</div>
+</div>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_86">Así se paga la obra</h2>
+<div class="grid-3">
+<div class="feature">
+<h3 data-admin-key="auto_87">1. Aislamos la cubierta</h3>
+<p data-admin-key="auto_88">Reducimos pérdidas energéticas actuando sobre la parte superior de la
+vivienda.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_89">2. Se genera ahorro</h3>
+<p data-admin-key="auto_90">Ese ahorro se mide, se documenta y se certifica técnicamente.</p>
+</div>
+<div class="feature">
+<h3 data-admin-key="auto_91">3. El ahorro financia la actuación</h3>
+<p data-admin-key="auto_92">El sistema CAE transforma ese ahorro en financiación de la obra.</p>
+</div>
+</div>
+<p style="text-align:center; font-weight:900; color:var(--primary); margin-top:20px;" data-admin-key="auto_93">
+Tú mejoras tu vivienda sin asumir el coste de la obra
+</p>
+</section>
+<section class="card">
+<h2 data-admin-key="auto_94">Cesión del ahorro y financiación de la obra</h2>
+<p data-admin-key="auto_95">
+Dentro del sistema CAE, el propietario cede el ahorro energético generado por la actuación a una empresa del
+sector energético como <strong>contraprestación económica</strong>.
+</p>
+<p style="font-weight:700; color:var(--primary);" data-admin-key="auto_96">
+Esa contraprestación se materializa en forma de obra totalmente financiada, siempre según viabilidad técnica y
+energética.
+</p>
+<p data-admin-key="auto_97">
+Los distribuidores de combustible, gasóleo doméstico, gas o electricidad, conocidos como los <strong>sujetos
+obligados</strong>, participan en la financiación de actuaciones de eficiencia energética, permitiendo transformar el
+ahorro generado en apoyo económico para la obra.
+</p>
+<p data-admin-key="auto_98">
+Nosotros trabajamos con un <strong>sujeto delegado acreditado</strong> que gestiona el expediente y la
+tramitación necesaria.
+</p>
+<img id="imgMinisterioCesion" data-admin-img="imgMinisterioCesion" src="images/ministerio.jpg" alt="Ministerio
+para la Transición Ecológica" class="single-photo" />
+<p style="text-align:center; font-size:13px; color:var(--muted);" data-admin-key="auto_99">
+Sistema regulado por el Ministerio para la Transición Ecológica y el Reto Demográfico
+</p>
+<p style="margin-top:10px;" data-admin-key="auto_100">
+<a href="https://www.miteco.gob.es/es/energia/eficiencia/cae.html" target="_blank" rel="noopener"
+
+style="color:var(--primary); font-weight:700;">
+Ver información oficial del MITECO
+</a>
+</p>
+</section>
+<section class="card">
+<h2 data-admin-key="auto_101">Trámite CEE y CAE</h2>
+<p data-admin-key="auto_102">
+Tras la intervención, comienza la parte técnica y administrativa que permite certificar el ahorro energético
+generado y reflejar la mejora de la vivienda.
+</p>
+<div class="timeline">
+<div class="step">
+<div class="step-num">1</div>
+<div>
+<h3 data-admin-key="auto_103">Documentación de la actuación</h3>
+<p data-admin-key="auto_104">Se recopilan fotos de antes y después, mediciones, firma del cliente y
+documentación técnica de la intervención.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div>
+<h3 data-admin-key="auto_105">Certificado de eficiencia energética (CEE)</h3>
+<p data-admin-key="auto_106">Tras la actuación, la vivienda puede solicitar la actualización del certificado
+energético para reflejar la mejora conseguida.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div>
+<h3 data-admin-key="auto_107">Gestión completa del CAE</h3>
+<p style="font-weight:700; color:var(--primary);" data-admin-key="auto_108">
+Nos encargamos de todo el proceso técnico, administrativo y energético.
+</p>
+<p data-admin-key="auto_109">
+Desde la documentación inicial, la certificación del ahorro energético y la validación, hasta el cierre
+del expediente correspondiente.
+</p>
+</div>
+</div>
+</div>
+<div class="card soft-card" style="text-align:center; margin-top:20px;">
+<h3 data-admin-key="auto_110">Mejora de la calificación energética</h3>
+<p style="max-width:700px; margin:0 auto 15px;" data-admin-key="auto_111">
+Tras la intervención, la vivienda mejora su comportamiento energético, reduciendo su consumo y aumentando su
+valor en el mercado.
+</p>
+<p style="font-weight:800; color:var(--primary); font-size:1.2rem;" data-admin-key="auto_112">
+Mejora real reflejada en el rendimiento energético de la vivienda
+</p>
+</div>
+</section>
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_113">Quién está detrás</h2>
+<p style="text-align:center; max-width:700px; margin:0 auto;" data-admin-key="auto_114">
+Trabajamos con un sujeto delegado acreditado, encargado de validar y gestionar el ahorro energético asociado a
+la actuación.
+</p>
+<p style="text-align:center; font-weight:700; color:var(--primary); margin-top:12px;" data-admin-key="auto_115">
+Sistema oficial regulado en España
+</p>
+</section>
+</section>
+<!-- CITA -->
+<section id="cita" class="section">
+<section class="card">
+<h2 data-admin-key="auto_116">El día de la cita</h2>
+<p class="section-intro" data-admin-key="auto_117">
+Selecciona el tipo de inmueble para ver el proceso y la documentación necesaria.
+</p>
+
+<p id="type-message" style="text-align:center; font-weight:700; color:var(--primary); margin-bottom:15px;"
+data-admin-key="auto_118">
+Selecciona el tipo de inmueble para ver el proceso
+</p>
+<div class="type-switch">
+<button class="type-btn" data-type="uni">Vivienda unifamiliar</button>
+<button class="type-btn" data-type="com">Comunidad de propietarios</button>
+<button class="type-btn" data-type="emp">Edificio terciario</button>
+</div>
+<div id="tipo-uni" class="type-box">
+<img id="imgTipoUni" data-admin-img="imgTipoUni" src="images/cubierta_antes.jpg" alt="Vivienda unifamiliar"
+class="single-photo" style="height:240px;margin-top:0;margin-bottom:18px;" />
+<div class="timeline">
+<div class="step">
+<div class="step-num">1</div>
+<div>
+<h3 data-admin-key="auto_119">Revisión completa de la vivienda</h3>
+<p data-admin-key="auto_120">Inspección completa de la vivienda, la cubierta y sus condiciones reales para
+validar la actuación.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div>
+<h3 data-admin-key="auto_121">Fotos y medidas</h3>
+<p data-admin-key="auto_122">Se documenta la vivienda y la cubierta antes de la obra para preparar
+correctamente el expediente técnico.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div>
+<h3 data-admin-key="auto_123">Intervención</h3>
+<p data-admin-key="auto_124">Una vez validado todo, se realiza la actuación sobre la cubierta. En muchos
+casos puede completarse en pocas horas.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">4</div>
+<div>
+<h3 data-admin-key="auto_125">Fotos finales y documentación</h3>
+<p data-admin-key="auto_126">Se realizan fotos finales y se firma la documentación vinculada a la
+actuación y a la cesión del ahorro.</p>
+</div>
+</div>
+</div>
+<div class="card soft-card" style="margin-top:18px;">
+<h3 data-admin-key="auto_127">Qué necesitas</h3>
+<p style="font-weight:700; color:var(--primary); margin-bottom:8px;" data-admin-key="auto_128">Solo tu DNI</p>
+<p data-admin-key="auto_129">Nos encargamos de todo el proceso técnico, administrativo y energético.</p>
+</div>
+</div>
+<div id="tipo-com" class="type-box">
+<img id="imgTipoCom" data-admin-img="imgTipoCom" src="images/planning.jpg" alt="Comunidad de propietarios"
+class="single-photo" style="height:240px;margin-top:0;margin-bottom:18px;" />
+<div class="timeline">
+<div class="step">
+<div class="step-num">1</div>
+<div>
+<h3 data-admin-key="auto_130">Revisión completa del edificio</h3>
+<p data-admin-key="auto_131">Se analiza la cubierta, las zonas comunes y las condiciones del inmueble para
+validar la actuación y preparar el expediente técnico.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div>
+<h3 data-admin-key="auto_132">Fotos, medidas y documentación</h3>
+<p data-admin-key="auto_133">Se recopila la información del edificio, se documenta el estado previo y se
+prepara toda la documentación necesaria para tramitar correctamente la actuación.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div>
+
+<h3 data-admin-key="auto_134">Documentación específica</h3>
+<ul>
+<li data-admin-key="auto_135">NIF de la comunidad</li>
+<li data-admin-key="auto_136">Certificado digital FNMT</li>
+<li data-admin-key="auto_137">Acta de elección o nombramiento del presidente</li>
+<li data-admin-key="auto_138">Junta de acuerdo para la obra</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card soft-card" style="margin-top:18px;">
+<h3 data-admin-key="auto_139">Nos encargamos del proceso</h3>
+<p data-admin-key="auto_140">Guiamos toda la parte documental para que la comunidad tenga todo correctamente
+preparado.</p>
+</div>
+</div>
+<div id="tipo-emp" class="type-box">
+<img id="imgTipoEmp" data-admin-img="imgTipoEmp" src="images/arquitecto.jpg" alt="Edificio terciario"
+class="single-photo" style="height:240px;margin-top:0;margin-bottom:18px;" />
+<div class="timeline">
+<div class="step">
+<div class="step-num">1</div>
+<div>
+<h3 data-admin-key="auto_141">Revisión completa del edificio</h3>
+<p data-admin-key="auto_142">Se estudia la cubierta, el uso del inmueble y sus condiciones energéticas
+para validar la actuación y adaptar la solución al edificio terciario.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<div>
+<h3 data-admin-key="auto_143">Fotos, medidas y documentación</h3>
+<p data-admin-key="auto_144">Se documenta técnicamente el estado del edificio y se recopilan los datos
+necesarios para la tramitación energética y administrativa.</p>
+</div>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<div>
+<h3 data-admin-key="auto_145">Documentación específica</h3>
+<ul>
+<li data-admin-key="auto_146">NIF de la sociedad</li>
+<li data-admin-key="auto_147">Certificado del Registro Mercantil</li>
+<li data-admin-key="auto_148">Nota simple</li>
+<li data-admin-key="auto_149">Certificado digital FNMT</li>
+<li data-admin-key="auto_150">Documentación de consumos eléctricos</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card soft-card" style="margin-top:18px;">
+<h3 data-admin-key="auto_151">Edificio terciario</h3>
+<p data-admin-key="auto_152">Adaptamos el expediente técnico y documental a la estructura de la sociedad o
+empresa.</p>
+</div>
+</div>
+</section>
+<section class="card">
+<h2 data-admin-key="auto_153">Día de la cita: trabajo real</h2>
+<p data-admin-key="auto_154">
+Diagnóstico, medición, actuación y cierre documental en una misma visita técnica.
+</p>
+<div class="photo-grid" style="margin-top:18px;">
+<img id="imgCamionCita" data-admin-img="imgCamionCita" src="images/camion.jpg" alt="Camión de insuflado en la
+cita técnica" class="single-photo" style="height:260px;margin-top:0;" />
+<img id="imgOperariosCita" data-admin-img="imgOperariosCita" src="images/arquitecto.jpg" alt="Personas
+trabajando" class="single-photo" style="height:260px;margin-top:0;" />
+</div>
+<p class="form-note" style="margin-top:14px;" data-admin-key="auto_155">
+Obra de calidad, ejecución rápida y proceso completamente documentado.
+</p>
+</section>
+</section>
+<!-- RECOMENDACION -->
+<section id="recomendacion" class="section">
+
+<section class="card reward-wrap">
+<h2 style="text-align:center;" data-admin-key="auto_156">Recomendación</h2>
+<p style="text-align:center; max-width:650px; margin:0 auto 20px;" data-admin-key="auto_157">
+Si conoces a otras personas interesadas, puedes obtener un bono tras la intervención finalizada y validada.
+</p>
+<div class="reward-grid">
+<div class="reward-box">
+<strong>30€</strong>
+<span data-admin-key="auto_158">2 clientes con obra realizada</span>
+</div>
+<div class="reward-box">
+<strong>100€</strong>
+<span data-admin-key="auto_159">5 clientes con obra realizada</span>
+</div>
+</div>
+<p style="text-align:center; font-size:14px; color:var(--muted); margin-top:18px;" data-admin-key="auto_160">
+Los bonos se entregan en tarjeta regalo / ticket de Amazon o El Corte Inglés, tras validación final.
+</p>
+<form id="formRecomendacion" style="margin-top:24px;">
+<input type="hidden" name="tipo_formulario" value="recomendacion" />
+<input class="field" type="text" name="recomienda_nombre" placeholder="Tu nombre" required />
+<input class="field" type="tel" name="recomienda_telefono" placeholder="Tu teléfono" required />
+<input class="field" type="text" name="referido_nombre" placeholder="Nombre del recomendado" required />
+<input class="field" type="tel" name="referido_telefono" placeholder="Teléfono del recomendado" required />
+<label class="checkbox-line">
+<input type="checkbox" required />
+<span data-admin-key="auto_161">He leído y acepto la <a href="privacidad.html" target="_blank">Política de
+Privacidad</a>.</span>
+</label>
+<button class="btn btn-main" type="submit">Enviar recomendación</button>
+<div class="success-note" id="recSuccess">Recomendación enviada correctamente ■</div>
+<div class="error-note" id="recError">Ha habido un error al enviar ■</div>
+</form>
+<p style="text-align:center; font-size:13px; color:var(--muted); margin-top:20px;" data-admin-key="auto_162">
+El cliente recomendado debe registrarse indicando el código o teléfono del recomendador.
+</p>
+</section>
+</section>
+<!-- CONTACTO -->
+<section id="contacto" class="section">
+<section class="card">
+<h2 style="text-align:center;" data-admin-key="auto_163">Comprueba la viabilidad de tu vivienda</h2>
+<p style="text-align:center; color:var(--muted);" data-admin-key="auto_164">
+Respuesta rápida · Evaluación técnica real · Sin compromiso
+</p>
+<p class="form-note" data-admin-key="auto_165">
+Solo necesitamos unos datos básicos para evaluar tu vivienda y su cubierta.
+</p>
+<form id="formulario">
+<input type="hidden" name="tipo_formulario" value="contacto" />
+<input type="hidden" name="source" value="webapp-aislamiento-dashboard" />
+<input type="hidden" name="page_section" id="page_section" value="contacto" />
+<input type="hidden" name="submitted_at" id="submitted_at" value="" />
+<input type="hidden" name="origin_url" id="origin_url" value="" />
+<input class="field" type="text" name="nombre" placeholder="Nombre y apellidos" required />
+<input class="field" type="tel" name="telefono" placeholder="Teléfono" required />
+<input class="field" type="email" name="email" placeholder="Correo electrónico (opcional)" />
+<input class="field" type="text" name="material_cubierta" placeholder="Material de la cubierta: hormigón, yeso o
+madera" />
+<input class="field" type="text" name="codigo_recomendacion" id="codigo_recomendacion" placeholder="Código de
+recomendación (opcional)" />
+<textarea class="field" name="mensaje" rows="4" placeholder="Localidad, tipo de vivienda y cualquier detalle
+útil"></textarea>
+<label class="checkbox-line">
+<input type="checkbox" required />
+<span data-admin-key="auto_166">He leído y acepto la <a href="privacidad.html" target="_blank">Política de
+Privacidad</a>.</span>
+</label>
+<button class="btn btn-main" type="submit">Comprobar si puedo aislar sin pagar</button>
+
+<div class="success-note" id="contactoSuccess">Formulario enviado correctamente ■</div>
+<div class="error-note" id="contactoError">Ha habido un error al enviar ■</div>
+</form>
+<p style="text-align:center; font-size:13px; color:var(--muted); margin-top:12px;" data-admin-key="auto_167">
+Te llamamos en menos de 24h · Sin compromiso
+</p>
+</section>
+</section>
+<footer class="global-footer">
+<p data-admin-key="auto_168">© 2026 Aislamiento en Casa · Castilla y León, Asturias y Galicia</p>
+<p style="font-size:11px; opacity:.7;" data-admin-key="auto_169">Sujeto a viabilidad técnica y condiciones del
+sistema CAE.</p>
+<div style="margin-top:18px;">
+<p style="font-weight:700; margin-bottom:8px;" data-admin-key="auto_170">Síguenos</p>
+<div class="social-row">
+<a href="https://www.facebook.com/profile.php?id=61580737887536" target="_blank" rel="noopener"
+class="social-btn">
+Facebook
+</a>
+<a href="https://www.instagram.com/aislamientoencasa?igsh=czF4MTcxOW55bXpr&utm_source=qr" target="_blank"
+rel="noopener" class="social-btn">
+Instagram
+</a>
+</div>
+<p style="font-size:13px; color:#9cb2a5; margin-top:6px;" data-admin-key="auto_171">
+Casos reales · Antes y después · Obras finalizadas
+</p>
+</div>
+<p style="margin-top:12px;" data-admin-key="auto_172">
+<a href="aviso-legal.html">Aviso legal</a> ·
+<a href="privacidad.html">Privacidad</a> ·
+<a href="cookies.html">Cookies</a>
+</p>
+</footer>
+</main>
+</div>
+<a href="tel:+34865450109" class="call-float" id="callBtn">Llamada directa</a>
+<a id="waBtn" href="#" class="whatsapp-float">WhatsApp técnico</a>
+<div id="wa-popup" class="wa-popup">
+¿Quieres saber si tu vivienda es viable?<br />
+<a href="https://wa.me/34670237842?text=Hola,%20quiero%20informaci%C3%B3n%20sobre%20el%20aislamiento%20de%20cubierta"
+target="_blank" rel="noopener">Hablar por WhatsApp</a>
+</div>
+<div class="cookie-banner" id="cookieBanner">
+<div class="cookie-copy">
+<strong>Usamos cookies</strong>
+<p data-admin-key="auto_173">
+Utilizamos cookies técnicas y, si aceptas, también de análisis para mejorar tu experiencia. Puedes consultar más
+información en nuestra
+<a href="cookies.html" target="_blank" rel="noopener" style="color:var(--primary); font-weight:700;">Política de
+Cookies</a>.
+</p>
+</div>
+<div class="cookie-actions">
+<button class="btn-cookie" id="rejectCookies" type="button">Rechazar</button>
+<button class="btn-cookie primary" id="acceptCookies" type="button">Aceptar</button>
+</div>
+</div>
+<script>
+const ZAPIER_WEBHOOK = "https://hooks.zapier.com/hooks/catch/26916630/upgj0c3/";
+const sectionMeta = {
+inicio: {
+title: "Inicio",
+subtitle: "Aislamiento de cubiertas sin inversión inicial, según viabilidad técnica."
+},
+cae: {
+title: "Sistema CAE",
+subtitle: "Cómo se genera el ahorro y cómo se transforma en financiación de la obra."
+},
+cita: {
+title: "Día de la cita",
+subtitle: "Proceso de revisión técnica, documentación, intervención y firma."
+},
+
+recomendacion: {
+title: "Recomendación",
+subtitle: "Bonos por clientes con obra realizada y validada."
+},
+contacto: {
+title: "Contacto",
+subtitle: "Formulario preparado para automatizar leads hacia Zapier y CRM."
+}
+};
+const menuButtons = document.querySelectorAll(".menu-btn");
+const sections = document.querySelectorAll(".section");
+const titleEl = document.getElementById("section-title");
+const subtitleEl = document.getElementById("section-subtitle");
+const pageSectionInput = document.getElementById("page_section");
+const logoOverlay = document.getElementById("logoOverlay");
+function setActiveMenu(id){
+menuButtons.forEach(btn => btn.classList.remove("active"));
+const targetBtn = document.querySelector('.menu-btn[data-tab="' + id + '"]');
+if(targetBtn) targetBtn.classList.add("active");
+}
+function updateTopbar(id){
+if(sectionMeta[id]){
+titleEl.textContent = sectionMeta[id].title;
+subtitleEl.textContent = sectionMeta[id].subtitle;
+}
+if(pageSectionInput){
+pageSectionInput.value = id;
+}
+}
+function toggleFloatingButtons(sectionId) {
+const callBtn = document.querySelector(".call-float");
+const waBtn = document.querySelector(".whatsapp-float");
+const popup = document.getElementById("wa-popup");
+if (sectionId === "contacto") {
+if (callBtn) callBtn.style.display = "none";
+if (waBtn) waBtn.style.display = "none";
+if (popup) popup.style.display = "none";
+} else {
+if (callBtn) callBtn.style.display = "flex";
+if (waBtn) waBtn.style.display = "flex";
+}
+}
+function switchSection(id){
+sections.forEach(section => section.classList.remove("active"));
+const targetSection = document.getElementById(id);
+if(targetSection) targetSection.classList.add("active");
+setActiveMenu(id);
+updateTopbar(id);
+toggleFloatingButtons(id);
+window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function restartOverlayAnimation(){
+if(!logoOverlay) return;
+const bombilla = logoOverlay.querySelector(".bombilla");
+const texto = logoOverlay.querySelectorAll(".texto-logo span");
+if (bombilla) {
+bombilla.style.animation = "none";
+void bombilla.offsetWidth;
+bombilla.style.animation = "";
+}
+texto.forEach(el => {
+el.style.animation = "none";
+void el.offsetWidth;
+el.style.animation = "";
+});
+}
+function showSection(id){
+restartOverlayAnimation();
+logoOverlay.classList.add("show");
+setTimeout(() => {
+switchSection(id);
+
+}, 500);
+setTimeout(() => {
+logoOverlay.classList.remove("show");
+}, 1300);
+}
+menuButtons.forEach(btn => {
+btn.addEventListener("click", () => showSection(btn.dataset.tab));
+});
+document.querySelectorAll("[data-goto]").forEach(el => {
+el.addEventListener("click", function(e){
+e.preventDefault();
+showSection(this.dataset.goto);
+});
+});
+let count = 0;
+const target = 46;
+function animateCounter(){
+const counter = document.getElementById("counter");
+if (!counter) return;
+if(count < target){
+count++;
+counter.innerText = "-" + count + "%";
+setTimeout(animateCounter, 30);
+}
+}
+window.addEventListener("load", () => {
+animateCounter();
+const sidebar = document.querySelector(".sidebar");
+if (sidebar) sidebar.classList.add("hidden");
+restartOverlayAnimation();
+logoOverlay.classList.add("show");
+setTimeout(() => {
+logoOverlay.classList.remove("show");
+if (sidebar) sidebar.classList.remove("hidden");
+}, 1300);
+});
+const slider = document.getElementById("slider");
+const afterImage = document.getElementById("afterImage");
+const baDivider = document.getElementById("baDivider");
+let autoDir = 1;
+let autoVal = 50;
+let manualOverride = false;
+function updateBeforeAfter(value){
+if(afterImage) afterImage.style.width = value + "%";
+if(baDivider) baDivider.style.left = value + "%";
+}
+if(slider){
+slider.addEventListener("input", function(){
+manualOverride = true;
+updateBeforeAfter(this.value);
+});
+}
+setInterval(() => {
+if (!slider || !afterImage || manualOverride) return;
+autoVal += autoDir;
+if (autoVal >= 100 || autoVal <= 0) autoDir *= -1;
+slider.value = autoVal;
+updateBeforeAfter(autoVal);
+}, 40);
+const typeButtons = document.querySelectorAll(".type-btn");
+const typeBoxes = document.querySelectorAll(".type-box");
+function showType(type){
+typeButtons.forEach(btn => btn.classList.remove("active"));
+typeBoxes.forEach(box => box.classList.remove("active"));
+const typeMessage = document.getElementById("type-message");
+if(typeMessage) typeMessage.style.display = "none";
+const activeBtn = document.querySelector('.type-btn[data-type="' + type + '"]');
+const activeBox = document.getElementById("tipo-" + type);
+
+if(activeBtn) activeBtn.classList.add("active");
+if(activeBox) activeBox.classList.add("active");
+}
+typeButtons.forEach(btn => {
+btn.addEventListener("click", () => showType(btn.dataset.type));
+});
+(function () {
+const params = new URLSearchParams(window.location.search);
+const ref = params.get("ref");
+if (ref) {
+localStorage.setItem("codigo_recomendacion", ref);
+}
+window.addEventListener("DOMContentLoaded", function () {
+const input = document.getElementById("codigo_recomendacion");
+const savedRef = localStorage.getItem("codigo_recomendacion");
+if (input && savedRef) input.value = savedRef;
+});
+})();
+window.addEventListener("DOMContentLoaded", function () {
+const submittedAt = document.getElementById("submitted_at");
+const originUrl = document.getElementById("origin_url");
+if (submittedAt) submittedAt.value = new Date().toISOString();
+if (originUrl) originUrl.value = window.location.href;
+});
+function updateCallButton(){
+const btn = document.getElementById("callBtn");
+if (!btn) return;
+const now = new Date();
+const hour = now.getHours();
+btn.textContent = (hour >= 9 && hour < 20) ? "Llamada directa" : "Llámanos";
+}
+updateCallButton();
+function getFormData(){
+const nombre = document.querySelector('input[name="nombre"]')?.value || "";
+const telefono = document.querySelector('input[name="telefono"]')?.value || "";
+const material = document.querySelector('input[name="material_cubierta"]')?.value || "";
+return { nombre, telefono, material };
+}
+const waBtn = document.getElementById("waBtn");
+if (waBtn) {
+waBtn.addEventListener("click", function(){
+const data = getFormData();
+let mensaje = "Hola, quiero saber si puedo aislar mi vivienda sin pagar la obra.\n";
+if(data.nombre) mensaje += "Nombre: " + data.nombre + "\n";
+if(data.telefono) mensaje += "Teléfono: " + data.telefono + "\n";
+if(data.material) mensaje += "Cubierta: " + data.material + "\n";
+mensaje += "\nQuiero saber si mi vivienda puede acogerse al aislamiento sin inversión inicial.";
+this.href = "https://wa.me/34670237842?text=" + encodeURIComponent(mensaje);
+});
+}
+setTimeout(() => {
+const popup = document.getElementById("wa-popup");
+if (popup) popup.style.display = "block";
+}, 10000);
+async function sendToZapier(data){
+const formData = new URLSearchParams();
+for (const key in data) {
+formData.append(key, data[key]);
+}
+const response = await fetch(ZAPIER_WEBHOOK, {
+method: "POST",
+body: formData
+});
+return true; // ■ asumimos éxito si no rompe
+}
+document.addEventListener("DOMContentLoaded", function () {
+const form = document.getElementById("formulario");
+const success = document.getElementById("contactoSuccess");
+const error = document.getElementById("contactoError");
+if (!form) return;
+form.addEventListener("submit", async function (e) {
+
+e.preventDefault();
+const btn = form.querySelector("button");
+if (!btn) return;
+success.style.display = "none";
+error.style.display = "none";
+const data = {
+tipo_formulario: "contacto",
+source: "webapp-aislamiento-dashboard",
+nombre: form.nombre.value,
+telefono: form.telefono.value,
+email: form.email.value,
+material_cubierta: form.material_cubierta.value,
+codigo_recomendacion: form.codigo_recomendacion.value,
+mensaje: form.mensaje.value,
+submitted_at: new Date().toISOString(),
+origin_url: window.location.href
+};
+btn.innerText = "Enviando...";
+btn.disabled = true;
+try {
+await sendToZapier(data);
+btn.innerText = "Enviado ■";
+success.style.display = "block";
+form.reset();
+} catch (err) {
+console.error(err);
+btn.innerText = "Error ■";
+error.style.display = "block";
+btn.disabled = false;
+}
+});
+});
+document.addEventListener("DOMContentLoaded", function () {
+const formRec = document.getElementById("formRecomendacion");
+const success = document.getElementById("recSuccess");
+const error = document.getElementById("recError");
+if (!formRec) return;
+formRec.addEventListener("submit", async function (e) {
+e.preventDefault();
+const btn = formRec.querySelector("button");
+if (!btn) return;
+success.style.display = "none";
+error.style.display = "none";
+const telefonoRecomendador = formRec.recomienda_telefono.value.trim();
+const data = {
+tipo_formulario: "recomendacion",
+recomienda_nombre: formRec.recomienda_nombre.value,
+recomienda_telefono: telefonoRecomendador,
+referido_nombre: formRec.referido_nombre.value,
+referido_telefono: formRec.referido_telefono.value,
+enlace_referido: window.location.origin + window.location.pathname + "?ref=" +
+encodeURIComponent(telefonoRecomendador),
+submitted_at: new Date().toISOString(),
+origin_url: window.location.href
+};
+btn.innerText = "Enviando...";
+btn.disabled = true;
+try {
+await sendToZapier(data);
+btn.innerText = "Enviado ■";
+success.style.display = "block";
+formRec.reset();
+} catch (err) {
+console.error(err);
+btn.innerText = "Error ■";
+error.style.display = "block";
+btn.disabled = false;
+}
+});
+});
+document.addEventListener("DOMContentLoaded", function () {
+
+const cookieBanner = document.getElementById("cookieBanner");
+const acceptCookies = document.getElementById("acceptCookies");
+const rejectCookies = document.getElementById("rejectCookies");
+const cookieKey = "aec_cookie_consent";
+if (!localStorage.getItem(cookieKey)) {
+cookieBanner.classList.add("show");
+}
+acceptCookies.addEventListener("click", function () {
+localStorage.setItem(cookieKey, "accepted");
+cookieBanner.classList.remove("show");
+});
+rejectCookies.addEventListener("click", function () {
+localStorage.setItem(cookieKey, "rejected");
+cookieBanner.classList.remove("show");
+});
+});
+</script>
+<div id="adminHelpBadge" style="display:none;position:fixed;top:18px;right:18px;z-index:1600;background:#12354a;color:#fff
+;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.16);">
+Modo admin activo
+</div>
+<button id="btnEditarAdmin" style="display:none;position:fixed;bottom:24px;left:24px;z-index:1400;background:#12354a;color
+:#fff;border:none;border-radius:999px;padding:14px 18px;font-weight:800;box-shadow:0 10px 25px
+rgba(0,0,0,0.18);cursor:pointer;">
+Editar web
+</button>
+<div id="panelAdmin" style="display:none;position:fixed;top:0;right:0;width:min(460px,100vw);height:100vh;background:#ffffff;z-index:1500;box-shadow:-8px 0 30px rgba(0,0,0,0.18);padding:18px;overflow:auto;">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;">
+<h3 style="margin:0;">Versión final PRO+</h3>
+<button id="cerrarAdmin" style="border:none;background:#eee;border-radius:10px;padding:8px 12px;cursor:pointer;">Cerrar</button>
+</div>
+<p style="margin-top:0;color:#5f7a70;font-size:14px;">Edita textos directamente sobre la web, cambia imágenes, reordena bloques arrastrando, duplica contenido, controla tamaños y muestra u oculta secciones. Los cambios se guardan en Firebase al pulsar guardar.</p>
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Color principal</label>
+<input type="color" id="colorPrimary" style="width:100%;height:46px;border:1px solid #ccdcd0;border-radius:12px;padding:4px;" />
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Color secundario</label>
+<input type="color" id="colorSecondary" style="width:100%;height:46px;border:1px solid #ccdcd0;border-radius:12px;padding:4px;" />
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Instagram</label>
+<input id="editInstagram" class="admin-field" style="margin-top:0;" />
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">Imagen seleccionada</label>
+<p class="admin-mini-help">Haz clic sobre una imagen o sobre el hero para seleccionarla.</p>
+<div id="selectedImageLabel" class="admin-selected-label">Ninguna imagen seleccionada</div>
+<select id="adminImageTarget" class="admin-field"></select>
+<img id="adminPreviewImg" src="" alt="Vista previa" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px;border:1px solid #d7e4db;background:#fff;margin-top:12px;" />
+<button id="subirImagenAdmin" class="admin-inline-btn primary">Subir imagen</button>
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Altura imagen <span id="imageHeightOut" class="range-output">Auto</span></label>
+<input type="range" id="imageHeightRange" min="140" max="520" step="10" value="260" style="width:100%;" />
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Ajuste de imagen</label>
+<select id="imageFitSelect" class="admin-field" style="margin-top:0;">
+<option value="cover">Cubrir</option>
+<option value="contain">Contener</option>
+</select>
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Ancho visible <span id="imageWidthOut" class="range-output">100%</span></label>
+<input type="range" id="imageWidthRange" min="30" max="100" step="5" value="100" style="width:100%;" />
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Alineación</label>
+<select id="imageAlignSelect" class="admin-field" style="margin-top:0;">
+<option value="left">Izquierda</option>
+<option value="center">Centro</option>
+<option value="right">Derecha</option>
+</select>
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Desplazamiento horizontal <span id="imagePosXOut" class="range-output">50%</span></label>
+<input type="range" id="imagePosXRange" min="0" max="100" step="1" value="50" style="width:100%;" />
+</div>
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">Bloque seleccionado</label>
+<p class="admin-mini-help">Haz clic en un bloque. Puedes moverlo con el botón ↕ y duplicarlo con ⧉.</p>
+<div id="selectedBlockLabel" class="admin-selected-label">Ningún bloque seleccionado</div>
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Padding <span id="blockPaddingOut" class="range-output">32px</span></label>
+<input type="range" id="blockPaddingRange" min="16" max="72" step="2" value="32" style="width:100%;" />
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Radio <span id="blockRadiusOut" class="range-output">28px</span></label>
+<input type="range" id="blockRadiusRange" min="12" max="40" step="1" value="28" style="width:100%;" />
+<label style="display:block;font-weight:700;margin:14px 0 6px;">Ancho del bloque</label>
+<select id="blockWidthPreset" class="admin-field" style="margin-top:0;">
+<option value="default">Normal</option>
+<option value="narrow">Más estrecho</option>
+<option value="full">Ancho completo</option>
+</select>
+</div>
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">Visibilidad de secciones</label>
+<p class="admin-mini-help">Activa o desactiva páginas completas sin tocar el código.</p>
+<div id="sectionVisibilityList" class="admin-toggle-list"></div>
+</div>
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">Testimonios dinámicos</label>
+<p class="admin-mini-help">Se renderizan desde Firebase y también se pueden reordenar arrastrando.</p>
+<input id="testimonialName" class="admin-field" placeholder="Nombre" />
+<input id="testimonialMeta" class="admin-field" placeholder="Localidad o detalle" />
+<textarea id="testimonialQuote" class="admin-field" rows="4" placeholder="Testimonio"></textarea>
+<button id="addTestimonialBtn" class="admin-inline-btn primary">Añadir testimonio</button>
+<div id="testimonialAdminList" class="admin-mini-help" style="margin-top:10px;"></div>
+</div>
+
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">Historial</label>
+<p class="admin-mini-help">Deshacer y rehacer cambios de textos, imágenes, colores y estilos.</p>
+<div class="undo-redo-row">
+  <button id="undoAdmin" class="admin-inline-btn secondary" type="button">Deshacer</button>
+  <button id="redoAdmin" class="admin-inline-btn secondary" type="button">Rehacer</button>
+</div>
+</div>
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">Plantillas rápidas</label>
+<p class="admin-mini-help">Aplica una plantilla al bloque seleccionado sin romper el resto.</p>
+<div class="template-grid">
+  <button id="tplBenefit" class="admin-inline-btn secondary" type="button">Beneficios</button>
+  <button id="tplFaq" class="admin-inline-btn secondary" type="button">FAQ</button>
+  <button id="tplCta" class="admin-inline-btn secondary" type="button">CTA</button>
+  <button id="tplBeforeAfter" class="admin-inline-btn secondary" type="button">Antes/Después</button>
+</div>
+</div>
+
+<div class="admin-panel-group">
+<label style="display:block;font-weight:700;">SEO automático</label>
+<input id="seoTitle" class="admin-field" placeholder="Título SEO" />
+<textarea id="seoDescription" class="admin-field" rows="3" placeholder="Meta descripción"></textarea>
+<input id="seoThemeColor" class="admin-field" placeholder="#2f7d57" />
+<p class="seo-note">Se guardan el título, la descripción y el color del navegador.</p>
+</div>
+
+<button id="guardarAdmin" style="width:100%;padding:14px;border:none;background:#12354a;color:#fff;border-radius:12px;font-weight:800;cursor:pointer;margin-top:18px;">Guardar cambios</button>
+<button id="restablecerAdmin" style="width:100%;padding:14px;border:none;background:#eee;color:#12354a;border-radius:12px;font-weight:800;cursor:pointer;margin-top:10px;">Restablecer cambios guardados</button>
+<p id="estadoAdmin" style="margin-top:10px;font-size:14px;color:#5f7a70;"></p>
+</div>
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyC51eID-fbYsn5L1ieeDmoRLmBMaKP1kAhg",
+authDomain: "galeria-web-9c9d9.firebaseapp.com",
+projectId: "galeria-web-9c9d9",
+storageBucket: "galeria-web-9c9d9.firebasestorage.app",
+messagingSenderId: "468798254203",
+appId: "1:468798254203:web:35bd1df8bc18dd74ccc60e"
+};
+const CLOUD_NAME = "dnenidufl";
+const UPLOAD_PRESET = "mi_upload";
+const ADMIN_KEY = "MANCAE2025";
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const docRef = doc(db, "contenido", "siteProFinal");
+const qs = (id) => document.getElementById(id);
+const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+const isAdmin = new URLSearchParams(window.location.search).get("admin") === ADMIN_KEY;
+const DEFAULT_TESTIMONIALS = [
+  { id: 't1', name: 'María y Javier', meta: 'León · Vivienda unifamiliar', quote: 'La casa mantiene mucho mejor la temperatura y el proceso fue rápido y muy claro.' },
+  { id: 't2', name: 'Comunidad Plaza Mayor', meta: 'Asturias · Comunidad', quote: 'Nos guiaron con toda la documentación y la intervención fue limpia y bien coordinada.' },
+  { id: 't3', name: 'Casa rural Outeiro', meta: 'Galicia · Edificio terciario', quote: 'Notamos el ahorro desde el primer invierno y el cambio de confort fue inmediato.' }
+];
+let savedData = { texts:{}, images:{}, backgrounds:{}, colors:{}, links:{}, order:{}, hiddenSections:{}, blockStyles:{}, imageStyles:{}, testimonials:[...DEFAULT_TESTIMONIALS], seo:{} };
+let currentImageTarget = 'heroBg';
+let selectedBlock = null;
+let selectedImage = null;
+let sortables = [];
+
+function uid(prefix='id') {
+  return prefix + '_' + Math.random().toString(36).slice(2, 10);
+}
+
+function getRootStyles() {
+  return getComputedStyle(document.documentElement);
+}
+
+function getDefaultData() {
+  assignAdminMetadata();
+  const texts = {};
+  qsa('[data-admin-key]').forEach(el => texts[el.dataset.adminKey] = el.innerHTML);
+  const images = {};
+  qsa('[data-admin-img]').forEach(el => images[el.dataset.adminImg] = el.getAttribute('src'));
+  const backgrounds = { heroBg: '' };
+  const heroBgEl = qs('heroInicio');
+  if (heroBgEl && heroBgEl.dataset.heroBgUrl) backgrounds.heroBg = heroBgEl.dataset.heroBgUrl;
+  const links = {
+    instagram: (Array.from(document.querySelectorAll('a.social-btn')).find(a => (a.textContent || '').toLowerCase().includes('instagram')) || {}).href || 'https://www.instagram.com/aislamientoencasa'
+  };
+  const rootStyles = getRootStyles();
+  const colors = {
+    primary: rootStyles.getPropertyValue('--primary').trim() || '#2f7d57',
+    secondary: rootStyles.getPropertyValue('--secondary').trim() || '#12354a'
+  };
+  const testimonials = readTestimonialsFromDOM().length ? readTestimonialsFromDOM() : [...DEFAULT_TESTIMONIALS];
+  const order = captureOrder();
+  const seo = {
+    title: document.title || 'Aislamiento en Casa | Plataforma',
+    description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+    themeColor: document.querySelector('meta[name="theme-color"]')?.getAttribute('content') || colors.primary
+  };
+  return { texts, images, backgrounds, colors, links, order, hiddenSections: {}, blockStyles: {}, imageStyles: {}, testimonials, seo };
+}
+
+function assignAdminMetadata() {
+  qsa('.section').forEach(section => {
+    Array.from(section.children).forEach(child => {
+      if (!child.dataset.adminBlock) child.dataset.adminBlock = uid('block');
+      child.classList.add('admin-block');
+    });
+  });
+  qsa('[data-admin-img]').forEach(el => {
+    if (!el.dataset.adminImg) el.dataset.adminImg = uid('img');
+  });
+}
+
+function ensureUniqueCloneKeys(root) {
+  if (root.id) root.removeAttribute('id');
+  qsa('[id]', root).forEach(el => el.removeAttribute('id'));
+  qsa('[data-admin-key]', root).forEach(el => el.dataset.adminKey = uid('text'));
+  qsa('[data-admin-img]', root).forEach(el => el.dataset.adminImg = uid('img'));
+  root.dataset.adminBlock = uid('block');
+}
+
+function applyData() {
+  assignAdminMetadata();
+  if (savedData.texts) {
+    qsa('[data-admin-key]').forEach(el => {
+      const key = el.dataset.adminKey;
+      if (typeof savedData.texts[key] === 'string') el.innerHTML = savedData.texts[key];
+    });
+  }
+  if (savedData.images) {
+    qsa('[data-admin-img]').forEach(el => {
+      const key = el.dataset.adminImg;
+      if (savedData.images[key]) el.setAttribute('src', savedData.images[key]);
+    });
+  }
+  if (savedData.backgrounds && savedData.backgrounds.heroBg && qs('heroInicio')) {
+    const hero = qs('heroInicio');
+    hero.dataset.heroBgUrl = savedData.backgrounds.heroBg;
+  }
+  applyImageStyle('heroBg', getImageStyleState('heroBg'));
+  if (savedData.colors) {
+    if (savedData.colors.primary) document.documentElement.style.setProperty('--primary', savedData.colors.primary);
+    if (savedData.colors.secondary) document.documentElement.style.setProperty('--secondary', savedData.colors.secondary);
+    if (qs('colorPrimary')) qs('colorPrimary').value = savedData.colors.primary || '#2f7d57';
+    if (qs('colorSecondary')) qs('colorSecondary').value = savedData.colors.secondary || '#12354a';
+  }
+  if (savedData.links && savedData.links.instagram) {
+    Array.from(document.querySelectorAll('a.social-btn')).filter(a => (a.textContent || '').toLowerCase().includes('instagram')).forEach(a => a.href = savedData.links.instagram);
+    if (qs('editInstagram')) qs('editInstagram').value = savedData.links.instagram;
+  }
+  if (savedData.seo) {
+    if (savedData.seo.title) document.title = savedData.seo.title;
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && savedData.seo.description) metaDesc.setAttribute('content', savedData.seo.description);
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (metaTheme && savedData.seo.themeColor) metaTheme.setAttribute('content', savedData.seo.themeColor);
+    if (qs('seoTitle')) qs('seoTitle').value = savedData.seo.title || '';
+    if (qs('seoDescription')) qs('seoDescription').value = savedData.seo.description || '';
+    if (qs('seoThemeColor')) qs('seoThemeColor').value = savedData.seo.themeColor || '';
+  }
+  renderTestimonials();
+  initBeforeAfterSliders();
+  applyOrder();
+  applySectionVisibility();
+  applyStoredBlockStyles();
+  applyStoredImageStyles();
+  refreshImageTargetOptions();
+  updateSectionVisibilityPanel();
+  updatePreview();
+  updateTestimonialAdminList();
+}
+
+function captureOrder() {
+  const order = {};
+  qsa('.section').forEach(section => {
+    order[section.id] = Array.from(section.children).map(child => child.dataset.adminBlock).filter(Boolean);
+  });
+  const testimonialsList = qs('testimonialsList');
+  if (testimonialsList) {
+    order.testimonials = qsa('[data-testimonial-id]', testimonialsList).map(el => el.dataset.testimonialId);
+  }
+  return order;
+}
+
+function applyOrder() {
+  const order = savedData.order || {};
+  qsa('.section').forEach(section => {
+    const desired = order[section.id];
+    if (!Array.isArray(desired) || !desired.length) return;
+    const map = new Map(Array.from(section.children).map(child => [child.dataset.adminBlock, child]));
+    desired.forEach(id => {
+      const node = map.get(id);
+      if (node) section.appendChild(node);
+    });
+  });
+  const list = qs('testimonialsList');
+  if (list && Array.isArray(order.testimonials)) {
+    const map = new Map(qsa('[data-testimonial-id]', list).map(card => [card.dataset.testimonialId, card]));
+    order.testimonials.forEach(id => {
+      const node = map.get(id);
+      if (node) list.appendChild(node);
+    });
+  }
+}
+
+function applySectionVisibility() {
+  const hiddenSections = savedData.hiddenSections || {};
+  qsa('.menu-btn[data-tab]').forEach(btn => {
+    const id = btn.dataset.tab;
+    const section = document.getElementById(id);
+    const hidden = !!hiddenSections[id];
+    btn.style.display = hidden ? 'none' : '';
+    if (section) section.classList.toggle('admin-block-hidden', hidden);
+  });
+  const activeSection = document.querySelector('.section.active');
+  if (activeSection && hiddenSections[activeSection.id]) {
+    const firstVisible = qsa('.section').find(sec => !hiddenSections[sec.id]);
+    if (firstVisible && typeof showSection === 'function') showSection(firstVisible.id);
+  }
+}
+
+function renderTestimonials() {
+  const list = qs('testimonialsList');
+  if (!list) return;
+  const testimonials = Array.isArray(savedData.testimonials) && savedData.testimonials.length ? savedData.testimonials : [...DEFAULT_TESTIMONIALS];
+  list.innerHTML = testimonials.map(item => `
+    <article class="testimonial-card admin-block" data-testimonial-id="${item.id || uid('t')}">
+      <div class="admin-control-chip">
+        <button type="button" class="admin-icon-btn admin-sort-handle" title="Arrastrar">↕</button>
+        <button type="button" class="admin-icon-btn delete" data-delete-testimonial="${item.id}">×</button>
+      </div>
+      <p class="testimonial-quote testimonial-editable" data-field="quote">“${escapeHtml(item.quote || '')}”</p>
+      <p class="testimonial-name testimonial-editable" data-field="name">${escapeHtml(item.name || '')}</p>
+      <div class="testimonial-meta testimonial-editable" data-field="meta">${escapeHtml(item.meta || '')}</div>
+    </article>
+  `).join('');
+}
+
+function readTestimonialsFromDOM() {
+  const list = qs('testimonialsList');
+  if (!list) return [];
+  return qsa('[data-testimonial-id]', list).map(card => ({
+    id: card.dataset.testimonialId || uid('t'),
+    quote: (card.querySelector('[data-field="quote"]')?.textContent || '').replace(/[“”]/g, '').trim(),
+    name: (card.querySelector('[data-field="name"]')?.textContent || '').trim(),
+    meta: (card.querySelector('[data-field="meta"]')?.textContent || '').trim()
+  }));
+}
+
+function escapeHtml(value='') {
+  return value.replace(/[&<>"']/g, (ch) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+}
+
+function refreshImageTargetOptions() {
+  const select = qs('adminImageTarget');
+  if (!select) return;
+  const previous = currentImageTarget;
+  const options = [{ value: 'heroBg', label: 'Fondo inicio / hero' }].concat(
+    qsa('[data-admin-img]').map(el => ({ value: el.dataset.adminImg, label: el.getAttribute('alt') || el.dataset.adminImg }))
+  );
+  const dedup = [];
+  const seen = new Set();
+  options.forEach(opt => {
+    if (!seen.has(opt.value)) {
+      seen.add(opt.value);
+      dedup.push(opt);
+    }
+  });
+  select.innerHTML = dedup.map(opt => `<option value="${opt.value}">${escapeHtml(opt.label)}</option>`).join('');
+  currentImageTarget = seen.has(previous) ? previous : dedup[0]?.value || 'heroBg';
+  select.value = currentImageTarget;
+  updateSelectedImageLabel();
+}
+
+function updateSelectedImageLabel() {
+  const label = qs('selectedImageLabel');
+  if (!label) return;
+  if (currentImageTarget === 'heroBg') {
+    label.textContent = 'Hero / fondo de inicio';
+    return;
+  }
+  const el = document.querySelector(`[data-admin-img="${currentImageTarget}"]`);
+  label.textContent = el ? (el.getAttribute('alt') || currentImageTarget) : 'Ninguna imagen seleccionada';
+}
+
+function updatePreview() {
+  const preview = qs('adminPreviewImg');
+  if (!preview) return;
+  if (currentImageTarget === 'heroBg') {
+    preview.src = savedData.backgrounds?.heroBg || '';
+    return;
+  }
+  preview.src = savedData.images?.[currentImageTarget] || document.querySelector(`[data-admin-img="${currentImageTarget}"]`)?.getAttribute('src') || '';
+}
+
+function makeTextEditable(root=document) {
+  qsa('[data-admin-key]', root).forEach(el => {
+    el.contentEditable = 'true';
+    el.spellcheck = false;
+  });
+  qsa('.testimonial-editable', root).forEach(el => {
+    el.contentEditable = 'true';
+    el.spellcheck = false;
+  });
+}
+
+function addControlsToBlock(block) {
+  if (!isAdmin || !block || block.closest('#testimonialsList')) return;
+  if (block.querySelector(':scope > .admin-control-chip')) return;
+  const chip = document.createElement('div');
+  chip.className = 'admin-control-chip';
+  chip.innerHTML = `
+    <button type="button" class="admin-icon-btn admin-sort-handle" title="Arrastrar">↕</button>
+    <button type="button" class="admin-icon-btn duplicate" title="Duplicar">⧉</button>
+  `;
+  chip.querySelector('.duplicate').addEventListener('click', (e) => {
+    e.stopPropagation();
+    duplicateBlock(block);
+  });
+  chip.querySelector('.admin-sort-handle').addEventListener('mousedown', (e) => e.stopPropagation());
+  block.prepend(chip);
+}
+
+function decorateBlocks() {
+  qsa('.section').forEach(section => {
+    Array.from(section.children).forEach(block => {
+      block.classList.add('admin-block');
+      addControlsToBlock(block);
+      block.addEventListener('click', (e) => {
+        if (!isAdmin) return;
+        if (e.target.closest('.admin-control-chip')) return;
+        setSelectedBlock(block);
+      });
+    });
+  });
+}
+
+function duplicateBlock(block) {
+  const section = block.parentElement;
+  if (!section) return;
+  const clone = block.cloneNode(true);
+  qsa('.admin-control-chip', clone).forEach(el => el.remove());
+  ensureUniqueCloneKeys(clone);
+  section.insertBefore(clone, block.nextSibling);
+  clone.classList.add('admin-block');
+  qsa('input, textarea, select, form', clone).forEach(el => {
+    if (el.tagName === 'FORM') return;
+    if ('value' in el) el.value = '';
+  });
+  savedData.order = captureOrder();
+  qsa('[data-admin-img]', clone).forEach(img => {
+    savedData.images = savedData.images || {};
+    savedData.images[img.dataset.adminImg] = img.getAttribute('src') || '';
+  });
+  qsa('[data-admin-key]', clone).forEach(el => {
+    savedData.texts = savedData.texts || {};
+    savedData.texts[el.dataset.adminKey] = el.innerHTML;
+  });
+  makeTextEditable(clone);
+  addControlsToBlock(clone);
+  clone.addEventListener('click', (e) => {
+    if (e.target.closest('.admin-control-chip')) return;
+    setSelectedBlock(clone);
+  });
+  refreshImageTargetOptions();
+  initSortables();
+  setSelectedBlock(clone);
+}
+
+function setSelectedBlock(block) {
+  selectedBlock = block;
+  qsa('.admin-block-selected').forEach(el => el.classList.remove('admin-block-selected'));
+  if (selectedBlock) selectedBlock.classList.add('admin-block-selected');
+  const label = qs('selectedBlockLabel');
+  if (label) label.textContent = selectedBlock ? ((selectedBlock.querySelector('h2,h3')?.textContent || selectedBlock.dataset.adminBlock || 'Bloque').trim().slice(0, 60)) : 'Ningún bloque seleccionado';
+  syncBlockControls();
+}
+
+function getBlockStyleState(block) {
+  if (!block) return { padding: 32, radius: 28, width: 'default' };
+  const state = savedData.blockStyles?.[block.dataset.adminBlock] || {};
+  return {
+    padding: Number(state.padding || parseInt(getComputedStyle(block).paddingTop, 10) || 32),
+    radius: Number(state.radius || parseInt(getComputedStyle(block).borderRadius, 10) || 28),
+    width: state.width || 'default'
+  };
+}
+
+function syncBlockControls() {
+  const state = getBlockStyleState(selectedBlock);
+  if (qs('blockPaddingRange')) qs('blockPaddingRange').value = state.padding;
+  if (qs('blockRadiusRange')) qs('blockRadiusRange').value = state.radius;
+  if (qs('blockWidthPreset')) qs('blockWidthPreset').value = state.width;
+  if (qs('blockPaddingOut')) qs('blockPaddingOut').textContent = state.padding + 'px';
+  if (qs('blockRadiusOut')) qs('blockRadiusOut').textContent = state.radius + 'px';
+}
+
+function applyBlockStyle(block, state) {
+  if (!block) return;
+  block.style.padding = state.padding + 'px';
+  block.style.borderRadius = state.radius + 'px';
+  if (state.width === 'narrow') {
+    block.style.maxWidth = '920px';
+    block.style.marginLeft = 'auto';
+    block.style.marginRight = 'auto';
+  } else if (state.width === 'full') {
+    block.style.maxWidth = 'none';
+    block.style.marginLeft = '0';
+    block.style.marginRight = '0';
+  } else {
+    block.style.maxWidth = '';
+    block.style.marginLeft = '';
+    block.style.marginRight = '';
+  }
+}
+
+function applyStoredBlockStyles() {
+  const map = savedData.blockStyles || {};
+  Object.entries(map).forEach(([id, state]) => {
+    const block = document.querySelector(`[data-admin-block="${id}"]`);
+    if (block) applyBlockStyle(block, state);
+  });
+}
+
+function setSelectedImage(el, target = null) {
+  selectedImage = el;
+  if (target) currentImageTarget = target;
+  else if (el?.dataset.adminImg) currentImageTarget = el.dataset.adminImg;
+  refreshImageTargetOptions();
+  updatePreview();
+  syncImageControls();
+  qs('panelAdmin').style.display = 'block';
+}
+
+function getImageStyleState(targetKey) {
+  const state = savedData.imageStyles?.[targetKey] || {};
+  const el = targetKey === 'heroBg' ? null : document.querySelector(`[data-admin-img="${targetKey}"]`);
+  const computed = el ? getComputedStyle(el) : null;
+  return {
+    height: Number(state.height || (el ? parseInt(computed.height, 10) : 260) || 260),
+    fit: state.fit || (el ? computed.objectFit : 'cover') || 'cover',
+    width: Number(state.width || 100),
+    align: state.align || 'center',
+    x: Number(state.x ?? 50)
+  };
+}
+
+function syncImageControls() {
+  const state = getImageStyleState(currentImageTarget);
+  if (qs('imageHeightRange')) qs('imageHeightRange').value = state.height;
+  if (qs('imageFitSelect')) qs('imageFitSelect').value = state.fit;
+  if (qs('imageWidthRange')) qs('imageWidthRange').value = state.width;
+  if (qs('imageAlignSelect')) qs('imageAlignSelect').value = state.align;
+  if (qs('imagePosXRange')) qs('imagePosXRange').value = state.x;
+  if (qs('imageHeightOut')) qs('imageHeightOut').textContent = state.height ? state.height + 'px' : 'Auto';
+  if (qs('imageWidthOut')) qs('imageWidthOut').textContent = state.width + '%';
+  if (qs('imagePosXOut')) qs('imagePosXOut').textContent = state.x + '%';
+  updateSelectedImageLabel();
+}
+
+function applyImageStyle(targetKey, state) {
+  if (targetKey === 'heroBg') {
+    const hero = qs('heroInicio');
+    if (!hero) return;
+    const bgUrl = savedData.backgrounds?.heroBg || hero.dataset.heroBgUrl || '';
+    const alignMap = { left: 'left', center: 'center', right: 'right' };
+    const align = alignMap[state.align] || 'center';
+    const posX = Number(state.x ?? 50);
+    hero.style.backgroundImage = bgUrl
+      ? 'linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 52%, rgba(255,255,255,0.84) 100%), url("' + bgUrl + '")'
+      : 'linear-gradient(90deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.92) 52%, rgba(255,255,255,0.84) 100%)';
+    hero.style.backgroundPosition = align + ' ' + posX + '% bottom';
+    hero.style.backgroundSize = state.fit === 'contain' ? 'contain' : 'cover';
+    hero.style.backgroundRepeat = 'no-repeat';
+    return;
+  }
+  const el = document.querySelector(`[data-admin-img="${targetKey}"]`);
+  if (!el) return;
+  const width = Number(state.width || 100);
+  const align = state.align || 'center';
+  const posX = Number(state.x ?? 50);
+  el.style.height = state.height + 'px';
+  el.style.objectFit = state.fit || 'cover';
+  el.style.objectPosition = posX + '% 50%';
+  el.style.width = width + '%';
+  el.style.maxWidth = width + '%';
+  el.style.display = 'block';
+  if (align === 'left') {
+    el.style.marginLeft = '0';
+    el.style.marginRight = 'auto';
+  } else if (align === 'right') {
+    el.style.marginLeft = 'auto';
+    el.style.marginRight = '0';
+  } else {
+    el.style.marginLeft = 'auto';
+    el.style.marginRight = 'auto';
+  }
+}
+
+function applyStoredImageStyles() {
+  const map = savedData.imageStyles || {};
+  Object.entries(map).forEach(([key, state]) => applyImageStyle(key, state));
+}
+
+function updateSectionVisibilityPanel() {
+  const container = qs('sectionVisibilityList');
+  if (!container) return;
+  container.innerHTML = qsa('.menu-btn[data-tab]').map(btn => {
+    const id = btn.dataset.tab;
+    const checked = savedData.hiddenSections?.[id] ? '' : 'checked';
+    return `<label class="admin-toggle-row"><span>${escapeHtml(btn.textContent.trim())}</span><input type="checkbox" data-section-toggle="${id}" ${checked} /></label>`;
+  }).join('');
+  qsa('[data-section-toggle]', container).forEach(input => {
+    input.addEventListener('change', () => {
+      savedData.hiddenSections = savedData.hiddenSections || {};
+      savedData.hiddenSections[input.dataset.sectionToggle] = !input.checked;
+      applySectionVisibility();
+    });
+  });
+}
+
+function updateTestimonialAdminList() {
+  const holder = qs('testimonialAdminList');
+  if (!holder) return;
+  const items = readTestimonialsFromDOM();
+  holder.innerHTML = items.length ? items.map(item => `• ${escapeHtml(item.name || 'Sin nombre')} — ${escapeHtml(item.meta || 'Sin detalle')}`).join('<br>') : 'No hay testimonios todavía.';
+}
+
+function bindImageClicks() {
+  qsa('[data-admin-img]').forEach(el => {
+    el.onclick = (e) => {
+      if (!isAdmin) return;
+      e.stopPropagation();
+      setSelectedImage(el);
+    };
+  });
+  if (qs('heroInicio')) {
+    qs('heroInicio').onclick = (e) => {
+      if (!isAdmin || e.target.closest('[data-admin-img]') || e.target.closest('.admin-control-chip')) return;
+      setSelectedImage(null, 'heroBg');
+      setSelectedBlock(qs('heroInicio'));
+    };
+  }
+}
+
+function initSortables() {
+  sortables.forEach(s => s.destroy());
+  sortables = [];
+  if (!isAdmin || !window.Sortable) return;
+  qsa('.section').forEach(section => {
+    sortables.push(new Sortable(section, {
+      animation: 180,
+      handle: '.admin-sort-handle',
+      ghostClass: 'admin-block-selected',
+      onEnd: () => {
+        savedData.order = captureOrder();
+      }
+    }));
+  });
+  const list = qs('testimonialsList');
+  if (list) {
+    sortables.push(new Sortable(list, {
+      animation: 180,
+      handle: '.admin-sort-handle',
+      onEnd: () => {
+        savedData.order = captureOrder();
+        savedData.testimonials = readTestimonialsFromDOM();
+      }
+    }));
+  }
+}
+
+function collectCurrentData() {
+  const texts = {};
+  qsa('[data-admin-key]').forEach(el => texts[el.dataset.adminKey] = el.innerHTML);
+  const images = { ...(savedData.images || {}) };
+  qsa('[data-admin-img]').forEach(el => images[el.dataset.adminImg] = el.getAttribute('src'));
+  const backgrounds = { ...(savedData.backgrounds || {}) };
+  const colors = {
+    primary: qs('colorPrimary')?.value || savedData.colors?.primary || '#2f7d57',
+    secondary: qs('colorSecondary')?.value || savedData.colors?.secondary || '#12354a'
+  };
+  const links = {
+    instagram: qs('editInstagram')?.value || savedData.links?.instagram || ''
+  };
+  const order = captureOrder();
+  const testimonials = readTestimonialsFromDOM();
+  const seo = {
+    title: qs('seoTitle')?.value || document.title,
+    description: qs('seoDescription')?.value || document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+    themeColor: qs('seoThemeColor')?.value || document.querySelector('meta[name="theme-color"]')?.getAttribute('content') || '#2f7d57'
+  };
+  return { texts, images, backgrounds, colors, links, order, hiddenSections: savedData.hiddenSections || {}, blockStyles: savedData.blockStyles || {}, imageStyles: savedData.imageStyles || {}, testimonials, seo };
+}
+
+
+function initBeforeAfterSliders(root=document) {
+  qsa('.ba-container', root).forEach(container => {
+    if (container.dataset.baReady === '1') return;
+    container.dataset.baReady = '1';
+    const slider = container.querySelector('.ba-slider');
+    const after = container.querySelector('.after');
+    const divider = container.querySelector('.ba-divider');
+    if (!slider || !after) return;
+    function update(value) {
+      after.style.width = value + '%';
+      if (divider) divider.style.left = value + '%';
+      if (slider.tagName === 'INPUT') slider.value = value;
+    }
+    if (slider.tagName === 'INPUT') {
+      slider.addEventListener('input', function() {
+        update(this.value);
+      });
+      update(slider.value || 50);
+    }
+  });
+}
+
+function buildSnapshot() {
+  return JSON.parse(JSON.stringify(collectCurrentData()));
+}
+const historyState = { stack: [], redo: [] };
+function pushHistory() {
+  historyState.stack.push(buildSnapshot());
+  if (historyState.stack.length > 30) historyState.stack.shift();
+  historyState.redo = [];
+}
+function restoreSnapshot(snapshot) {
+  if (!snapshot) return;
+  savedData = JSON.parse(JSON.stringify(snapshot));
+  applyData();
+  if (isAdmin) {
+    makeTextEditable();
+    decorateBlocks();
+    bindImageClicks();
+    initSortables();
+  }
+}
+function undoHistory() {
+  if (historyState.stack.length < 2) return;
+  const current = historyState.stack.pop();
+  historyState.redo.push(current);
+  restoreSnapshot(historyState.stack[historyState.stack.length - 1]);
+}
+function redoHistory() {
+  if (!historyState.redo.length) return;
+  const snapshot = historyState.redo.pop();
+  historyState.stack.push(JSON.parse(JSON.stringify(snapshot)));
+  restoreSnapshot(snapshot);
+}
+window.undoHistory = undoHistory;
+window.redoHistory = redoHistory;
+
+function applyTemplate(type) {
+  if (!selectedBlock) {
+    qs('estadoAdmin').innerText = 'Selecciona un bloque primero.';
+    return;
+  }
+  pushHistory();
+  const presets = {
+    benefit: {
+      title: 'Beneficios claros para tu vivienda',
+      body: 'Ahorro, confort y mejora energética con una actuación rápida y cuidada.'
+    },
+    faq: {
+      title: 'Preguntas frecuentes',
+      body: '¿Cuánto tarda la obra? Normalmente pocas horas. ¿Hay inversión inicial? No, según viabilidad técnica y energética.'
+    },
+    cta: {
+      title: 'Comprueba si tu vivienda es viable',
+      body: 'Te llamamos en menos de 24 horas y te guiamos en todo el proceso.'
+    },
+    beforeafter: {
+      title: 'Nuevo caso real antes y después',
+      body: 'Cambia las imágenes y el texto desde el panel para mostrar otro ejemplo.'
+    }
+  };
+  const preset = presets[type];
+  const h = selectedBlock.querySelector('h2,h3');
+  const p = selectedBlock.querySelector('p');
+  if (h && preset) h.textContent = preset.title;
+  if (p && preset) p.textContent = preset.body;
+  if (type === 'beforeafter' && !selectedBlock.querySelector('.ba-container')) {
+    const wrap = document.createElement('div');
+    wrap.className = 'ba-container';
+    wrap.innerHTML = `
+      <div class="ba-image">
+        <img data-admin-img="${uid('img')}" src="images/cubierta_antes.jpg" alt="Antes plantilla" />
+        <span class="ba-label">Antes</span>
+      </div>
+      <div class="ba-image after">
+        <img data-admin-img="${uid('img')}" src="images/cubierta_despues.jpg" alt="Después plantilla" />
+        <span class="ba-label">Después</span>
+      </div>
+      <input type="range" min="0" max="100" value="50" class="ba-slider" />
+      <div class="ba-divider"></div>`;
+    selectedBlock.appendChild(wrap);
+    initBeforeAfterSliders(selectedBlock);
+    bindImageClicks();
+    refreshImageTargetOptions();
+  }
+  qs('estadoAdmin').innerText = 'Plantilla aplicada. Pulsa Guardar cambios.';
+}
+
+
+const widget = window.cloudinary ? window.cloudinary.createUploadWidget({
+  cloudName: CLOUD_NAME,
+  uploadPreset: UPLOAD_PRESET,
+  sources: ['local','camera','url'],
+  multiple: false,
+  resourceType: 'image',
+  clientAllowedFormats: ['jpg','jpeg','png','webp']
+}, (error, result) => {
+  if (error) {
+    console.error(error);
+    qs('estadoAdmin').innerText = 'Error al subir imagen.';
+    return;
+  }
+  if (result && result.event === 'success') {
+    const url = result.info.secure_url;
+    if (currentImageTarget === 'heroBg') {
+      savedData.backgrounds = savedData.backgrounds || {};
+      savedData.backgrounds.heroBg = url;
+      const hero = qs('heroInicio');
+      if (hero) hero.dataset.heroBgUrl = url;
+      applyImageStyle('heroBg', getImageStyleState('heroBg'));
+    } else {
+      savedData.images = savedData.images || {};
+      savedData.images[currentImageTarget] = url;
+      const el = document.querySelector(`[data-admin-img="${currentImageTarget}"]`);
+      if (el) {
+        el.src = url;
+        applyImageStyle(currentImageTarget, getImageStyleState(currentImageTarget));
+      }
+    }
+    updatePreview();
+    qs('estadoAdmin').innerText = 'Imagen subida. Pulsa Guardar cambios.';
+  }
+}) : null;
+
+function enableAdmin() {
+  document.body.classList.add('admin-editing');
+  qs('adminHelpBadge').style.display = 'block';
+  qs('btnEditarAdmin').style.display = 'inline-flex';
+  makeTextEditable();
+  decorateBlocks();
+  bindImageClicks();
+  initSortables();
+  initBeforeAfterSliders();
+  refreshImageTargetOptions();
+  syncBlockControls();
+  syncImageControls();
+  qs('btnEditarAdmin').addEventListener('click', () => {
+    qs('panelAdmin').style.display = 'block';
+    updatePreview();
+  });
+  qs('cerrarAdmin').addEventListener('click', () => {
+    qs('panelAdmin').style.display = 'none';
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') qs('panelAdmin').style.display = 'none';
+  });
+  qs('adminImageTarget').addEventListener('change', () => {
+    currentImageTarget = qs('adminImageTarget').value;
+    updatePreview();
+    syncImageControls();
+  });
+  qs('colorPrimary').addEventListener('input', (e) => document.documentElement.style.setProperty('--primary', e.target.value));
+  qs('colorSecondary').addEventListener('input', (e) => document.documentElement.style.setProperty('--secondary', e.target.value));
+  qs('blockPaddingRange').addEventListener('input', (e) => {
+    if (!selectedBlock) return;
+    const state = getBlockStyleState(selectedBlock);
+    state.padding = Number(e.target.value);
+    savedData.blockStyles[selectedBlock.dataset.adminBlock] = state;
+    applyBlockStyle(selectedBlock, state);
+    qs('blockPaddingOut').textContent = state.padding + 'px';
+    pushHistory();
+  });
+  qs('blockRadiusRange').addEventListener('input', (e) => {
+    if (!selectedBlock) return;
+    const state = getBlockStyleState(selectedBlock);
+    state.radius = Number(e.target.value);
+    savedData.blockStyles[selectedBlock.dataset.adminBlock] = state;
+    applyBlockStyle(selectedBlock, state);
+    qs('blockRadiusOut').textContent = state.radius + 'px';
+    pushHistory();
+  });
+  qs('blockWidthPreset').addEventListener('change', (e) => {
+    if (!selectedBlock) return;
+    const state = getBlockStyleState(selectedBlock);
+    state.width = e.target.value;
+    savedData.blockStyles[selectedBlock.dataset.adminBlock] = state;
+    applyBlockStyle(selectedBlock, state);
+    pushHistory();
+  });
+  qs('imageHeightRange').addEventListener('input', (e) => {
+    if (currentImageTarget === 'heroBg') return;
+    const state = getImageStyleState(currentImageTarget);
+    state.height = Number(e.target.value);
+    savedData.imageStyles[currentImageTarget] = state;
+    applyImageStyle(currentImageTarget, state);
+    qs('imageHeightOut').textContent = state.height + 'px';
+    pushHistory();
+  });
+  qs('imageFitSelect').addEventListener('change', (e) => {
+    const state = getImageStyleState(currentImageTarget);
+    state.fit = e.target.value;
+    savedData.imageStyles[currentImageTarget] = state;
+    applyImageStyle(currentImageTarget, state);
+    pushHistory();
+  });
+  qs('imageWidthRange').addEventListener('input', (e) => {
+    const state = getImageStyleState(currentImageTarget);
+    state.width = Number(e.target.value);
+    savedData.imageStyles[currentImageTarget] = state;
+    applyImageStyle(currentImageTarget, state);
+    qs('imageWidthOut').textContent = state.width + '%';
+    pushHistory();
+  });
+  qs('imageAlignSelect').addEventListener('change', (e) => {
+    const state = getImageStyleState(currentImageTarget);
+    state.align = e.target.value;
+    savedData.imageStyles[currentImageTarget] = state;
+    applyImageStyle(currentImageTarget, state);
+    pushHistory();
+  });
+  qs('imagePosXRange').addEventListener('input', (e) => {
+    const state = getImageStyleState(currentImageTarget);
+    state.x = Number(e.target.value);
+    savedData.imageStyles[currentImageTarget] = state;
+    applyImageStyle(currentImageTarget, state);
+    qs('imagePosXOut').textContent = state.x + '%';
+    pushHistory();
+  });
+  qs('subirImagenAdmin').addEventListener('click', () => {
+    if (!widget) {
+      qs('estadoAdmin').innerText = 'Cloudinary no se ha cargado todavía.';
+      return;
+    }
+    widget.open();
+  });
+  qs('addTestimonialBtn').addEventListener('click', () => {
+    const name = qs('testimonialName').value.trim();
+    const meta = qs('testimonialMeta').value.trim();
+    const quote = qs('testimonialQuote').value.trim();
+    if (!name || !quote) {
+      qs('estadoAdmin').innerText = 'Añade al menos nombre y testimonio.';
+      return;
+    }
+    savedData.testimonials = readTestimonialsFromDOM();
+    savedData.testimonials.push({ id: uid('t'), name, meta, quote });
+    renderTestimonials();
+    makeTextEditable(qs('testimonialsSection'));
+    decorateBlocks();
+    qsa('[data-delete-testimonial]').forEach(btn => btn.addEventListener('click', deleteTestimonialHandler));
+    savedData.order = captureOrder();
+    initSortables();
+    updateTestimonialAdminList();
+    qs('testimonialName').value = '';
+    qs('testimonialMeta').value = '';
+    qs('testimonialQuote').value = '';
+    qs('estadoAdmin').innerText = 'Testimonio añadido. Pulsa Guardar cambios.';
+  });
+  qsa('[data-delete-testimonial]').forEach(btn => btn.addEventListener('click', deleteTestimonialHandler));
+
+  qs('undoAdmin')?.addEventListener('click', undoHistory);
+  qs('redoAdmin')?.addEventListener('click', redoHistory);
+  qs('tplBenefit')?.addEventListener('click', () => applyTemplate('benefit'));
+  qs('tplFaq')?.addEventListener('click', () => applyTemplate('faq'));
+  qs('tplCta')?.addEventListener('click', () => applyTemplate('cta'));
+  qs('tplBeforeAfter')?.addEventListener('click', () => applyTemplate('beforeafter'));
+  ['seoTitle','seoDescription','seoThemeColor'].forEach(id => {
+    qs(id)?.addEventListener('input', () => {
+      const seo = {
+        title: qs('seoTitle')?.value || document.title,
+        description: qs('seoDescription')?.value || '',
+        themeColor: qs('seoThemeColor')?.value || '#2f7d57'
+      };
+      document.title = seo.title;
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute('content', seo.description);
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) metaTheme.setAttribute('content', seo.themeColor);
+    });
+  });
+  pushHistory();
+
+  qs('guardarAdmin').addEventListener('click', async () => {
+    try {
+      qs('estadoAdmin').innerText = 'Guardando...';
+      savedData = collectCurrentData();
+      await setDoc(docRef, savedData, { merge: true });
+      applyData();
+      initBeforeAfterSliders();
+      if (isAdmin) {
+        makeTextEditable();
+        decorateBlocks();
+        bindImageClicks();
+        initSortables();
+      }
+      qs('estadoAdmin').innerText = 'Guardado correctamente.';
+    } catch (e) {
+      console.error(e);
+      qs('estadoAdmin').innerText = 'Error al guardar.';
+    }
+  });
+  qs('restablecerAdmin').addEventListener('click', async () => {
+    const ok = window.confirm('Esto borrará los cambios guardados de la versión PRO final. ¿Continuar?');
+    if (!ok) return;
+    try {
+      qs('estadoAdmin').innerText = 'Restableciendo...';
+      await deleteDoc(docRef);
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+      qs('estadoAdmin').innerText = 'No se pudo restablecer.';
+    }
+  });
+}
+
+function deleteTestimonialHandler(e) {
+  e.stopPropagation();
+  const id = e.currentTarget.dataset.deleteTestimonial;
+  savedData.testimonials = readTestimonialsFromDOM().filter(item => item.id !== id);
+  renderTestimonials();
+  makeTextEditable(qs('testimonialsSection'));
+  qsa('[data-delete-testimonial]').forEach(btn => btn.addEventListener('click', deleteTestimonialHandler));
+  savedData.order = captureOrder();
+  initSortables();
+  updateTestimonialAdminList();
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  assignAdminMetadata();
+  savedData = getDefaultData();
+  try {
+    const snap = await getDoc(docRef);
+    if (snap.exists()) {
+      const d = snap.data();
+      savedData = {
+        texts: { ...savedData.texts, ...(d.texts || {}) },
+        images: { ...savedData.images, ...(d.images || {}) },
+        backgrounds: { ...savedData.backgrounds, ...(d.backgrounds || {}) },
+        colors: { ...savedData.colors, ...(d.colors || {}) },
+        links: { ...savedData.links, ...(d.links || {}) },
+        order: d.order || savedData.order || {},
+        hiddenSections: d.hiddenSections || {},
+        blockStyles: d.blockStyles || {},
+        imageStyles: d.imageStyles || {},
+        testimonials: d.testimonials || savedData.testimonials || [...DEFAULT_TESTIMONIALS],
+        seo: d.seo || savedData.seo || {}
+      };
+    }
+  } catch (e) {
+    console.error('Error cargando guardado PRO final:', e);
+  }
+  applyData();
+  initBeforeAfterSliders();
+  if (isAdmin) enableAdmin();
+});
+</script>
+
+<div id="cmsShell" aria-hidden="true">
+  <div id="cmsTopbar">
+    <div class="cms-topbar-left">
+      <div class="cms-brand"><span class="cms-brand-dot"></span> Flow CMS · Aislamiento en Casa</div>
+      <button type="button" class="cms-pill ghost" id="cmsSidebarToggle">Menú</button>
+      <button type="button" class="cms-pill ghost" id="cmsZenToggle">Vista limpia</button>
+      <button type="button" class="cms-pill ghost" id="cmsInspectorToggle">Inspector</button>
+      <button type="button" class="cms-pill ghost" id="cmsUndoTop">↶</button>
+      <button type="button" class="cms-pill ghost" id="cmsRedoTop">↷</button>
+    </div>
+    <div class="cms-topbar-right">
+      <div id="cmsStatus">Sin cambios</div>
+      <button type="button" class="cms-pill primary" id="cmsSaveTop">Guardar</button>
+    </div>
+  </div>
+
+  <div id="cmsBottomBar">
+    <div class="cms-mini">
+      <span class="cms-tag" id="cmsSelectedBlockTag">Bloque: ninguno</span>
+      <span class="cms-tag" id="cmsSelectedImageTag">Imagen: ninguna</span>
+    </div>
+    <div class="cms-mini">
+      <button type="button" class="cms-pill ghost" id="cmsEditBtn">Editar</button>
+      <button type="button" class="cms-pill ghost" id="cmsPreviewBtn">Preview</button>
+      <button type="button" class="cms-pill ghost" id="cmsOpenAdminBtn">Abrir panel</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+(function(){
+  const adminParam = new URLSearchParams(window.location.search).get('admin');
+  if(adminParam !== 'MANCAE2025') return;
+
+  const body = document.body;
+  const panel = document.getElementById('panelAdmin');
+  const btnEditar = document.getElementById('btnEditarAdmin');
+  const btnGuardar = document.getElementById('guardarAdmin');
+  const cmsStatus = document.getElementById('cmsStatus');
+  const cmsSidebarToggle = document.getElementById('cmsSidebarToggle');
+  const cmsZenToggle = document.getElementById('cmsZenToggle');
+  const cmsInspectorToggle = document.getElementById('cmsInspectorToggle');
+  const cmsOpenAdminBtn = document.getElementById('cmsOpenAdminBtn');
+  const cmsPreviewBtn = document.getElementById('cmsPreviewBtn');
+  const cmsEditBtn = document.getElementById('cmsEditBtn');
+  const cmsSaveTop = document.getElementById('cmsSaveTop');
+  const cmsUndoTop = document.getElementById('cmsUndoTop');
+  const cmsRedoTop = document.getElementById('cmsRedoTop');
+  const cmsSelectedBlockTag = document.getElementById('cmsSelectedBlockTag');
+  const cmsSelectedImageTag = document.getElementById('cmsSelectedImageTag');
+  const selectedBlockLabel = document.getElementById('selectedBlockLabel');
+  const selectedImageLabel = document.getElementById('selectedImageLabel');
+  const estadoAdmin = document.getElementById('estadoAdmin');
+  let previewMode = false;
+
+  function updateStatus(text){
+    if(cmsStatus) cmsStatus.textContent = text;
+  }
+
+  function syncSelectionBadges(){
+    if(cmsSelectedBlockTag && selectedBlockLabel){
+      cmsSelectedBlockTag.textContent = 'Bloque: ' + (selectedBlockLabel.textContent || 'ninguno');
+    }
+    if(cmsSelectedImageTag && selectedImageLabel){
+      cmsSelectedImageTag.textContent = 'Imagen: ' + (selectedImageLabel.textContent || 'ninguna');
+    }
+  }
+
+  function openPanel(){
+    if(panel){
+      panel.style.display = 'block';
+      panel.classList.add('show');
+      cmsInspectorToggle?.classList.add('active');
+    }
+  }
+
+  function closePanel(){
+    if(panel){
+      panel.classList.remove('show');
+      panel.style.display = 'none';
+      cmsInspectorToggle?.classList.remove('active');
+    }
+  }
+
+  function setPreview(enabled){
+    previewMode = enabled;
+    body.classList.toggle('cms-zen', enabled);
+    if(enabled){
+      closePanel();
+      updateStatus('Vista limpia activada');
+      if(cmsPreviewBtn) cmsPreviewBtn.classList.add('active');
+      if(cmsEditBtn) cmsEditBtn.classList.remove('active');
+    } else {
+      updateStatus('Modo edición activo');
+      if(cmsPreviewBtn) cmsPreviewBtn.classList.remove('active');
+      if(cmsEditBtn) cmsEditBtn.classList.add('active');
+    }
+  }
+
+  cmsSidebarToggle?.addEventListener('click', () => {
+    body.classList.toggle('cms-compact');
+    cmsSidebarToggle.classList.toggle('active', body.classList.contains('cms-compact'));
+  });
+
+  cmsZenToggle?.addEventListener('click', () => {
+    const enabled = !body.classList.contains('cms-zen');
+    setPreview(enabled);
+    cmsZenToggle.classList.toggle('active', enabled);
+  });
+
+  cmsInspectorToggle?.addEventListener('click', () => {
+    if(panel?.classList.contains('show')) closePanel();
+    else openPanel();
+  });
+
+  cmsOpenAdminBtn?.addEventListener('click', openPanel);
+  cmsPreviewBtn?.addEventListener('click', () => setPreview(true));
+  cmsEditBtn?.addEventListener('click', () => {
+    setPreview(false);
+    openPanel();
+  });
+  cmsSaveTop?.addEventListener('click', () => btnGuardar?.click());
+  cmsUndoTop?.addEventListener('click', () => window.undoHistory?.());
+  cmsRedoTop?.addEventListener('click', () => window.redoHistory?.());
+
+  btnEditar?.addEventListener('click', openPanel);
+
+  const observer = new MutationObserver(() => {
+    syncSelectionBadges();
+    if(estadoAdmin && estadoAdmin.textContent){
+      updateStatus(estadoAdmin.textContent);
+    }
+    if(panel){
+      cmsInspectorToggle?.classList.toggle('active', panel.classList.contains('show') || panel.style.display === 'block');
+    }
+  });
+  observer.observe(document.body, { childList:true, subtree:true, characterData:true, attributes:true });
+
+  document.addEventListener('input', (e) => {
+    if(e.target.closest('#panelAdmin')) return;
+    updateStatus('Cambios sin guardar');
+  }, true);
+
+  document.addEventListener('click', (e) => {
+    if(e.target.closest('[data-admin-img], .admin-block, #panelAdmin')) {
+      setTimeout(syncSelectionBadges, 40);
+    }
+  }, true);
+
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      if(panel?.classList.contains('show')) closePanel();
+      else setPreview(false);
+    }
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's'){
+      e.preventDefault();
+      btnGuardar?.click();
+      updateStatus('Guardando...');
+    }
+  });
+
+  const originalSetter = () => {
+    syncSelectionBadges();
+    updateStatus('Modo edición activo');
+    if(cmsEditBtn) cmsEditBtn.classList.add('active');
+  };
+  window.addEventListener('load', originalSetter);
+  setTimeout(originalSetter, 1200);
+})();
+</script>
+
+</body>
+</html>
+
