@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aislamiento en Casa</title>
+
+<script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+
+<style>
+body{font-family:Arial;margin:0}
+section{padding:40px;text-align:center}
+
+.before-after{position:relative;max-width:700px;margin:auto;overflow:hidden}
+.before-after img{width:100%;display:block}
+.img-overlay{position:absolute;top:0;left:0;width:50%;overflow:hidden}
+.slider{position:absolute;top:0;left:50%;width:3px;height:100%;background:#fff}
+
+.editable-img{cursor:pointer}
+.editable-img:hover{outline:3px dashed #2f7d57}
+
+#btnEdit{
+position:fixed;bottom:20px;left:20px;
+background:#2f7d57;color:#fff;border:none;
+padding:12px 18px;border-radius:999px;cursor:pointer;
+z-index:999;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+<h1 contenteditable="true">AISLAMIENTO EN CASA</h1>
+<p contenteditable="true">Soluciones profesionales</p>
+</section>
+
+<section>
+<h2>Antes / Después</h2>
+
+<div class="before-after" id="container">
+<img src="https://via.placeholder.com/700" id="imgAntes" class="editable-img">
+
+<div class="img-overlay" id="overlay">
+<img src="https://via.placeholder.com/700" id="imgDespues" class="editable-img">
+</div>
+
+<div class="slider" id="slider"></div>
+</div>
+
+</section>
+
+<section>
+<h2>Sistema SATE</h2>
+<img id="imgSistema" class="editable-img" src="https://via.placeholder.com/400">
+</section>
+
+<section>
+<h2>Transparencia</h2>
+<img id="imgTransparencia1" class="editable-img" src="https://via.placeholder.com/400">
+<img id="imgTransparencia2" class="editable-img" src="https://via.placeholder.com/400">
+</section>
+
+<section>
+<h2>Control</h2>
+<img id="imgControl1" class="editable-img" src="https://via.placeholder.com/400">
+<img id="imgControl2" class="editable-img" src="https://via.placeholder.com/400">
+</section>
+
+<button id="btnEdit">⚙️ Editar</button>
+
+<script>
+
+// PROTECCIÓN ERRORES
+window.addEventListener("error", e => console.log(e.message));
+window.addEventListener("unhandledrejection", e => console.log(e.reason));
+
+// EDIT MODE
+let edit=false;
+document.getElementById("btnEdit").onclick=()=>edit=!edit;
+
+// CLOUDINARY
+function upload(img){
+const widget=cloudinary.createUploadWidget({
+cloudName:"dnenidufl",
+uploadPreset:"mi_upload"
+},(e,r)=>{
+if(r.event==="success"){
+img.src=r.info.secure_url;
+}
+});
+widget.open();
+}
+
+document.querySelectorAll(".editable-img").forEach(img=>{
+img.onclick=()=>{
+if(!edit)return;
+upload(img);
+};
+});
+
+// SLIDER ESTABLE
+const container=document.getElementById("container");
+const overlay=document.getElementById("overlay");
+const slider=document.getElementById("slider");
+
+if(container && overlay && slider){
+
+let active=false;
+
+container.addEventListener("mouseenter",()=>active=true);
+container.addEventListener("mouseleave",()=>active=false);
+
+container.addEventListener("mousemove",(e)=>{
+if(!active)return;
+
+const rect=container.getBoundingClientRect();
+let x=e.clientX-rect.left;
+x=Math.max(0,Math.min(x,rect.width));
+
+overlay.style.width=x+"px";
+slider.style.left=x+"px";
+});
+
+container.addEventListener("touchmove",(e)=>{
+const rect=container.getBoundingClientRect();
+let x=e.touches[0].clientX-rect.left;
+x=Math.max(0,Math.min(x,rect.width));
+
+overlay.style.width=x+"px";
+slider.style.left=x+"px";
+});
+
+}
+
+</script>
+
+</body>
+</html>
