@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aislamiento en Casa | Documentación</title>
+  <meta name="description" content="Consulta la documentación a aportar, la documentación a firmar y la forma de firma según el tipo de inmueble." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --primary:#2f7d57;
+      --secondary:#12354a;
+      --bg:#f5f8f6;
+      --line:#d6e3db;
+      --dark:#0f172a;
+    }
+    body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:var(--dark); }
+    .glass { background:rgba(255,255,255,.82); backdrop-filter:blur(14px); border:1px solid rgba(255,255,255,.4); }
+    .case-panel { display:none; }
+    .case-panel.active { display:block; animation:fadeIn .28s ease-out; }
+    .case-btn.active { background:var(--primary); color:white; border-color:var(--primary); }
+    .doc-item { cursor:pointer; transition:.2s ease; }
+    .doc-item:hover { transform:translateY(-1px); box-shadow:0 12px 24px rgba(15,23,42,.06); }
+    .doc-item.disabled { opacity:.62; cursor:default; }
+    .doc-modal {
+      position:fixed; inset:0; background:rgba(15,23,42,.76); backdrop-filter:blur(6px);
+      display:none; align-items:center; justify-content:center; padding:20px; z-index:9999;
+    }
+    .doc-modal.show { display:flex; }
+    .doc-modal-card {
+      width:min(980px,100%); max-height:92vh; overflow:auto; background:white;
+      border-radius:28px; box-shadow:0 30px 80px rgba(0,0,0,.28); padding:22px;
+    }
+    .doc-close {
+      border:none; background:#0f172a; color:white; border-radius:999px; width:42px; height:42px;
+      font-weight:900; cursor:pointer;
+    }
+    .watermark-wrap { position:relative; border-radius:22px; overflow:hidden; border:1px solid #e2e8f0; background:#fff; }
+    .watermark-wrap img, .watermark-wrap iframe { width:100%; display:block; }
+    .watermark-text {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-size:min(5vw,64px); font-weight:900; letter-spacing:.12em; text-transform:uppercase;
+      color:rgba(15,23,42,.12); transform:rotate(-28deg); pointer-events:none; user-select:none;
+    }
+    .watermark-site {
+      position:absolute; right:16px; bottom:12px; font-size:12px; font-weight:900;
+      letter-spacing:.12em; text-transform:uppercase; color:rgba(15,23,42,.38); pointer-events:none;
+    }
+    .mini-note { font-size:12px; color:#64748b; }
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(8px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+  
+    .doc-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+    .doc-action-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:14px;font-weight:800;font-size:14px;
+      border:1px solid #cbd5e1;background:#fff;color:#0f172a;text-decoration:none;
+    }
+    .doc-action-btn.primary{background:#0f172a;color:#fff;border-color:#0f172a}
+    .doc-mobile-note{font-size:13px;color:#64748b;margin-bottom:12px}
+    @media (max-width: 767px){
+      .doc-modal-card{padding:16px;border-radius:22px}
+      .watermark-text{font-size:32px}
+    }
+</style>
+</head>
+<body>
+  
+  <nav class="sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-7xl mx-auto glass rounded-[2rem] px-5 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+          <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <a href="index.html" class="text-lg md:text-xl font-extrabold tracking-tighter uppercase leading-none">
+          <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+          <span class="text-emerald-500">EN CASA</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-700">
+        <a href="index.html#antes-despues" class="hover:text-emerald-600 transition">Antes y después</a>
+        <a href="index.html#soluciones" class="hover:text-emerald-600 transition">Soluciones</a>
+        <a href="index.html#faq" class="hover:text-emerald-600 transition">FAQ</a>
+        <a href="dia-de-la-cita.html" class="hover:text-emerald-600 transition">La cita</a>
+        <a href="documentacion.html" class="hover:text-emerald-600 transition">Documentación</a>
+        <a href="tras-tu-visita.html" class="hover:text-emerald-600 transition">Tras tu visita</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex bg-white text-slate-900 px-5 py-3 rounded-2xl font-bold text-sm border border-slate-200 hover:border-emerald-200 transition-all">WhatsApp</a>
+        <a href="index.html#contacto" class="bg-slate-900 text-white px-5 py-3 rounded-2xl font-bold text-sm hover:bg-emerald-600 transition-all">Solicitar estudio</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <header class="max-w-7xl mx-auto px-6 pt-14 pb-10">
+    <div class="inline-flex items-center gap-2 rounded-full border-2 border-dashed border-emerald-200 bg-emerald-50 px-6 py-3 text-sm font-black uppercase tracking-[0.22em] text-emerald-800">
+      Documentación · Firma · Entrega final
+    </div>
+    <h1 class="mt-6 max-w-5xl text-5xl font-extrabold leading-[1.02] tracking-tight text-slate-950 md:text-6xl">
+      Documentación del proceso
+    </h1>
+    <p class="mt-6 max-w-3xl text-xl leading-8 text-slate-600">
+      Elige tu tipo de inmueble y verás solo lo que aplica a tu caso: documentación a aportar, documentación a firmar y forma de firma.
+    </p>
+  </header>
+
+  <section class="max-w-7xl mx-auto px-6 pb-8">
+    <div class="grid gap-4 md:grid-cols-4">
+      <button class="case-btn active rounded-2xl border-2 border-slate-200 bg-white px-6 py-4 text-left font-extrabold text-slate-900 transition" data-case="uni">Vivienda unifamiliar</button>
+      <button class="case-btn rounded-2xl border-2 border-slate-200 bg-white px-6 py-4 text-left font-extrabold text-slate-900 transition" data-case="comunidad">Comunidad / edificio residencial</button>
+      <button class="case-btn rounded-2xl border-2 border-slate-200 bg-white px-6 py-4 text-left font-extrabold text-slate-900 transition" data-case="ter_pub">Terciario público</button>
+      <button class="case-btn rounded-2xl border-2 border-slate-200 bg-white px-6 py-4 text-left font-extrabold text-slate-900 transition" data-case="ter_priv">Terciario privado</button>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 pb-16">
+    <div id="case-uni" class="case-panel active space-y-8">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a aportar</p>
+          <ul class="space-y-3">
+            <li class="doc-item rounded-2xl border border-slate-200 p-4 font-semibold" data-doc="identidad">Documento identificativo en vigor</li>
+            <li class="doc-item rounded-2xl border border-slate-200 p-4 font-semibold" data-doc="nota_simple">Nota simple</li>
+          </ul>
+          <p class="mini-note mt-4">Documento identificativo en vigor a la fecha de la obra.</p>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200 lg:col-span-2">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Quién firma y forma de firma</p>
+          <p class="text-slate-700 leading-7"><strong>Quién firma</strong><br>La persona titular del inmueble. Si hay varios titulares, puede ser necesario que firmen todos o que una sola persona firme con representación válida.</p>
+          <p class="text-slate-700 leading-7 mt-4"><strong>Forma de firma</strong><br>Firma manuscrita el día de la cita.</p>
+          <p class="mini-note mt-4">Españoles con domicilio en España: DNI en vigor. Extranjeros residentes: TIE/NIE en vigor y documento de identidad de su país con fotografía.</p>
+        </div>
+      </div>
+
+      <div class="bg-emerald-50 border border-emerald-100 rounded-[2rem] p-8">
+        <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a firmar</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuerdo_cesion">Acuerdo de cesión</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="dr_pdf">DR</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="hoja_encargo">Hoja de Encargo</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuse_recibo">Acuse de Recibo de Documentación</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="oferta_actuacion">Oferta de Actuación de Rehabilitación Energética</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="nota_cae">Nota Informativa del sistema CAE</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="case-comunidad" class="case-panel space-y-8">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a aportar</p>
+          <ul class="space-y-3">
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Acta de junta de nombramiento del presidente</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Acuerdo de la junta para la obra</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">NIF de la comunidad</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Certificado digital FNMT, cuando corresponda</li>
+          </ul>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200 lg:col-span-2">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Quién firma y forma de firma</p>
+          <p class="text-slate-700 leading-7"><strong>Quién firma</strong><br>El presidente de la comunidad o la persona con representación válida.</p>
+          <p class="text-slate-700 leading-7 mt-4"><strong>Forma de firma</strong><br>Firma con certificado digital cuando el expediente lo requiera.</p>
+        </div>
+      </div>
+      <div class="bg-emerald-50 border border-emerald-100 rounded-[2rem] p-8">
+        <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a firmar</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuerdo_cesion">Acuerdo de cesión</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="dr_pdf">DR</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="hoja_encargo">Hoja de Encargo</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuse_recibo">Acuse de Recibo de Documentación</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="oferta_actuacion">Oferta de Actuación de Rehabilitación Energética</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="nota_cae">Nota Informativa del sistema CAE</div>
+        </div>
+        <p class="mini-note mt-4">Las vistas previas disponibles ahora mismo corresponden a los modelos que ya tenemos cargados. La documentación específica de comunidad se puede incorporar más adelante.</p>
+      </div>
+    </div>
+
+    <div id="case-ter_pub" class="case-panel space-y-8">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a aportar</p>
+          <ul class="space-y-3">
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Documentación de la entidad pública</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Documentación de competencia o delegación, cuando proceda</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Certificado digital FNMT, cuando corresponda</li>
+          </ul>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200 lg:col-span-2">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Quién firma y forma de firma</p>
+          <p class="text-slate-700 leading-7"><strong>Quién firma</strong><br>El alcalde o la persona con competencia o delegación suficiente.</p>
+          <p class="text-slate-700 leading-7 mt-4"><strong>Forma de firma</strong><br>Firma con certificado digital cuando proceda.</p>
+        </div>
+      </div>
+      <div class="bg-emerald-50 border border-emerald-100 rounded-[2rem] p-8">
+        <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a firmar</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuerdo_cesion">Acuerdo de cesión</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="dr_pdf">DR</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="hoja_encargo">Hoja de Encargo</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuse_recibo">Acuse de Recibo de Documentación</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="oferta_actuacion">Oferta de Actuación de Rehabilitación Energética</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="nota_cae">Nota Informativa del sistema CAE</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="case-ter_priv" class="case-panel space-y-8">
+      <div class="grid lg:grid-cols-3 gap-6">
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a aportar</p>
+          <ul class="space-y-3">
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Documento de representación, cuando corresponda</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">NIF / CIF de la sociedad</li>
+            <li class="rounded-2xl border border-slate-200 p-4 font-semibold">Certificado digital FNMT, cuando corresponda</li>
+          </ul>
+        </div>
+        <div class="bg-white p-8 rounded-[2rem] border border-slate-200 lg:col-span-2">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Quién firma y forma de firma</p>
+          <p class="text-slate-700 leading-7"><strong>Quién firma</strong><br>El representante legal de la sociedad.</p>
+          <p class="text-slate-700 leading-7 mt-4"><strong>Forma de firma</strong><br>Firma con certificado digital cuando el expediente lo requiera.</p>
+        </div>
+      </div>
+      <div class="bg-emerald-50 border border-emerald-100 rounded-[2rem] p-8">
+        <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-3">Documentación a firmar</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuerdo_cesion">Acuerdo de cesión</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="dr_pdf">DR</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="hoja_encargo">Hoja de Encargo</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="acuse_recibo">Acuse de Recibo de Documentación</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="oferta_actuacion">Oferta de Actuación de Rehabilitación Energética</div>
+          <div class="doc-item rounded-2xl border border-slate-200 bg-white p-4 font-semibold" data-doc="nota_cae">Nota Informativa del sistema CAE</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-6 pb-20">
+    <div class="rounded-[2rem] border border-slate-200 bg-white p-8">
+      <div class="grid gap-8 lg:grid-cols-[220px_1fr] items-center">
+        <a href="https://www.miteco.gob.es/es/energia/eficiencia/cae.html" target="_blank" rel="noopener noreferrer" class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center hover:shadow-md transition">
+          <img src="https://www.miteco.gob.es/content/dam/miteco/images/logo-miteco.png" alt="Ministerio para la Transición Ecológica" class="h-16 md:h-20 w-auto object-contain">
+        </a>
+        <div>
+          <h3 class="text-2xl font-extrabold text-slate-900">Base oficial del sistema CAE</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-600">Nuestras actuaciones de eficiencia energética se enmarcan en el sistema de <strong>Certificados de Ahorro Energético</strong>, coordinado por el Ministerio para la Transición Ecológica y el Reto Demográfico.</p>
+          <p class="mt-3 text-sm leading-7 text-slate-600">Referencia normativa destacada: <strong>Real Decreto 36/2023</strong>.</p>
+        </div>
+      </div>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <a href="https://energia.jcyl.es/web/jcyl/Energia/es/Plantilla100Detalle/1259395684253/_/1284236336982/" target="_blank" rel="noopener noreferrer" class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 hover:shadow-md transition">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-2">Castilla y León</p>
+          <h4 class="font-bold text-slate-900">EREN</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Ente Regional de la Energía de Castilla y León.</p>
+        </a>
+        <a href="https://www.inega.gal/" target="_blank" rel="noopener noreferrer" class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 hover:shadow-md transition">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-2">Galicia</p>
+          <h4 class="font-bold text-slate-900">INEGA</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Instituto Enerxético de Galicia.</p>
+        </a>
+        <a href="https://www.asturias.es/temas/industria-energia/eficiencia-energetica-y-energias-renovables" target="_blank" rel="noopener noreferrer" class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6 hover:shadow-md transition">
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-2">Asturias</p>
+          <h4 class="font-bold text-slate-900">Gestor autonómico</h4>
+          <p class="mt-2 text-sm leading-6 text-slate-600">Información oficial del Principado de Asturias sobre eficiencia energética y certificación.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div id="docModal" class="doc-modal" aria-hidden="true">
+    <div class="doc-modal-card">
+      <div class="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-emerald-700 mb-2">Vista previa</p>
+          <h3 id="docModalTitle" class="text-2xl font-extrabold text-slate-900">Documento</h3>
+          <p id="docModalText" class="text-slate-600 mt-2 max-w-2xl">Plantilla orientativa.</p>
+        </div>
+        <button id="docModalClose" class="doc-close" type="button">×</button>
+      </div>
+      <div id="docModalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.case-btn');
+    const panels = document.querySelectorAll('.case-panel');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('case-' + btn.dataset.case).classList.add('active');
+      });
+    });
+
+    const modal = document.getElementById('docModal');
+    const modalTitle = document.getElementById('docModalTitle');
+    const modalText = document.getElementById('docModalText');
+    const modalBody = document.getElementById('docModalBody');
+    const closeBtn = document.getElementById('docModalClose');
+
+    
+    const previews = {
+      identidad: {
+        title: 'Documento identificativo en vigor',
+        text: 'Españoles con domicilio en España: DNI en vigor. Extranjeros residentes: TIE / NIE en vigor y documento de identidad de su país con fotografía.',
+        html: `
+          <div class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6">
+            <p class="text-sm text-slate-600">Añade las imágenes reales de DNI, TIE / NIE, pasaporte o documento de identidad cuando quieras completar esta parte visual.</p>
+            <p class="mini-note mt-3">Por ahora, este punto queda descrito en texto para que no falte información en móvil.</p>
+          </div>`
+      },
+      nota_simple: {
+        title: 'Nota simple',
+        text: 'Vista orientativa de una nota simple informativa.',
+        html: `
+          <div class="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-6">
+            <p class="text-sm text-slate-600">Añade aquí la imagen real de la nota simple cuando quieras completar esta vista previa.</p>
+            <p class="mini-note mt-3">En móvil conviene usar imagen directa en vez de PDF incrustado.</p>
+          </div>`
+      },
+      acuerdo_cesion: {
+        title: 'Acuerdo de cesión',
+        text: 'Vista previa de la plantilla cargada.',
+        html: `
+          <div class="doc-mobile-note">En móvil, si la vista previa no carga bien, usa el botón para abrir el documento.</div>
+          <div class="doc-actions">
+            <a class="doc-action-btn primary" href="/mnt/data/ACUERDO PARA SIMEON - copia.pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+          </div>
+          <div class="watermark-wrap"><iframe src="/mnt/data/ACUERDO PARA SIMEON - copia.pdf#toolbar=0&navpanes=0&scrollbar=1" style="height:70vh;"></iframe><div class="watermark-text">EJEMPLO NO VÁLIDO</div><div class="watermark-site">aislamientoencasa.com</div></div>`
+      },
+      hoja_encargo: {
+        title: 'Hoja de Encargo',
+        text: 'Vista previa de la plantilla cargada.',
+        html: `
+          <div class="doc-mobile-note">En móvil, si la vista previa no carga bien, usa el botón para abrir el documento.</div>
+          <div class="doc-actions">
+            <a class="doc-action-btn primary" href="/mnt/data/HOJA_DE_ENCARGO SIMEON.pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+          </div>
+          <div class="watermark-wrap"><iframe src="/mnt/data/HOJA_DE_ENCARGO SIMEON.pdf#toolbar=0&navpanes=0&scrollbar=1" style="height:70vh;"></iframe><div class="watermark-text">EJEMPLO NO VÁLIDO</div><div class="watermark-site">aislamientoencasa.com</div></div>`
+      },
+      dr_pdf: {
+        title: 'DR',
+        text: 'Vista previa del PDF real donde figura la DR.',
+        html: `
+          <div class="doc-mobile-note">En móvil, si la vista previa no carga bien, usa el botón para abrir el documento.</div>
+          <div class="doc-actions">
+            <a class="doc-action-btn primary" href="/mnt/data/DR y Documentacion para SIMEONE(1).pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+          </div>
+          <div class="watermark-wrap"><iframe src="/mnt/data/DR y Documentacion para SIMEONE(1).pdf#toolbar=0&navpanes=0&scrollbar=1&page=1" style="height:70vh;"></iframe><div class="watermark-text">EJEMPLO NO VÁLIDO</div><div class="watermark-site">aislamientoencasa.com</div></div>`
+      },
+      acuse_recibo: {
+        title: 'Acuse de Recibo de Documentación',
+        text: 'Vista previa del PDF real donde figura el acuse de recibo.',
+        html: `
+          <div class="doc-mobile-note">En móvil, si la vista previa no carga bien, usa el botón para abrir el documento.</div>
+          <div class="doc-actions">
+            <a class="doc-action-btn primary" href="/mnt/data/DR y Documentacion para SIMEONE(1).pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+          </div>
+          <div class="watermark-wrap"><iframe src="/mnt/data/DR y Documentacion para SIMEONE(1).pdf#toolbar=0&navpanes=0&scrollbar=1&page=5" style="height:70vh;"></iframe><div class="watermark-text">EJEMPLO NO VÁLIDO</div><div class="watermark-site">aislamientoencasa.com</div></div>`
+      },
+      oferta_actuacion: {
+        title: 'Oferta de Actuación de Rehabilitación Energética',
+        text: 'Vista previa del PDF real donde figura la oferta de actuación.',
+        html: `
+          <div class="doc-mobile-note">En móvil, si la vista previa no carga bien, usa el botón para abrir el documento.</div>
+          <div class="doc-actions">
+            <a class="doc-action-btn primary" href="/mnt/data/DR y Documentacion para SIMEONE(1).pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+          </div>
+          <div class="watermark-wrap"><iframe src="/mnt/data/DR y Documentacion para SIMEONE(1).pdf#toolbar=0&navpanes=0&scrollbar=1&page=7" style="height:70vh;"></iframe><div class="watermark-text">EJEMPLO NO VÁLIDO</div><div class="watermark-site">aislamientoencasa.com</div></div>`
+      },
+      nota_cae: {
+        title: 'Nota Informativa del sistema CAE',
+        text: 'Vista previa del PDF real donde figura la nota informativa del sistema CAE.',
+        html: `
+          <div class="doc-mobile-note">En móvil, si la vista previa no carga bien, usa el botón para abrir el documento.</div>
+          <div class="doc-actions">
+            <a class="doc-action-btn primary" href="/mnt/data/DR y Documentacion para SIMEONE(1).pdf" target="_blank" rel="noopener noreferrer">Abrir documento</a>
+          </div>
+          <div class="watermark-wrap"><iframe src="/mnt/data/DR y Documentacion para SIMEONE(1).pdf#toolbar=0&navpanes=0&scrollbar=1&page=9" style="height:70vh;"></iframe><div class="watermark-text">EJEMPLO NO VÁLIDO</div><div class="watermark-site">aislamientoencasa.com</div></div>`
+      }
+    };
+
+
+    function openPreview(key) {
+      const d = previews[key];
+      if (!d) return;
+      modalTitle.textContent = d.title;
+      modalText.textContent = d.text;
+      modalBody.innerHTML = d.html;
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    document.querySelectorAll('.doc-item[data-doc]').forEach(el => {
+      el.addEventListener('click', () => openPreview(el.dataset.doc));
+    });
+
+    function closeModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      modalBody.innerHTML = '';
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+  </script>
+
+  <footer class="mt-16 border-t border-slate-200 bg-white/80">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3 items-start">
+      <div>
+        <div class="flex items-center gap-3">
+          <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+            <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+          <div class="text-base font-extrabold tracking-tighter uppercase leading-none">
+            <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+            <span class="text-emerald-500">EN CASA</span>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600 leading-6">Especialistas en aislamiento de buhardillas y zonas bajo cubierta mediante sistema CAE.</p>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Navegación</p>
+        <div class="grid gap-2">
+          <a href="index.html" class="hover:text-emerald-600">Inicio</a>
+          <a href="dia-de-la-cita.html" class="hover:text-emerald-600">Día de la cita</a>
+          <a href="documentacion.html" class="hover:text-emerald-600">Documentación</a>
+          <a href="tras-tu-visita.html" class="hover:text-emerald-600">Tras tu visita</a>
+        </div>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Legal y contacto</p>
+        <div class="grid gap-2">
+          <a href="aviso-legal.html" class="hover:text-emerald-600">Aviso legal</a>
+          <a href="privacidad.html" class="hover:text-emerald-600">Privacidad</a>
+          <a href="cookies.html" class="hover:text-emerald-600">Cookies</a>
+          <a href="tel:+34887824609" class="hover:text-emerald-600">887 824 609</a>
+          <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">WhatsApp: 602 063 644</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

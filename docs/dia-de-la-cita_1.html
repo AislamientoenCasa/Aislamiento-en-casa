@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aislamiento en Casa | Día de la cita</title>
+  <meta name="description" content="Todo lo que necesitas saber antes de la visita técnica: qué revisaremos, cuánto dura, quién debe estar presente, qué documentación conviene tener preparada y qué puede ocurrir después." />
+  <meta name="theme-color" content="#2f7d57" />
+  <meta property="og:title" content="Aislamiento en Casa | Día de la cita" />
+  <meta property="og:description" content="Prepara tu visita técnica con claridad: proceso, documentación y siguientes pasos." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --primary:#2f7d57;
+      --primary-dark:#1f5b40;
+      --secondary:#12354a;
+      --dark:#183028;
+      --muted:#5f7a70;
+      --bg:#f4f8f5;
+      --line:#d7e4db;
+      --soft:#edf4ef;
+      --whatsapp:#25d366;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47,125,87,.14), transparent 26%),
+        radial-gradient(circle at top right, rgba(18,53,74,.08), transparent 22%),
+        linear-gradient(180deg,#f8fbf9 0%,#eef5f0 100%);
+      color:var(--dark);
+    }
+    .hero-bg{
+      background:
+        linear-gradient(100deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.93) 55%, rgba(255,255,255,.85) 100%),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+    .card-shadow{box-shadow:0 22px 55px rgba(16,38,28,.08)}
+    .card-soft{box-shadow:0 12px 28px rgba(16,38,28,.05)}
+    .feature-hover{
+      transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .feature-hover:hover{
+      transform:translateY(-4px);
+      box-shadow:0 18px 35px rgba(16,38,28,.07);
+      border-color:#cfe2d5;
+    }
+    .timeline-step{
+      position:relative;
+      padding-left:84px;
+    }
+    .timeline-step::before{
+      content:'';
+      position:absolute;
+      left:22px;
+      top:50px;
+      bottom:-26px;
+      width:2px;
+      background:#dce9e0;
+    }
+    .timeline-step:last-child::before{display:none}
+    .timeline-badge{
+      position:absolute;
+      left:0;
+      top:0;
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+      color:#fff;
+      font-weight:800;
+      box-shadow:0 10px 22px rgba(47,125,87,.18);
+    }
+    .faq-item .faq-answer{display:none}
+    .faq-item.active .faq-answer{display:block}
+    .faq-item.active .faq-plus{transform:rotate(45deg)}
+    .faq-plus{transition:.25s ease}
+    body.admin-editing [data-editable]{
+      outline:2px dashed rgba(47,125,87,.38);
+      outline-offset:4px;
+      cursor:text;
+    }
+    #adminUI{display:flex}
+    body.client-view #adminUI{display:none}
+    @media (max-width:768px){
+      .timeline-step{padding-left:70px}
+      .timeline-badge{width:42px;height:42px}
+    }
+  </style>
+</head>
+<body class="admin-editing">
+  <div id="adminUI" class="fixed bottom-5 right-5 z-[100] flex-col gap-3">
+    <button onclick="saveAndDownload()" class="bg-emerald-600 text-white px-6 py-4 rounded-2xl font-extrabold shadow-2xl hover:bg-emerald-700 transition">
+      Guardar HTML
+    </button>
+    <button onclick="toggleClientView()" class="bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold shadow-xl text-sm">
+      Vista cliente
+    </button>
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-emerald-100 bg-white/88 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">
+        AISLAMIENTO <span class="text-emerald-600">EN CASA</span>
+      </a>
+
+      
+  <nav class="sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-7xl mx-auto glass rounded-[2rem] px-5 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+          <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <a href="index.html" class="text-lg md:text-xl font-extrabold tracking-tighter uppercase leading-none">
+          <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+          <span class="text-emerald-500">EN CASA</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-700">
+        <a href="index.html#antes-despues" class="hover:text-emerald-600 transition">Antes y después</a>
+        <a href="index.html#soluciones" class="hover:text-emerald-600 transition">Soluciones</a>
+        <a href="index.html#faq" class="hover:text-emerald-600 transition">FAQ</a>
+        <a href="dia-de-la-cita.html" class="hover:text-emerald-600 transition">La cita</a>
+        <a href="documentacion.html" class="hover:text-emerald-600 transition">Documentación</a>
+        <a href="tras-tu-visita.html" class="hover:text-emerald-600 transition">Tras tu visita</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex bg-white text-slate-900 px-5 py-3 rounded-2xl font-bold text-sm border border-slate-200 hover:border-emerald-200 transition-all">WhatsApp</a>
+        <a href="index.html#contacto" class="bg-slate-900 text-white px-5 py-3 rounded-2xl font-bold text-sm hover:bg-emerald-600 transition-all">Solicitar estudio</a>
+      </div>
+    </div>
+  </nav>
+
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden rounded-full border border-emerald-200 bg-white px-5 py-2.5 text-sm font-extrabold text-emerald-700 transition hover:-translate-y-0.5 md:inline-flex">
+          Volver al inicio
+        </a>
+        <a href="https://wa.me/34670237842?text=Hola,%20tengo%20una%20cita%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-emerald-100 transition hover:-translate-y-0.5 hover:bg-emerald-700">
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-bg overflow-hidden">
+      <div class="mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:pb-24 lg:pt-20">
+        <div>
+          <div data-editable="true" class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.22em] text-emerald-700">
+            Visita técnica · Preparación · Proceso claro
+          </div>
+
+          <h1 data-editable="true" class="max-w-4xl text-5xl font-extrabold leading-[1.02] tracking-tight text-slate-950 md:text-6xl lg:text-7xl">
+            Todo lo que necesitas saber <span class="text-emerald-600">antes de tu cita</span>
+          </h1>
+
+          <p data-editable="true" class="mt-7 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
+            Queremos que llegues a la visita con total claridad. Aquí te explicamos qué revisaremos, cuánto suele durar, quién debe estar presente, qué documentos conviene tener preparados y qué puede ocurrir después.
+          </p>
+
+          <p data-editable="true" class="mt-4 max-w-2xl text-base leading-7 text-slate-700">
+            Esta página está pensada para que la experiencia sea más sencilla, más ordenada y más profesional desde el primer minuto.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+            <a href="#documentacion" class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-8 py-4 text-lg font-extrabold text-white shadow-xl shadow-emerald-200 transition hover:-translate-y-0.5 hover:bg-emerald-700">
+              Ver qué preparar
+            </a>
+            <a href="https://wa.me/34670237842?text=Hola,%20tengo%20una%20cita%20y%20quiero%20resolver%20una%20duda" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-8 py-4 text-lg font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-slate-300">
+              Resolver una duda
+            </a>
+          </div>
+
+          <div class="mt-8 grid gap-4 text-sm font-semibold text-slate-700 sm:grid-cols-3">
+            <div data-editable="true" class="rounded-2xl border border-white/70 bg-white/90 p-4 card-soft">✓ Preparación sencilla</div>
+            <div data-editable="true" class="rounded-2xl border border-white/70 bg-white/90 p-4 card-soft">✓ Visita clara</div>
+            <div data-editable="true" class="rounded-2xl border border-white/70 bg-white/90 p-4 card-soft">✓ Siguientes pasos explicados</div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="card-shadow overflow-hidden rounded-[2.2rem] border border-white/80 bg-white p-4">
+            <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=80" alt="Visita técnica en vivienda" class="h-[540px] w-full rounded-[1.7rem] object-cover" />
+          </div>
+          <div class="card-shadow absolute -bottom-6 left-6 max-w-sm rounded-[1.9rem] border border-emerald-100 bg-slate-900 p-6 text-white">
+            <span data-editable="true" class="text-xs font-extrabold uppercase tracking-[0.22em] text-emerald-300">Antes de la visita</span>
+            <strong data-editable="true" class="mt-3 block text-2xl font-extrabold">Menos dudas, más confianza y mejor experiencia</strong>
+            <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-300">Cuando el cliente sabe qué va a pasar y qué debe preparar, todo el proceso resulta mucho más claro y profesional.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+      <div class="grid gap-5 rounded-[2rem] bg-slate-900 px-6 py-8 text-white md:grid-cols-4 md:px-10">
+        <div>
+          <p data-editable="true" class="text-3xl font-extrabold">1 visita</p>
+          <p data-editable="true" class="mt-2 text-sm text-slate-300">Para revisar el inmueble y valorar el caso</p>
+        </div>
+        <div>
+          <p data-editable="true" class="text-3xl font-extrabold">Duración</p>
+          <p data-editable="true" class="mt-2 text-sm text-slate-300">Normalmente breve, según el tipo de inmueble</p>
+        </div>
+        <div>
+          <p data-editable="true" class="text-3xl font-extrabold">Documentación</p>
+          <p data-editable="true" class="mt-2 text-sm text-slate-300">Conviene tenerla preparada para avanzar mejor</p>
+        </div>
+        <div>
+          <p data-editable="true" class="text-3xl font-extrabold">Siguiente paso</p>
+          <p data-editable="true" class="mt-2 text-sm text-slate-300">Te explicaremos qué ocurre después con claridad</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="que-pasa" class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Qué pasa en la visita</p>
+        <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Qué revisaremos el día de la cita</h2>
+        <p data-editable="true" class="mt-5 text-lg leading-8 text-slate-600">
+          El objetivo de la visita es entender bien el inmueble, comprobar el tipo de espacio bajo cubierta y valorar si el caso puede avanzar correctamente.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-6 lg:grid-cols-2">
+        <div class="rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+          <div class="space-y-8">
+            <div class="timeline-step">
+              <div class="timeline-badge">1</div>
+              <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Inspección del espacio bajo cubierta</h3>
+              <p data-editable="true" class="mt-2 text-sm leading-7 text-slate-600">Revisaremos la cubierta, la accesibilidad, el tipo de espacio y las condiciones generales del inmueble.</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-badge">2</div>
+              <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Toma de datos y fotografías</h3>
+              <p data-editable="true" class="mt-2 text-sm leading-7 text-slate-600">Recogeremos la información necesaria para valorar correctamente la actuación y estudiar la viabilidad del caso.</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-badge">3</div>
+              <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Explicación de la solución más adecuada</h3>
+              <p data-editable="true" class="mt-2 text-sm leading-7 text-slate-600">Te explicaremos qué sistema encaja mejor, si manto / rollo o insuflado, y por qué tendría sentido en tu caso.</p>
+            </div>
+
+            <div class="timeline-step">
+              <div class="timeline-badge">4</div>
+              <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Siguientes pasos</h3>
+              <p data-editable="true" class="mt-2 text-sm leading-7 text-slate-600">Te diremos qué documentación puede faltar, qué puede firmarse y cómo seguir avanzando si el caso es viable.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-6">
+          <div class="feature-hover rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8">
+            <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Cuánto suele durar</h3>
+            <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-700">La duración depende del tipo de inmueble y de la facilidad de acceso, pero normalmente se trata de una visita breve y organizada.</p>
+          </div>
+
+          <div class="feature-hover rounded-[2rem] border border-slate-200 bg-white p-8">
+            <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Quién debe estar presente</h3>
+            <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-600">Debe estar presente la persona que corresponda según el tipo de inmueble: propietario, presidente de la comunidad o representante legal.</p>
+          </div>
+
+          <div class="feature-hover rounded-[2rem] border border-slate-200 bg-white p-8">
+            <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Qué buscamos con la visita</h3>
+            <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-600">No se trata solo de “ver la casa”, sino de valorar correctamente el caso, entender qué solución encaja y dejar el proceso bien enfocado desde el principio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="documentacion" class="bg-white py-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Qué conviene preparar</p>
+          <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Documentación que puede hacer falta</h2>
+          <p data-editable="true" class="mt-5 text-lg leading-8 text-slate-600">
+            No siempre hará falta todo en el primer momento, pero venir preparado ayuda a que el proceso sea más ágil y más claro.
+          </p>
+        </div>
+
+        <div class="mt-14 grid gap-6 lg:grid-cols-3">
+          <article class="rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8">
+            <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Vivienda unifamiliar</h3>
+            <ul data-editable="true" class="mt-5 space-y-3 text-sm leading-7 text-slate-700">
+              <li>• DNI del propietario</li>
+              <li>• Presencia del propietario para la firma</li>
+              <li>• Si existe división horizontal pero un único dueño, copia simple</li>
+            </ul>
+          </article>
+
+          <article class="rounded-[2rem] border border-slate-200 bg-slate-50 p-8">
+            <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Comunidad / inmueble residencial</h3>
+            <ul data-editable="true" class="mt-5 space-y-3 text-sm leading-7 text-slate-700">
+              <li>• NIF de la comunidad</li>
+              <li>• Certificado digital FNMT</li>
+              <li>• Acta de elección o nombramiento del presidente</li>
+              <li>• Junta de acuerdo para la obra</li>
+              <li>• Presencia del presidente para la firma</li>
+            </ul>
+          </article>
+
+          <article class="rounded-[2rem] border border-slate-200 bg-slate-50 p-8">
+            <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Sector terciario</h3>
+            <ul data-editable="true" class="mt-5 space-y-3 text-sm leading-7 text-slate-700">
+              <li>• NIF de la sociedad</li>
+              <li>• Certificado del Registro Mercantil</li>
+              <li>• Nota simple</li>
+              <li>• Certificado digital FNMT</li>
+              <li>• Documentación de consumos eléctricos</li>
+              <li>• Presencia del administrador o representante legal</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="firma" class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Qué puede revisarse o firmarse</p>
+        <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Documentos que pueden formar parte del proceso</h2>
+        <p data-editable="true" class="mt-5 text-lg leading-8 text-slate-600">
+          Si el caso es viable y la documentación está preparada, durante la cita o después de ella pueden revisarse y firmarse los documentos necesarios para avanzar.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        <div class="feature-hover rounded-[1.75rem] border border-slate-200 bg-white p-7 card-soft">
+          <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Hoja de encargo</h3>
+          <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-600">Documento orientado a dejar claro el inicio del proceso y las condiciones generales de la actuación.</p>
+        </div>
+
+        <div class="feature-hover rounded-[1.75rem] border border-slate-200 bg-white p-7 card-soft">
+          <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Acuerdo de cesión / convenio</h3>
+          <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-600">Documento que puede formar parte del expediente cuando el caso encaja dentro del sistema CAE.</p>
+        </div>
+
+        <div class="feature-hover rounded-[1.75rem] border border-slate-200 bg-white p-7 card-soft">
+          <h3 data-editable="true" class="text-xl font-extrabold text-slate-900">Documentación administrativa complementaria</h3>
+          <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-600">Según el tipo de inmueble, pueden revisarse autorizaciones, representación o documentación necesaria para continuar.</p>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8">
+        <p data-editable="true" class="text-lg leading-8 text-slate-700">
+          Te explicaremos siempre qué documento estás viendo, para qué sirve y si es necesario firmarlo en ese momento o más adelante. La idea es que entiendas el proceso antes de tomar cualquier paso.
+        </p>
+      </div>
+    </section>
+
+    <section class="bg-slate-900 py-20 text-white">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-300">Y después de la visita</p>
+          <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl">Qué puede ocurrir a continuación</h2>
+          <p data-editable="true" class="mt-5 text-lg text-slate-300">
+            Tras la visita técnica revisaremos la información recogida y te indicaremos con claridad cuál es el siguiente paso en tu caso.
+          </p>
+        </div>
+
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          <div class="rounded-[2rem] border border-white/10 bg-white/5 p-7">
+            <h3 data-editable="true" class="text-xl font-extrabold text-white">Revisión técnica</h3>
+            <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-300">Valoraremos la información recogida para confirmar si el caso puede avanzar correctamente.</p>
+          </div>
+
+          <div class="rounded-[2rem] border border-white/10 bg-white/5 p-7">
+            <h3 data-editable="true" class="text-xl font-extrabold text-white">Confirmación documental</h3>
+            <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-300">Si falta algún documento, te diremos exactamente cuál hace falta y para qué sirve.</p>
+          </div>
+
+          <div class="rounded-[2rem] border border-white/10 bg-white/5 p-7">
+            <h3 data-editable="true" class="text-xl font-extrabold text-white">Siguiente paso claro</h3>
+            <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-300">Te explicaremos cómo avanzar, si procede, y resolveremos las dudas necesarias para seguir con seguridad.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+      <div class="text-center">
+        <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">FAQ</p>
+        <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Preguntas frecuentes antes de la cita</h2>
+      </div>
+
+      <div class="mt-12 space-y-4">
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-soft">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span data-editable="true" class="text-lg font-extrabold text-slate-900">¿Tengo que tener toda la documentación lista ese día?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div data-editable="true" class="faq-answer pt-4 text-sm leading-7 text-slate-600">No siempre. Lo ideal es tener preparada la mayor parte posible, pero si falta algo te indicaremos con claridad qué documento hace falta y cómo seguir.</div>
+        </div>
+
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-soft">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span data-editable="true" class="text-lg font-extrabold text-slate-900">¿Tiene que estar presente el propietario o representante?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div data-editable="true" class="faq-answer pt-4 text-sm leading-7 text-slate-600">Sí, conviene que esté presente la persona que corresponda según el tipo de inmueble: propietario, presidente de la comunidad o representante legal.</div>
+        </div>
+
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-soft">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span data-editable="true" class="text-lg font-extrabold text-slate-900">¿Se firma todo durante la visita?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div data-editable="true" class="faq-answer pt-4 text-sm leading-7 text-slate-600">No necesariamente. Hay documentos que pueden revisarse ese día y otros que pueden cerrarse después, según el estado del expediente y la documentación disponible.</div>
+        </div>
+
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-soft">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span data-editable="true" class="text-lg font-extrabold text-slate-900">¿Y si mi caso no es viable?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div data-editable="true" class="faq-answer pt-4 text-sm leading-7 text-slate-600">También te lo diremos con claridad. Preferimos un proceso transparente y serio antes que generar expectativas incorrectas.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 pb-20 lg:px-8">
+      <div class="mx-auto grid max-w-7xl gap-10 rounded-[2.5rem] bg-emerald-600 px-6 py-10 text-white lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:py-12">
+        <div>
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-100">¿Tienes alguna duda antes de la visita?</p>
+          <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight md:text-5xl">Estamos aquí para ayudarte</h2>
+          <p data-editable="true" class="mt-5 max-w-xl text-lg leading-8 text-emerald-50">
+            Si quieres confirmar documentación, resolver una duda o avisarnos de algo antes de la cita, puedes escribirnos directamente.
+          </p>
+          <div class="mt-8 space-y-4 text-sm font-semibold text-emerald-50">
+            <p data-editable="true">✓ Atención clara y rápida</p>
+            <p data-editable="true">✓ Proceso explicado paso a paso</p>
+            <p data-editable="true">✓ Preparación más sencilla</p>
+          </div>
+        </div>
+
+        <div class="card-shadow rounded-[2rem] bg-white p-6 text-slate-900 md:p-8">
+          <h3 data-editable="true" class="text-2xl font-extrabold text-slate-900">Contacto directo</h3>
+          <p data-editable="true" class="mt-3 text-sm leading-7 text-slate-600">La forma más rápida de resolver cualquier duda antes de la cita.</p>
+
+          <div class="mt-6 grid gap-4">
+            <a href="https://wa.me/34670237842?text=Hola,%20tengo%20una%20cita%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-6 py-4 text-lg font-extrabold text-white transition hover:bg-emerald-700">
+              Hablar por WhatsApp
+            </a>
+            <a href="tel:+34865450109" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-4 text-lg font-bold text-slate-800 transition hover:border-slate-300">
+              Llamar ahora
+            </a>
+            <a href="index.html" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-6 py-4 text-lg font-bold text-slate-800 transition hover:border-slate-300">
+              Volver a la landing
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+
+  <a href="https://wa.me/34670237842?text=Hola,%20tengo%20una%20cita%20y%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm font-extrabold text-white shadow-2xl transition hover:-translate-y-0.5" style="background:var(--whatsapp);">
+    WhatsApp
+  </a>
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+    function toggleClientView() {
+      document.body.classList.toggle('client-view');
+    }
+
+    document.querySelectorAll('[data-editable]').forEach(el => {
+      el.setAttribute('contenteditable', 'true');
+      el.setAttribute('spellcheck', 'false');
+    });
+
+    function saveAndDownload() {
+      const clone = document.documentElement.cloneNode(true);
+      const adminUI = clone.querySelector('#adminUI');
+      if (adminUI) adminUI.remove();
+      clone.querySelectorAll('[data-editable]').forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('spellcheck');
+      });
+      if (clone.querySelector('body')) clone.querySelector('body').classList.remove('admin-editing', 'client-view');
+
+      const scripts = clone.querySelectorAll('script');
+      if (scripts.length > 0) {
+        const lastScript = scripts[scripts.length - 1];
+        lastScript.textContent = `
+document.querySelectorAll('.faq-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.closest('.faq-item');
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+        `;
+      }
+
+      const blob = new Blob([clone.outerHTML], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'dia-de-la-cita.html';
+      a.click();
+    }
+  </script>
+
+  <footer class="mt-16 border-t border-slate-200 bg-white/80">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3 items-start">
+      <div>
+        <div class="flex items-center gap-3">
+          <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+            <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+          <div class="text-base font-extrabold tracking-tighter uppercase leading-none">
+            <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+            <span class="text-emerald-500">EN CASA</span>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600 leading-6">Especialistas en aislamiento de buhardillas y zonas bajo cubierta mediante sistema CAE.</p>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Navegación</p>
+        <div class="grid gap-2">
+          <a href="index.html" class="hover:text-emerald-600">Inicio</a>
+          <a href="dia-de-la-cita.html" class="hover:text-emerald-600">Día de la cita</a>
+          <a href="documentacion.html" class="hover:text-emerald-600">Documentación</a>
+          <a href="tras-tu-visita.html" class="hover:text-emerald-600">Tras tu visita</a>
+        </div>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Legal y contacto</p>
+        <div class="grid gap-2">
+          <a href="aviso-legal.html" class="hover:text-emerald-600">Aviso legal</a>
+          <a href="privacidad.html" class="hover:text-emerald-600">Privacidad</a>
+          <a href="cookies.html" class="hover:text-emerald-600">Cookies</a>
+          <a href="tel:+34887824609" class="hover:text-emerald-600">887 824 609</a>
+          <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">WhatsApp: 602 063 644</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

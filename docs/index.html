@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aislamiento en Casa | Eficiencia a Coste 0</title>
+  <meta name="description" content="Aísla tu buhardilla sin inversión inicial mediante el sistema CAE. Mejoramos el confort de tu vivienda y reducimos pérdidas energéticas por cubierta.">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root{
+      --primary:#10b981;
+      --primary-dark:#059669;
+      --dark:#0f172a;
+      --muted:#64748b;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --line:#e2e8f0;
+      --whatsapp:#25D366;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(16,185,129,.10), transparent 24%),
+        linear-gradient(180deg,#f8fafc 0%, #f4f8fb 100%);
+      overflow-x:hidden;
+      color:var(--dark);
+    }
+
+    .glass{
+      background:rgba(255,255,255,.80);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.35);
+      box-shadow:0 12px 30px rgba(15,23,42,.08);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:.8s cubic-bezier(0.2,0.8,0.2,1);
+    }
+    .reveal.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .hero-bg{
+      position:relative;
+    }
+    .hero-bg::before{
+      content:"";
+      position:absolute;
+      inset:auto -120px -120px auto;
+      width:260px;
+      height:260px;
+      border-radius:999px;
+      background:rgba(16,185,129,.08);
+      filter:blur(20px);
+      z-index:0;
+    }
+
+    /* Comparador */
+    .ba-slider{
+      position:relative;
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:2.5rem;
+      overflow:hidden;
+      box-shadow:0 25px 50px -12px rgba(0,0,0,.15);
+      touch-action:pan-y;
+      background:#dfe7ef;
+    }
+    .ba-img{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      pointer-events:none;
+    }
+    .ba-after{
+      clip-path:inset(0 0 0 50%);
+      z-index:2;
+      transition:clip-path .08s ease;
+    }
+    .ba-handle{
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:4px;
+      background:white;
+      transform:translateX(-50%);
+      z-index:10;
+      cursor:ew-resize;
+      transition:left .08s ease;
+    }
+    .ba-handle::after{
+      content:'';
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      width:52px;
+      height:52px;
+      background:white;
+      border-radius:999px;
+      box-shadow:0 10px 20px rgba(0,0,0,.2);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981' stroke-width='2.6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9'/%3E%3C/svg%3E");
+      background-size:60%;
+      background-repeat:no-repeat;
+      background-position:center;
+    }
+
+    @keyframes hint { 0%,100% { left:50%; } 25% { left:42%; } 75% { left:58%; } }
+    .hint-animation .ba-handle { animation: hint 1.8s ease-in-out; }
+    @keyframes hint-clip { 0%,100% { clip-path: inset(0 0 0 50%); } 25% { clip-path: inset(0 0 0 42%); } 75% { clip-path: inset(0 0 0 58%); } }
+    .hint-animation .ba-after { animation: hint-clip 1.8s ease-in-out; }
+
+    .soft-card{
+      background:#fff;
+      border:1px solid var(--line);
+      box-shadow:0 18px 40px rgba(15,23,42,.05);
+    }
+
+    .benefit-card{
+      transition:.25s ease;
+    }
+    .benefit-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 40px rgba(15,23,42,.08);
+      border-color:#cbd5e1;
+    }
+
+    .official-social{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:.25s ease;
+      box-shadow:0 6px 14px rgba(15,23,42,.05);
+    }
+    .official-social:hover{
+      transform:translateY(-2px);
+      border-color:#cbd5e1;
+      background:#ecfdf5;
+    }
+
+    .faq-item{
+      border:1px solid var(--line);
+      border-radius:1.5rem;
+      background:white;
+      box-shadow:0 10px 24px rgba(15,23,42,.04);
+      overflow:hidden;
+    }
+    .faq-btn{
+      width:100%;
+      background:none;
+      border:none;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      text-align:left;
+      gap:16px;
+      padding:1.25rem 1.5rem;
+      cursor:pointer;
+      font-weight:800;
+    }
+    .faq-plus{
+      font-size:1.8rem;
+      line-height:1;
+      color:var(--primary);
+      transition:.2s ease;
+      flex:0 0 auto;
+    }
+    .faq-answer{
+      display:none;
+      padding:0 1.5rem 1.25rem;
+      color:var(--muted);
+      line-height:1.75;
+    }
+    .faq-item.active .faq-answer{display:block}
+    .faq-item.active .faq-plus{transform:rotate(45deg)}
+
+    .form-field{
+      width:100%;
+      padding:1.25rem;
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:1rem;
+      font-weight:600;
+      outline:none;
+      transition:.2s ease;
+    }
+    .form-field:focus{
+      border-color:var(--primary);
+      box-shadow:0 0 0 4px rgba(16,185,129,.10);
+    }
+
+    .whatsapp-float{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:110;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:var(--whatsapp);
+      color:white;
+      text-decoration:none;
+      border-radius:999px;
+      padding:12px 16px;
+      box-shadow:0 18px 32px rgba(37,211,102,.28);
+      transition:.2s ease;
+    }
+    .whatsapp-float:hover{transform:translateY(-2px)}
+    .whatsapp-float .label{
+      font-weight:800;
+      font-size:.95rem;
+      white-space:nowrap;
+    }
+    .whatsapp-float .icon{
+      width:24px;
+      height:24px;
+      flex:0 0 auto;
+    }
+
+    
+    .calc-chip{
+      width:100%;
+      text-align:left;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:#fff;
+      border-radius:18px;
+      padding:14px 16px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .calc-chip:hover{border-color:rgba(16,185,129,.45)}
+    .calc-chip.active{
+      background:rgba(16,185,129,.18);
+      border-color:rgba(16,185,129,.55);
+      color:#d1fae5;
+    }
+
+
+    @media (max-width: 767px){
+      .whatsapp-float{
+        right:14px;
+        bottom:14px;
+        width:56px;
+        height:56px;
+        padding:0;
+        justify-content:center;
+        border-radius:999px;
+      }
+      .whatsapp-float .label{
+        display:none;
+      }
+      body{
+        padding-bottom:84px;
+      }
+    }
+  </style>
+
+<style id="admin-base-style">
+  .admin-editing [data-admin-key]{
+    outline:2px dashed rgba(47,125,87,.45);
+    outline-offset:4px;
+    cursor:text;
+  }
+  .admin-editing [data-admin-img]{
+    outline:3px dashed rgba(18,53,74,.55);
+    outline-offset:4px;
+    cursor:pointer;
+  }
+  #adminHelpBadge{
+    display:none;position:fixed;top:18px;right:18px;z-index:1600;background:#12354a;color:#fff;
+    border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;box-shadow:0 8px 20px rgba(0,0,0,.16);
+  }
+  #btnEditarAdmin{
+    display:none;position:fixed;bottom:18px;left:18px;z-index:1400;background:#12354a;color:#fff;
+    border:none;border-radius:999px;padding:12px 16px;font-weight:800;box-shadow:0 10px 25px rgba(0,0,0,0.18);cursor:pointer;font-size:14px;
+  }
+  #panelAdmin{
+    display:none;position:fixed;bottom:18px;right:18px;width:min(320px,calc(100vw - 24px));max-height:78vh;background:#ffffff;
+    z-index:1500;box-shadow:0 18px 40px rgba(0,0,0,0.18);padding:14px;overflow:auto;border-radius:22px;border:1px solid #d7e4db;
+  }
+  .admin-field{
+    width:100%;padding:12px;border:1px solid #ccdcd0;border-radius:12px;font:inherit;margin-top:8px;
+  }
+  .admin-inline-btn{
+    width:100%;padding:12px;border:none;border-radius:12px;font-weight:800;cursor:pointer;margin-top:10px;
+  }
+  .admin-inline-btn.primary{background:#2f7d57;color:#fff;}
+  .admin-mini-help{font-size:13px;color:#5f7a70;margin:6px 0 0;}
+  .admin-selected-label{font-size:13px;font-weight:700;color:#2f7d57;margin-top:8px;}
+</style>
+
+</head>
+<body>
+
+  
+  
+  <nav class="sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-7xl mx-auto glass rounded-[2rem] px-5 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+          <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <a href="index.html" class="text-lg md:text-xl font-extrabold tracking-tighter uppercase leading-none">
+          <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+          <span class="text-emerald-500">EN CASA</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-700">
+        <a href="index.html#antes-despues" class="hover:text-emerald-600 transition">Antes y después</a>
+        <a href="index.html#soluciones" class="hover:text-emerald-600 transition">Soluciones</a>
+        <a href="index.html#faq" class="hover:text-emerald-600 transition">FAQ</a>
+        <a href="dia-de-la-cita.html" class="hover:text-emerald-600 transition">La cita</a>
+        <a href="documentacion.html" class="hover:text-emerald-600 transition">Documentación</a>
+        <a href="tras-tu-visita.html" class="hover:text-emerald-600 transition">Tras tu visita</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex bg-white text-slate-900 px-5 py-3 rounded-2xl font-bold text-sm border border-slate-200 hover:border-emerald-200 transition-all">WhatsApp</a>
+        <a href="index.html#contacto" class="bg-slate-900 text-white px-5 py-3 rounded-2xl font-bold text-sm hover:bg-emerald-600 transition-all">Solicitar estudio</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <section class="hero-bg pt-40 md:pt-44 pb-20 px-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal active relative z-10">
+      <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6 inline-block">Sistema CAE</span>
+      <h1 class="text-5xl md:text-7xl font-black leading-[1.02] mb-8 tracking-tight">
+        Aísla tu buhardilla <span class="text-emerald-500 italic">sin inversión inicial</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-500 mb-10 font-medium leading-relaxed">
+        Aislamos buhardillas, desvanes y zonas bajo cubierta con manta o insuflado para reducir pérdidas térmicas, mejorar el confort y ayudarte a acceder a la actuación sin inversión inicial cuando el caso es viable.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#contacto" class="inline-block bg-emerald-500 text-white px-9 py-5 rounded-2xl font-black text-lg shadow-2xl shadow-emerald-200 hover:bg-emerald-600 transition-all">
+          Comprobar viabilidad
+        </a>
+        <a href="#simulador" class="inline-block bg-white text-slate-900 px-9 py-5 rounded-2xl font-black text-lg border border-slate-200 hover:border-emerald-200 transition-all">
+          Ver soluciones
+        </a>
+      </div>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-bold text-slate-600">
+        <span class="px-4 py-2 rounded-full bg-white border border-slate-200">Sin compromiso</span>
+        <span class="px-4 py-2 rounded-full bg-white border border-slate-200">Estudio técnico real</span>
+        <span class="px-4 py-2 rounded-full bg-white border border-slate-200">Manta o insuflado</span>
+      </div>
+    </div>
+
+    
+<div class="reveal active relative z-10" style="transition-delay: 0.2s">
+  <div class="grid gap-6">
+    <div>
+      <p class="text-xs font-black uppercase tracking-[0.28em] text-slate-400 mb-3">Comparador 1 · Manta</p>
+      <div class="ba-slider hint-animation" id="comparatorManta">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200" class="ba-img" alt="Antes manta" data-admin-img="imgMantaAntes">
+        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200" class="ba-img ba-after" alt="Después manta" data-admin-img="imgMantaDespues">
+        <div class="ba-handle"></div>
+      </div>
+      <p class="text-center text-[10px] font-black text-slate-400 mt-4 uppercase tracking-[0.3em]">Desliza para ver la diferencia</p>
+    </div>
+
+    <div>
+      <p class="text-xs font-black uppercase tracking-[0.28em] text-slate-400 mb-3">Comparador 2 · Insuflado</p>
+      <div class="ba-slider hint-animation" id="comparatorInsuflado">
+        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200" class="ba-img" alt="Antes insuflado" data-admin-img="imgInsufladoAntes">
+        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200" class="ba-img ba-after" alt="Después insuflado" data-admin-img="imgInsufladoDespues">
+        <div class="ba-handle"></div>
+      </div>
+      <p class="text-center text-[10px] font-black text-slate-400 mt-4 uppercase tracking-[0.3em]">Desliza para ver la diferencia</p>
+    </div>
+  </div>
+</div>
+</section>
+
+
+  <section id="antes-despues" class="py-20 px-6 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-14">
+      <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-6">Antes y después</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">La diferencia se ve</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed">
+        Así puedes ver desde el principio el tipo de actuación que realizamos en buhardillas y zonas bajo cubierta.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.28em] text-slate-400 mb-3">Manta / rollo</p>
+        <div class="ba-slider hint-animation" id="comparatorMantaTop">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200" class="ba-img" alt="Antes manta superior" data-admin-img="imgMantaAntesTop">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1200" class="ba-img ba-after" alt="Después manta superior" data-admin-img="imgMantaDespuesTop">
+          <div class="ba-handle"></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-xs font-black uppercase tracking-[0.28em] text-slate-400 mb-3">Insuflado</p>
+        <div class="ba-slider hint-animation" id="comparatorInsufladoTop">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=1200" class="ba-img" alt="Antes insuflado superior" data-admin-img="imgInsufladoAntesTop">
+          <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&q=80&w=1200" class="ba-img ba-after" alt="Después insuflado superior" data-admin-img="imgInsufladoDespuesTop">
+          <div class="ba-handle"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="max-w-6xl mx-auto px-6 pb-20 reveal">
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="soft-card benefit-card rounded-[2rem] p-8">
+        <h3 class="text-xl font-black mb-3">Menos pérdida térmica</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Actuamos sobre la zona bajo cubierta para reducir una de las fugas energéticas más importantes de la vivienda.</p>
+      </div>
+      <div class="soft-card benefit-card rounded-[2rem] p-8">
+        <h3 class="text-xl font-black mb-3">Más confort</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">La casa mantiene mejor la temperatura interior y mejora la sensación de bienestar durante todo el año.</p>
+      </div>
+      <div class="soft-card benefit-card rounded-[2rem] p-8">
+        <h3 class="text-xl font-black mb-3">Viabilidad real</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Primero revisamos si el caso encaja. Solo después se plantea la actuación y la tramitación vinculada al sistema CAE.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-10 bg-slate-50 border-y border-slate-200 reveal">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center justify-center">
+          <img src="https://www.miteco.gob.es/content/dam/miteco/images/logo-miteco.png"
+               alt="Ministerio para la Transición Ecológica"
+               class="h-16 md:h-20 w-auto object-contain">
+        </div>
+        <div class="max-w-md text-center md:text-left">
+          <h4 class="text-slate-900 font-bold text-lg mb-1">Programa Oficial CAE</h4>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Nuestras actuaciones de eficiencia energética están sujetas al sistema de <span class="text-emerald-600 font-bold">Certificados de Ahorro Energético</span>, regulado por el Ministerio para la Transición Ecológica y el Reto Demográfico.
+          </p>
+          <p class="text-slate-500 text-sm leading-relaxed mt-3">
+            Referencia normativa: <span class="font-bold text-slate-900">Real Decreto 36/2023</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-24 px-6 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-14">
+      <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-6">Sistema CAE explicado</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">¿Qué es el sistema CAE y por qué en algunos casos puede ser a coste 0?</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed">Queremos que entiendas bien de dónde sale la oportunidad, qué estudiamos y por qué no todos los casos son viables.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="soft-card rounded-[2.5rem] p-10">
+        <h3 class="text-2xl font-black mb-4">Qué es un CAE</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Un CAE es un Certificado de Ahorro Energético. Cuando una actuación mejora la eficiencia de una vivienda o inmueble y genera un ahorro medible, ese ahorro puede certificarse dentro del sistema.</p>
+      </div>
+      <div class="soft-card rounded-[2.5rem] p-10">
+        <h3 class="text-2xl font-black mb-4">Qué significa para el cliente</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Si el caso es viable, ese ahorro puede servir para financiar la actuación. Por eso, en determinados expedientes, el cliente puede acceder a la mejora sin asumir el coste inicial.</p>
+      </div>
+      <div class="soft-card rounded-[2.5rem] p-10">
+        <h3 class="text-2xl font-black mb-4">Qué estudiamos antes</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Revisamos el inmueble, la cubierta, la documentación y el ahorro potencial para comprobar si el expediente encaja realmente dentro del sistema CAE.</p>
+      </div>
+      <div class="soft-card rounded-[2.5rem] p-10">
+        <h3 class="text-2xl font-black mb-4">Qué hacemos nosotros</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Nos encargamos de la valoración técnica, la revisión documental, la gestión del expediente y la ejecución de la actuación si el caso resulta viable.</p>
+      </div>
+    </div>
+    <div class="mt-8 rounded-[2rem] bg-emerald-50 border border-emerald-100 p-8 text-center">
+      <p class="text-slate-700 font-semibold leading-relaxed max-w-4xl mx-auto">No todos los casos encajan. Por eso primero realizamos una revisión técnica y documental completa antes de confirmar si la actuación puede acogerse al sistema CAE.</p>
+    </div>
+  </section>
+
+  
+  
+  <section id="simulador" class="py-24 px-6 bg-slate-900 text-white rounded-[4rem] mx-4 mb-20 shadow-inner reveal">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-4xl font-black mb-5">Calculadora orientativa de ahorro</h2>
+      <p class="text-slate-400 mb-12 font-medium max-w-3xl mx-auto">
+        Una guía visual para entender mejor tu caso. No es un cálculo oficial, pero sí una buena referencia para valorar si merece la pena estudiar tu buhardilla.
+      </p>
+
+      <div class="bg-white/5 p-10 rounded-[3rem] border border-white/10 text-left">
+        <div class="mb-10">
+          <div class="flex justify-between mb-5 font-bold items-end gap-4">
+            <span class="text-emerald-400 uppercase tracking-widest text-xs">Superficie aproximada</span>
+            <span class="text-3xl"><span id="m2Val">80</span> m²</span>
+          </div>
+          <input type="range" id="m2Slider" min="30" max="250" value="80" class="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-5 mb-8">
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-emerald-400 mb-3">Antigüedad</p>
+            <div class="grid gap-3">
+              <button type="button" class="calc-chip active" data-group="year" data-value="pre1980">Antes de 1980</button>
+              <button type="button" class="calc-chip" data-group="year" data-value="1980_2006">1980 a 2006</button>
+              <button type="button" class="calc-chip" data-group="year" data-value="post2006">Después de 2006</button>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-emerald-400 mb-3">Provincia</p>
+            <select id="calcProvincia" class="form-field text-slate-900">
+              <optgroup label="Castilla y León">
+                <option value="avila">Ávila</option>
+                <option value="burgos">Burgos</option>
+                <option value="leon" selected>León</option>
+                <option value="palencia">Palencia</option>
+                <option value="salamanca">Salamanca</option>
+                <option value="segovia">Segovia</option>
+                <option value="soria">Soria</option>
+                <option value="valladolid">Valladolid</option>
+                <option value="zamora">Zamora</option>
+              </optgroup>
+              <optgroup label="Asturias">
+                <option value="asturias">Asturias</option>
+              </optgroup>
+              <optgroup label="Galicia">
+                <option value="acoruna">A Coruña</option>
+                <option value="lugo">Lugo</option>
+                <option value="ourense">Ourense</option>
+                <option value="pontevedra">Pontevedra</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div>
+            <p class="text-xs font-black uppercase tracking-widest text-emerald-400 mb-3">Tipo de espacio</p>
+            <div class="grid gap-3">
+              <button type="button" class="calc-chip active" data-group="roof" data-value="habitable">Buhardilla / desván</button>
+              <button type="button" class="calc-chip" data-group="roof" data-value="no_habitable">Bajo cubierta no habitable</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/10 text-center">
+          <p class="text-xs font-bold text-slate-400 uppercase mb-4 tracking-widest">Ahorro anual estimado</p>
+          <div class="text-7xl font-black text-emerald-400" id="ahorroText">0€</div>
+          <p id="calcLoss" class="text-red-300 font-extrabold text-lg mt-5"></p>
+          <p id="calcRecommendation" class="text-slate-200 text-base font-medium mt-3 max-w-3xl mx-auto leading-relaxed"></p>
+          <p id="calcPriority" class="text-emerald-300 font-black text-lg mt-3"></p>
+          <p class="text-sm text-slate-400 mt-5 max-w-2xl mx-auto">Estimación visual orientativa. No constituye un cálculo oficial. El ahorro real depende del estado de la vivienda, la cubierta y la solución aplicada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="py-10 px-6 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Cómo funciona</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed">Un proceso claro: revisamos el caso, confirmamos viabilidad y realizamos la actuación cuando procede.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="soft-card benefit-card rounded-[2.5rem] p-10">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-xl mb-7">1</div>
+        <h3 class="text-2xl font-black mb-4">Estudio técnico</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Revisamos la vivienda y la cubierta para saber si la actuación tiene sentido técnico y energético.</p>
+      </div>
+      <div class="soft-card benefit-card rounded-[2.5rem] p-10">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-xl mb-7">2</div>
+        <h3 class="text-2xl font-black mb-4">Validación de viabilidad</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Comprobamos si el caso encaja dentro del sistema CAE y si el ahorro generado puede utilizarse como base de financiación.</p>
+      </div>
+      <div class="soft-card benefit-card rounded-[2.5rem] p-10">
+        <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-black text-xl mb-7">3</div>
+        <h3 class="text-2xl font-black mb-4">Actuación y gestión</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Realizamos la mejora y gestionamos el proceso documental para que todo quede claro y bien resuelto.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="soluciones" class="py-24 px-6 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-14">
+      <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-6">Material y sistema</span>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Dos formas de aislar tu buhardilla o bajo cubierta</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed">
+        No todas las cubiertas necesitan la misma solución. Por eso valoramos si conviene actuar con <strong>manta / rollo</strong> o con <strong>insuflado</strong>, según el tipo de espacio y la configuración de la cubierta.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <article class="soft-card rounded-[2.5rem] p-8">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 font-black text-xl">01</div>
+          <div>
+            <h3 class="text-2xl font-black">Insuflado</h3>
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Ideal para cámaras o espacios no habitables</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-slate-600 font-medium leading-relaxed">
+          <li>• Aplicación rápida y limpia</li>
+          <li>• Muy buena opción cuando existe cámara de aire o espacio bajo cubierta no habitable</li>
+          <li>• Reduce pérdidas térmicas sin grandes obras</li>
+          <li>• Mantiene mejor la temperatura interior de la vivienda</li>
+        </ul>
+      </article>
+
+      <article class="soft-card rounded-[2.5rem] p-8">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 font-black text-xl">02</div>
+          <div>
+            <h3 class="text-2xl font-black">Manta / rollo</h3>
+            <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">Especial bajo cubierta y buhardilla</p>
+          </div>
+        </div>
+        <ul class="space-y-3 text-slate-600 font-medium leading-relaxed">
+          <li>• Solución robusta para actuar directamente sobre el suelo de la buhardilla</li>
+          <li>• Muy adecuada cuando el espacio es transitable o tiene un uso más directo</li>
+          <li>• Frena la fuga térmica por el tejado</li>
+          <li>• Mejora el confort y ayuda a reducir consumo energético</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6 mt-10">
+      <div class="soft-card rounded-[2rem] p-7 text-center">
+        <h3 class="text-xl font-black mb-3">Menos pérdida térmica</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Actuar sobre la cubierta reduce uno de los principales puntos de fuga de energía.</p>
+      </div>
+      <div class="soft-card rounded-[2rem] p-7 text-center">
+        <h3 class="text-xl font-black mb-3">Más confort</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">La vivienda mantiene mejor la temperatura interior durante todo el año.</p>
+      </div>
+      <div class="soft-card rounded-[2rem] p-7 text-center">
+        <h3 class="text-xl font-black mb-3">Menor consumo</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Al reducir pérdidas, disminuye la necesidad de calefacción y climatización.</p>
+      </div>
+      <div class="soft-card rounded-[2rem] p-7 text-center">
+        <h3 class="text-xl font-black mb-3">Viabilidad real</h3>
+        <p class="text-slate-500 font-medium leading-relaxed">Primero estudiamos si tu caso encaja. Solo después se confirma la actuación.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="py-24 px-6 max-w-6xl mx-auto reveal">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Lo que valoran nuestros clientes</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed">La claridad, la tranquilidad y el resultado final suelen ser las razones más repetidas por quienes ya han pasado por el proceso.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <article class="soft-card rounded-[2.5rem] p-8">
+        <p class="text-slate-700 font-semibold leading-relaxed">“La casa mantiene mucho mejor la temperatura y el proceso fue claro desde la primera visita.”</p>
+        <div class="mt-6">
+          <p class="font-black text-emerald-600">María y Javier</p>
+          <p class="text-sm text-slate-400 font-semibold">León · Vivienda unifamiliar</p>
+        </div>
+      </article>
+      <article class="soft-card rounded-[2.5rem] p-8">
+        <p class="text-slate-700 font-semibold leading-relaxed">“Nos guiaron con toda la documentación y la intervención fue limpia, rápida y bien coordinada.”</p>
+        <div class="mt-6">
+          <p class="font-black text-emerald-600">Laura</p>
+          <p class="text-sm text-slate-400 font-semibold">Asturias · Casa adosada</p>
+        </div>
+      </article>
+      <article class="soft-card rounded-[2.5rem] p-8">
+        <p class="text-slate-700 font-semibold leading-relaxed">“Notamos el ahorro desde el primer invierno y la sensación de confort cambió muchísimo.”</p>
+        <div class="mt-6">
+          <p class="font-black text-emerald-600">Carlos</p>
+          <p class="text-sm text-slate-400 font-semibold">Galicia · Vivienda rural</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="py-8 px-6 max-w-6xl mx-auto reveal">
+    <div class="glass rounded-[3rem] p-8 md:p-12 text-center">
+      <span class="bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest inline-block mb-6">La web completa</span>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Accede a cada fase del proceso</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed mb-10">
+        Si ya tienes cita o ya eres cliente, aquí puedes pasar a las páginas de apoyo del proceso.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6 text-left">
+        <div class="soft-card rounded-[2rem] p-8">
+          <span class="text-xs font-black uppercase tracking-[0.25em] text-emerald-600">Página 2</span>
+          <h3 class="mt-4 text-2xl font-black">Día de la cita</h3>
+          <p class="mt-4 text-slate-500 font-medium leading-relaxed">Qué revisaremos, qué documentación conviene preparar y qué puede firmarse según el tipo de inmueble.</p>
+          <a href="dia-de-la-cita.html" class="inline-block mt-6 text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 border-emerald-500 pb-1">
+            Ir a la página →
+          </a>
+        </div>
+
+        <div class="soft-card rounded-[2rem] p-8">
+          <span class="text-xs font-black uppercase tracking-[0.25em] text-emerald-600">Página 3</span>
+          <h3 class="mt-4 text-2xl font-black">Documentación</h3>
+          <p class="mt-4 text-slate-500 font-medium leading-relaxed">Qué documentos debe aportar el cliente, qué puede firmar y qué documentación recibirá después.</p>
+          <a href="documentacion.html" class="inline-block mt-6 text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 border-emerald-500 pb-1">
+            Ir a la página →
+          </a>
+        </div>
+
+        <div class="soft-card rounded-[2rem] p-8">
+          <span class="text-xs font-black uppercase tracking-[0.25em] text-emerald-600">Página 4</span>
+          <h3 class="mt-4 text-2xl font-black">Tras tu visita</h3>
+          <p class="mt-4 text-slate-500 font-medium leading-relaxed">Qué ocurre después, cómo seguir en contacto, dejar una reseña o recomendar a un familiar o conocido.</p>
+          <a href="tras-tu-visita.html" class="inline-block mt-6 text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 border-emerald-500 pb-1">
+            Ir a la página →
+          </a>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+        <a href="https://wa.me/34602063644?text=Hola,%20quiero%20resolver%20una%20duda%20sobre%20el%20proceso" target="_blank" rel="noopener noreferrer" class="inline-block bg-white text-slate-900 px-8 py-4 rounded-2xl font-black text-lg border border-slate-200 hover:border-emerald-200 transition-all">
+          Resolver una duda
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 px-6 max-w-4xl mx-auto reveal">
+    <div class="text-center mb-14">
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">Preguntas frecuentes</h2>
+      <p class="text-slate-500 text-lg max-w-3xl mx-auto font-medium leading-relaxed">Las dudas bien resueltas ayudan a que más personas den el paso y pidan una valoración.</p>
+    </div>
+
+    <div class="space-y-4">
+      <article class="faq-item active">
+        <button class="faq-btn" type="button">
+          <span>¿La obra puede hacerse realmente sin inversión inicial?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-answer">Sí, cuando la vivienda encaja con los requisitos técnicos y energéticos del sistema CAE. Primero hay que estudiar el caso.</div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-btn" type="button">
+          <span>¿Hace falta hacer una obra grande?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-answer">No. En muchos casos la intervención es rápida, limpia y con molestias muy contenidas.</div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-btn" type="button">
+          <span>¿Cuándo se empieza a notar la mejora?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-answer">El confort suele percibirse muy pronto y el ahorro puede empezar a reflejarse en los meses siguientes.</div>
+      </article>
+
+      <article class="faq-item">
+        <button class="faq-btn" type="button">
+          <span>¿Qué se revisa en la visita técnica?</span>
+          <span class="faq-plus">+</span>
+        </button>
+        <div class="faq-answer">El estado de la cubierta, el acceso, la tipología de la vivienda y la mejora energética potencial para saber si el caso encaja.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contacto" class="py-24 px-6 max-w-3xl mx-auto reveal">
+    <div class="glass p-10 md:p-16 rounded-[3.5rem] shadow-2xl text-center">
+      <h2 class="text-4xl font-black mb-4 italic">Reserva tu estudio gratis</h2>
+      <p class="text-slate-500 text-lg font-medium max-w-2xl mx-auto mb-10">Déjanos unos datos básicos y te diremos si tiene sentido estudiar tu vivienda con más detalle.</p>
+
+      
+<form id="leadForm" class="space-y-5 text-left">
+  <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden">
+  <input type="hidden" name="form_type" value="lead_landing">
+  <input type="hidden" name="page_source" value="landing">
+  <input type="hidden" name="loaded_at" id="lead_loaded_at">
+  <div class="grid md:grid-cols-2 gap-5">
+    <div>
+      <input type="text" name="nombre" placeholder="Nombre" class="form-field" required>
+      <p class="mt-2 text-xs text-red-600 hidden" id="lead_error_nombre">El nombre es obligatorio.</p>
+    </div>
+    <div>
+      <input type="tel" name="telefono" placeholder="Teléfono" class="form-field" required>
+      <p class="mt-2 text-xs text-red-600 hidden" id="lead_error_telefono">El teléfono es obligatorio.</p>
+    </div>
+  </div>
+  <select name="propietario" class="form-field text-slate-500 appearance-none">
+    <option value="" selected>¿Eres el propietario?</option>
+    <option value="si">Sí, soy propietario</option>
+    <option value="no">No lo soy</option>
+  </select>
+
+  <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-100 flex gap-4">
+    <div class="w-6 h-6 text-emerald-500 shrink-0">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 21.48l-.394-.131a11.952 11.952 0 01-5.186-4.331" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <p class="text-[0.78rem] text-emerald-800 font-medium leading-relaxed">Visita técnica 100% gratuita. Analizamos la viabilidad del sistema CAE para tu vivienda sin ningún compromiso.</p>
+  </div>
+
+  <label class="flex items-start gap-3 text-sm leading-6 text-slate-600">
+    <input type="checkbox" name="legal" id="lead_legal" class="mt-1" required>
+    <span>Acepto la política de privacidad y autorizo el tratamiento de mis datos para gestionar mi solicitud.</span>
+  </label>
+  <p class="text-xs text-red-600 hidden" id="lead_error_legal">Debes aceptar la política de privacidad para continuar.</p>
+
+  <button type="submit" class="w-full bg-slate-900 text-white py-6 rounded-3xl font-black text-xl hover:bg-emerald-600 transition-all shadow-xl">
+    Enviar solicitud
+  </button>
+  <p id="lead_status" class="text-sm font-bold hidden"></p>
+</form>
+
+    </div>
+  </section>
+
+  
+
+  
+  
+  <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="WhatsApp">
+    <svg class="icon" viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="currentColor" d="M19.11 17.35c-.27-.14-1.61-.79-1.86-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.31.2-.58.07-.27-.14-1.14-.42-2.18-1.34-.81-.72-1.35-1.62-1.51-1.89-.16-.27-.02-.41.12-.55.12-.12.27-.31.41-.47.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.47-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.47.07-.72.34s-.95.93-.95 2.26.97 2.61 1.11 2.79c.14.18 1.91 2.92 4.62 4.1.65.28 1.15.45 1.54.57.65.2 1.24.17 1.71.1.52-.08 1.61-.66 1.84-1.3.23-.63.23-1.18.16-1.29-.07-.11-.25-.18-.52-.32z"/>
+      <path fill="currentColor" d="M16.02 3.2c-6.99 0-12.66 5.68-12.66 12.66 0 2.22.58 4.39 1.67 6.31L3.2 28.8l6.81-1.79c1.86 1.01 3.96 1.54 6.01 1.54h.01c6.98 0 12.66-5.68 12.66-12.66S23 3.2 16.02 3.2zm0 23.22h-.01c-1.88 0-3.72-.5-5.33-1.46l-.38-.22-4.04 1.06 1.08-3.94-.25-.4a10.48 10.48 0 0 1-1.61-5.57c0-5.79 4.71-10.5 10.51-10.5 2.81 0 5.45 1.09 7.43 3.08a10.44 10.44 0 0 1 3.07 7.43c0 5.79-4.72 10.51-10.47 10.51z"/>
+    </svg>
+    <span class="label">WhatsApp</span>
+  </a>
+
+
+  <script>
+    
+function initComparator(containerId) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const handle = container.querySelector('.ba-handle');
+  const afterImg = container.querySelector('.ba-after');
+  let active = false;
+
+  const updateSlider = (clientX) => {
+    const rect = container.getBoundingClientRect();
+    let pos = ((clientX - rect.left) / rect.width) * 100;
+    pos = Math.max(0, Math.min(pos, 100));
+    afterImg.style.clipPath = `inset(0 0 0 ${pos}%)`;
+    handle.style.left = `${pos}%`;
+    container.classList.remove('hint-animation');
+  };
+
+  container.addEventListener('mousemove', (e) => updateSlider(e.clientX));
+  container.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) updateSlider(e.touches[0].clientX);
+  }, { passive:true });
+
+  handle.addEventListener('mousedown', () => { active = true; });
+  window.addEventListener('mouseup', () => { active = false; });
+  window.addEventListener('mousemove', (e) => { if (active) updateSlider(e.clientX); });
+
+  handle.addEventListener('touchstart', () => { active = true; }, { passive:true });
+  window.addEventListener('touchend', () => { active = false; });
+  window.addEventListener('touchmove', (e) => {
+    if (active && e.touches && e.touches[0]) updateSlider(e.touches[0].clientX);
+  }, { passive:true });
+}
+
+initComparator('comparatorManta');
+initComparator('comparatorInsuflado');
+initComparator('comparatorMantaTop');
+initComparator('comparatorInsufladoTop');
+
+
+
+const slider = document.getElementById('m2Slider');
+const total = document.getElementById('ahorroText');
+const m2Label = document.getElementById('m2Val');
+const calcProvincia = document.getElementById('calcProvincia');
+const calcLoss = document.getElementById('calcLoss');
+const calcRecommendation = document.getElementById('calcRecommendation');
+const calcPriority = document.getElementById('calcPriority');
+
+let selectedYear = 'pre1980';
+let selectedRoof = 'habitable';
+
+const provinceFactors = {
+  avila: 1.12, burgos: 1.16, leon: 1.17, palencia: 1.15, salamanca: 1.08,
+  segovia: 1.13, soria: 1.16, valladolid: 1.08, zamora: 1.11,
+  asturias: 1.07,
+  acoruna: 1.00, lugo: 1.08, ourense: 1.05, pontevedra: 0.98
+};
+
+function getYearFactor() {
+  if (selectedYear === 'pre1980') return 1.22;
+  if (selectedYear === '1980_2006') return 1.00;
+  return 0.82;
+}
+
+function getRoofFactor() {
+  return selectedRoof === 'habitable' ? 1.08 : 1.15;
+}
+
+function getPriorityText(ahorro) {
+  if (ahorro >= 650) return 'Prioridad alta';
+  if (ahorro >= 380) return 'Prioridad media';
+  return 'Prioridad moderada';
+}
+
+function getRecommendation(m2, province, year, roof, ahorro) {
+  const messages = [];
+
+  if (year === 'pre1980') {
+    messages.push('Tu vivienda tiene muchas probabilidades de estar perdiendo energía por cubierta de forma importante.');
+  } else if (year === '1980_2006') {
+    messages.push('Tu vivienda puede tener margen de mejora claro en la zona bajo cubierta.');
+  } else {
+    messages.push('Aunque la vivienda sea más reciente, actuar sobre la cubierta puede seguir mejorar el confort y reducir consumo.');
+  }
+
+  if (['leon','burgos','soria','palencia','segovia','avila','zamora'].includes(province)) {
+    messages.push('En provincias frías de Castilla y León, aislar la buhardilla suele tener un impacto especialmente interesante.');
+  } else if (province === 'asturias' || province === 'lugo') {
+    messages.push('En zonas con clima húmedo y frío, actuar sobre la cubierta ayuda mucho a estabilizar la temperatura interior.');
+  } else if (['acoruna','pontevedra'].includes(province)) {
+    messages.push('En zonas atlánticas, mejorar la cubierta ayuda a ganar confort y reducir pérdidas energéticas continuas.');
+  }
+
+  if (roof === 'habitable') {
+    messages.push('Si se trata de una buhardilla o desván, la solución con manta o rollo puede ser muy adecuada según cómo esté configurado el espacio.');
+  } else {
+    messages.push('Si el espacio bajo cubierta no es habitable, el insuflado puede ser una solución especialmente eficaz y rápida.');
+  }
+
+  if (m2 >= 140) {
+    messages.push('Por superficie, el potencial de ahorro puede ser especialmente interesante en tu caso.');
+  } else if (m2 <= 70) {
+    messages.push('Aunque la superficie no sea muy grande, actuar sobre la cubierta puede marcar una diferencia clara en confort.');
+  }
+
+  if (ahorro >= 650) {
+    messages.push('En conjunto, parece un caso con bastante sentido para estudiar técnicamente.');
+  } else if (ahorro >= 380) {
+    messages.push('En conjunto, parece un caso con buen margen de mejora y merece una valoración técnica.');
+  } else {
+    messages.push('En conjunto, conviene estudiar el caso para confirmar el alcance real de la mejora.');
+  }
+
+  return messages.slice(0, 3).join(' ');
+}
+
+function updateCalc() {
+  const m2 = Number(slider.value || 0);
+  const province = calcProvincia.value || 'leon';
+  const ahorro = Math.round(m2 * 4.4 * getYearFactor() * (provinceFactors[province] || 1) * getRoofFactor());
+
+  m2Label.innerText = m2;
+  total.innerText = ahorro + '€';
+  calcLoss.textContent = 'Pérdida estimada anual por falta de aislamiento: ' + ahorro + '€';
+  calcRecommendation.textContent = getRecommendation(m2, province, selectedYear, selectedRoof, ahorro);
+  calcPriority.textContent = getPriorityText(ahorro);
+}
+
+slider.oninput = updateCalc;
+calcProvincia.addEventListener('change', updateCalc);
+
+document.querySelectorAll('.calc-chip').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const group = btn.dataset.group;
+    document.querySelectorAll(`.calc-chip[data-group="${group}"]`).forEach((b) => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (group === 'year') selectedYear = btn.dataset.value;
+    if (group === 'roof') selectedRoof = btn.dataset.value;
+    updateCalc();
+  });
+});
+
+updateCalc();
+  });
+});
+
+updateCalc();
+
+    const observer = new IntersectionObserver((ents) => {
+      ents.forEach(en => { if(en.isIntersecting) en.target.classList.add('active'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+        if(!isActive) item.classList.add('active');
+      });
+    });
+  </script>
+
+<script>
+  const MAKE_WEBHOOK_LEAD = "https://hook.eu1.make.com/e0cq3852vj2n31fni6v7epiuoikb547m";
+
+  function showMsg(id, msg, ok=false) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = msg;
+    el.className = ok
+      ? "text-sm font-bold text-emerald-700"
+      : "text-sm font-bold text-red-600";
+    el.classList.remove("hidden");
+  }
+
+  const leadLoadedAt = document.getElementById("lead_loaded_at");
+  if (leadLoadedAt) leadLoadedAt.value = String(Date.now());
+
+  const leadForm = document.getElementById("leadForm");
+  if (leadForm) {
+    leadForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const nombre = leadForm.querySelector('[name="nombre"]');
+      const telefono = leadForm.querySelector('[name="telefono"]');
+      const legal = leadForm.querySelector('[name="legal"]');
+      const honeypot = leadForm.querySelector('[name="website"]');
+      const loadedAt = Number(leadForm.querySelector('[name="loaded_at"]').value || "0");
+
+      document.getElementById("lead_error_nombre")?.classList.add("hidden");
+      document.getElementById("lead_error_telefono")?.classList.add("hidden");
+      document.getElementById("lead_error_legal")?.classList.add("hidden");
+      document.getElementById("lead_status")?.classList.add("hidden");
+
+      let hasError = false;
+
+      if (!nombre.value.trim()) {
+        document.getElementById("lead_error_nombre")?.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (!telefono.value.trim()) {
+        document.getElementById("lead_error_telefono")?.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (!legal.checked) {
+        document.getElementById("lead_error_legal")?.classList.remove("hidden");
+        hasError = true;
+      }
+
+      if (hasError) return;
+
+      if (honeypot.value.trim()) return;
+      if (Date.now() - loadedAt < 3000) {
+        showMsg("lead_status", "Espera unos segundos y vuelve a intentarlo.");
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(leadForm).entries());
+
+      try {
+        await fetch(MAKE_WEBHOOK_LEAD, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        showMsg("lead_status", "Solicitud enviada correctamente. Te contactaremos pronto.", true);
+        leadForm.reset();
+        if (leadLoadedAt) leadLoadedAt.value = String(Date.now());
+      } catch (err) {
+        showMsg("lead_status", "No se pudo enviar ahora mismo. Escríbenos por WhatsApp.");
+      }
+    });
+  }
+</script>
+
+
+<div id="adminHelpBadge">Modo admin activo</div>
+<button id="btnEditarAdmin">Editar web</button>
+<div id="panelAdmin">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;">
+    <h3 style="margin:0;">Versión final PRO+</h3>
+    <button id="cerrarAdmin" style="border:none;background:#eee;border-radius:10px;padding:8px 12px;cursor:pointer;">Cerrar</button>
+  </div>
+  <p style="margin-top:0;color:#5f7a70;font-size:14px;">Edita textos directamente sobre la web, cambia imágenes y guarda los cambios en Firebase.</p>
+
+  <label style="display:block;font-weight:700;margin:14px 0 6px;">Color principal</label>
+  <input type="color" id="colorPrimary" style="width:100%;height:46px;border:1px solid #ccdcd0;border-radius:12px;padding:4px;" />
+  <label style="display:block;font-weight:700;margin:14px 0 6px;">Color secundario</label>
+  <input type="color" id="colorSecondary" style="width:100%;height:46px;border:1px solid #ccdcd0;border-radius:12px;padding:4px;" />
+
+  <label style="display:block;font-weight:700;margin:14px 0 6px;">Imagen seleccionada</label>
+  <p class="admin-mini-help">Haz clic en una imagen para seleccionarla y cambiarla.</p>
+  <div id="selectedImageLabel" class="admin-selected-label">Ninguna imagen seleccionada</div>
+  <select id="adminImageTarget" class="admin-field"></select>
+  <img id="adminPreviewImg" src="" alt="Vista previa" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px;border:1px solid #d7e4db;background:#fff;margin-top:12px;" />
+  <button id="subirImagenAdmin" class="admin-inline-btn primary">Subir imagen</button>
+
+  <button id="guardarAdmin" style="width:100%;padding:14px;border:none;background:#12354a;color:#fff;border-radius:12px;font-weight:800;cursor:pointer;margin-top:18px;">Guardar cambios</button>
+  <button id="restablecerAdmin" style="width:100%;padding:14px;border:none;background:#eee;color:#12354a;border-radius:12px;font-weight:800;cursor:pointer;margin-top:10px;">Restablecer cambios guardados</button>
+  <p id="estadoAdmin" style="margin-top:10px;font-size:14px;color:#5f7a70;"></p>
+</div>
+<script src="https://upload-widget.cloudinary.com/global/all.js"></script>
+
+
+<script type="module" id="admin-base-script">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-app.js";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.11.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC51eID-fbYsn5L1ieeDmoRLmBMaKP1kAhg",
+  authDomain: "galeria-web-9c9d9.firebaseapp.com",
+  projectId: "galeria-web-9c9d9",
+  storageBucket: "galeria-web-9c9d9.firebasestorage.app",
+  messagingSenderId: "468798254203",
+  appId: "1:468798254203:web:35bd1df8bc18dd74ccc60e"
+};
+const CLOUD_NAME = "dnenidufl";
+const UPLOAD_PRESET = "mi_upload";
+const ADMIN_KEY = "MANCAE2025";
+const isAdmin = new URLSearchParams(window.location.search).get("admin") === ADMIN_KEY;
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const pageId = window.location.pathname.split('/').pop() || 'pagina';
+const docRef = doc(db, "contenido_paginas", pageId);
+
+const qs = (id) => document.getElementById(id);
+const qsa = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+let savedData = { texts: {}, images: {}, colors: {} };
+let currentImageTarget = null;
+
+function uid(prefix, idx) {
+  return `${prefix}_${idx}`;
+}
+
+function assignAdminMetadata() {
+  qsa('h1,h2,h3,h4,p,.badge,.hero-strong,.hero-note,.hero-panel-label,strong,li').forEach((el, idx) => {
+    if (!el.dataset.adminKey) el.dataset.adminKey = uid('text', idx + 1);
+  });
+  qsa('img').forEach((el, idx) => {
+    if (!el.dataset.adminImg) el.dataset.adminImg = uid('img', idx + 1);
+  });
+}
+
+function getDefaultData() {
+  assignAdminMetadata();
+  const texts = {};
+  qsa('[data-admin-key]').forEach(el => texts[el.dataset.adminKey] = el.innerHTML);
+  const images = {};
+  qsa('[data-admin-img]').forEach(el => images[el.dataset.adminImg] = el.getAttribute('src') || '');
+  const styles = getComputedStyle(document.documentElement);
+  const colors = {
+    primary: styles.getPropertyValue('--primary').trim() || '#2f7d57',
+    secondary: styles.getPropertyValue('--secondary').trim() || '#12354a'
+  };
+  return { texts, images, colors };
+}
+
+function applyData() {
+  assignAdminMetadata();
+  qsa('[data-admin-key]').forEach(el => {
+    const key = el.dataset.adminKey;
+    if (typeof savedData.texts?.[key] === 'string') el.innerHTML = savedData.texts[key];
+  });
+  qsa('[data-admin-img]').forEach(el => {
+    const key = el.dataset.adminImg;
+    if (savedData.images?.[key]) el.setAttribute('src', savedData.images[key]);
+  });
+  if (savedData.colors?.primary) document.documentElement.style.setProperty('--primary', savedData.colors.primary);
+  if (savedData.colors?.secondary) document.documentElement.style.setProperty('--secondary', savedData.colors.secondary);
+  if (qs('colorPrimary')) qs('colorPrimary').value = savedData.colors?.primary || '#2f7d57';
+  if (qs('colorSecondary')) qs('colorSecondary').value = savedData.colors?.secondary || '#12354a';
+  refreshImageOptions();
+}
+
+function makeTextEditable() {
+  qsa('[data-admin-key]').forEach(el => {
+    el.contentEditable = 'true';
+    el.spellcheck = false;
+  });
+}
+
+function refreshImageOptions() {
+  const select = qs('adminImageTarget');
+  if (!select) return;
+  const imgs = qsa('[data-admin-img]');
+  select.innerHTML = imgs.map(el => {
+    const key = el.dataset.adminImg;
+    const label = el.getAttribute('alt') || key;
+    return `<option value="${key}">${label}</option>`;
+  }).join('');
+  if (!currentImageTarget && imgs[0]) currentImageTarget = imgs[0].dataset.adminImg;
+  if (currentImageTarget) select.value = currentImageTarget;
+  updatePreview();
+  updateSelectedImageLabel();
+}
+
+function updateSelectedImageLabel() {
+  const label = qs('selectedImageLabel');
+  if (!label) return;
+  const el = document.querySelector(`[data-admin-img="${currentImageTarget}"]`);
+  label.textContent = el ? (el.getAttribute('alt') || currentImageTarget) : 'Ninguna imagen seleccionada';
+}
+
+function updatePreview() {
+  const preview = qs('adminPreviewImg');
+  if (!preview) return;
+  const el = document.querySelector(`[data-admin-img="${currentImageTarget}"]`);
+  preview.src = el?.getAttribute('src') || '';
+}
+
+function collectCurrentData() {
+  const texts = {};
+  qsa('[data-admin-key]').forEach(el => texts[el.dataset.adminKey] = el.innerHTML);
+  const images = {};
+  qsa('[data-admin-img]').forEach(el => images[el.dataset.adminImg] = el.getAttribute('src') || '');
+  const colors = {
+    primary: qs('colorPrimary')?.value || savedData.colors?.primary || '#2f7d57',
+    secondary: qs('colorSecondary')?.value || savedData.colors?.secondary || '#12354a'
+  };
+  return { texts, images, colors };
+}
+
+const widget = window.cloudinary ? window.cloudinary.createUploadWidget({
+  cloudName: CLOUD_NAME,
+  uploadPreset: UPLOAD_PRESET,
+  sources: ['local','camera','url'],
+  multiple: false,
+  resourceType: 'image',
+  clientAllowedFormats: ['jpg','jpeg','png','webp']
+}, (error, result) => {
+  if (error) {
+    console.error(error);
+    if (qs('estadoAdmin')) qs('estadoAdmin').innerText = 'Error al subir imagen.';
+    return;
+  }
+  if (result && result.event === 'success') {
+    const url = result.info.secure_url;
+    const el = document.querySelector(`[data-admin-img="${currentImageTarget}"]`);
+    if (el) el.src = url;
+    updatePreview();
+    if (qs('estadoAdmin')) qs('estadoAdmin').innerText = 'Imagen actualizada. Pulsa Guardar cambios.';
+  }
+}) : null;
+
+function bindImageClicks() {
+  qsa('[data-admin-img]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      if (!isAdmin) return;
+      e.stopPropagation();
+      currentImageTarget = el.dataset.adminImg;
+      refreshImageOptions();
+      qs('panelAdmin').style.display = 'block';
+    });
+  });
+}
+
+function enableAdmin() {
+  document.body.classList.add('admin-editing');
+  qs('adminHelpBadge').style.display = 'block';
+  qs('btnEditarAdmin').style.display = 'inline-flex';
+  makeTextEditable();
+  bindImageClicks();
+
+  qs('btnEditarAdmin').addEventListener('click', () => {
+    qs('panelAdmin').style.display = 'block';
+    refreshImageOptions();
+  });
+  qs('cerrarAdmin').addEventListener('click', () => {
+    qs('panelAdmin').style.display = 'none';
+  });
+  qs('adminImageTarget').addEventListener('change', () => {
+    currentImageTarget = qs('adminImageTarget').value;
+    updatePreview();
+    updateSelectedImageLabel();
+  });
+  qs('subirImagenAdmin').addEventListener('click', () => {
+    if (!widget) {
+      qs('estadoAdmin').innerText = 'Cloudinary no se ha cargado todavía.';
+      return;
+    }
+    widget.open();
+  });
+  qs('colorPrimary').addEventListener('input', e => document.documentElement.style.setProperty('--primary', e.target.value));
+  qs('colorSecondary').addEventListener('input', e => document.documentElement.style.setProperty('--secondary', e.target.value));
+
+  qs('guardarAdmin').addEventListener('click', async () => {
+    try {
+      qs('estadoAdmin').innerText = 'Guardando...';
+      savedData = collectCurrentData();
+      await setDoc(docRef, savedData, { merge: true });
+      qs('estadoAdmin').innerText = 'Guardado correctamente.';
+    } catch (e) {
+      console.error(e);
+      qs('estadoAdmin').innerText = 'Error al guardar.';
+    }
+  });
+
+  qs('restablecerAdmin').addEventListener('click', async () => {
+    const ok = window.confirm('Esto borrará los cambios guardados de esta página. ¿Continuar?');
+    if (!ok) return;
+    try {
+      qs('estadoAdmin').innerText = 'Restableciendo...';
+      await deleteDoc(docRef);
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+      qs('estadoAdmin').innerText = 'No se pudo restablecer.';
+    }
+  });
+}
+
+window.addEventListener('DOMContentLoaded', async () => {
+  savedData = getDefaultData();
+  try {
+    const snap = await getDoc(docRef);
+    if (snap.exists()) {
+      const d = snap.data();
+      savedData = {
+        texts: { ...savedData.texts, ...(d.texts || {}) },
+        images: { ...savedData.images, ...(d.images || {}) },
+        colors: { ...savedData.colors, ...(d.colors || {}) }
+      };
+    }
+  } catch (e) {
+    console.error('Error cargando guardado:', e);
+  }
+  applyData();
+  if (isAdmin) enableAdmin();
+});
+</script>
+
+
+  <footer class="mt-16 border-t border-slate-200 bg-white/80">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3 items-start">
+      <div>
+        <div class="flex items-center gap-3">
+          <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+            <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+          <div class="text-base font-extrabold tracking-tighter uppercase leading-none">
+            <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+            <span class="text-emerald-500">EN CASA</span>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600 leading-6">Especialistas en aislamiento de buhardillas y zonas bajo cubierta mediante sistema CAE.</p>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Navegación</p>
+        <div class="grid gap-2">
+          <a href="index.html" class="hover:text-emerald-600">Inicio</a>
+          <a href="dia-de-la-cita.html" class="hover:text-emerald-600">Día de la cita</a>
+          <a href="documentacion.html" class="hover:text-emerald-600">Documentación</a>
+          <a href="tras-tu-visita.html" class="hover:text-emerald-600">Tras tu visita</a>
+        </div>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Legal y contacto</p>
+        <div class="grid gap-2">
+          <a href="aviso-legal.html" class="hover:text-emerald-600">Aviso legal</a>
+          <a href="privacidad.html" class="hover:text-emerald-600">Privacidad</a>
+          <a href="cookies.html" class="hover:text-emerald-600">Cookies</a>
+          <a href="tel:+34887824609" class="hover:text-emerald-600">887 824 609</a>
+          <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">WhatsApp: 602 063 644</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aislamiento en Casa | Tras tu visita</title>
+  <meta name="description" content="Gracias por tu confianza. Aquí te explicamos qué ocurrirá ahora, cómo seguir en contacto y cómo recomendar a un familiar o dejar una reseña." />
+  <meta name="theme-color" content="#2f7d57" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root{
+      --primary:#2f7d57;--primary-dark:#1f5b40;--dark:#183028;--muted:#5f7a70;--line:#d7e4db;--whatsapp:#25d366;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Plus Jakarta Sans',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(47,125,87,.14), transparent 26%),
+        radial-gradient(circle at top right, rgba(18,53,74,.08), transparent 22%),
+        linear-gradient(180deg,#f8fbf9 0%,#eef5f0 100%);
+      color:var(--dark);
+    }
+    .hero-bg{
+      background:
+        linear-gradient(100deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.93) 55%, rgba(255,255,255,.85) 100%),
+        url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+    }
+    .card-shadow{box-shadow:0 22px 55px rgba(16,38,28,.08)}
+    .feature-hover{transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
+    .feature-hover:hover{transform:translateY(-4px);box-shadow:0 18px 35px rgba(16,38,28,.07);border-color:#cfe2d5}
+    .form-field{
+      width:100%;padding:1rem 1.1rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:1rem;font-weight:600;outline:none;transition:.2s ease;
+    }
+    .form-field:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(47,125,87,.10)}
+    .faq-item .faq-answer{display:none}
+    .faq-item.active .faq-answer{display:block}
+    .faq-item.active .faq-plus{transform:rotate(45deg)}
+    .faq-plus{transition:.25s ease}
+    body.admin-editing [data-editable]{outline:2px dashed rgba(47,125,87,.38);outline-offset:4px;cursor:text}
+    #adminUI{display:flex}
+    body.client-view #adminUI{display:none}
+  </style>
+</head>
+<body class="admin-editing">
+  <div id="adminUI" class="fixed bottom-5 right-5 z-[100] flex-col gap-3">
+    <button onclick="saveAndDownload()" class="bg-emerald-600 text-white px-6 py-4 rounded-2xl font-extrabold shadow-2xl hover:bg-emerald-700 transition">Guardar HTML</button>
+    <button onclick="toggleClientView()" class="bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold shadow-xl text-sm">Vista cliente</button>
+  </div>
+
+  <header class="sticky top-0 z-50 border-b border-emerald-100 bg-white/88 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+      <a href="web_index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">AISLAMIENTO <span class="text-emerald-600">EN CASA</span></a>
+      
+  <nav class="sticky top-0 z-50 px-4 py-4">
+    <div class="max-w-7xl mx-auto glass rounded-[2rem] px-5 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <svg width="42" height="42" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+          <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+        </svg>
+        <a href="index.html" class="text-lg md:text-xl font-extrabold tracking-tighter uppercase leading-none">
+          <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+          <span class="text-emerald-500">EN CASA</span>
+        </a>
+      </div>
+      <div class="hidden lg:flex items-center gap-6 text-sm font-bold text-slate-700">
+        <a href="index.html#antes-despues" class="hover:text-emerald-600 transition">Antes y después</a>
+        <a href="index.html#soluciones" class="hover:text-emerald-600 transition">Soluciones</a>
+        <a href="index.html#faq" class="hover:text-emerald-600 transition">FAQ</a>
+        <a href="dia-de-la-cita.html" class="hover:text-emerald-600 transition">La cita</a>
+        <a href="documentacion.html" class="hover:text-emerald-600 transition">Documentación</a>
+        <a href="tras-tu-visita.html" class="hover:text-emerald-600 transition">Tras tu visita</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hidden md:inline-flex bg-white text-slate-900 px-5 py-3 rounded-2xl font-bold text-sm border border-slate-200 hover:border-emerald-200 transition-all">WhatsApp</a>
+        <a href="index.html#contacto" class="bg-slate-900 text-white px-5 py-3 rounded-2xl font-bold text-sm hover:bg-emerald-600 transition-all">Solicitar estudio</a>
+      </div>
+    </div>
+  </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-emerald-100 transition hover:-translate-y-0.5 hover:bg-emerald-700">WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-bg overflow-hidden">
+      <div class="mx-auto max-w-7xl px-6 pb-20 pt-16 lg:px-8 lg:pb-24 lg:pt-20">
+        <div class="max-w-4xl">
+          <div data-editable="true" class="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.22em] text-emerald-700">Gracias · Siguientes pasos · Recomendaciones</div>
+          <h1 data-editable="true" class="max-w-4xl text-5xl font-extrabold leading-[1.02] tracking-tight text-slate-950 md:text-6xl lg:text-7xl">Gracias por <span class="text-emerald-600">tu confianza</span></h1>
+          <p data-editable="true" class="mt-7 max-w-3xl text-lg leading-8 text-slate-600 md:text-xl">Tras la visita técnica revisaremos la información recogida y te indicaremos con claridad cuál es el siguiente paso en tu caso.</p>
+          <p data-editable="true" class="mt-4 max-w-3xl text-base leading-7 text-slate-700">Mientras tanto, aquí puedes ver cómo continúa el proceso, resolver una duda, dejarnos tu opinión o recomendarnos a un familiar o conocido.</p>
+          <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+            <a href="#siguiente-paso" class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-8 py-4 text-lg font-extrabold text-white shadow-xl shadow-emerald-200 transition hover:-translate-y-0.5 hover:bg-emerald-700">Ver qué pasa ahora</a>
+            <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-8 py-4 text-lg font-bold text-slate-800 transition hover:-translate-y-0.5 hover:border-slate-300">Hablar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="siguiente-paso" class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Qué ocurre ahora</p>
+        <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Los 3 pasos después de la visita</h2>
+        <p data-editable="true" class="mt-5 text-lg leading-8 text-slate-600">Después de la cita técnica, el proceso continúa con la revisión del expediente, la emisión del certificado y la tramitación final para el cliente.</p>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-3">
+        <div class="feature-hover rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.16em] text-emerald-700">Paso 1</p>
+          <h3 data-editable="true" class="mt-4 text-2xl font-extrabold text-slate-900">Revisión del expediente</h3>
+          <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-600">Revisamos técnicamente el caso, comprobamos la documentación y confirmamos cuál es el siguiente paso para poder continuar con seguridad.</p>
+          <ul class="mt-5 space-y-2 text-sm leading-7 text-slate-600">
+            <li>• Revisión técnica</li>
+            <li>• Revisión documental</li>
+            <li>• Confirmación del siguiente paso</li>
+          </ul>
+        </div>
+
+        <div class="feature-hover rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.16em] text-emerald-700">Paso 2</p>
+          <h3 data-editable="true" class="mt-4 text-2xl font-extrabold text-slate-900">Emisión del CEE e inscripción</h3>
+          <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-600">Una vez completada la fase anterior, se emite el Certificado de Eficiencia Energética y se realiza la inscripción o solicitud de certificación correspondiente.</p>
+        </div>
+
+        <div class="feature-hover rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.16em] text-emerald-700">Paso 3</p>
+          <h3 data-editable="true" class="mt-4 text-2xl font-extrabold text-slate-900">Emisión de la etiqueta energética</h3>
+          <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-600">Después se emite la etiqueta de calificación energética. Este trámite puede tardar hasta 3 meses. Cuando se completa, el proceso queda finalizado para el cliente.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid gap-6 lg:grid-cols-2">
+          <div class="rounded-[2rem] border border-emerald-100 bg-emerald-50 p-8">
+            <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Tu experiencia nos importa</p>
+            <h2 data-editable="true" class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Valora tu experiencia</h2>
+            <p data-editable="true" class="mt-4 text-lg leading-8 text-slate-700">Queremos ofrecer un proceso claro, profesional y fácil de entender. Tu opinión nos ayuda a seguir mejorando la atención y la experiencia del cliente.</p>
+            <form class="mt-8 grid gap-4">
+              <input class="form-field" type="text" placeholder="Tu nombre" />
+              <select class="form-field">
+                <option selected disabled>¿Cómo fue tu experiencia?</option>
+                <option>Muy buena</option>
+                <option>Buena</option>
+                <option>Mejorable</option>
+              </select>
+              <textarea class="form-field" rows="4" placeholder="Cuéntanos tu experiencia (opcional)"></textarea>
+              <button type="button" class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-6 py-4 text-lg font-extrabold text-white transition hover:bg-emerald-700">Enviar valoración</button>
+            </form>
+          </div>
+
+          <div class="rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+            <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">¿Conoces a alguien?</p>
+            <h2 data-editable="true" class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Recomiéndanos a un familiar o conocido</h2>
+            <p data-editable="true" class="mt-4 text-lg leading-8 text-slate-600">Si tienes un familiar, vecino o conocido con una vivienda o inmueble similar, estaremos encantados de valorar su caso también.</p>
+
+            <div class="mt-8 rounded-[1.5rem] border border-emerald-100 bg-emerald-50 p-6">
+              <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.16em] text-emerald-700">Programa de recomendación</p>
+              <p data-editable="true" class="mt-4 text-base leading-7 text-slate-700"><strong>1 recomendación válida que avance a estudio técnico: 30 €</strong></p>
+              <p data-editable="true" class="mt-2 text-base leading-7 text-slate-700"><strong>3 recomendaciones válidas que avancen a estudio técnico: 100 €</strong></p>
+              <p data-editable="true" class="mt-4 text-sm leading-7 text-slate-600">Promoción sujeta a validación del contacto y a que el caso avance realmente dentro del proceso de estudio.</p>
+            </div>
+
+            <form class="mt-8 grid gap-4">
+              <input class="form-field" type="text" placeholder="Tu nombre" />
+              <input class="form-field" type="text" placeholder="Nombre del familiar o conocido" />
+              <input class="form-field" type="tel" placeholder="Teléfono del contacto" />
+              <input class="form-field" type="text" placeholder="Localidad (opcional)" />
+              <textarea class="form-field" rows="3" placeholder="Comentario (opcional)"></textarea>
+              <label class="flex items-start gap-3 text-sm leading-7 text-slate-600">
+                <input type="checkbox" class="mt-1">
+                <span>Confirmo que tengo permiso de esta persona para compartir sus datos de contacto con el fin de que puedan valorar su caso.</span>
+              </label>
+              <button type="button" class="inline-flex items-center justify-center rounded-2xl bg-slate-900 px-6 py-4 text-lg font-extrabold text-white transition hover:bg-emerald-700">Enviar recomendación</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <div class="grid gap-6 lg:grid-cols-2">
+        <div class="rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Dejar una reseña</p>
+          <h2 data-editable="true" class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Tu reseña también nos ayuda</h2>
+          <p data-editable="true" class="mt-4 text-lg leading-8 text-slate-600">Si la visita te ha resultado clara y profesional, puedes dejarnos una reseña para ayudar a otras personas a entender mejor cómo trabajamos.</p>
+          <div class="mt-8">
+            <a href="#" class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-8 py-4 text-lg font-extrabold text-white transition hover:bg-emerald-700">Dejar una reseña</a>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] border border-slate-200 bg-white p-8 card-shadow">
+          <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">Seguimos disponibles</p>
+          <h2 data-editable="true" class="mt-4 text-3xl font-extrabold tracking-tight text-slate-950">Contacta cuando lo necesites</h2>
+          <p data-editable="true" class="mt-4 text-lg leading-8 text-slate-600">Si quieres hacer una consulta, confirmar un documento o resolver una duda después de la visita, puedes escribirnos directamente.</p>
+          <div class="mt-8 grid gap-4">
+            <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-6 py-4 text-lg font-extrabold text-white transition hover:bg-emerald-700">Hablar por WhatsApp</a>
+            <a href="web_documentacion.html" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-white px-6 py-4 text-lg font-bold text-slate-800 transition hover:border-slate-300">Ver documentación</a>
+            <a href="web_index.html" class="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-6 py-4 text-lg font-bold text-slate-800 transition hover:border-slate-300">Volver a la landing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mx-auto max-w-5xl px-6 py-20 lg:px-8">
+      <div class="text-center">
+        <p data-editable="true" class="text-sm font-extrabold uppercase tracking-[0.22em] text-emerald-700">FAQ</p>
+        <h2 data-editable="true" class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950 md:text-5xl">Preguntas frecuentes tras la visita</h2>
+      </div>
+      <div class="mt-12 space-y-4">
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-shadow">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span class="text-lg font-extrabold text-slate-900">¿Cuándo termina el trámite para el cliente?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div class="faq-answer pt-4 text-sm leading-7 text-slate-600">El proceso queda finalizado para el cliente cuando se emite la etiqueta de calificación energética. Este trámite puede tardar hasta 3 meses.</div>
+        </div>
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-shadow">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span class="text-lg font-extrabold text-slate-900">¿Puedo recomendar a más de una persona?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div class="faq-answer pt-4 text-sm leading-7 text-slate-600">Sí. Puedes recomendarnos a uno o varios familiares o conocidos. La promoción se aplica a recomendaciones válidas que avancen realmente a estudio técnico.</div>
+        </div>
+        <div class="faq-item rounded-[1.5rem] border border-slate-200 bg-white p-6 card-shadow">
+          <button class="faq-toggle flex w-full items-center justify-between gap-6 text-left">
+            <span class="text-lg font-extrabold text-slate-900">¿Qué pasa si quiero enviar una opinión o resolver una duda?</span>
+            <span class="faq-plus text-3xl font-light text-emerald-700">+</span>
+          </button>
+          <div class="faq-answer pt-4 text-sm leading-7 text-slate-600">Puedes usar esta página para valorar tu experiencia o escribirnos directamente por WhatsApp para cualquier consulta relacionada con tu caso.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+
+  <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-3 rounded-full px-5 py-3 text-sm font-extrabold text-white shadow-2xl transition hover:-translate-y-0.5" style="background:var(--whatsapp);">WhatsApp</a>
+
+  <script>
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+    function toggleClientView() { document.body.classList.toggle('client-view'); }
+    document.querySelectorAll('[data-editable]').forEach(el => {
+      el.setAttribute('contenteditable', 'true');
+      el.setAttribute('spellcheck', 'false');
+    });
+
+    function saveAndDownload() {
+      const clone = document.documentElement.cloneNode(true);
+      const adminUI = clone.querySelector('#adminUI');
+      if (adminUI) adminUI.remove();
+      clone.querySelectorAll('[data-editable]').forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.removeAttribute('spellcheck');
+      });
+      if (clone.querySelector('body')) clone.querySelector('body').classList.remove('admin-editing', 'client-view');
+      const scripts = clone.querySelectorAll('script');
+      if (scripts.length > 0) {
+        scripts[scripts.length - 1].textContent = `
+document.querySelectorAll('.faq-toggle').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.closest('.faq-item');
+    const isActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+    if (!isActive) item.classList.add('active');
+  });
+});
+        `;
+      }
+      const blob = new Blob([clone.outerHTML], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'tras-tu-visita_v2.html';
+      a.click();
+    }
+  </script>
+
+  <footer class="mt-16 border-t border-slate-200 bg-white/80">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid gap-8 md:grid-cols-3 items-start">
+      <div>
+        <div class="flex items-center gap-3">
+          <svg width="34" height="34" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="shrink-0">
+            <path d="M32 6C19.85 6 10 15.85 10 28c0 7.66 3.91 14.39 9.84 18.33 2.41 1.6 3.66 4.2 3.66 7.09V54c0 2.21 1.79 4 4 4h9c2.21 0 4-1.79 4-4v-.58c0-2.89 1.25-5.49 3.66-7.09C50.09 42.39 54 35.66 54 28 54 15.85 44.15 6 32 6Z" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 54h16" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M27 30h10M32 30v17" stroke="#7AC943" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+          <div class="text-base font-extrabold tracking-tighter uppercase leading-none">
+            <span class="text-[#7AC943]">AISLAMIENTO</span><br>
+            <span class="text-emerald-500">EN CASA</span>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-slate-600 leading-6">Especialistas en aislamiento de buhardillas y zonas bajo cubierta mediante sistema CAE.</p>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Navegación</p>
+        <div class="grid gap-2">
+          <a href="index.html" class="hover:text-emerald-600">Inicio</a>
+          <a href="dia-de-la-cita.html" class="hover:text-emerald-600">Día de la cita</a>
+          <a href="documentacion.html" class="hover:text-emerald-600">Documentación</a>
+          <a href="tras-tu-visita.html" class="hover:text-emerald-600">Tras tu visita</a>
+        </div>
+      </div>
+      <div class="text-sm text-slate-600">
+        <p class="font-bold text-slate-900 mb-3">Legal y contacto</p>
+        <div class="grid gap-2">
+          <a href="aviso-legal.html" class="hover:text-emerald-600">Aviso legal</a>
+          <a href="privacidad.html" class="hover:text-emerald-600">Privacidad</a>
+          <a href="cookies.html" class="hover:text-emerald-600">Cookies</a>
+          <a href="tel:+34887824609" class="hover:text-emerald-600">887 824 609</a>
+          <a href="https://wa.me/34602063644" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600">WhatsApp: 602 063 644</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
